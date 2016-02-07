@@ -1,0 +1,1 @@
+curl -F "type=home&index=$page.frame.home&title="Home" -F html=@home.html http://localhost:3000/management/html  -H "Tokens:eec2545a6fec3174fbd32e590591dfb10641bf40556700701b426535dbc04f73" -H "Day:2016-02-06" -H "TimeOfDay:23:13:23.594442"
