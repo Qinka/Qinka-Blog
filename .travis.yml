@@ -1,2 +1,2 @@
 script:
-  - "./upload.sh $GLOB_PSK 0"
+  - "./upload.sh $GLOB_URL $GLOB_PSK 0"
