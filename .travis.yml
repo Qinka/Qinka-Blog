@@ -1,0 +1,2 @@
+script:
+  - "./upload.sh $GLOB_PSK 0"
