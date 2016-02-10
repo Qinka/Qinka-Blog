@@ -12,7 +12,7 @@ if [ $# -eq 3 ]; then
     ## compress
     cat home.html > home.c.html
     ## upload
-    echo 'curl -F "type=home" -F "index=\$page.main" -F "title=Home" -F "html=@home.c.html" ' $1/management/html | ./ih $2 $3 
+    echo 'curl -F "type=home" -F "index=\$page.main" -F "title=Home" -F "html=@home.c.html" ' $1/management/html | ./ih $2 $3 | bash
     echo ""
 
     # update $page.blog
@@ -70,5 +70,5 @@ if [ $# -eq 3 ]; then
     echo 'curl -F "label=Blog" -F "order=1" -F "ref=/blog" ' $1/management/nav | ./ih $2 $3 | bash
     echo ""
 else
-    echo "usage:  ./upload.sh url password time(fix)"
+    echo "usage:  ./upload.sh url time(fix) password"
 fi
