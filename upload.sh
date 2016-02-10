@@ -1,4 +1,6 @@
-#!/bin/sh
+#!/bin/bash
+
+
 
 echo $1
 echo $2
@@ -10,7 +12,7 @@ if [ $# -eq 3 ]; then
     ## compress
     cat home.html > home.c.html
     ## upload
-    echo 'curl -F "type=home" -F "index=\$page.main" -F "title=Home" -F "html=@home.c.html" ' $1/management/html | ./ih $2 $3 | bash
+    echo 'curl -F "type=home" -F "index=\$page.main" -F "title=Home" -F "html=@home.c.html" ' $1/management/html | ./ih $2 $3 
     echo ""
 
     # update $page.blog
@@ -61,7 +63,7 @@ if [ $# -eq 3 ]; then
     ## upload
     echo 'curl -F "type=application/x-javascript" -F "index=nav.js" -F "txt=@nav.c.js" ' $1/management/txt | ./ih $2 $3 | bash
     echo ""
-    
+
     # Add Navgate
     echo 'curl -F "label=Home" -F "order=0" -F "ref=/" ' $1/management/nav | ./ih $2 $3 | bash
     echo ""
