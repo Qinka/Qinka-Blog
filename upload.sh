@@ -69,6 +69,8 @@ if [ $# -eq 3 ]; then
     echo ""
     echo 'curl -d "label=Blog" -d "order=1" -d "ref=/blog" ' $1/management/nav | ./ih $2 $3 | bash
     echo ""
+    echo 'curl -d "label=Glob" -d "order=2" -d "ref=/page/glob" ' $1/management/nav ./ih $2. $3 | bash
+    echo ""
 else
     echo "usage:  ./upload.sh url time(fix) password"
 fi
