@@ -65,9 +65,9 @@ if [ $# -eq 3 ]; then
     echo ""
 
     # Add Navgate
-    echo 'curl -F "label=Home" -F "order=0" -F "ref=/" ' $1/management/nav | ./ih $2 $3 | bash
+    echo 'curl -d "label=Home" -d "order=0" -d "ref=/" ' $1/management/nav | ./ih $2 $3 | bash
     echo ""
-    echo 'curl -F "label=Blog" -F "order=1" -F "ref=/blog" ' $1/management/nav | ./ih $2 $3 | bash
+    echo 'curl -d "label=Blog" -d "order=1" -d "ref=/blog" ' $1/management/nav | ./ih $2 $3 | bash
     echo ""
 else
     echo "usage:  ./upload.sh url time(fix) password"
