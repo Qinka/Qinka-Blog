@@ -13,7 +13,7 @@ if [ $# -eq 3 ]; then
     cat home.html > home.c.html
     ## upload
     echo 'curl -F "type=home" -F "index=\$page.main" -F "title=Home" -F "html=@home.c.html" ' $1/management/html | ./ih $2 $3 | bash
-    echo ""
+    echo "  finish update \$page.main"
 
     # update $page.blog
     ## compress
@@ -64,10 +64,20 @@ if [ $# -eq 3 ]; then
     echo 'curl -F "type=application/x-javascript" -F "index=nav.js" -F "txt=@nav.c.js" ' $1/management/txt | ./ih $2 $3 | bash
     echo ""
 
-    # Add Navgate
-    echo 'curl -F "label=Home" -F "order=0" -F "ref=/" ' $1/management/nav | ./ih $2 $3 | bash
+    # update /page/glob
+    ## compress 
+    cat page/glob.html > page/glob.c.html
+    ## upload
+    echo 'curl -F "type=page" -F "index=glob" -F "title=GLob" -F "html=@page/glob.c.html" ' $1/management/html | ./ih $2 $3 | bash
     echo ""
-    echo 'curl -F "label=Blog" -F "order=1" -F "ref=/blog" ' $1/management/nav | ./ih $2 $3 | bash
+    
+
+    # Add Navgate
+    echo 'curl -d "label=Home" -d "order=0" -d "ref=/" ' $1/management/nav | ./ih $2 $3 | bash
+    echo ""
+    echo 'curl -d "label=Blog" -d "order=1" -d "ref=/blog" ' $1/management/nav | ./ih $2 $3 | bash
+    echo "  finish update nav Blog"
+    echo 'curl -d "label=Glob" -d "order=2" -d "ref=/page/glob" ' $1/management/nav | ./ih $2 $3 | bash
     echo ""
 else
     echo "usage:  ./upload.sh url time(fix) password"

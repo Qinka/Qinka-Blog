@@ -27,5 +27,5 @@ xrPb.onreadystatechange = tsopPb;
 xrPb.send(null);
 function tsopPb()
 {
-  document.getElementById('powedby').innerHTML = "Powered by Glob - "+xrPb.responseText;
+  document.getElementById('powedby').innerHTML = "Power by Glob - "+xrPb.responseText;
 }
