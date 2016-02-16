@@ -69,7 +69,6 @@ body
 .bottom
 {
   text-align: center;
-  color: #FFF4B1;
 }
 .gitfokme
 {
@@ -91,7 +90,10 @@ body
   {
     width: 30%;
   }
-  
+  .bottom
+  {
+    color: #FFDDFF;
+  }
 }
 /* for pc */
 @media screen and (min-width:768px){
@@ -111,6 +113,10 @@ body
   .homemain
   {
     margin-left: 30px;
+  }
+  .bottom
+  {
+    color: #FFF4B1;
   }
 }
 
