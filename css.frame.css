@@ -1,6 +1,12 @@
 
 /* css.frame.css */
 
+.qinkalogo
+{
+   width:70%;
+   vertical-align: middle;
+}
+
 a:link
 {
   color: #7FF3FF;
@@ -92,6 +98,10 @@ body
 {
   text-decoration: none;
 }
+.homemain h1
+{
+  text-align: center;
+}
 
 
 /* for moble */
@@ -130,7 +140,7 @@ body
     color: #FFF4B1;
   }
 }
-
+/* for large screen */
 @media screen and (min-width:1000px) {
   body
   {
@@ -141,5 +151,9 @@ body
   .title
   {
     font-size: 80px
+  }
+  .homemain h1
+  {
+    margin-left: -40px;
   }
 }
