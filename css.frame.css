@@ -78,6 +78,22 @@ body
   border: 0;
 }
 
+.bloglist li
+{
+  list-style: none;
+}
+
+.bloglist ul
+{
+  margin-left: -27px;
+}
+
+.bloglist li a:visited, a:link
+{
+  text-decoration: none;
+}
+
+
 /* for moble */
 @media only screen and (max-width:760px),(min-device-width: 768px) and (max-device-with: 1024px){
   .title
@@ -95,13 +111,8 @@ body
     color: #FFDDFF;
   }
 }
-/* for pc */
+/* for pc small screen */
 @media screen and (min-width:768px){
-  body
-  {
-    background:#282828;
-    color:#ededed;
-  }
   .navs
   {
     margin-left: 15px;
@@ -120,3 +131,15 @@ body
   }
 }
 
+@media screen and (min-width:1000px) {
+  body
+  {
+    margin-left: auto;
+    margin-right: auto;
+    width: 80%;
+  }
+  .title
+  {
+    font-size: 80px
+  }
+}

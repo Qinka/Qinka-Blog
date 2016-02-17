@@ -1,6 +1,6 @@
 URL=
 PSK=
-TIME=
+TIME=0
 
 update: html txt bin qry
 	@echo "update all"
@@ -9,7 +9,7 @@ update: html txt bin qry
 html: blog page home
 	@echo "update html"
 
-blog: 
+blog:
 	@echo "update blog"
 
 page: pageGlob
@@ -41,7 +41,7 @@ blogH: blog.html
 	@cat blog.html > tmp/home.blog.html
 	@echo 'curl -F "type=home" -F "index=\$page.blog" -F "title=Blog" -F "html=@tmp/home.blog.html" ' $(URL)/management/html | ./ih $(TIME) $(PSK) | bash
 	@echo "update blog.html"
- 
+
 txt: css js
 	@echo "update txt"
 
@@ -56,18 +56,19 @@ js: navJ blogJ
 	@echo "update js"
 navJ: nav.js
 	@java -jar yuicompressor.jar --type js --charset utf-8 nav.js > tmp/txt.nav.js
-	@echo 'curl -F "type=appli@cation/x-javascript" -F "index=nav.js" -F "txt=@tmp/txt.nav.js" ' $(URL)/management/txt | ./ih $(TIME) $(PSK) | bash
+	@echo 'curl -F "type=application/x-javascript" -F "index=nav.js" -F "txt=@tmp/txt.nav.js" ' $(URL)/management/txt | ./ih $(TIME) $(PSK) | bash
 	@echo "update nav.js"
 blogJ:blog.js
 	@java -jar yuicompressor.jar --type js --charset utf-8 blog.js > tmp/txt.blog.js
-	@echo 'curl -F "type=appli@cation/x-javascript" -F "index=blog.js" -F "txt=@tmp/txt.blog.js" ' $(URL)/management/txt | ./ih $(TIME) $(PSK) | bash
+	@echo 'curl -F "type=application/x-javascript" -F "index=blog.js" -F "txt=@tmp/txt.blog.js" ' $(URL)/management/txt | ./ih $(TIME) $(PSK) | bash
 	@echo "update blog.js"
 
 bin:
 	@echo "update bin"
+	#@echo curl '-F "index=fav.ico" -F "bin=@Glob.png" -F "type=image/png" ' $(URL)/management/bin | ./ih $(TIME) $(PSK) | bash
 
 
-nav: 
+nav:
 	@echo 'curl -d "label=Home" -d "order=0" -d "ref=/" ' $(URL)/management/nav | ./ih $(TIME) $(PSK) | bash
 	@echo "update nav Home"
 	@echo 'curl -d "label=Blog" -d "order=1" -d "ref=/blog" ' $(URL)/management/nav | ./ih $(TIME) $(PSK) | bash

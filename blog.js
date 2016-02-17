@@ -17,9 +17,22 @@ function tsopBlog()
   {
     var tmpN = document.createElement("li");
     var tmpA = document.createElement("a");
+    var tmpl = document.createElement("strong");
+    var tmpr = document.createElement("span");
+    var tmpd = document.createElement("div");
     tmpA.href="/blog/"+blJSON[i].time+"/"+blJSON[i].index;
-    tmpA.innerHTML = blJSON[i].title + " - " + blJSON[i].time;
-    tmpN.appendChild(tmpA);
+    tmpA.innerHTML = blJSON[i].title;
+    tmpr.innerHTML = "[ " + blJSON[i].time.substring(0,10) + " ]";
+    tmpl.style.textAlign="left";
+    //tmpl.style.cssFloat="left";
+    tmpr.style.cssFloat="right";
+    tmpr.style.textAlign="right";
+    tmpd.style.display="block";
+    tmpA.width="auto";
+    tmpl.appendChild(tmpA);
+    tmpd.appendChild(tmpl);
+    tmpd.appendChild(tmpr);
+    tmpN.appendChild(tmpd);
     blN.appendChild(tmpN);
   }
   onceBlog=1;
