@@ -1,6 +1,13 @@
 
 /* css.frame.css */
 
+
+.amazon iframe
+{
+  border: none;
+  text-align: center;
+}
+
 .qinkalogo
 {
    width:70%;

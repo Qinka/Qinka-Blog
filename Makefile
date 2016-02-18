@@ -17,30 +17,30 @@ page: pageGlob
 	@echo "update page"
 pageGlob: page/Glob.html
 	@cat page/Glob.html > tmp/page.glob.html
-	@echo 'curl -F "type=page" -F "index=glob" -F "title=GLob" -F "html=@tmp/page.glob.html" ' $(URL)/management/html | ./ih $(TIME) $(PSK) | $(SHELL)
+	@echo 'curl -F "type=page" -F "index=page" -F "index=glob" -F "title=GLob" -F "html=@tmp/page.glob.html" ' $(URL)/management/html | ./ih $(TIME) $(PSK) | $(SHELL)
 	@echo "update page/Glob.html"
 
 home: topH navH bottomH mainH blogH
 	@echo "update home"
 topH: top.html
 	@cat top.html > tmp/home.top.html
-	@echo 'curl -F "type=home" -F "index=\\$$page.frame.top" -F "title=top" -F "html=@tmp/home.top.html" ' $(URL)/management/html | ./ih $(TIME) $(PSK) | $(SHELL)
+	@echo 'curl -F "type=home" -F "index=home" -F "index=page" -F "index=frame" -F "index=top" -F "title=top" -F "html=@tmp/home.top.html" ' $(URL)/management/html | ./ih $(TIME) $(PSK) | $(SHELL)
 	@echo "update top.html"
 navH: nav.html
 	@cat nav.html > tmp/home.nav.html
-	@echo 'curl -F "type=home" -F "index=\\$$page.frame.nav" -F "title=nav" -F "html=@tmp/home.nav.html" ' $(URL)/management/html | ./ih $(TIME) $(PSK) | $(SHELL)
+	@echo 'curl -F "type=home" -F "index=home" -F "index=page" -F "index=frame" -F "index=nav" -F "title=nav" -F "html=@tmp/home.nav.html" ' $(URL)/management/html | ./ih $(TIME) $(PSK) | $(SHELL)
 	@echo "update nav.html"
 bottomH: bottom.html
 	@cat bottom.html > tmp/home.bottom.html
-	@echo 'curl -F "type=home" -F "index=\\$$page.frame.bottom" -F "title=bottom" -F "html=@tmp/home.bottom.html" ' $(URL)/management/html| ./ih $(TIME) $(PSK) | $(SHELL)
+	@echo 'curl -F "type=home" -F "index=home" -F "index=page" -F "index=frame" -F "index=bottom" -F "title=bottom" -F "html=@tmp/home.bottom.html" ' $(URL)/management/html| ./ih $(TIME) $(PSK) | $(SHELL)
 	@echo "update bottom.html"
 mainH: home.html
 	@cat home.html > tmp/home.home.html
-	@echo 'curl -F "type=home" -F "index=\\$$page.main" -F "title=Home" -F "html=@tmp/home.home.html" ' $(URL)/management/html | ./ih $(TIME) $(PSK) | $(SHELL)
+	@echo 'curl -F "type=home" -F "index=home" -F "index=page" -F "index=main" -F "title=Home" -F "html=@tmp/home.home.html" ' $(URL)/management/html | ./ih $(TIME) $(PSK) | $(SHELL)
 	@echo "update home.html"
 blogH: blog.html
 	@cat blog.html > tmp/home.blog.html
-	@echo 'curl -F "type=home" -F "index=\\$$page.blog" -F "title=Blog" -F "html=@tmp/home.blog.html" ' $(URL)/management/html | ./ih $(TIME) $(PSK) | $(SHELL)
+	@echo 'curl -F "type=home" -F "index=home" -F "index=page" -F "index=blog" -F "title=Blog" -F "html=@tmp/home.blog.html" ' $(URL)/management/html | ./ih $(TIME) $(PSK) | $(SHELL)
 	@echo "update blog.html"
 
 txt: css js
@@ -50,7 +50,7 @@ css: frameC
 	@echo "update css"
 frameC: css.frame.css
 	@java -jar yuicompressor.jar --type css --charset utf-8 css.frame.css> tmp/txt.frame.css
-	@echo 'curl -F "type=text/css" -F "index=css.frame.css" -F "txt=@tmp/txt.frame.css" ' $(URL)/management/txt | ./ih $(TIME) $(PSK) | $(SHELL)
+	@echo 'curl -F "type=text/css" -F "index=css" -F "index=frame.css" -F "txt=@tmp/txt.frame.css" ' $(URL)/management/txt | ./ih $(TIME) $(PSK) | $(SHELL)
 	@echo "update css.frame.css"
 
 js: navJ blogJ
@@ -64,11 +64,17 @@ blogJ:blog.js
 	@echo 'curl -F "type=application/x-javascript" -F "index=blog.js" -F "txt=@tmp/txt.blog.js" ' $(URL)/management/txt | ./ih $(TIME) $(PSK) | $(SHELL)
 	@echo "update blog.js"
 
-bin: qinka.logo
+bin: qinka.logo image
 	@echo "update bin"
 qinka.logo:
-	@echo 'curl -F "type=image/png" -F "index=qinka.logo" -F "bin=@bin/logo.png" ' $(URL)/management/bin | ./ih $(TIME) $(PSK) | $(SHELL)
+	@echo 'curl -F "type=image/png" -F "index=qinka.logo" -F "bin=@bin/logo.png" '  $(URL)/management/bin | ./ih $(TIME) $(PSK) | $(SHELL)
 
+image: latex
+	@echo "update image"
+latex:
+	@echo 'curl -F "type=image/svg+xml" -F "index=image" -F "index=LaTeX-logo.svg" -F "bin=@bin/image/LaTeX-logo.svg" ' $(URL)/management/bin | ./ih $(TIME) $(PSK) | $(SHELL)
+	@echo 'curl -F "type=image/svg+xml" -F "index=image" -F "index=TeX-logo.svg" -F "bin=@bin/image/TeX-logo.svg" ' $(URL)/management/bin | ./ih $(TIME) $(PSK) | $(SHELL)
+	@echo "update LaTeX and TeX logo"
 
 
 nav:
