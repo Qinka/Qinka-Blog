@@ -69,13 +69,14 @@ bin: qinka.logo image
 qinka.logo:
 	@echo 'curl -F "type=image/png" -F "index=qinka.logo" -F "bin=@bin/logo.png" '  $(URL)/management/bin | ./ih $(TIME) $(PSK) | $(SHELL)
 
-image: latex
+image: latex faviconI
 	@echo "update image"
 latex:
 	@echo 'curl -F "type=image/svg+xml" -F "index=image" -F "index=LaTeX-logo.svg" -F "bin=@bin/image/LaTeX-logo.svg" ' $(URL)/management/bin | ./ih $(TIME) $(PSK) | $(SHELL)
 	@echo 'curl -F "type=image/svg+xml" -F "index=image" -F "index=TeX-logo.svg" -F "bin=@bin/image/TeX-logo.svg" ' $(URL)/management/bin | ./ih $(TIME) $(PSK) | $(SHELL)
 	@echo "update LaTeX and TeX logo"
-
+faviconI:
+	@echo 'curl -F "index=favicon.ico" -F "type=image/x-ico" -F "file=@bin/icon/favicon.ico" ' $(URL)/management/static | ./ih $(TIME) $(PSK) | $(SHELL)
 
 nav:
 	@echo 'curl -d "label=Home" -d "order=0" -d "ref=/" ' $(URL)/management/nav | ./ih $(TIME) $(PSK) | $(SHELL)
