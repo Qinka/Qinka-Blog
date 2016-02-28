@@ -13,6 +13,13 @@ html: blog page home
 blog:
 	@echo "update blog"
 
+blg-test: blgtest1 blgtest2
+	@echo "blog-test update"
+blgtest1:
+	@echo 'curl -F "type=blog" -F "index=blog" -F "index=test1" -F "title=Test-Blog-1" -F "html=@blog/test/test1.html" ' $(URL)/management/html | ./ih $(TIME) $(PSK) | $(SHELL)
+blgtest2:
+	@echo 'curl -F "type=blog" -F "index=blog" -F "index=test2" -F "title=Test-Blog-2" -F "html=@blog/test/test2.html" ' $(URL)/management/html | ./ih $(TIME) $(PSK) | $(SHELL)
+
 page: pageGlob
 	@echo "update page"
 pageGlob: page/Glob.html
@@ -64,12 +71,12 @@ blogJ:blog.js
 	@echo 'curl -F "type=application/x-javascript" -F "index=blog.js" -F "txt=@tmp/txt.blog.js" ' $(URL)/management/txt | ./ih $(TIME) $(PSK) | $(SHELL)
 	@echo "update blog.js"
 
-bin: qinka.logo image
+bin: qinka.logo image 
 	@echo "update bin"
 qinka.logo:
 	@echo 'curl -F "type=image/png" -F "index=qinka.logo" -F "bin=@bin/logo.png" '  $(URL)/management/bin | ./ih $(TIME) $(PSK) | $(SHELL)
 
-image: latex faviconI
+image: latex glob-bishop
 	@echo "update image"
 latex:
 	@echo 'curl -F "type=image/svg+xml" -F "index=image" -F "index=LaTeX-logo.svg" -F "bin=@bin/image/LaTeX-logo.svg" ' $(URL)/management/bin | ./ih $(TIME) $(PSK) | $(SHELL)
@@ -77,6 +84,9 @@ latex:
 	@echo "update LaTeX and TeX logo"
 faviconI:
 	@echo 'curl -F "index=favicon.ico" -F "type=image/x-ico" -F "file=@bin/icon/favicon.ico" ' $(URL)/management/static | ./ih $(TIME) $(PSK) | $(SHELL)
+glob-bishop:
+	@echo 'curl -F "type=image/png" -F "index=glob-bishop-mk1.png" -F "bin=@bin/image/Glob-Bishop-mk1.png" ' $(URL)/management/bin | ./ih $(TIME) $(PSK) | $(SHELL)
+
 
 nav:
 	@echo 'curl -d "label=Home" -d "order=0" -d "ref=/" ' $(URL)/management/nav | ./ih $(TIME) $(PSK) | $(SHELL)
@@ -91,7 +101,21 @@ nav:
 qry:
 	@echo "update qry"
 
+rootTxt:
+	@echo 'curl -F "index=root.txt" -F "type=text/plain" -F "file=@root.txt" ' $(URL)/management/static | ./ih $(TIME) $(PSK) | $(SHELL)
+	@echo 'curl -F "index=jd_root.txt" -F "type=text/plain" -F "file=@jd_root.txt" ' $(URL)/management/static | ./ih $(TIME) $(PSK) | $(SHELL)
 
 help:
 	@echo "usage:  make URL=[url] TIME=[time(fix)] PSK=[password]"
 	@echo ""
+
+
+sqltest:
+	@curl https://raw.githubusercontent.com/Qinka/Glob/master/database/function.sql > tmp/function.sql
+	@echo "SELECT drop_all_table('qinka','public');" > tmp/script2.sql
+	@curl https://raw.githubusercontent.com/Qinka/Glob/master/database/table.sql > tmp/table.sql
+	@echo 'curl -F "sql=@tmp/function.sql" ' $(URL)/management/sql | ./ih $(TIME) $(PSK) | $(SHELL)
+	@echo ""
+	@echo 'curl -F "sql=@tmp/script2.sql" -F "raw-way=raw-sql"' $(URL)/management/sql | ./ih $(TIME) $(PSK) | $(SHELL)
+	@echo ""
+	@echo 'curl -F "sql=@tmp/table.sql" ' $(URL)/management/sql | ./ih $(TIME) $(PSK) | $(SHELL)
