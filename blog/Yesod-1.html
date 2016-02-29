@@ -2,23 +2,23 @@
   <h1> Yesod 学习笔记 - 1 </h1>
   <br/>
   <ul>
-    <li><a href="#"> 准备 </a></li>
-    <li><a href="#"> 安装 </a></li>
-    <li><a href="#"> Hello World </a></li>
-    <li><a href="#"> Resources and Type-Safe URLs </a></li>
-    <li><a href="#"> Response "RETURN" Type </a></li>
-    <li><a href="#"> Hamlet-HTML </a></li>
-    <li><a href="#"> Lucius/Cassius-CSS </a></li>
-    <li><a href="#"> Julius-JavaScript </a></li>
+    <li><a href="#prepare"> 准备 </a></li>
+    <li><a href="#setup"> 安装 </a></li>
+    <li><a href="#hw"> Hello World </a></li>
+    <li><a href="#rntsurl"> Resources and Type-Safe URLs </a></li>
+    <li><a href="#rrt"> Response "RETURN" Type </a></li>
+    <li><a href="#hh"> Hamlet-HTML </a></li>
+    <li><a href="#lccss"> Lucius/Cassius-CSS </a></li>
+    <li><a href="#jjs"> Julius-JavaScript </a></li>
   </ul>
   <br/>
-  <h2> 准备 </h2>
+  <h2 id="prepare"> 准备 </h2>
     <h3> 主观条件 </h3>
       <p>
-        首先，这个笔记并不是针对对 Haskell 一无所知的人，
-        至少需要对 Haskell 有一些基本的“功底”，
-        会写 Hello World 是底线。
-        假设这里有个传送门，之后会补上。
+        首先，这个笔(jiao)记(cheng)并不适合初学者，
+        事实上要求的肯能需要知道 包括 TH在内的东西，
+        但是我个人认为，会写 Hello World 是底线。
+        假设这里有个Haskell入门的传送门，之后会补上。
       </p>
       <p>
         然后，很不幸的是，当前 GHC 7.10.3 这个版本（包括之前的版本），
@@ -38,7 +38,7 @@
       <p>
         但是无论如何，GHC（建议 7.10.x） 与配套的 cabal 是必须有的。
       </p>
-    <h2> 安装 Yesod </h2>
+    <h2 id="setup"> 安装 Yesod </h2>
       <pre>
         <code class="bash">
  $ cabal update
@@ -46,7 +46,7 @@
         </code>
       </pre>
       之后就可以使用 Yesod 了。
-    <h2>Hello World</h2>
+    <h2 id="hw">Hello World</h2>
       <p>
         按照“传统”，第一个程序是Hello World 的。先直接上代码。
       </p>
@@ -135,11 +135,11 @@ main = warp 3000 HelloWorld
         最后 main 函数中 使用 warp 启动这个 Hello World。然后可以使用浏览器访问 localhost:3000。
         warp 函数中 第一个参数是端口号，第二个则是任何实现了 Yesod 类型类的数据。
       </p>
-    <h2> Resources and Type-Safe URLs </h2>
-    <h2> Response "RETURN" Type</h2>
-    <h2> Hamlet-HTML </h2>
-    <h2> Lucius/Cassius-CSS </h2>
-    <h2> Julius-JavaScript </h2>
+    <h2 id="rntsurl"> Resources and Type-Safe URLs </h2>
+    <h2 id="rrt"> Response "RETURN" Type</h2>
+    <h2 id="hh"> Hamlet-HTML </h2>
+    <h2 id="lccss"> Lucius/Cassius-CSS </h2>
+    <h2 id="jjs"> Julius-JavaScript </h2>
 </div>
 <link rel="stylesheet" href="/txt/css/zenburn.css" type="text/css"/>
 <script src="/txt/javascript/highlight.js"></script>
