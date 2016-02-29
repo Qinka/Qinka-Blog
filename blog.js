@@ -20,9 +20,9 @@ function tsopBlog()
     var tmpl = document.createElement("strong");
     var tmpr = document.createElement("span");
     var tmpd = document.createElement("div");
-    tmpA.href="/blog/"+blJSON[i].time+blJSON[i].index.substr(5);
+    tmpA.href="/blog/"+blJSON[i].createtime+"/"+blJSON[i].index.substr(5);
     tmpA.innerHTML = blJSON[i].title;
-    tmpr.innerHTML = "[ " + blJSON[i].time.substring(0,10) + " ]";
+    tmpr.innerHTML = "[ " + blJSON[i].createtime.substring(0,10) + " ]";
     tmpl.style.textAlign="left";
     //tmpl.style.cssFloat="left";
     tmpr.style.cssFloat="right";
