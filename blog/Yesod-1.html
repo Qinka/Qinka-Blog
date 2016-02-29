@@ -2,24 +2,145 @@
   <h1> Yesod 学习笔记 - 1 </h1>
   <br/>
   <ul>
-    导引
+    <li><a href="#"> 准备 </a></li>
+    <li><a href="#"> 安装 </a></li>
+    <li><a href="#"> Hello World </a></li>
+    <li><a href="#"> Resources and Type-Safe URLs </a></li>
+    <li><a href="#"> Response "RETURN" Type </a></li>
+    <li><a href="#"> Hamlet-HTML </a></li>
+    <li><a href="#"> Lucius/Cassius-CSS </a></li>
+    <li><a href="#"> Julius-JavaScript </a></li>
   </ul>
   <br/>
   <h2> 准备 </h2>
     <h3> 主观条件 </h3>
-    <p>
-      首先，这个笔记并不是针对对 Haskell 一无所知的人，
-      至少需要对 Haskell 有一些基本的“功底”，
-      会写 Hello World 是底线。
-      假设这里有个传送门，之后会补上。
-    </p> 
-    <p>
-      然后，很不幸的是，当前 GHC 7.10.3 这个版本（包括之前的版本），
-      都无法在 Windows 下正常工作（至少我这里不行）。
-      所以需要的是 Linux 或者 OS X（并没有测试 BSD 系列的系统）。
-    </p>
-    <p>
-      然后一个比较麻烦的问题是，一些 Mac 在编译时会出现链接问题，
-      但是交互模式还是可用的，笔者就是。
-    </p>
+      <p>
+        首先，这个笔记并不是针对对 Haskell 一无所知的人，
+        至少需要对 Haskell 有一些基本的“功底”，
+        会写 Hello World 是底线。
+        假设这里有个传送门，之后会补上。
+      </p>
+      <p>
+        然后，很不幸的是，当前 GHC 7.10.3 这个版本（包括之前的版本），
+        都无法在 Windows 下正常工作（至少我这里不行）。
+        所以需要的是 Linux 或者 OS X（并没有测试 BSD 系列的系统）。
+      </p>
+      <p>
+        然后一个比较麻烦的问题是，一些 Mac 在某些使用 Yesod 的程序中 在编译时会出现链接问题，
+        但是交互模式还是可用的，笔者就是。
+      </p>
+    <h3> 环境 </h3>
+      <p>
+        编译器可以直接使用最新的 <a href="https://www.haskell.org/downloads#platform"> Haskell Platform </a>，
+        或者是使用 一个 <a href="https://www.haskell.org/downloads#minimal"> Minimal installers </a>,
+        或者直接使用 <a href="https://www.haskell.org/ghc"> The Glasgow Haskell Compiler </a> 。
+      </p>
+      <p>
+        但是无论如何，GHC（建议 7.10.x） 与配套的 cabal 是必须有的。
+      </p>
+    <h2> 安装 Yesod </h2>
+      <pre>
+        <code class="bash">
+ $ cabal update
+ $ cabal install yesod
+        </code>
+      </pre>
+      之后就可以使用 Yesod 了。
+    <h2>Hello World</h2>
+      <p>
+        按照“传统”，第一个程序是Hello World 的。先直接上代码。
+      </p>
+      <pre>
+        <code class="haskell">
+{-# LANGUAGE OverloadedStrings
+           , QuasiQuotes
+           , TemplateHaskell
+           , TypeFamilies
+           , ViewPatterns
+           #-}
+
+import Yesod
+import Data.Text as T
+
+data HelloWorld = HelloWorld
+
+mkYesod "HelloWorld" [parseRoutes|
+/ HomeR GET
+/hello/#Text HelloR POST
+|]
+
+instance Yesod HelloWorld
+
+getHomeR :: Handler Html
+getHomeR = defaultLayout [whamlet|Hello, World!|]
+
+postHelloR :: Text -> Handler Text
+postHelloR name  = return $ T.concat ["Hello, ",name,"!"]
+
+main :: IO ()
+main = warp 3000 HelloWorld
+        </code>
+      </pre>
+      <p>
+        “{-# #-}” 这个东西所括起来的 通常被称作 “Language Options”，
+        一边有两种像是， -X... 或者 {-# LANGUAGE ... #-}，当然这并不是全部的“样式”。
+        其中 OverloadedStrings 是 将实现 IsString 类型类 的 类似字符串类型，直接当成字符串，
+        QuasiQuotes 与 TemplateHaskell 是 Haskell 中神奇又有着十分高的效率的东西，
+        TemplateHaskell 通常来说 就是一种 meta-program 即 元编程，且通常简称 TH ，
+        而 QuasiQuotes 这是一种更加高级的东西，通常简称 QQ，
+        具体内容可详见Haskell 的 wiki 或者 GHC 的手册。
+        TypeFamilies 与 ViewPatterns 则是另外的 Haskell 特性，再次不过多介绍，
+        具体 可以看 <a href="https://wiki.haskell.org">Haskell's wiki</a>。
+      </p>
+      <p>
+        之后的 两个 “import” 是 导入之前已经安装的 yesod 库 与 text 库
+        （这个库在安装 yesod 的时候是其依赖项）。
+      </p>
+      <p>
+        定义的 类型 HelloWorld 是一个简单的类型，其中这个在实际过程中可以，或者应该说是需要添加其他的东西在其中。
+        比如当使用 PostgreSQL 时，需要一个 类型为 ConnectionPool 的小玩意，当然之后才会介绍。
+      </p>
+      <p>
+        mkYesod “引导”的这一部分则是 TH，
+        整个这一部分的返回类型是 Q Dec ，会在编译时执行生成一些数据与函数的声明。
+        而 [parseRoutes|...|] 这一部分是 QQ。
+        整个这一部分生的是一个路由表。 由 URL 中路径的部分（例如 /hello/#Text），“负责”这部分的一个类型(例如 HomeR)，和访问方式组成（例如 POST）。
+        访问路径中可以出现“不定内容”，例如/hello/#Text 中的 #Text，其会将这部分解析成一个 Text 类型的数据，
+        同时也会影响 之后处理这个路径的请求的函数的绑定类型。
+      </p>
+      <p>
+        instance 这部分是将 HelloWorld 这个类型实现 Yesod 的类型类。
+        一般来说，对于正常的程序，可能需要改变这一部分的中的函数，将他们替换掉。
+        然而这个类型类的最小实现是0个函数。
+      </p>
+      <p>
+        getHomeR 的名称来源是 小写的访问方法+“负责”的类型名称。
+        绑定类型中的 Handler 是通过
+      </p>
+      <pre><code class="haskell"> type Handler = HandlerT HelloWorld IO </code> </pre>
+      <p>
+        定义的，也就是说，其实可以直接使用 HandlerT。
+        而 Html 则是一种 类型结构，其具体定义在 blaze-markup 这个包中。
+        而 defaultLayout 这个函数这是一个默认的 Layout，[whamlet|..|] 这个 QQ
+        是 一个叫 Hamlet（就是莎士比亚笔下任务的名称）的 DSL。 而在这里 whamlet 通过 QQ 最后则将生成一个
+        类型是 Widget HelloWorld IO () 的类型，提供给 defaultLayout 使用。
+        而 Hamlet 的语法会在后面介绍。
+      </p>
+      <p>
+        postHelloR 这个函数则是一个有些不同的函数，由于路由中路径中的那一部分中有“不确定”的东西，
+        所以其绑定类型是 Text -> Handler Text。
+        同时 Handler 也是一个 Monad。 所以在此使用到了 return。
+      </p>
+      <p>
+        最后 main 函数中 使用 warp 启动这个 Hello World。然后可以使用浏览器访问 localhost:3000。
+        warp 函数中 第一个参数是端口号，第二个则是任何实现了 Yesod 类型类的数据。
+      </p>
+    <h2> Resources and Type-Safe URLs </h2>
+    <h2> Response "RETURN" Type</h2>
+    <h2> Hamlet-HTML </h2>
+    <h2> Lucius/Cassius-CSS </h2>
+    <h2> Julius-JavaScript </h2>
 </div>
+<link rel="stylesheet" href="/txt/css/zenburn.css" type="text/css"/>
+<script src="/txt/javascript/highlight.js"></script>
+<script>hljs.initHighlightingOnLoad(); </script>

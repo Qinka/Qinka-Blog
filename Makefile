@@ -10,8 +10,13 @@ update: html txt bin qry
 html: blog page home
 	@echo "update html"
 
-blog:
+blog: blg-yesod
 	@echo "update blog"
+
+blg-yesod: yesod-1
+	@echo "update yesod blog"
+yesod-1:
+	@echo 'curl -F "type=blog" -F "index=blog" -F "index=yesod-1" -F "title=Yesod 学习笔记-1" -F "html=@blog/Yesod-1.html" ' $(URL)/management/html | ./ih $(TIME) $(PSK) | $(SHELL)
 
 blg-test: blgtest1 blgtest2
 	@echo "blog-test update"
@@ -53,14 +58,18 @@ blogH: blog.html
 txt: css js
 	@echo "update txt"
 
-css: frameC
+css: frameC zenburnC
 	@echo "update css"
 frameC: css.frame.css
 	@java -jar yuicompressor.jar --type css --charset utf-8 css.frame.css> tmp/txt.frame.css
 	@echo 'curl -F "type=text/css" -F "index=css" -F "index=frame.css" -F "txt=@tmp/txt.frame.css" ' $(URL)/management/txt | ./ih $(TIME) $(PSK) | $(SHELL)
 	@echo "update css.frame.css"
+zenburnC: zenburn.css
+	@java -jar yuicompressor.jar --type css --charset utf8 zenburn.css > tmp/txt.zenburn.css
+	@echo 'curl -F "type=text/css" -F "index=css" -F "index=zenburn.css" -F "txt=@tmp/txt.zenburn.css" ' $(URL)/management/txt | ./ih $(TIME) $(PSK) | $(SHELL)
+	@echo "update zenburn.css"
 
-js: navJ blogJ
+js: navJ blogJ hlJ
 	@echo "update js"
 navJ: nav.js
 	@java -jar yuicompressor.jar --type js --charset utf-8 nav.js > tmp/txt.nav.js
@@ -70,13 +79,16 @@ blogJ:blog.js
 	@java -jar yuicompressor.jar --type js --charset utf-8 blog.js > tmp/txt.blog.js
 	@echo 'curl -F "type=application/x-javascript" -F "index=blog.js" -F "txt=@tmp/txt.blog.js" ' $(URL)/management/txt | ./ih $(TIME) $(PSK) | $(SHELL)
 	@echo "update blog.js"
+hlJ:
+	@echo 'curl -F "type=application/x-javascript" -F "index=javascript" -F "index=highlight.js" -F "txt=@highlight.pack.js" ' $(URL)/management/txt | ./ih $(TIME) $(PSK) | $(SHELL)
+	@echo "update highlight.pack.js"
 
-bin: qinka.logo image 
+bin: qinka.logo image
 	@echo "update bin"
 qinka.logo:
 	@echo 'curl -F "type=image/png" -F "index=qinka.logo" -F "bin=@bin/logo.png" '  $(URL)/management/bin | ./ih $(TIME) $(PSK) | $(SHELL)
 
-image: latex glob-bishop
+image: latex glob-bishop fork-me
 	@echo "update image"
 latex:
 	@echo 'curl -F "type=image/svg+xml" -F "index=image" -F "index=LaTeX-logo.svg" -F "bin=@bin/image/LaTeX-logo.svg" ' $(URL)/management/bin | ./ih $(TIME) $(PSK) | $(SHELL)
@@ -86,6 +98,9 @@ faviconI:
 	@echo 'curl -F "index=favicon.ico" -F "type=image/x-ico" -F "file=@bin/icon/favicon.ico" ' $(URL)/management/static | ./ih $(TIME) $(PSK) | $(SHELL)
 glob-bishop:
 	@echo 'curl -F "type=image/png" -F "index=glob-bishop-mk1.png" -F "bin=@bin/image/Glob-Bishop-mk1.png" ' $(URL)/management/bin | ./ih $(TIME) $(PSK) | $(SHELL)
+fork-me:
+	@echo 'curl -F "type=image/png" -F "index=fork.me.png" -F "bin=@fork.me.png" ' $(URL)/management/bin | ./ih $(TIME) $(PSK) | $(SHELL)
+
 
 
 nav:
