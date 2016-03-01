@@ -45,7 +45,7 @@
  $ cabal install yesod
         </code>
       </pre>
-      之后就可以使用 Yesod 了。
+      之后就可以使用 Yesod 了，然而在此你可能需要喝一杯什么等待安装。
     <h2 id="hw">Hello World</h2>
       <p>
         按照“传统”，第一个程序是Hello World 的。先直接上代码。
@@ -125,7 +125,11 @@ main = warp 3000 HelloWorld
         而 Html 则是一种 类型结构，其具体定义在 blaze-markup 这个包中。
         而 defaultLayout 这个函数这是一个默认的 Layout，[whamlet|..|] 这个 QQ
         是 一个叫 Hamlet（就是莎士比亚笔下任务的名称）的 DSL。 而在这里 whamlet 通过 QQ 最后则将生成一个
-        类型是 Widget HelloWorld IO () 的类型，提供给 defaultLayout 使用。
+        类型是
+      </p>
+      <pre><code class="haskell"> Widget HelloWorld IO () </code></pre>
+      <p>
+        的类型，提供给 defaultLayout 使用。
         而 Hamlet 的语法会在后面介绍。
       </p>
       <p>
@@ -134,10 +138,37 @@ main = warp 3000 HelloWorld
         同时 Handler 也是一个 Monad。 所以在此使用到了 return。
       </p>
       <p>
-        最后 main 函数中 使用 warp 启动这个 Hello World。然后可以使用浏览器访问 localhost:3000。
+        最后 main 函数中 使用 warp 启动这个 Hello World。然后可以使用浏览器访问 
+        <a href="http://localhost:3000" > localhost 的 端口 3000 </a>。
         warp 函数中 第一个参数是端口号，第二个则是任何实现了 Yesod 类型类的数据。
       </p>
+      <p>
+        然后使用 cURL 测试。
+      </p>
+      <pre><code>
+ $ curl -X POST http://localhost:3000/hello/bar
+ hello,bar!
+      </code></pre>
     <h2 id="rntsurl"> Resources and Type-Safe URLs </h2>
+      Yesod 对于 URL 的使用，有一个 类型安全 的解决方案。
+      先上代码(不是完整的)。
+    <pre><code>
+mkYesod site [parseRoutes|
+/ HomeR GET
+/hello/#Text HelloR GET
+|]
+
+getHomeR :: Handler Html
+getHomeR = defaultLayout [whamlet|
+<p> <a href=@{HelloR "Tom"}> Say hello to Tom
+<p> <a href=@{HelloR "John"}> Say hello to John
+|]
+
+getHelloR :: Text -> Handler Html
+getHelloR name = defaultLayout [whamlet|
+<p> Hello, #{name}
+|]
+    </code></pre>
     <h2 id="rrt"> Response "RETURN" Type</h2>
     <h2 id="hh"> Hamlet-HTML </h2>
     <h2 id="lccss"> Lucius/Cassius-CSS </h2>
