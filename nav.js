@@ -27,13 +27,11 @@ xrPb.onreadystatechange = tsopPb;
 xrPb.send(null);
 function tsopPb()
 {
-  if(xrPb.readyState ==4)
+  if(xrPb.readyState ==4) if(xmlreq.status == 200)
   {
     var verPb = xrPb.responseText;
     h = document.getElementById('powerby');
     if(h!=null)
       h.innerHTML = "Power by Glob - "+verPb;
-    else
-      h.innerHTML = " Power by Glob";
   }
 }

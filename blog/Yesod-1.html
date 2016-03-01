@@ -138,7 +138,7 @@ main = warp 3000 HelloWorld
         同时 Handler 也是一个 Monad。 所以在此使用到了 return。
       </p>
       <p>
-        最后 main 函数中 使用 warp 启动这个 Hello World。然后可以使用浏览器访问 
+        最后 main 函数中 使用 warp 启动这个 Hello World。然后可以使用浏览器访问
         <a href="http://localhost:3000" > localhost 的 端口 3000 </a>。
         warp 函数中 第一个参数是端口号，第二个则是任何实现了 Yesod 类型类的数据。
       </p>
@@ -152,7 +152,8 @@ main = warp 3000 HelloWorld
     <h2 id="rntsurl"> Resources and Type-Safe URLs </h2>
       Yesod 对于 URL 的使用，有一个 类型安全 的解决方案。
       先上代码(不是完整的)。
-    <pre><code>
+    <pre>
+      <code class="haskell">
 mkYesod site [parseRoutes|
 / HomeR GET
 /hello/#Text HelloR GET
@@ -160,17 +161,84 @@ mkYesod site [parseRoutes|
 
 getHomeR :: Handler Html
 getHomeR = defaultLayout [whamlet|
-<p> <a href=@{HelloR "Tom"}> Say hello to Tom
-<p> <a href=@{HelloR "John"}> Say hello to John
+&lt;p&gt;
+  &lt;a href=@{HelloR "Tom"}&gt; Say hello to Tom
+&lt;p&gt;
+  &lt;a href=@{HelloR "John"}&gt; Say hello to John
 |]
 
 getHelloR :: Text -> Handler Html
 getHelloR name = defaultLayout [whamlet|
-<p> Hello, #{name}
+&lt;p&gt; Hello, #{name}
 |]
-    </code></pre>
+      </code>
+    </pre>
+    <p>
+      连接（也是一种安全的 URL 解决方式） 使用 @{..}括起来，其中表示的就是之前负责所指向的路径的那个类型。
+      对于一些路径中有变量的，就上那个例子中的 HelloR 所对应的路径中就有一个 类型的 Text 的变量，
+      （虽然这里叫变量，不是十分合适的），
+      最后生成的路径相当于：
+    </p>
+    <pre>
+      <code>
+/hello/Tom
+/hello/John
+      </code>
+    </pre>
     <h2 id="rrt"> Response "RETURN" Type</h2>
+      <p>
+        在一个处理路径对应的请求的函数中，其类型 HandlerT site IO a 中，
+        site 是一个 实现 Yesod 类型类的类型，而 a 通常可以使也多类型，其中 Text，Html，TypedContent，但不是所有类型都可以返回。
+      </p>
+      <p>
+        Html 如字面之意，是返回的是 Html 文本。而 Text 则是返回的一般性的文本。而 TypedContent，
+        返回的类型是与 MIME 类型有关。其中用法如下：
+      </p>
+      <pre>
+        <code class="haskell">
+ selectRep $ do
+  provideRepType "application/json" $ return "{}"
+  provideRepType "..." $ do
+    ...
+        </code>
+      </pre>
+      <p>
+        selectRep 函数通常是写在最一开始，后面连接 do-block。
+        然后 provideRepType 函数则是先提供 返回的 MIME 类型，然后像一般的正常的返回方式，返回 内容。
+        而同时又提供 provideRep函数，需要不提供 MIME 类型。
+      </p>
     <h2 id="hh"> Hamlet-HTML </h2>
+      <p>
+        恩，，事实上，这一部分的大标题应该是 Shakespearean Template，
+        对你猜的没错， 是“莎士比亚风格的模板”。
+        这个是由一个包提供的内容， Yesod 官网在相关章节中是这样说到的(大致翻译)：
+      </p>
+      <pre>
+        <code>
+   Yesod 使用 Shakespearean 系列的 模板语言（笔者再次认为，其已经算作一个 DSL），作为标准的生成 HTML，CSS 与 JavaScript 的生成器。
+        </code>
+      </pre>
+      <p>
+        Hamlet 大体上与 HTML 是没有什么区别的。首先，Hamlet 是不存在 &lt;/...&gt; 这样的东西的，
+        其是依靠缩进来分层的，就像 Haskell 与 Python 一样，其中对于 一个标签中的属性基本与 HTML 类似，
+        如果没有加入引号会自动补全。
+      </p>
+      <p>
+        同时对有 三总括号： #{..}，@{..} 与 ^{..}。
+        其中 第一个是用来“对付”变量的。其中的部分填入的是一个变量或者一个简单地表达式。
+        第二个是与 URL 有关的，上一部分已经提到。
+        第三个是与 “HTML” 有关的，例如 ^{copyright} 中 copyright 的可能定义是：
+      </p>
+      <pre>
+        <code>
+  copyright = [hamlet|
+    &lt;p&gt; Copyright (C) 1995 John.
+  |]
+        </code>
+      </pre>
+      <p>
+        由于某些原因，使用 的 QQ 是 hamlet 还是其他的可能是不确定的。
+      </p>
     <h2 id="lccss"> Lucius/Cassius-CSS </h2>
     <h2 id="jjs"> Julius-JavaScript </h2>
 </div>
