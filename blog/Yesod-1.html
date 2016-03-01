@@ -60,7 +60,7 @@
            #-}
 
 import Yesod
-import Data.Text as T
+import Data.Text
 
 data HelloWorld = HelloWorld
 
@@ -83,7 +83,7 @@ main = warp 3000 HelloWorld
       </pre>
       <p>
         “{-# #-}” 这个东西所括起来的 通常被称作 “Language Options”，
-        一边有两种像是， -X... 或者 {-# LANGUAGE ... #-}，当然这并不是全部的“样式”。
+        一般有两种形式， -X... 或者 {-# LANGUAGE ... #-}，当然这并不是全部的“样式”。
         其中 OverloadedStrings 是 将实现 IsString 类型类 的 类似字符串类型，直接当成字符串，
         QuasiQuotes 与 TemplateHaskell 是 Haskell 中神奇又有着十分高的效率的东西，
         TemplateHaskell 通常来说 就是一种 meta-program 即 元编程，且通常简称 TH ，
@@ -94,7 +94,9 @@ main = warp 3000 HelloWorld
       </p>
       <p>
         之后的 两个 “import” 是 导入之前已经安装的 yesod 库 与 text 库
-        （这个库在安装 yesod 的时候是其依赖项）。
+        （这个库在安装 yesod 的时候是其依赖项） 中的模块。
+        其中 yesod 的 Yesod 模块是提供Yesod中基本的，所需的内容。
+        而 Data.Text 模块则是主要提供 Text 类型与有关的函数。
       </p>
       <p>
         定义的 类型 HelloWorld 是一个简单的类型，其中这个在实际过程中可以，或者应该说是需要添加其他的东西在其中。
