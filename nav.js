@@ -20,18 +20,19 @@ function tsop()
       navN.appendChild(tmpN);
     }
   }
-}
+};
+
 xrPb = new XMLHttpRequest();
 xrPb.open("GET",'/query/version',true);
 xrPb.onreadystatechange = tsopPb;
 xrPb.send(null);
 function tsopPb()
 {
-  if(xrPb.readyState ==4) if(xmlreq.status == 200)
+  if(xrPb.readyState ==4) if(xrPb.status == 200)
   {
-    var verPb = xrPb.responseText;
-    h = document.getElementById('powerby');
-    if(h!=null)
-      h.innerHTML = "Power by Glob - "+verPb;
+    var pbP = document.getElementById('powerby');
+    var strong = document.createElement('strong');
+    strong.innerHTML = "Power by Glob - " + xrPb.responseText;
+    pbP.appendChild(strong);
   }
-}
+};

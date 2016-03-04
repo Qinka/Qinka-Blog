@@ -13,10 +13,13 @@ html: blog page home
 blog: blg-yesod
 	@echo "update blog"
 
-blg-yesod: yesod-1
+blg-yesod: getstart InstallOS
 	@echo "update yesod blog"
-yesod-1:
-	@echo 'curl -F "type=blog" -F "index=blog" -F "index=yesod-1" -F "title=Yesod 学习笔记-1" -F "html=@blog/Yesod-1.html" ' $(URL)/management/html | ./ih $(TIME) $(PSK) | $(SHELL)
+getstart:
+	@echo 'curl -F "type=blog" -F "index=blog" -F "index=yesod" -F "index=getstart" -F "title=Yesod 学习笔记-1" -F "html=@blog/Yesod/GetStart.html" ' $(URL)/management/html | ./ih $(TIME) $(PSK) | $(SHELL)
+	@echo "update blg-yesod-GetStart"
+InstallOS:
+	@echo "update InstallOS"
 
 blg-test: blgtest1 blgtest2
 	@echo "blog-test update"
@@ -31,6 +34,8 @@ pageGlob: page/Glob.html
 	@cat page/Glob.html > tmp/page.glob.html
 	@echo 'curl -F "type=page" -F "index=page" -F "index=glob" -F "title=GLob" -F "html=@tmp/page.glob.html" ' $(URL)/management/html | ./ih $(TIME) $(PSK) | $(SHELL)
 	@echo "update page/Glob.html"
+pageLicense:
+	@echo 'curl -F "type=page" -F "index=page" -F "index=LICENSE" -F "title=License" -F "html=@page/LICENSE.html" '  $(URL)/management/html | ./ih $(TIME) $(PSK) | $(SHELL)
 
 home: topH navH bottomH mainH blogH
 	@echo "update home"
