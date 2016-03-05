@@ -28,7 +28,7 @@ blgtest1:
 blgtest2:
 	@echo 'curl -F "type=blog" -F "index=blog" -F "index=test2" -F "title=Test-Blog-2" -F "html=@blog/test/test2.html" ' $(URL)/management/html | ./ih $(TIME) $(PSK) | $(SHELL)
 
-page: pageGlob
+page: pageGlob pageLicense
 	@echo "update page"
 pageGlob: page/Glob.html
 	@cat page/Glob.html > tmp/page.glob.html
@@ -115,6 +115,8 @@ nav:
 	@echo "update nav Blog"
 	@echo 'curl -d "label=Glob" -d "order=2" -d "ref=/page/glob" ' $(URL)/management/nav | ./ih $(TIME) $(PSK) | $(SHELL)
 	@echo "update nav Glob(page)"
+	@echo 'curl -d "label=LICNESE" -d "order=100000" -d "ref=/page/LICENSE" ' $(URL)/management/nav | ./ih $(TIME) $(PSK) | $(SHELL)
+	@echo "update nav License(page)"
 	@echo "update nav"
 
 
