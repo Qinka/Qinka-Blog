@@ -1,5 +1,5 @@
 <div class="homemain">
-  <h1>在实体机上启动 Boot2Docker</h1>
+  <h1>在实体机上启动 Docker OS</h1>
   <h3>笔记前语</h3>
     <p>
       这种折腾一开始是基于希望在 <a href="http://www.sssta.org"> 软院科协 </a> 的几台不用的机子上搭建 Hackage 的镜像。
@@ -7,7 +7,7 @@
       当然这是只是计划。一开始安装 Ubuntu Server 15.10 的时候，并没有注意到尹大人的计划细节，硬盘分区直接 LVM。
       后来各种坑使得我还需要再刷。之后刷的可以用了，然后还是有坑。据尹大人报告，我使用的西电开源社区的ubuntu源是 14的。
       当然，后来尹强者折腾 MySQL 的读写分离去了，草民还在刷，当然刷的就是Boot2Docker。然而奇迹的是
-      <strong>贵协的老旧机子不光支持 EFI，还成功启动了为 Boot2Docker </strong>。
+      <strong>贵协的老旧机子成功启动了为 Boot2Docker </strong>。随后又再次试了试一些其他的系统 包括 Rancher。
     </p>
   <h2> 制作镜像 </h2>
     <p>
@@ -20,9 +20,7 @@
       然后，在 .travis.yml 中使用 wget 下载然后，直接利用 Git 将下载的文件同步到 Git 之上。之后再用 Git 获取。
     </p>
     <p>
-      最简单的安装方式呢，只需要 Boot2Docker 的镜像。当然也可以按找官网上的内容去定制自己的 Boot2Docker 镜像。
-      然而这种十分简单的方式带来的问题是无法修改系统内的一些东西。所以就会有第二种方式。
-      因为 Boot2Docker 是基于 Tiny Core Linux 的，所有可以按照安装 Tiny Core Linux 的方式安装到硬盘。 
+      安装的话
     </p>
   <h2>启动</h2>
   <h2>安装</h2>
