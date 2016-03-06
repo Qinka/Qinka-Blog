@@ -19,7 +19,8 @@ getstart:
 	@echo 'curl -F "type=blog" -F "index=blog" -F "index=yesod" -F "index=getstart" -F "title=Yesod 学习笔记-1" -F "html=@blog/Yesod/GetStart.html" ' $(URL)/management/html | ./ih $(TIME) $(PSK) | $(SHELL)
 	@echo "update blg-yesod-GetStart"
 InstallOS:
-	@echo "update InstallOS"
+	@echo 'curl -F "type=blog" -F "index=blog" -F "index=setupos" -F "index=installboot2docker2disk" -F "title= 安装 Boot2Docker到硬盘" -F "html=@blog/SetupOS/InstallB2D2Dist.html" ' $(URL)/management/html | ./ih $(TIME) $(PSK) | $(SHELL)
+	@echo "update blg-setupos-installboot2docker2disk"
 
 blg-test: blgtest1 blgtest2
 	@echo "blog-test update"

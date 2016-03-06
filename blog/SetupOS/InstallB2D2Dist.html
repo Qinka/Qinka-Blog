@@ -6,7 +6,7 @@
       后来计划用 Docker ，正巧尹大人也在有计划，目测尹强者应该有项目。然后就将科协的几台机子都刷成 Docker Ship。
       当然这是只是计划。一开始安装 Ubuntu Server 15.10 的时候，并没有注意到尹大人的计划细节，硬盘分区直接 LVM。
       后来各种坑使得我还需要再刷。之后刷的可以用了，然后还是有坑。据尹大人报告，我使用的西电开源社区的ubuntu源是 14的。
-      当然，后来尹强者折腾 MySQL 的读写分离去了，草民还在刷，当然刷的就是Boot2Docker。然而奇迹的是 
+      当然，后来尹强者折腾 MySQL 的读写分离去了，草民还在刷，当然刷的就是Boot2Docker。然而奇迹的是
       <strong>贵协的老旧机子不光支持 EFI，还成功启动了为 Boot2Docker </strong>。
     </p>
   <h2> 制作镜像 </h2>
@@ -17,7 +17,12 @@
       简单的说，大致就是利用目前国外免费的持续集成（CI）服务下载一些墙外的东西。当然对于庸俗的东西来时，还是绕不过防火墙。
       以 <a href="https://github.com">GitHub</a> 与 <a href="https://travis-ci.org">Travis-CI</a> 为例。
       首先是需要在 GitHub 上创建一个仓库然后帮顶 Travis 的持续集成功能。
-      然后，在 .travis.yml 中使用 wget 下载然后，直接利用 Git 将下载的文件同步到 Git 之上。之后再用 Git 获取。 
+      然后，在 .travis.yml 中使用 wget 下载然后，直接利用 Git 将下载的文件同步到 Git 之上。之后再用 Git 获取。
+    </p>
+    <p>
+      最简单的安装方式呢，只需要 Boot2Docker 的镜像。当然也可以按找官网上的内容去定制自己的 Boot2Docker 镜像。
+      然而这种十分简单的方式带来的问题是无法修改系统内的一些东西。所以就会有第二种方式。
+      因为 Boot2Docker 是基于 Tiny Core Linux 的，所有可以按照安装 Tiny Core Linux 的方式安装到硬盘。 
     </p>
   <h2>启动</h2>
   <h2>安装</h2>
