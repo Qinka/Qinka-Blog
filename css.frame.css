@@ -6,6 +6,15 @@
 {
   border: none;
   text-align: center;
+
+}
+
+.summaryP
+{
+  border-style: dotted;
+  padding-left: 5%;
+  padding-right: 5%;
+  padding-bottom: 10px;
 }
 
 .qinkalogo
