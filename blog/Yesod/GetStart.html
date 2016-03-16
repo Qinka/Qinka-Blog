@@ -11,6 +11,7 @@
     <li><a href="#julius"> Julius (JavaScript) </a></li>
     <li><a href="#note"> 笔记注释 </a></li>
     <li><a href="#bibliography"> Bibliography </a></li>
+    <li><a href="#formore"> For More About Yesod </a></li>
   </ul>
   <br/>
   <h2 id="introduction"> 导论 </h2>
@@ -46,8 +47,8 @@ $ cabal install yesod
         安装好之后应该可以在 GHCi 中可以执行：
         <pre>
           <code>
-Prelude> import Yesod
-Prelude Yesod>_
+Prelude&gt; import Yesod
+Prelude Yesod&gt;_
           </code>
         </pre>
         然后既可以使用了。
@@ -122,6 +123,22 @@ mkYesod "HelloWorld" $(parseRoutesFile "route")
       访问方式（GET、POST 等）的小写形式与 Resource 的那个类型。
       其返回的是 Handler Html<sup>(<cite>v</cite>)</sup>,而 Html 是返回的内容的类型。
       而 Html 则是 包 blaze-html 中提供的类型。
+      而 defaultLayout 则是 WidgetT site IO () 转化为  HandlerT site IO Html
+      <sup>(<cite>v</cite>)</sup>。而其是 Yesod 类型类中的一个函数。提供默认的 Layout。
+      whamlet 是一个 QuasiQuotes，最后会生成 一个 WidgetT site IO ()。whamlet
+      之后会提到。
+    </p>
+    <p>
+      最后是 运行整个 HelloWorld。其中 warp 函数会接受两个参数，一个是端口，另一个是一个实现了
+      Yesod 类型类的实例类型的实例。之后就可以访问
+    </p>
+    <pre>
+      <code>
+http://localhost:3000/
+      </code>
+    </pre>
+    <p>
+      可以看见这个 HelloWorld
     </p>
   <h2 id="resourceAndTypeSafeURLs"> Resource and Type-Safe URLs </h2>
   <h2 id="hamlet"> Hamlet (HTML)</h2>
@@ -131,7 +148,7 @@ mkYesod "HelloWorld" $(parseRoutesFile "route")
     <h4> * Yesod Web Framework </h4>
       <p>
         Yesod 是一个 Web 应用 的框架，可以用来搭建后端、网站等，有着许多特性。
-        其主页是 <a href="www.yesodweb.com"> Yesod Web Framework</a>。
+        其主页是 <a href="http://www.yesodweb.com"> Yesod Web Framework</a>。
         其主页提供了 图书《Developing Web Applications with Haskell and Yesod》
         的电子版，可供在线阅读。该书由 O'REILLY 出版社出版。国内暂无翻译版或影印版。
       </p>
@@ -178,33 +195,33 @@ module Text.Blaze.Html       -- package: blaze-html
       </p>
       <pre>
         <core class="haskell">
-putTime :: UTCTime -> Put Source
+putTime :: UTCTime -&gt; Put Source
 getTime :: Get UTCTime Source
-formatW3 :: UTCTime -> Text Source
-formatRFC1123 :: UTCTime -> Text Source
-formatRFC822 :: UTCTime -> Text Source
+formatW3 :: UTCTime -&gt; Text Source
+formatRFC1123 :: UTCTime -&gt; Text Source
+formatRFC822 :: UTCTime -&gt; Text Source
 getCurrentMaxExpiresRFC1123 :: IO Text
 class MonadTrans t where
-  lift :: Monad m => m a -> t m a
-class Monad m => MonadIO m where
-  liftIO :: IO a -> m a
-class (Applicative b, Applicative m, Monad b, Monad m) => MonadBase b m | m -> b where
-  liftBase :: b α -> m α
-class MonadBase b m => MonadBaseControl b m | m -> b
-class (MonadThrow m, MonadIO m, Applicative m, MonadBase IO m) => MonadResource m where
-  liftResourceT :: ResourceT IO a -> m a
-class Monad m => MonadLogger m
+  lift :: Monad m =&gt; m a -&gt; t m a
+class Monad m =&gt; MonadIO m where
+  liftIO :: IO a -&gt; m a
+class (Applicative b, Applicative m, Monad b, Monad m) =&gt; MonadBase b m | m -&gt; b where
+  liftBase :: b α -&gt; m α
+class MonadBase b m =&gt; MonadBaseControl b m | m -&gt; b
+class (MonadThrow m, MonadIO m, Applicative m, MonadBase IO m) =&gt; MonadResource m where
+  liftResourceT :: ResourceT IO a -&gt; m a
+class Monad m =&gt; MonadLogger m
 hamlet :: QuasiQuoter
 shamlet :: QuasiQuoter
 xhamlet :: QuasiQuoter
-type HtmlUrl url = Render url -> Html
+type HtmlUrl url = Render url -&gt; Html
 julius :: QuasiQuoter
-type JavascriptUrl url = (url -> [(Text, Text)] -> Text) -> Javascript
-renderJavascriptUrl :: (url -> [(Text, Text)] -> Text) -> JavascriptUrl url -> Text
+type JavascriptUrl url = (url -&gt; [(Text, Text)] -&gt; Text) -&gt; Javascript
+renderJavascriptUrl :: (url -&gt; [(Text, Text)] -&gt; Text) -&gt; JavascriptUrl url -&gt; Text
 cassius :: QuasiQuoter
 lucius :: QuasiQuoter
-type CssUrl url = (url -> [(Text, Text)] -> Text) -> Css
-renderCssUrl :: (url -> [(Text, Text)] -> Text) -> CssUrl url -> Text
+type CssUrl url = (url -&gt; [(Text, Text)] -&gt; Text) -&gt; Css
+renderCssUrl :: (url -&gt; [(Text, Text)] -&gt; Text) -&gt; CssUrl url -&gt; Text
         </core>
       </pre>
       <p>
@@ -223,31 +240,31 @@ module Yesod.Persist.Core
       </p>
       <pre>
         <code>
-class RenderRoute site => Yesod site where
+class RenderRoute site =&gt; Yesod site where
   approot :: Approot site
-  errorHandler :: ErrorResponse -> HandlerT site IO TypedContent
-  defaultLayout :: WidgetT site IO () -> HandlerT site IO Html
+  errorHandler :: ErrorResponse -&gt; HandlerT site IO TypedContent
+  defaultLayout :: WidgetT site IO () -&gt; HandlerT site IO Html
   urlRenderOverride ::
     site
-    -> Route site -> Maybe Data.ByteString.Builder.Internal.Builder
-  isAuthorized :: Route site -> Bool -> HandlerT site IO AuthResult
-  isWriteRequest :: Route site -> HandlerT site IO Bool
-  authRoute :: site -> Maybe (Route site)
+    -&gt; Route site -&gt; Maybe Data.ByteString.Builder.Internal.Builder
+  isAuthorized :: Route site -&gt; Bool -&gt; HandlerT site IO AuthResult
+  isWriteRequest :: Route site -&gt; HandlerT site IO Bool
+  authRoute :: site -&gt; Maybe (Route site)
   cleanPath ::
     site
-    -> [Data.Text.Internal.Text]
-    -> Either [Data.Text.Internal.Text] [Data.Text.Internal.Text]
+    -&gt; [Data.Text.Internal.Text]
+    -&gt; Either [Data.Text.Internal.Text] [Data.Text.Internal.Text]
   joinPath ::
     site
-    -> Data.Text.Internal.Text
-    -> [Data.Text.Internal.Text]
-    -> [(Data.Text.Internal.Text, Data.Text.Internal.Text)]
-    -> Data.ByteString.Builder.Internal.Builder
+    -&gt; Data.Text.Internal.Text
+    -&gt; [Data.Text.Internal.Text]
+    -&gt; [(Data.Text.Internal.Text, Data.Text.Internal.Text)]
+    -&gt; Data.ByteString.Builder.Internal.Builder
     addStaticContent ::
     Data.Text.Internal.Text
-    -> Data.Text.Internal.Text
-    -> Data.ByteString.Lazy.Internal.ByteString
-    -> HandlerT
+    -&gt; Data.Text.Internal.Text
+    -&gt; Data.ByteString.Lazy.Internal.ByteString
+    -&gt; HandlerT
          site
          IO
          (Maybe
@@ -256,31 +273,31 @@ class RenderRoute site => Yesod site where
                (Route site,
                 [(Data.Text.Internal.Text, Data.Text.Internal.Text)])))
   maximumContentLength ::
-    site -> Maybe (Route site) -> Maybe GHC.Word.Word64
-  makeLogger :: site -> IO Yesod.Core.Types.Logger
+    site -&gt; Maybe (Route site) -&gt; Maybe GHC.Word.Word64
+  makeLogger :: site -&gt; IO Yesod.Core.Types.Logger
   messageLoggerSource ::
     site
-    -> Yesod.Core.Types.Logger
-    -> Language.Haskell.TH.Syntax.Loc
-    -> Control.Monad.Logger.LogSource
-    -> LogLevel
-    -> fast-logger-2.4.1:System.Log.FastLogger.LogStr.LogStr
-    -> IO ()
-  jsLoader :: site -> ScriptLoadPosition site
-  makeSessionBackend :: site -> IO (Maybe SessionBackend)
+    -&gt; Yesod.Core.Types.Logger
+    -&gt; Language.Haskell.TH.Syntax.Loc
+    -&gt; Control.Monad.Logger.LogSource
+    -&gt; LogLevel
+    -&gt; fast-logger-2.4.1:System.Log.FastLogger.LogStr.LogStr
+    -&gt; IO ()
+  jsLoader :: site -&gt; ScriptLoadPosition site
+  makeSessionBackend :: site -&gt; IO (Maybe SessionBackend)
   fileUpload ::
-    site -> Network.Wai.Internal.RequestBodyLength -> FileUpload
+    site -&gt; Network.Wai.Internal.RequestBodyLength -&gt; FileUpload
   shouldLog ::
-    site -> Control.Monad.Logger.LogSource -> LogLevel -> Bool
+    site -&gt; Control.Monad.Logger.LogSource -&gt; LogLevel -&gt; Bool
   shouldLogIO ::
-    site -> Control.Monad.Logger.LogSource -> LogLevel -> IO Bool
+    site -&gt; Control.Monad.Logger.LogSource -&gt; LogLevel -&gt; IO Bool
   yesodMiddleware ::
-    ToTypedContent res => HandlerT site IO res -> HandlerT site IO res
+    ToTypedContent res =&gt; HandlerT site IO res -&gt; HandlerT site IO res
   yesodWithInternalState ::
     site
-    -> Maybe (Route site)
-    -> (Control.Monad.Trans.Resource.InternalState -> IO a)
-    -> IO a
+    -&gt; Maybe (Route site)
+    -&gt; (Control.Monad.Trans.Resource.InternalState -&gt; IO a)
+    -&gt; IO a
         </code>
       </pre>
     <h4> v. HandlerT Monad</h4>
@@ -295,7 +312,7 @@ class RenderRoute site => Yesod site where
         </code>
       </pre>
       <p>
-        Handler 的 kind 此时是 * -> * 。
+        Handler 的 kind 此时是 * -&gt; * 。
       </p>
   <h2 id="bibliography"> Bibliography </h2>
     <ol>
@@ -311,7 +328,7 @@ class RenderRoute site => Yesod site where
         </ol>
       </li>
       <li>
-        Haskell Community and the contributors of packages.<a href="hackage.haskell.org">Hackage's</a> documents(Haddock).
+        Haskell Community and the contributors of packages.<a href="http://hackage.haskell.org">Hackage's</a> documents(Haddock).
         <ol type="a">
           <li>
             The documents of Yesod's package: yesod, yesod-core, and yesod-persistent.
@@ -319,6 +336,24 @@ class RenderRoute site => Yesod site where
         </ol>
       </li>
     </ol>
+   <h2 id="formore"> For More About Haskell </h2>
+    这里将会有一些和这个 Post 相关的参考资料，我也是看的这些入门的，当然基本都是英文的。
+    <ul>
+      <li>
+        <a href="http://www.yesodweb.com">Yesod</a> 的官方网站，里面有几个版本的 Yesod 的教程（book），同时还有一些文章（blog）。
+      </li> 
+      <li>
+        Yesod 在 <a href="http://hackage.haskell.org/package/yesod">Hackage</a> 与 
+        <a href="https://www.stackage.org/package/yesod">Stackage</a> 上的 API 与 Documents 的页面。
+      </li>
+      <li>
+        Yesod 在 <a href="https://github.com/yesodweb/yesod">GitHub</a> 上的内容，可以看 wiki，里面有相当多的干货。
+      </li>
+      <li>
+        好吧，这个没法给链接。。，是 《Developing Web Applications with Haskell and Yesod（Second Edition）》 英文原版的书，
+        要买第二版。当然在官方网站上有在线的版本。国内应该会有卖的，原本的。
+      </li>
+    </ul>
 </div>
 <link rel="stylesheet" href="/txt/css/zenburn.css" type="text/css"/>
 <script src="/txt/javascript/highlight.js"></script>
