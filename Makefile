@@ -10,10 +10,10 @@ update: html txt bin qry
 html: blog page home
 	@echo "update html"
 
-blog: blg-yesod
+blog: blg-yesod english setupos
 	@echo "update blog"
 
-blg-yesod: getstart InstallOS
+blg-yesod: getstart
 	@echo "update yesod blog"
 getstart:
 	@echo 'curl -F "type=blog" -F "index=blog" -F "index=yesod" \
@@ -21,12 +21,22 @@ getstart:
 		-F "html=@blog/Yesod/GetStart.html" -F "summary=@blog/Yesod/GetStart.summary.html"' \
 		$(URL)/management/html | ./ih $(TIME) $(PSK) | $(SHELL)
 	@echo "update blg-yesod-GetStart"
+
+setupos: InstallOS
 InstallOS:
 	@echo 'curl -F "type=blog" -F "index=blog" -F "index=setupos" \
 	 	-F "index=installdockeros" -F "title= 安装 Docker OS" \
 		-F "html=@blog/SetupOS/IDOS.html" -F "summary=@blog/SetupOS/IDOS.summary.html"' \
 		$(URL)/management/html | ./ih $(TIME) $(PSK) | $(SHELL)
 	@echo "update blg-setupos-installboot2docker2disk"
+
+english: rtof
+rtof:
+	@echo 'curl -F "type=blog" -F "index=blog" -F "index=english" -F "idnex=rtof" \
+		-F "title=Reaction of THE TAIL OF FAME" \
+		-F "html=@blog/english/RToF.html" -F "summary=@blog/english/RToF.summary.html" '\
+		$(URL)/management/html | ./ih $(TIME) $(PSK) | $(SHELL)
+	@echo "update RToF"
 
 blg-test: blgtest1 blgtest2
 	@echo "blog-test update"

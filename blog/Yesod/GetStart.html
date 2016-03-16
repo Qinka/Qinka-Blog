@@ -1,57 +1,66 @@
 <div class="homemain">
-  <h1> Yesod 学习笔记 - 1 </h1>
+  <h1>Yesod 学习笔记 - 1</h1>
   <br/>
   <ul>
-    <li><a href="#prepare"> 准备 </a></li>
-    <li><a href="#setup"> 安装 </a></li>
-    <li><a href="#hw"> Hello World </a></li>
-    <li><a href="#rntsurl"> Resources and Type-Safe URLs </a></li>
-    <li><a href="#rrt"> Response "RETURN" Type </a></li>
-    <li><a href="#hh"> Hamlet-HTML </a></li>
-    <li><a href="#lccss"> Lucius/Cassius-CSS </a></li>
-    <li><a href="#jjs"> Julius-JavaScript </a></li>
+    <li><a href="#introduction"> 导论 </a></li>
+    <li><a href="#settingEnv"> 环境配置 </a></li>
+    <li><a href="#helloWorld"> Hello World </a></li>
+    <li><a href="#resourceAndTypeSafeURLs"> Resource and Type-Safe URLs </a></li>
+    <li><a href="#hamlet"> Hamlet (HTML) </a></li>
+    <li><a href="#luciusCassius"> Lucius and Cassius (CSS) </a></li>
+    <li><a href="#julius"> Julius (JavaScript) </a></li>
+    <li><a href="#note"> 笔记注释 </a></li>
+    <li><a href="#bibliography"> Bibliography </a></li>
   </ul>
   <br/>
-  <h2 id="prepare"> 准备 </h2>
-    <h3> 主观条件 </h3>
+  <h2 id="introduction"> 导论 </h2>
+    <p>
+      一个并不合适的叫法，导论。然而还是这样叫了，
+      Yesod Book 叫的是 “Introduction”<sup>[<cite>1.a</cite>]</sup>。
+      Yesod 是 Haskell 中的这样 Web 框架之一。
+      Yesod 的特性之一是开源的。而同时 Yesod 提供了几个 DSL，来开发 Web。
+      Web 所需的有 HTML，CSS，JavaScript 由 Hamlet、Lucius、Cassius 与
+      Julius。
+    </p>
+    <p>
+      其中 Haskell 具有 类型安全、代码简介、性能表现优异、容易分块。
+      而 Haskell 的 TemplateHaskell 与 QuasiQuotes 等特性。
+      使得 Yesod 的效率如鱼得水。
+    </p>
+  <h2 id="settingEnv"> 环境配置 </h2>
+    <h3> 通用配置的内容 </h3>
       <p>
-        首先，这个笔(jiao)记(cheng)并不适合初学者，
-        事实上要求的肯能需要知道 包括 TH在内的东西，
-        但是我个人认为，会写 Hello World 是底线。
-        假设这里有个Haskell入门的传送门，之后会补上。
+        通用的 “配置” 是指的是说 在 Windows、Linux、Mac OS X 等系统上
+        配置的共性设置。
       </p>
       <p>
-        然后，很不幸的是，当前 GHC 7.10.3 这个版本（包括之前的版本），
-        都无法在 Windows 下正常工作（至少我这里不行）。
-        所以需要的是 Linux 或者 OS X（并没有测试 BSD 系列的系统）。
+        首先来说所需要的是一个能正常“工作”的 Haskell 环境。包括一个正常的
+        GHC<sup>(<cite>i</cite>)</sup> 与 Cabal（或 Stack）。
+        使用 cabal 与 stack 安装 yesod 。
+        <pre>
+          <code>
+$ cabal update
+$ cabal install yesod
+          </code>
+        </pre>
+        安装好之后应该可以在 GHCi 中可以执行：
+        <pre>
+          <code>
+Prelude> import Yesod
+Prelude Yesod>_
+          </code>
+        </pre>
+        然后既可以使用了。
       </p>
       <p>
-        然后一个比较麻烦的问题是，一些 Mac 在某些使用 Yesod 的程序中 在编译时会出现链接问题，
-        但是交互模式还是可用的，笔者就是。
+        然后，就可以开始了。
       </p>
-    <h3> 环境 </h3>
-      <p>
-        编译器可以直接使用最新的 <a href="https://www.haskell.org/downloads#platform"> Haskell Platform </a>，
-        或者是使用 一个 <a href="https://www.haskell.org/downloads#minimal"> Minimal installers </a>,
-        或者直接使用 <a href="https://www.haskell.org/ghc"> The Glasgow Haskell Compiler </a> 。
-      </p>
-      <p>
-        但是无论如何，GHC（建议 7.10.x） 与配套的 cabal 是必须有的。
-      </p>
-    <h2 id="setup"> 安装 Yesod </h2>
-      <pre>
-        <code class="bash">
- $ cabal update
- $ cabal install yesod
-        </code>
-      </pre>
-      之后就可以使用 Yesod 了，然而在此你可能需要喝一杯什么等待安装。
-    <h2 id="hw">Hello World</h2>
-      <p>
-        按照“传统”，第一个程序是Hello World 的。先直接上代码。
-      </p>
-      <pre>
-        <code class="haskell">
+  <h2 id="helloWorld"> Hello World </h2>
+    <p>
+      先上 <a href="/txt/source/yesod/getstart/helloworld.hs">代码</a>。
+    </p>
+    <pre>
+      <core class="haskell">
 {-# LANGUAGE OverloadedStrings
            , QuasiQuotes
            , TemplateHaskell
@@ -60,13 +69,11 @@
            #-}
 
 import Yesod
-import Data.Text
 
 data HelloWorld = HelloWorld
 
 mkYesod "HelloWorld" [parseRoutes|
 / HomeR GET
-/hello/#Text HelloR POST
 |]
 
 instance Yesod HelloWorld
@@ -74,173 +81,131 @@ instance Yesod HelloWorld
 getHomeR :: Handler Html
 getHomeR = defaultLayout [whamlet|Hello, World!|]
 
-postHelloR :: Text -> Handler Text
-postHelloR name  = return $ T.concat ["Hello, ",name,"!"]
 
 main :: IO ()
 main = warp 3000 HelloWorld
-        </code>
-      </pre>
-      <p>
-        “{-# #-}” 这个东西所括起来的 通常被称作 “Language Options”，
-        一般有两种形式， -X... 或者 {-# LANGUAGE ... #-}，当然这并不是全部的“样式”。
-        其中 OverloadedStrings 是 将实现 IsString 类型类 的 类似字符串类型，直接当成字符串，
-        QuasiQuotes 与 TemplateHaskell 是 Haskell 中神奇又有着十分高的效率的东西，
-        TemplateHaskell 通常来说 就是一种 meta-program 即 元编程，且通常简称 TH ，
-        而 QuasiQuotes 这是一种更加高级的东西，通常简称 QQ，
-        具体内容可详见Haskell 的 wiki 或者 GHC 的手册。
-        TypeFamilies 与 ViewPatterns 则是另外的 Haskell 特性，再次不过多介绍，
-        具体 可以看 <a href="https://wiki.haskell.org">Haskell's wiki</a>。
-      </p>
-      <p>
-        之后的 两个 “import” 是 导入之前已经安装的 yesod 库 与 text 库
-        （这个库在安装 yesod 的时候是其依赖项） 中的模块。
-        其中 yesod 的 Yesod 模块是提供Yesod中基本的，所需的内容。
-        而 Data.Text 模块则是主要提供 Text 类型与有关的函数。
-      </p>
-      <p>
-        定义的 类型 HelloWorld 是一个简单的类型，其中这个在实际过程中可以，或者应该说是需要添加其他的东西在其中。
-        比如当使用 PostgreSQL 时，需要一个 类型为 ConnectionPool 的小玩意，当然之后才会介绍。
-      </p>
-      <p>
-        mkYesod “引导”的这一部分则是 TH，
-        整个这一部分的返回类型是 Q Dec ，会在编译时执行生成一些数据与函数的声明。
-        而 [parseRoutes|...|] 这一部分是 QQ。
-        整个这一部分生的是一个路由表。 由 URL 中路径的部分（例如 /hello/#Text），“负责”这部分的一个类型(例如 HomeR)，和访问方式组成（例如 POST）。
-        访问路径中可以出现“不定内容”，例如/hello/#Text 中的 #Text，其会将这部分解析成一个 Text 类型的数据，
-        同时也会影响 之后处理这个路径的请求的函数的绑定类型。
-      </p>
-      <p>
-        instance 这部分是将 HelloWorld 这个类型实现 Yesod 的类型类。
-        一般来说，对于正常的程序，可能需要改变这一部分的中的函数，将他们替换掉。
-        然而这个类型类的最小实现是0个函数。
-      </p>
-      <p>
-        getHomeR 的名称来源是 小写的访问方法+“负责”的类型名称。
-        绑定类型中的 Handler 是通过
-      </p>
-      <pre><code class="haskell"> type Handler = HandlerT HelloWorld IO </code> </pre>
-      <p>
-        定义的，也就是说，其实可以直接使用 HandlerT。
-        而 Html 则是一种 类型结构，其具体定义在 blaze-markup 这个包中。
-        而 defaultLayout 这个函数这是一个默认的 Layout，[whamlet|..|] 这个 QQ
-        是 一个叫 Hamlet（就是莎士比亚笔下任务的名称）的 DSL。 而在这里 whamlet 通过 QQ 最后则将生成一个
-        类型是
-      </p>
-      <pre><code class="haskell"> Widget HelloWorld IO () </code></pre>
-      <p>
-        的类型，提供给 defaultLayout 使用。
-        而 Hamlet 的语法会在后面介绍。
-      </p>
-      <p>
-        postHelloR 这个函数则是一个有些不同的函数，由于路由中路径中的那一部分中有“不确定”的东西，
-        所以其绑定类型是 Text -> Handler Text。
-        同时 Handler 也是一个 Monad。 所以在此使用到了 return。
-      </p>
-      <p>
-        最后 main 函数中 使用 warp 启动这个 Hello World。然后可以使用浏览器访问
-        <a href="http://localhost:3000" > localhost 的 端口 3000 </a>。
-        warp 函数中 第一个参数是端口号，第二个则是任何实现了 Yesod 类型类的数据。
-      </p>
-      <p>
-        然后使用 cURL 测试。
-      </p>
-      <pre><code>
- $ curl -X POST http://localhost:3000/hello/bar
- hello,bar!
-      </code></pre>
-    <h2 id="rntsurl"> Resources and Type-Safe URLs </h2>
-      Yesod 对于 URL 的使用，有一个 类型安全 的解决方案。
-      先上代码(不是完整的)。
-    <pre>
-      <code class="haskell">
-mkYesod site [parseRoutes|
-/ HomeR GET
-/hello/#Text HelloR GET
-|]
-
-getHomeR :: Handler Html
-getHomeR = defaultLayout [whamlet|
-&lt;p&gt;
-  &lt;a href=@{HelloR "Tom"}&gt; Say hello to Tom
-&lt;p&gt;
-  &lt;a href=@{HelloR "John"}&gt; Say hello to John
-|]
-
-getHelloR :: Text -> Handler Html
-getHelloR name = defaultLayout [whamlet|
-&lt;p&gt; Hello, #{name}
-|]
-      </code>
+      </core>
     </pre>
     <p>
-      连接（也是一种安全的 URL 解决方式） 使用 @{..}括起来，其中表示的就是之前负责所指向的路径的那个类型。
-      对于一些路径中有变量的，就上那个例子中的 HelloR 所对应的路径中就有一个 类型的 Text 的变量，
-      （虽然这里叫变量，不是十分合适的），
-      最后生成的路径相当于：
+      最一开始的语言特性的开关，并不会在这里详细解释<sup>(<cite>ii</cite>)</sup>。
+      然后导入的 Yesod 模块是最基本的，用 Yesod 框架写 Web 应用的最少引用。
+      同时 Yesod 模块导入了一些其他基本的模块 <sup>(<cite>iii</cite>)</sup>。
+      之后定义的类型及其构造器是 整个基于 Yesod 框架的应用的提拉点。而其中可包含整个
+      应用中所需要的最关键的数据（变量）。之后会提到如何通过 getYesod 函数获得这个东西。
     </p>
-    <pre>
-      <code>
-/hello/Tom
-/hello/John
-      </code>
-    </pre>
-    <h2 id="rrt"> Response "RETURN" Type</h2>
+  <h2 id="resourceAndTypeSafeURLs"> Resource and Type-Safe URLs </h2>
+  <h2 id="hamlet"> Hamlet (HTML)</h2>
+  <h2 id="luciusCassius"> Lucius and Cassius (CSS) </h2>
+  <h2 id="julius"> Julius (JavaScript) </h2>
+  <h2 id="note"> 笔记注释 </h2>
+    <h4> * Yesod Web Framework </h4>
       <p>
-        在一个处理路径对应的请求的函数中，其类型 HandlerT site IO a 中，
-        site 是一个 实现 Yesod 类型类的类型，而 a 通常可以使也多类型，其中 Text，Html，TypedContent，但不是所有类型都可以返回。
+        Yesod 是一个 Web 应用 的框架，可以用来搭建后端、网站等，有着许多特性。
+        其主页是 <a href="www.yesodweb.com"> Yesod Web Framework</a>。
+        其主页提供了 图书《Developing Web Applications with Haskell and Yesod》
+        的电子版，可供在线阅读。该书由 O'REILLY 出版社出版。国内暂无翻译版或影印版。
+      </p>
+    <h4> i. GHC 在 某些系统上的 上的坑</h4>
+      <p>
+        首先呢 要肯定的是 Windows 上 GHC 7.10.3 上是可以正常工作的。
+        其他的编译器版本应该会因为连接器的问题而挂掉。同时笔者这里用的是 Windows 10。
       </p>
       <p>
-        Html 如字面之意，是返回的是 Html 文本。而 Text 则是返回的一般性的文本。而 TypedContent，
-        返回的类型是与 MIME 类型有关。其中用法如下：
+        然后的一个问题是，在某些 Mac 上会出现连接的问题，在编译的时候。而使用
+        交互模式是没有问题的。
       </p>
-      <pre>
-        <code class="haskell">
- selectRep $ do
-  provideRepType "application/json" $ return "{}"
-  provideRepType "..." $ do
-    ...
-        </code>
-      </pre>
+    <h4> ii. Glasgow Haskell Compilation User's Guide </h4>
       <p>
-        selectRep 函数通常是写在最一开始，后面连接 do-block。
-        然后 provideRepType 函数则是先提供 返回的 MIME 类型，然后像一般的正常的返回方式，返回 内容。
-        而同时又提供 provideRep函数，需要不提供 MIME 类型。
+        这些的语言特性等“内容”可以再 User's Guide 中的找到。
       </p>
-    <h2 id="hh"> Hamlet-HTML </h2>
+    <h4> iii. The Module Imported by Yesod <sup>[<cite>2.a</cite>]</sup> </h4>
       <p>
-        恩，，事实上，这一部分的大标题应该是 Shakespearean Template，
-        对你猜的没错， 是“莎士比亚风格的模板”。
-        这个是由一个包提供的内容， Yesod 官网在相关章节中是这样说到的(大致翻译)：
+        Yesod 模块导出的 模块。
       </p>
       <pre>
-        <code>
-   Yesod 使用 Shakespearean 系列的 模板语言（笔者再次认为，其已经算作一个 DSL），作为标准的生成 HTML，CSS 与 JavaScript 的生成器。
-        </code>
+        <core class="haskell">
+module Yesod.Core    -- package: yesod-core
+module Yesod.Form    -- package: yesod-form
+module Yesod.Persist -- package: yesod-persistent
+        </core>
       </pre>
       <p>
-        Hamlet 大体上与 HTML 是没有什么区别的。首先，Hamlet 是不存在 &lt;/...&gt; 这样的东西的，
-        其是依靠缩进来分层的，就像 Haskell 与 Python 一样，其中对于 一个标签中的属性基本与 HTML 类似，
-        如果没有加入引号会自动补全。
-      </p>
-      <p>
-        同时对有 三总括号： #{..}，@{..} 与 ^{..}。
-        其中 第一个是用来“对付”变量的。其中的部分填入的是一个变量或者一个简单地表达式。
-        第二个是与 URL 有关的，上一部分已经提到。
-        第三个是与 “HTML” 有关的，例如 ^{copyright} 中 copyright 的可能定义是：
+        Yesod.Core 模块导出的模块
       </p>
       <pre>
-        <code>
-  copyright = [hamlet|
-    &lt;p&gt; Copyright (C) 1995 John.
-  |]
-        </code>
+        <core class="haskell">
+module Yesod.Core.Content
+module Yesod.Core.Dispatch
+module Yesod.Core.Handler
+module Yesod.Core.Widget
+module Yesod.Core.Json
+module Text.Shakespeare.I18N -- package: shakespeare
+module Text.Blaze.Html       -- package: blaze-html
+        </core>
       </pre>
       <p>
-        由于某些原因，使用 的 QQ 是 hamlet 还是其他的可能是不确定的。
+        Yesod.Core 导出的函数、类型与类型类
       </p>
-    <h2 id="lccss"> Lucius/Cassius-CSS </h2>
-    <h2 id="jjs"> Julius-JavaScript </h2>
+      <pre>
+        <core class="haskell">
+putTime :: UTCTime -> Put Source
+getTime :: Get UTCTime Source
+formatW3 :: UTCTime -> Text Source
+formatRFC1123 :: UTCTime -> Text Source
+formatRFC822 :: UTCTime -> Text Source
+getCurrentMaxExpiresRFC1123 :: IO Text
+class MonadTrans t where
+  lift :: Monad m => m a -> t m a
+class Monad m => MonadIO m where
+  liftIO :: IO a -> m a
+class (Applicative b, Applicative m, Monad b, Monad m) => MonadBase b m | m -> b where
+  liftBase :: b α -> m α
+class MonadBase b m => MonadBaseControl b m | m -> b
+class (MonadThrow m, MonadIO m, Applicative m, MonadBase IO m) => MonadResource m where
+  liftResourceT :: ResourceT IO a -> m a
+class Monad m => MonadLogger m
+hamlet :: QuasiQuoter
+shamlet :: QuasiQuoter
+xhamlet :: QuasiQuoter
+type HtmlUrl url = Render url -> Html
+julius :: QuasiQuoter
+type JavascriptUrl url = (url -> [(Text, Text)] -> Text) -> Javascript
+renderJavascriptUrl :: (url -> [(Text, Text)] -> Text) -> JavascriptUrl url -> Text
+cassius :: QuasiQuoter
+lucius :: QuasiQuoter
+type CssUrl url = (url -> [(Text, Text)] -> Text) -> Css
+renderCssUrl :: (url -> [(Text, Text)] -> Text) -> CssUrl url -> Text
+        </core>
+      </pre>
+      <p>
+         Yesod.Persist 导出的模块。
+      </p>
+      <pre>
+        <core>
+module Database.Persist       -- package: persistent
+module Database.Persist.TH    -- package: persistent-template
+module Yesod.Persist.Core
+        </core>
+      </pre>
+  <h2 id="bibliography"> Bibliography </h2>
+    <ol>
+      <li>
+        Michael Snoyman. <i>Developing Web Applications with Haskell and Yesod, Second Edition</i>.O'REILLY, 2015.
+        <ol type="a">
+          <li>
+            Introduction (Chapter 1, Part I), Page 1.
+          </li>
+        </ol>
+      </li>
+      <li>
+        Haskell Community and the contributors of packages.<a href="hackage.haskell.org">Hackage's</a> documents(Haddock).
+        <ol type="a">
+          <li>
+            The documents of Yesod's package: yesod, yesod-core, and yesod-persistent.
+          </li>
+        </ol>
+      </li>
+    </ol>
 </div>
 <link rel="stylesheet" href="/txt/css/zenburn.css" type="text/css"/>
 <script src="/txt/javascript/highlight.js"></script>
