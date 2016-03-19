@@ -9,6 +9,7 @@
 
 }
 
+
 .summaryP
 {
   border-style: dotted;
@@ -129,6 +130,17 @@ body
 .homemain h1
 {
   text-align: center;
+  color:#e865b8;
+}
+.homemain h2
+{
+  color:#e85e39;
+}
+
+.homemain sup cite
+{
+  color:#8697d6;
+  text-shadow:.2px 0 .2px,0 .2px .2px, 0 -.2px .2px, .2px 0 .2px;
 }
 
 

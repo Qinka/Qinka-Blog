@@ -5,7 +5,7 @@ xmlreq.onreadystatechange = tsop;
 xmlreq.send(null);
 function tsop()
 {
-  var colors = ["#ff9900","#ff0099","#cc00ff","#11c2ee"];
+  var colors = ["#ff9900","#ff0099","#ac5ac1","#609db0"];
   colors = colors.sort(function(){return (Math.round(Math.random())-0.5);});
   if(xmlreq.readyState ==4) if(xmlreq.status == 200)
   {
