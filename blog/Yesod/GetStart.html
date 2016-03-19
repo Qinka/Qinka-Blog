@@ -141,6 +141,56 @@ http://localhost:3000/
       可以看见这个 HelloWorld
     </p>
   <h2 id="resourceAndTypeSafeURLs"> Resource and Type-Safe URLs </h2>
+    <p>
+      在看这个东西之前，我们先再看一个与 HelloWorld有关的例子。
+    </p>
+    <pre>
+      <code class="haskell">
+{-# LANGUAGE OverloadedStrings
+           , QuasiQuotes
+           , TemplateHaskell
+           , TypeFamilies
+           , ViewPatterns
+           #-}
+
+import Yesod
+import Data.Text
+
+data HelloWorld = HelloWorld
+
+mkYesod "HelloWorld" [parseRoutes|
+/ HomeR GET
+/hello/#Text HelloR GET
+|]
+
+instance Yesod HelloWorld
+
+getHomeR :: Handler Html
+getHomeR = defaultLayout [whamlet|Hello, World!|]]
+
+getHelloR :: Text -&gt; Handler Html
+getHelloR t = defaultLayout [whamlet|Hello, #{t}!|]
+
+main :: IO ()
+main = warp 3000 HelloWorld
+      </code>
+    </pre>
+    <p>
+      这个例程与之前的相比只是多了一个可访问的路径 <code>/hello/text</code> 其中 text 
+      是任意内容，会变成处理访问请求的那个函数的那个参数。这又是另一个“黑科技了”。
+      这个例程主要想说的是，如何创建安全连接。
+    </p>
+    <p>
+      HTML 中创建链接时是这样干的：
+    </p>
+    <pre>
+      <code class="html">
+ &lt;a href="/routes"&gt; label &lt;/a&gt;
+      </code>
+    </pre>
+    <p>
+      而这样会带来一个问题，如果路由表改变，这个链接就会失效。而 Yesod 提供了
+    </p>
   <h2 id="hamlet"> Hamlet (HTML)</h2>
   <h2 id="luciusCassius"> Lucius and Cassius (CSS) </h2>
   <h2 id="julius"> Julius (JavaScript) </h2>
@@ -170,17 +220,17 @@ http://localhost:3000/
         Yesod 模块导出的 模块。
       </p>
       <pre>
-        <core class="haskell">
+        <code class="haskell">
 module Yesod.Core    -- package: yesod-core
 module Yesod.Form    -- package: yesod-form
 module Yesod.Persist -- package: yesod-persistent
-        </core>
+        </code>
       </pre>
       <p>
         Yesod.Core 模块导出的模块
       </p>
       <pre>
-        <core class="haskell">
+        <code class="haskell">
 module Yesod.Core.Content
 module Yesod.Core.Dispatch
 module Yesod.Core.Handler
@@ -188,13 +238,13 @@ module Yesod.Core.Widget
 module Yesod.Core.Json
 module Text.Shakespeare.I18N -- package: shakespeare
 module Text.Blaze.Html       -- package: blaze-html
-        </core>
+        </code>
       </pre>
       <p>
         Yesod.Core 导出的函数、类型与类型类
       </p>
       <pre>
-        <core class="haskell">
+        <code class="haskell">
 putTime :: UTCTime -&gt; Put Source
 getTime :: Get UTCTime Source
 formatW3 :: UTCTime -&gt; Text Source
@@ -222,17 +272,17 @@ cassius :: QuasiQuoter
 lucius :: QuasiQuoter
 type CssUrl url = (url -&gt; [(Text, Text)] -&gt; Text) -&gt; Css
 renderCssUrl :: (url -&gt; [(Text, Text)] -&gt; Text) -&gt; CssUrl url -&gt; Text
-        </core>
+        </code>
       </pre>
       <p>
          Yesod.Persist 导出的模块。
       </p>
       <pre>
-        <core>
+        <code>
 module Database.Persist       -- package: persistent
 module Database.Persist.TH    -- package: persistent-template
 module Yesod.Persist.Core
-        </core>
+        </code>
       </pre>
     <h4> iv. The Content of Yesod Class </h4>
       <p>
