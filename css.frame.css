@@ -35,10 +35,18 @@ a:visited
 .title
 {
   text-align: center;
+  *word-spacing: -.1em;
+  position: relative;
+  /*text-shadow: 1px 0 1px,0 1px 1px, 0 -1px 1px, 1px 0 1px;*/
+}
+.title span
+{
+  letter-spacing: -.1em;
+  word-spacing: normal;
 }
 body
 {
-  background:#282828;
+  background:#080808;
   color:#ededed;
 }
 .navs
@@ -76,17 +84,21 @@ body
   width: auto;
   height: auto;
   background: #111111;
-  color: #EEEEEE;
   font-weight: bold;
   font-size: 25px;
   display: block;
   text-decoration: none;
   text-align: center;
-  color: #7FF3FF;
   padding-left: 16px;
   padding-right: 16px;
   padding-bottom: 4px;
   padding-top: 4px;
+  /*
+  #ff9900
+  #ff0099
+  #cc00ff
+  #11c2ee
+  */
 }
 .bottom
 {

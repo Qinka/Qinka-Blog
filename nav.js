@@ -5,6 +5,8 @@ xmlreq.onreadystatechange = tsop;
 xmlreq.send(null);
 function tsop()
 {
+  var colors = ["#ff9900","#ff0099","#cc00ff","#11c2ee"];
+  colors = colors.sort(function(){return (Math.round(Math.random())-0.5);});
   if(xmlreq.readyState ==4) if(xmlreq.status == 200)
   {
     var navJSON = eval(xmlreq.responseText);
@@ -14,6 +16,7 @@ function tsop()
     {
       var tmpN = document.createElement("li");
       var tmpA = document.createElement("a");
+      tmpA.style.color=colors[i];
       tmpA.href=navJSON[i].ref;
       tmpA.innerHTML = navJSON[i].label;
       tmpN.appendChild(tmpA);
