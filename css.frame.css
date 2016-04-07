@@ -9,12 +9,13 @@
 
 }
 
+
 .summaryP
 {
   border-style: dotted;
   padding-left: 5%;
   padding-right: 5%;
-  padding-bottom: 10px;
+  padding-bottom: 20px;
 }
 
 .qinkalogo
@@ -25,20 +26,28 @@
 
 a:link
 {
-  color: #7FF3FF;
+  color: #e71c46;
 }
 a:visited
 {
-  color: #d5d5d5;
+  color: #cf2717;
 }
 
 .title
 {
   text-align: center;
+  letter-spacing: -.1em;
+  position: relative;
+  /*text-shadow: 1px 0 1px,0 1px 1px, 0 -1px 1px, 1px 0 1px;*/
+}
+.title span
+{
+  letter-spacing: -.1em;
+  word-spacing: normal;
 }
 body
 {
-  background:#282828;
+  background:#080808;
   color:#ededed;
 }
 .navs
@@ -76,17 +85,21 @@ body
   width: auto;
   height: auto;
   background: #111111;
-  color: #EEEEEE;
   font-weight: bold;
   font-size: 25px;
   display: block;
   text-decoration: none;
   text-align: center;
-  color: #7FF3FF;
   padding-left: 16px;
   padding-right: 16px;
   padding-bottom: 4px;
   padding-top: 4px;
+  /*
+  #ff9900
+  #ff0099
+  #cc00ff
+  #11c2ee
+  */
 }
 .bottom
 {
@@ -117,6 +130,21 @@ body
 .homemain h1
 {
   text-align: center;
+  color:#e865b8;
+}
+.homemain h2
+{
+  color:#e85e39;
+}
+.homemain h4
+{
+  color: #be86e9
+}
+
+.homemain sup cite
+{
+  color:#8697d6;
+  text-shadow:.2px 0 .2px,0 .2px .2px, 0 -.2px .2px, .2px 0 .2px;
 }
 
 
