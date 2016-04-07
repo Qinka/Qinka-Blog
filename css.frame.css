@@ -15,7 +15,7 @@
   border-style: dotted;
   padding-left: 5%;
   padding-right: 5%;
-  padding-bottom: 10px;
+  padding-bottom: 20px;
 }
 
 .qinkalogo
@@ -26,17 +26,17 @@
 
 a:link
 {
-  color: #7FF3FF;
+  color: #e71c46;
 }
 a:visited
 {
-  color: #d5d5d5;
+  color: #cf2717;
 }
 
 .title
 {
   text-align: center;
-  *word-spacing: -.1em;
+  letter-spacing: -.1em;
   position: relative;
   /*text-shadow: 1px 0 1px,0 1px 1px, 0 -1px 1px, 1px 0 1px;*/
 }
@@ -135,6 +135,10 @@ body
 .homemain h2
 {
   color:#e85e39;
+}
+.homemain h4
+{
+  color: #be86e9
 }
 
 .homemain sup cite
