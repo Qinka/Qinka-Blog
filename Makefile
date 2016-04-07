@@ -11,7 +11,7 @@ update: html txt bin qry
 html: blog page home
 	@echo "update html"
 
-blog: blg-yesod english setupos
+blog: blg-yesod english setupos xhsk-rp
 	@echo "update blog"
 
 blg-yesod: getstart
@@ -49,6 +49,15 @@ blgtest2:
 	@echo 'curl -F "type=blog" -F "index=blog" -F "index=test2" -F "title=Test-Blog-2" \
 		-F "html=@blog/test/test2.html" ' \
 		$(URL)/$(BG)/html | ih $(TIME) $(PSK) | $(SHELL)
+
+
+xhsk-rp: xhsk-rp-haskell
+	@echo "update xhsk-rp"
+xhsk-rp-haskell:
+	@echo 'curl -F "type=blog" -F "index=blog" -F "index=xhsk-rp" -F "index=haskell" \
+		-F "title=Haskell" -F "html=@blog/xhsk/Haskell.html" -F "summary=@blog/xhsk/Haskell.summary.html" ' \
+		$(URL)/$(BG)/html | ih $(TIME) $(PSK) | $(SHELL)
+	@echo "update xhsk-rp-haskell"
 
 page: pageGlob pageLicense
 	@echo "update page"
