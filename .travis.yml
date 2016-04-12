@@ -10,7 +10,7 @@ before_install:
   - "cd glob/glob-auth"
   - "cabal install"
   - "cd ../glob-ih"
-  - "cabal install"
+  - "cabal install --prefix=/usr/bin"
   - "cd ../.."
   - rm -rf glob
 script:
