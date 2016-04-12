@@ -12,7 +12,8 @@ before_install:
   - "cd ../glob-ih"
   - "cabal install"
   - "cd ../.."
-  - rm -rf glob
+  - "rm -rf glob"
 script:
+  - mkdir tmp
   - make URL=$GLOB_URL SHELL=sh blog page
   
