@@ -1,5 +1,5 @@
 URL=
-PSK=
+PSK=$(GLOB_BACKGROUND_TOKEN)
 TIME=0
 SHELL=bash
 BG=background
