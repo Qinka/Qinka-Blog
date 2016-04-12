@@ -17,17 +17,17 @@ blog: blg-yesod english setupos xhsk-rp
 blg-yesod: getstart
 	@echo "update yesod blog"
 getstart:
-	@echo 'curl -F "type=blog" -F "index=blog" -F "index=yesod" \
-	 	-F "index=getstart" -F "title=Yesod 学习笔记-1" \
-		-F "html=@blog/Yesod/GetStart.html" -F "summary=@blog/Yesod/GetStart.summary.html"' \
+	@echo 'curl -F "type=blog" -F "index=blog" -F "index=yesod" ' \
+		' -F "index=getstart" -F "title=Yesod 学习笔记-1" ' \
+		' -F "html=@blog/Yesod/GetStart.html" -F "summary=@blog/Yesod/GetStart.summary.html" ' \
 		$(URL)/$(BG)/html | ih $(TIME) $(PSK) | $(SHELL)
 	@echo "update blg-yesod-GetStart"
 
 setupos: InstallOS
 InstallOS:
-	@echo 'curl -F "type=blog" -F "index=blog" -F "index=setupos" \
-	 	-F "index=installdockeros" -F "title= 安装 Docker OS" \
-		-F "html=@blog/SetupOS/IDOS.html" -F "summary=@blog/SetupOS/IDOS.summary.html"' \
+	@echo 'curl -F "type=blog" -F "index=blog" -F "index=setupos" ' \
+		' -F "index=installdockeros" -F "title= 安装 Docker OS" ' \
+		' -F "html=@blog/SetupOS/IDOS.html" -F "summary=@blog/SetupOS/IDOS.summary.html" ' \
 		$(URL)/$(BG)/html | ih $(TIME) $(PSK) | $(SHELL)
 	@echo "update blg-setupos-installboot2docker2disk"
 
@@ -54,8 +54,8 @@ blgtest2:
 xhsk-rp: xhsk-rp-haskell
 	@echo "update xhsk-rp"
 xhsk-rp-haskell:
-	@echo 'curl -F "type=blog" -F "index=blog" -F "index=xhsk-rp" -F "index=haskell" \
-		-F "title=Haskell" -F "html=@blog/xhsk/Haskell.html" -F "summary=@blog/xhsk/Haskell.summary.html" ' \
+	@echo 'curl -F "type=blog" -F "index=blog" -F "index=xhsk-rp" -F "index=haskell" ' \
+		' -F "title=Haskell" -F "html=@blog/xhsk/Haskell.html" -F "summary=@blog/xhsk/Haskell.summary.html" ' \
 		$(URL)/$(BG)/html | ih $(TIME) $(PSK) | $(SHELL)
 	@echo "update xhsk-rp-haskell"
 
@@ -63,45 +63,45 @@ page: pageGlob pageLicense
 	@echo "update page"
 pageGlob: page/Glob.html
 	@cat page/Glob.html > tmp/page.glob.html
-	@echo 'curl -F "type=page" -F "index=page" -F "index=glob" -F "title=GLob" \
-		-F "html=@tmp/page.glob.html" ' \
+	@echo 'curl -F "type=page" -F "index=page" -F "index=glob" -F "title=GLob" ' \
+		' -F "html=@tmp/page.glob.html" ' \
 		$(URL)/$(BG)/html | ih $(TIME) $(PSK) | $(SHELL)
 	@echo "update page/Glob.html"
 pageLicense:
-	@echo 'curl -F "type=page" -F "index=page" -F "index=LICENSE" -F "title=License" \
-		-F "html=@page/LICENSE.html" '  \
+	@echo 'curl -F "type=page" -F "index=page" -F "index=LICENSE" -F "title=License" ' \
+		' -F "html=@page/LICENSE.html" '  \
 		$(URL)/$(BG)/html | ih $(TIME) $(PSK) | $(SHELL)
 
 home: topH navH bottomH mainH blogH
 	@echo "update home"
 topH: top.html
 	@cat top.html > tmp/home.top.html
-	@echo 'curl -F "type=home" -F "index=home" -F "index=page" -F "index=frame" \
-		-F "index=top" -F "title=top" -F "html=@tmp/home.top.html" ' \
+	@echo 'curl -F "type=home" -F "index=home" -F "index=page" -F "index=frame" ' \
+		' -F "index=top" -F "title=top" -F "html=@tmp/home.top.html" ' \
 		$(URL)/$(BG)/html | ih $(TIME) $(PSK) | $(SHELL)
 	@echo "update top.html"
 navH: nav.html
 	@cat nav.html > tmp/home.nav.html
-	@echo 'curl -F "type=home" -F "index=home" -F "index=page" -F "index=frame" \
-		-F "index=nav" -F "title=nav" -F "html=@tmp/home.nav.html" ' \
+	@echo 'curl -F "type=home" -F "index=home" -F "index=page" -F "index=frame" ' \
+		' -F "index=nav" -F "title=nav" -F "html=@tmp/home.nav.html" ' \
 		$(URL)/$(BG)/html | ih $(TIME) $(PSK) | $(SHELL)
 	@echo "update nav.html"
 bottomH: bottom.html
 	@cat bottom.html > tmp/home.bottom.html
-	@echo 'curl -F "type=home" -F "index=home" -F "index=page" -F "index=frame" \
-		-F "index=bottom" -F "title=bottom" -F "html=@tmp/home.bottom.html" ' \
+	@echo 'curl -F "type=home" -F "index=home" -F "index=page" -F "index=frame" ' \
+		' -F "index=bottom" -F "title=bottom" -F "html=@tmp/home.bottom.html" ' \
 		$(URL)/$(BG)/html| ih $(TIME) $(PSK) | $(SHELL)
 	@echo "update bottom.html"
 mainH: home.html
 	@cat home.html > tmp/home.home.html
-	@echo 'curl -F "type=home" -F "index=home" -F "index=page" -F "index=main" \
-		-F "title=Home" -F "html=@tmp/home.home.html" ' \
+	@echo 'curl -F "type=home" -F "index=home" -F "index=page" -F "index=main" ' \
+		' -F "title=Home" -F "html=@tmp/home.home.html" ' \
 		$(URL)/$(BG)/html | ih $(TIME) $(PSK) | $(SHELL)
 	@echo "update home.html"
 blogH: blog.html
 	@cat blog.html > tmp/home.blog.html
-	@echo 'curl -F "type=home" -F "index=home" -F "index=page" -F "index=blog" \
-		-F "title=Blog" -F "html=@tmp/home.blog.html" ' \
+	@echo 'curl -F "type=home" -F "index=home" -F "index=page" -F "index=blog" ' \
+		' -F "title=Blog" -F "html=@tmp/home.blog.html" ' \
 		$(URL)/$(BG)/html | ih $(TIME) $(PSK) | $(SHELL)
 	@echo "update blog.html"
 
@@ -112,14 +112,14 @@ css: frameC zenburnC
 	@echo "update css"
 frameC: css.frame.css
 	@java -jar yuicompressor.jar --type css --charset utf-8 css.frame.css> tmp/txt.frame.css
-	@echo 'curl -F "type=text/css" -F "index=css" -F "index=frame.css" \
-		-F "txt=@tmp/txt.frame.css" ' \
+	@echo 'curl -F "type=text/css" -F "index=css" -F "index=frame.css" ' \
+		' -F "txt=@tmp/txt.frame.css" ' \
 		$(URL)/$(BG)/txt | ih $(TIME) $(PSK) | $(SHELL)
 	@echo "update css.frame.css"
 zenburnC: zenburn.css
 	@java -jar yuicompressor.jar --type css --charset utf8 zenburn.css > tmp/txt.zenburn.css
-	@echo 'curl -F "type=text/css" -F "index=css" -F "index=zenburn.css" \
-		-F "txt=@tmp/txt.zenburn.css" ' \
+	@echo 'curl -F "type=text/css" -F "index=css" -F "index=zenburn.css" ' \
+		' -F "txt=@tmp/txt.zenburn.css" ' \
 		$(URL)/$(BG)/txt | ih $(TIME) $(PSK) | $(SHELL)
 	@echo "update zenburn.css"
 
@@ -127,50 +127,50 @@ js: navJ blogJ hlJ
 	@echo "update js"
 navJ: nav.js
 	@java -jar yuicompressor.jar --type js --charset utf-8 nav.js > tmp/txt.nav.js
-	@echo 'curl -F "type=application/x-javascript" -F "index=nav.js" \
-		-F "txt=@tmp/txt.nav.js" ' \
+	@echo 'curl -F "type=application/x-javascript" -F "index=nav.js" ' \
+		' -F "txt=@tmp/txt.nav.js" ' \
 		$(URL)/$(BG)/txt | ih $(TIME) $(PSK) | $(SHELL)
 	@echo "update nav.js"
 blogJ:blog.js
 	@java -jar yuicompressor.jar --type js --charset utf-8 blog.js > tmp/txt.blog.js
-	@echo 'curl -F "type=application/x-javascript" -F "index=blog.js" \
-		-F "txt=@tmp/txt.blog.js" ' \
+	@echo 'curl -F "type=application/x-javascript" -F "index=blog.js" ' \
+		' -F "txt=@tmp/txt.blog.js" ' \
 		$(URL)/$(BG)/txt | ih $(TIME) $(PSK) | $(SHELL)
 	@echo "update blog.js"
 hlJ:
-	@echo 'curl -F "type=application/x-javascript" -F "index=javascript" \
+	@echo 'curl -F "type=application/x-javascript" -F "index=javascript" ' \
 		-F "index=highlight.js" -F "txt=@highlight.pack.js" ' \
-		$(URL)/$(BG)/txt | ih $(TIME) $(PSK) | $(SHELL)
+		' $(URL)/$(BG)/txt | ih $(TIME) $(PSK) | $(SHELL)
 	@echo "update highlight.pack.js"
 
 bin: qinka.logo image
 	@echo "update bin"
 qinka.logo:
-	@echo 'curl -F "type=image/png" -F "index=qinka.logo" \
-		-F "bin=@bin/logo.png" '  \
+	@echo 'curl -F "type=image/png" -F "index=qinka.logo" ' \
+		' -F "bin=@bin/logo.png" '  \
 		$(URL)/$(BG)/bin | ih $(TIME) $(PSK) | $(SHELL)
 
 image: latex glob-bishop fork-me
 	@echo "update image"
 latex:
-	@echo 'curl -F "type=image/svg+xml" -F "index=image" -F "index=LaTeX-logo.svg" \
-		-F "bin=@bin/image/LaTeX-logo.svg" ' \
+	@echo 'curl -F "type=image/svg+xml" -F "index=image" -F "index=LaTeX-logo.svg" ' \
+		' -F "bin=@bin/image/LaTeX-logo.svg" ' \
 		$(URL)/$(BG)/bin | ih $(TIME) $(PSK) | $(SHELL)
-	@echo 'curl -F "type=image/svg+xml" -F "index=image" -F "index=TeX-logo.svg" \
-		-F "bin=@bin/image/TeX-logo.svg" ' \
+	@echo 'curl -F "type=image/svg+xml" -F "index=image" -F "index=TeX-logo.svg" ' \
+		' -F "bin=@bin/image/TeX-logo.svg" ' \
 		$(URL)/$(BG)/bin | ih $(TIME) $(PSK) | $(SHELL)
 	@echo "update LaTeX and TeX logo"
 faviconI:
-	@echo 'curl -F "index=favicon.ico" -F "type=image/x-ico" \
-		-F "file=@bin/icon/favicon.ico" ' \
+	@echo 'curl -F "index=favicon.ico" -F "type=image/x-ico" ' \
+		' -F "file=@bin/icon/favicon.ico" ' \
 		$(URL)/$(BG)/static | ih $(TIME) $(PSK) | $(SHELL)
 glob-bishop:
-	@echo 'curl -F "type=image/png" -F "index=glob-bishop-mk1.png" \
-		-F "bin=@bin/image/Glob-Bishop-mk1.png" ' \
+	@echo 'curl -F "type=image/png" -F "index=glob-bishop-mk1.png" ' \
+		' -F "bin=@bin/image/Glob-Bishop-mk1.png" ' \
 		$(URL)/$(BG)/bin | ih $(TIME) $(PSK) | $(SHELL)
 fork-me:
-	@echo 'curl -F "type=image/png" -F "index=fork.me.png" \
-		-F "bin=@fork.me.png" ' \
+	@echo 'curl -F "type=image/png" -F "index=fork.me.png" ' \
+		' -F "bin=@fork.me.png" ' \
 		$(URL)/$(BG)/bin | ih $(TIME) $(PSK) | $(SHELL)
 
 
@@ -195,11 +195,11 @@ qry:
 	@echo "update qry"
 
 rootTxt:
-	@echo 'curl -F "index=root.txt" -F "type=text/plain" \
-		-F "file=@root.txt" ' \
+	@echo 'curl -F "index=root.txt" -F "type=text/plain" ' \
+		' -F "file=@root.txt" ' \
 		$(URL)/$(BG)/static | ih $(TIME) $(PSK) | $(SHELL)
-	@echo 'curl -F "index=jd_root.txt" -F "type=text/plain" \
-		-F "file=@jd_root.txt" ' \
+	@echo 'curl -F "index=jd_root.txt" -F "type=text/plain" ' \
+		' -F "file=@jd_root.txt" ' \
 		$(URL)/$(BG)/static | ih $(TIME) $(PSK) | $(SHELL)
 
 help:

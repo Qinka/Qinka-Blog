@@ -14,5 +14,5 @@ before_install:
   - "cd ../.."
   - rm -rf glob
 script:
-  - make URL=$GLOB_URL PSK=\"$GLOB_BACKGROUND_TOKEN\" SHELL=sh blog page
+  - make URL=$GLOB_URL PSK=$GLOB_BACKGROUND_TOKEN SHELL=sh blog page
   
