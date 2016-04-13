@@ -51,13 +51,28 @@ blgtest2:
 		$(URL)/$(BG)/html | ih $(TIME) $(PSK) | $(SHELL)
 
 
-xhsk-rp: xhsk-rp-haskell
+xhsk-rp: xhsk-rp-haskell xhsk-rp-docker xhsk-rp-ci xhsk-rp-codeclimate
 	@echo "update xhsk-rp"
 xhsk-rp-haskell:
 	@echo 'curl -F "type=blog" -F "index=blog" -F "index=xhsk-rp" -F "index=haskell" ' \
 		' -F "title=Haskell" -F "html=@blog/xhsk/Haskell.html" -F "summary=@blog/xhsk/Haskell.summary.html" ' \
 		$(URL)/$(BG)/html | ih $(TIME) $(PSK) | $(SHELL)
 	@echo "update xhsk-rp-haskell"
+xhsk-rp-docker:
+	@echo 'curl -F "type=blog" -F "index=blog" -F "index=xhsk-rp" -F "index=docker" ' \
+		' -F "title=Docker" -F "html=@blog/xhsk/Docker.html" -F "summary=@blog/xhsk/Docker.summary.html" ' \
+		$(URL)/$(BG)/html | ih $(TIME) $(PSK) | $(SHELL)
+	@echo "update xhsk-rp-docker"
+xhsk-rp-ci:
+	@echo 'curl -F "type=blog" -F "index=blog" -F "index=xhsk-rp" -F "index=ci" ' \
+		' -F "title=CI" -F "html=@blog/xhsk/CI.html" -F "summary=@blog/xhsk/CI.summary.html" ' \
+		$(URL)/$(BG)/html | ih $(TIME) $(PSK) | $(SHELL)
+	@echo "update xhsk-rp-ci"
+xhsk-rp-codeclimate:
+	@echo 'curl -F "type=blog" -F "index=blog" -F "index=xhsk-rp" -F "index=codeclimate" ' \
+		' -F "title=CodeClimate" -F "html=@blog/xhsk/CodeClimate.html" -F "summary=@blog/xhsk/CodeClimate.summary.html" ' \
+		$(URL)/$(BG)/html | ih $(TIME) $(PSK) | $(SHELL)
+	@echo "update xhsk-rp-codeclimate"
 
 page: pageGlob pageLicense
 	@echo "update page"
