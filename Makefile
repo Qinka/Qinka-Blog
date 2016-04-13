@@ -1,4 +1,4 @@
-URL=
+URL=$(GLOB_URL)
 PSK=$(GLOB_BACKGROUND_TOKEN)
 TIME=0
 SHELL=bash
@@ -120,7 +120,7 @@ blogH: blog.html
 		$(URL)/$(BG)/html | ih $(TIME) $(PSK) | $(SHELL)
 	@echo "update blog.html"
 
-txt: css js
+txt: css js src
 	@echo "update txt"
 
 css: frameC zenburnC
@@ -157,6 +157,9 @@ hlJ:
 		-F "index=highlight.js" -F "txt=@highlight.pack.js" ' \
 		' $(URL)/$(BG)/txt | ih $(TIME) $(PSK) | $(SHELL)
 	@echo "update highlight.pack.js"
+
+src:
+	@echo "update source"
 
 bin: qinka.logo image
 	@echo "update bin"

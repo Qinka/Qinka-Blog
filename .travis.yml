@@ -15,5 +15,5 @@ before_install:
   - "rm -rf glob"
 script:
   - mkdir tmp
-  - make URL=$GLOB_URL SHELL=sh blog page
+  - make blog page
   

@@ -1,9 +1,8 @@
 # Qinka-Blog
 
-My personal site and also a simple example.
+My personal site and also a simple example of glob.
 
 ---
 
-http://test.qinka.pw
+http://blog.qinka.pw
 
-PS: soon will be http://blog.qinka.pw
