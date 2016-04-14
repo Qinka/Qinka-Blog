@@ -254,3 +254,5 @@ upTable: tmp/table.sql
 
 tmp/table.sql:
 		@curl https://raw.githubusercontent.com/Qinka/Glob/master/database/table.sql > tmp/table.sql
+checkurl:
+	@echo curl $(URL) | $(SHELL) 

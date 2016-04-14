@@ -110,7 +110,7 @@ mkYesod "HelloWorld" $(parseRoutesFile "route")
     </pre>
     <p>
       而 设定路由的内容有：“路径”、“访问方法”与最关键的“资源”（算是直译了，原文是“resource”
-      <sup>[<cite>[1.b]</cite>]</sup>，这一是为何会有一个 R 在后面了，同时其是一个类型。）。
+      <sup>[<cite>1.b</cite>]</sup>，这一是为何会有一个 R 在后面了，同时其是一个类型。）。
       访问方式是 HTTP 协议中的访问方式：“GET”、“POST” 等。
       而 路径中一般不包含端口与计算机的地址，这个会在其他地方提到，如何设置。
     </p>
@@ -176,7 +176,7 @@ main = warp 3000 HelloWorld
       </code>
     </pre>
     <p>
-      这个例程与之前的相比只是多了一个可访问的路径 <code>/hello/text</code> 其中 text 
+      这个例程与之前的相比只是多了一个可访问的路径 <code>/hello/text</code> 其中 text
       是任意内容，会变成处理访问请求的那个函数的那个参数。这又是另一个“黑科技了”。
       这个例程主要想说的是，如何创建安全连接。
     </p>
@@ -391,9 +391,9 @@ class RenderRoute site =&gt; Yesod site where
     <ul>
       <li>
         <a href="http://www.yesodweb.com">Yesod</a> 的官方网站，里面有几个版本的 Yesod 的教程（book），同时还有一些文章（blog）。
-      </li> 
+      </li>
       <li>
-        Yesod 在 <a href="http://hackage.haskell.org/package/yesod">Hackage</a> 与 
+        Yesod 在 <a href="http://hackage.haskell.org/package/yesod">Hackage</a> 与
         <a href="https://www.stackage.org/package/yesod">Stackage</a> 上的 API 与 Documents 的页面。
       </li>
       <li>
