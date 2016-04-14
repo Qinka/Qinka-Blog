@@ -105,6 +105,12 @@ body
   list-style: none;
 }
 
+.cir
+{
+  margin-bottom: -5px;
+  padding-left: 4px;
+}
+
 .bloglist ul
 {
   margin-left: -27px;
