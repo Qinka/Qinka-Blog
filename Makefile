@@ -74,6 +74,14 @@ xhsk-rp-codeclimate:
 		$(URL)/$(BG)/html | ih $(TIME) $(PSK) | $(SHELL)
 	@echo "update xhsk-rp-codeclimate"
 
+haskell:
+	@echo update haskell
+literate-haskell:
+	@echo 'curl -F "type=blog" -F "index=blog" -F "index=haskell" -F "index=literate-haskell" ' \
+		' -F "title=LiterateHaskell" -F "html=@blog/haskell/LiterateHaskell.html" -F "summary=@blog/haskell/LiterateHaskell.summary.html" ' \
+		$(URL)/$(BG)/html | ih $(TIME) $(PSK) | $(SHELL)
+	@echo "update haskell :: literate-haskell"
+
 page: pageGlob pageLicense
 	@echo "update page"
 pageGlob: page/Glob.html
