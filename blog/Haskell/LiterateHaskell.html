@@ -72,23 +72,26 @@
   </p>
   <h3 id="history-lh-lg"> 文学编程与文学Haskell</h3>
   <p>
-    还记得 为什么要提到 Donald E. Knuth 么？就是那位伟大的计算机科学家 高德纳。当然这篇文章是介绍 Literate Haskell 为主的。 所以你应该猜对了一半，文学编程时是由高德纳教授提出的。而在此主要介绍的是 LaTeX
-    与 Haskell混排的文学编程方式，暂不提 Haddock。
+    好吧，这个Post 搁置了好几天之后，在 Mac 的系统跪掉之后，在无事可做之后决定继续来写这个Post。
   </p>
   <p>
-    大致简单的来说 文学编程的内容有“Bird”格式与 LaTeX 的格式。Bird 格式如下：
+    还有人在意之前，提到的 高德纳 教授么？有人会说 LaTeX 中的 TeX 是 高德纳搞出来的。当然只是一种原因了。说道根本原因，还需要提到一个
+    名叫 Utopia 84 的语言。当然这个语言还是指一个设想，然而这种语言的出发点之一就是文学编程。文学编程的“侠义”含义是指用来替代结构化编程的一种编程范式，
+    然而现在值得文学编程一般是指一种“广义的”文学编程则基本是指文档（如LaTeX）与代码同时存在于一个文件。
   </p>
-  <pre>
-        <code class="haskell">
-&gt; foo :: Foo
-&gt; foo = Foo
-&lt; bar :: Bar
-&lt; bar = Bar
-        </code>
-      </pre>
   <p>
-    Foo 的那部分是通常就是会被执行额度那部分代码，而 Bar 那部分则是会被忽略的。更多关于 Bird 格式的文学编程 请参阅 HaskellWiki， 但是要注意的是，需要在每堆代码的前后留一个空行。
+    当然，有人会指出：为什么在接触一般的编程语言的时候根本没有接触过“文学编程”的概念。而解决这个问题，就需要提到Haskell 的优越性了。
+    说一句夸张的话，Haskell 的几乎所有内容都是建立在学术论文之上。 Haskell 的许多内容都是学术上的智慧结晶。当然 Haskell的优越性
+    也就在此，相对于其他许多语言，Haskell 在文学编程方面的支持相当丰富。有 Bird 与  LaTeX 两种方式，当然后者是这篇 Post 中主要
+    涉及的一种东西。Haskell 可以通过 LaTeX 中 的几种主要的 代码环境的宏包所支持的方式将 Haskell 巧妙地嵌入进去，同时还考虑到了
+    其他的许多情况的解决方法。而同时 Haskell的最主要的编译器 GHC 也天然支持者这种方式，能将真正的代码找到然后编译。相比之下，如果
+    用C 与 LaTeX 进行文学编程的话，会遇需要第三方的工具来解决 C 与 LaTeX 混排在一起时代码分离的问题。
   </p>
+  <p>
+    当然，如果要问 高德纳 文学编程是什么？教授的回答是："The main idea is to regard a program as a communication to human beings rather than as a set of instructions to a computer."
+    而 Haskell 主要的 文学编程的工具是 Haddock，当前那个创建的是超链接形式的文档。
+  </p>
+  <h2>Bird 格式的 Haskell文学编程</h2>
   <h2 id="note"> 注释 </h2>
   <h4> i. </h4> LaTeX 的正式版本是 2.09 于是LaTeX3 小组的版本号是3，而 LaTeX2e 中的是2。
   <h2 id="bib"> Bibliography </h2>
