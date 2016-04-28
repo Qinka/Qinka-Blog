@@ -88,10 +88,60 @@
     用C 与 LaTeX 进行文学编程的话，会遇需要第三方的工具来解决 C 与 LaTeX 混排在一起时代码分离的问题。
   </p>
   <p>
+    然后就是介绍如何使用 Haskell 的文学编程。之后不出意外的话会在附录中介绍一些 LaTeX 的使用方法。
+  </p>
+  <p>
     当然，如果要问 高德纳 文学编程是什么？教授的回答是："The main idea is to regard a program as a communication to human beings rather than as a set of instructions to a computer."
     而 Haskell 主要的 文学编程的工具是 Haddock，当前那个创建的是超链接形式的文档。
   </p>
-  <h2>Bird 格式的 Haskell文学编程</h2>
+    <h2 id="usage-bird"> Bird 格式简介 </h2>
+  <p>
+    虽然是介绍 LaTeX 与 Haskell 混排的文学编程格式，然而 由于 Bird 格式还是使用的相对比较多所以还是介绍一下。
+  </p>
+  <p>
+    首先，先介绍一下 文学Haskell 中代码 的两种分类。一类是被 Haskell编译器 与 排版系统 识别并处理的代码，就是平时用我们写的代码。
+    还有一种是 会被排版处理系统识别而被 Haskell编译器跳过的代码，可以用来描述一个函数如何使用，就是实例。
+    Bird 中 前者的标记是 “&gt;” 后者是 “&lt;”这个标记。这两个标记放在每行代码的最开头，然后每一个代码块，就是几行连着的相同标记的代码，
+    需要在开头与结尾空一行。下面是个例子：
+  </P>
+  <pre>
+  <code class="haskell">
+This is a sentence.
+
+&gt; class Foo a where
+&gt;   foo :: Foo a => a -> Bool
+
+This is another sentence.
+
+&lt; instance Foo Bool where
+&lt;   foo = id
+
+This is the ending of example.
+  </code>
+  </pre>
+  <p>
+    如果你觉得我说的不清楚，那就可以访问 <a href="https://wiki.haskell.org/Literate_programming"> Haskell-Wiki Literate programming </a>。
+  </p>
+  <h2 id="lhs"> LaTeX 与 Haskell 混排的文学编程</h2>
+  <p>
+    LaTeX 与Haskell 的文学编程相对来说要简单不少，当然前提是你已经会使用 LaTeX 与 Haskell 。 然后只需要知道会被 Haskell 编译器识别的代码
+    应该是放置在 code 环境中 而 被跳过的代码放置在 spec 环境中。当然还有一个是被 仅排版系统忽略的，需要放在 \ignore{} 之中。
+  </p>
+  <p>
+    当然，code 、spec 环境与ignore 命令并不是 LaTeX 自带的。首先先说 code环境与spec环境的配置。
+  </p>
+  <h3 id="listings"> 使用 listings 宏包</h3>
+  <p>
+    然后首先介绍使用 listings 宏包，这个是我自己一直在使用的一个方式。首先需要包含着个宏包。
+  </p>
+  <pre>
+  <code id="latex">
+\usepackage{listings}
+  </code>
+  </pre>
+  <p>
+    然后设置code与spec 两个环境即可。使用 listings 宏包提供的 \lstnewenvironment 命令就好。
+  </p>
   <h2 id="note"> 注释 </h2>
   <h4> i. </h4> LaTeX 的正式版本是 2.09 于是LaTeX3 小组的版本号是3，而 LaTeX2e 中的是2。
   <h2 id="bib"> Bibliography </h2>
