@@ -47,8 +47,13 @@ framejs:
 
 # for nav
 nav:
+	@echo $(CURL_TOOL) $(DETAIL) ' -X DELETE' \
+					$(URL)/n' ' | glob-ih $(DTIME) $(PSK) | $(SHELL)
 	@echo $(CURL_TOOL) $(DETAIL) ' -X PUT -F "label=HOME" ' \
 					' -F "url=/" -F "order=1" ' \
+					$(URL)/n' ' | glob-ih $(DTIME) $(PSK) | $(SHELL)
+	@echo $(CURL_TOOL) $(DETAIL) ' -X PUT -F "label=BLOG" ' \
+					' -F "url=/p/blog" -F "order=2" ' \
 					$(URL)/n' ' | glob-ih $(DTIME) $(PSK) | $(SHELL)
 
 # for Home Page
@@ -59,12 +64,46 @@ homeP:
 					' -F "create-time=2016-01-01 00:00:00 UTC" ' \
 					$(URL)/p/frame/home ' ' | glob-ih $(DTIME) $(PSK) | $(SHELL)
 
+# for Blog page
+blogP:
+	@echo $(CURL_TOOL) $(DETAIL) ' -X PUT -F "html=@html/blog.html" ' \
+					' -F "title=Blog" -F "update-time=2016-01-01 00:00:00 UTC" '\
+					' -F "create-time=2016-01-01 00:00:00 UTC" ' \
+					$(URL)/p/blog ' ' | glob-ih $(DTIME) $(PSK) | $(SHELL)
+	@echo $(CURL_TOOL) $(DETAIL) ' -X PUT -F "type=txt" ' \
+				' -F "mime=application/x-javascript" -F "text=@resource/javascript/blog.js" ' \
+				$(URL)/r/blog.js ' ' | glob-ih $(DTIME) $(PSK) | $(SHELL)
+
+
+
+
 picTest:
 	@echo $(CURL_TOOL) $(DETAIL) ' -X PUT -F "type=binary" ' \
-					' -F "binary=@.ignore/a.png" -F "mime=image/png" ' \
+					' -F "binary=@.ignore/a.png.txt" -F "mime=image/png" ' \
 					$(URL)/r/a.png ' ' | glob-ih $(DTIME) $(PSK) | $(SHELL)
 
 picTestB:
-	@echo $(CURL_TOOL) $(DETAIL) ' -X PUT -F "type=txt" ' \
-					' -F "text=@.ignore/b.png" -F "mime=image/png" ' \
+	@echo $(CURL_TOOL) $(DETAIL) ' -X PUT -F "type=binary" ' \
+					' -F "binary=@.ignore/b.png" -F "mime=image/png" ' \
 					$(URL)/r/b.png ' ' | glob-ih $(DTIME) $(PSK) | $(SHELL)
+
+
+blogTestA:
+	@pandoc -o .ignore/testblog.html -f markdown_github -t HTML markdown/testblog.md
+	@echo $(CURL_TOOL) $(DETAIL) ' -X PUT -F "type=blog" ' \
+				' -F "html=@.ignore/testblog.html" -F "summary=@.ignore/home.summary.html" ' \
+				' -F "title=TestBlog" -F "create-time=2016-08-01 00:00:00 UTC" ' \
+				' -F "update-time=2016-08-01 00:00:00 UTC" ' \
+				$(URL)/b/test/blog1 ' ' | glob-ih $(DTIME) $(PSK) | $(SHELL)
+
+
+sumo: sumo1
+
+sumo1:
+	@pandoc -o .ignore/sumo.sum.html tex/sumo.sum.tex --mathml
+	@pandoc -o .ignore/sumo.html tex/sumo.tex --mathml
+	@echo $(CURL_TOOL) $(DETAIL) ' -X PUT -F "type=blog" ' \
+				' -F "html=@.ignore/sumo.html" -F "summary=@.ignore/sumo.sum.html" ' \
+				' -F "title=数模1" -F "create-time=2016-08-03 15:00:00 UTC" ' \
+				' -F "update-time=2016-08-03 15:00:00 UTC" ' \
+				$(URL)/b/sumo/1 ' ' | glob-ih $(DTIME) $(PSK) | $(SHELL)

@@ -1,0 +1,152 @@
+\documentclass{ctexart}
+\usepackage{listings}
+
+\author{Qinka}
+\title{数模大概}
+
+\begin{document}
+  \maketitle
+  %\input{sumo.sum.tex}
+  \section{Prime}
+  \label{sec:prime}
+  这一部分是关于 Matlab 中基本的操作。
+
+  \paragraph{矩阵的操作}
+  \label{par:mat:base}
+  对于矩阵
+  $$A=\left(\begin{array}
+  a_{11} & a_{12} & \cdots & a_{1j} \\
+  a_{21} & a_{22} & \cdots & a_{2j} \\
+  \vdots & \vdots & \ddots & \vdots \\
+  a_{i1} & a_{i2} & \cdots & a_{ij}
+  \end{array}\right)$$
+
+  如果想要访问或者“取出” 第 $p$ 行，第 $q$ 列的元素时需要
+  \begin{lstlisting}[language=matlab]
+    A(p,q)
+  \end{lstlisting}
+
+  如果是访问或者“取出” 第 $p$ 行的元素时需要
+  \begin{lstlisting}[language=matlab]
+    A(p,:)
+  \end{lstlisting}
+
+  如果是访问或者“取出” 第 $q$ 行的元素时需要
+  \begin{lstlisting}[language=matlab]
+    A(:,q)
+  \end{lstlisting}
+
+  以上的访问，还可以对其赋值
+  \begin{lstlisting}[language=matlab]
+    A(:,q) = zeros(1,q)
+  \end{lstlisting}
+
+  定义新的符号
+  \begin{lstlisting}[language=matlab]
+    sym x
+  \end{lstlisting}
+
+  产生新的$i$行$j$列的零矩阵
+  \begin{lstlisting}[language=matlab]
+    zeros(i,j)
+  \end{lstlisting}
+  如果是产生$i$阶的零矩阵
+  \begin{lstlisting}[language=matlab]
+    zeros(i)
+  \end{lstlisting}
+
+  产生新的$i$阶单位
+  \begin{lstlisting}[language=matlab]
+    eye(i)
+  \end{lstlisting}
+  如果产生$i$行$j$列的矩阵，多余行或者列填充0
+  \begin{lstlisting}[language=matlab]
+    eye(i,j)
+  \end{lstlisting}
+
+  生成$i$行$j$列全$1$的矩阵
+  \begin{lstlisting}[language=matlab]
+    ones(i,j)
+  \end{lstlisting}
+  \begin{lstlisting}[language=matlab]
+    ones(i,j)
+  \end{lstlisting}
+  生成$i$阶的全$1$的矩阵
+  \begin{lstlisting}[language=matlab]
+    ones(i)
+  \end{lstlisting}
+
+  产生随机数，范围在$[0,1]$之间
+  \begin{lstlisting}[language=matlab]
+    rand
+    rand()
+  \end{lstlisting}
+  产生$i$阶随机数矩阵
+  \begin{lstlisting}[language=matlab]
+    rand(i)
+  \end{lstlisting}
+  产生$i$行$j$列的随机数矩阵
+  \begin{lstlisting}[language=matlab]
+    rand(i,j)
+  \end{lstlisting}
+
+  产生正态分布的随机数，服从 $x~N(0,1)$的正态分布
+  使用命令 \lstinline|randn| 。
+
+  产生线性等分向量
+  \begin{lstlisting}[language=matlab]
+    linspace(a,b)
+    linspace(a,b,n)
+  \end{lstlisting}
+  其表示的是将 $[a,b]$ 或者 $[b,a]$ 的区域等分为$n$份，其中$n$的默认值为$100$。
+
+  产生对数等分向量
+  \begin{lstlisting}[language=matlab]
+    logspace(a,b)
+    logspace(a,b,n)
+  \end{lstlisting}
+  其表示
+
+  产生汉克尔矩阵 (Hankel Matrix)
+  $$H_n＝\left(\begin{array}
+  a_1    & a_2     & a_3      & \cdots & a_n     \\
+  a_2    & a_3     & a_4      & \cdots & a_{n+1} \\
+  a_3    & a_5     & a_5      & \cdots & a_{n+2} \\
+  \vdots & \vdots  & \vdots   & \ddots & \vdots  \\
+  a_n    & a_{n+1} & a_{n+2}  & \cdots & a_{2n}
+  \end{array}\right)$$
+  \begin{lstlisting}[language=matlab]
+  \end{lstlisting}
+
+  产生 希尔伯特(Hilbert)矩阵
+  $$H_n=\left(\begin{array}
+  1           & \frac{1}{2}   & \frac{1}{3}   & \cdots & \frac{1}{n}   \\
+  \frac{1}{2} & \frac{1}{3}   & \frac{1}{4}   & \cdots & \frac{1}{n+1} \\
+  \frac{1}{3} & \frac{1}{4}   & \frac{1}{5}   & \cdots & \frac{1}{n+2} \\
+  \vdots      & \vdots        & \vdots        & \ddots & \vdots        \\
+  \frac{1}{n} & \frac{1}{n+1} & \frac{1}{n+2} & \cdots & \frac{1}{2n}
+  \end{array}\right)$$
+  \begin{lstlisting}[language=matlab]
+  \end{lstlisting}
+
+  生成希尔伯特逆矩阵
+  \begin{lstlisting}[language=matlab]
+  \end{lstlisting}
+
+  生成帕斯卡(Pascal)矩阵
+  \begin{lstlisting}[language=matlab]
+  \end{lstlisting}
+
+
+
+  \paragraph{矩阵的基本属性}
+  \label{par:mat:bc}
+
+  矩阵的 特征值与特征向量的计算
+  \begin{lstlisting}[language=matlab]
+    ［V,D] = eig(A)
+  \end{lstlisting}
+  其中 $V$ 是求解得到的 特征向量组成的矩阵， $D$ 是求解得到的特征值组成的矩阵。
+
+
+\end{document}
