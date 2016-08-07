@@ -14,3 +14,7 @@ jd_root.txt
 root.txt
 blog/test
 .ignore
+*.aux
+*.log
+*.pdf
+*.synctex.gz

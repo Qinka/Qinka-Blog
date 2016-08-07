@@ -11,10 +11,10 @@
   \label{sec:prime}
   这一部分是关于 Matlab 中基本的操作。
 
-  \paragraph{矩阵的操作}
-  \label{par:mat:base}
+  \subsection{矩阵的操作}
+  \label{ssec:mat:base}
   对于矩阵
-  $$A=\left(\begin{array}
+  $$A=\left(\begin{array}{cccc}
   a_{11} & a_{12} & \cdots & a_{1j} \\
   a_{21} & a_{22} & \cdots & a_{2j} \\
   \vdots & \vdots & \ddots & \vdots \\
@@ -104,11 +104,20 @@
   \end{lstlisting}
   其表示与线性等分类似，其是将$10^i$中的$i$划分成线性空间。
 
-  产生一输入(x_1,x_2,\dots,\xdef_n,\dots)为对角线的矩阵
-  $$\left(\right)$$  
+  产生一输入$(x_1,x_2,\dots,x_n,\dots)$为对角线的矩阵
+  $$\left(\begin{array}{ccccc}
+  x_1    & 0      & \cdots & 0      & \cdots \\
+  0      & x_2    & \cdots & 0      & \cdots \\
+  \vdots & \vdots & \ddots & \vdots & \cdots \\
+  0      & 0      & 0      & x_n    & \cdots \\
+  \vdots & \vdots & \vdots & \vdots & \ddots
+  \end{array}\right)$$  
+  \begin{lstlisting}[language=matlab]
+  blkdiag(x1,x2,...,xn,...)
+  \end{lstlisting}
 
   产生汉克尔矩阵 (Hankel Matrix)
-  $$H_n=\left(\begin{array}
+  $$H_n=\left(\begin{array}{ccccc}
   a_1    & a_2     & a_3      & \cdots & a_n     \\
   a_2    & a_3     & a_4      & \cdots & a_{n+1} \\
   a_3    & a_5     & a_5      & \cdots & a_{n+2} \\
@@ -116,11 +125,16 @@
   a_n    & a_{n+1} & a_{n+2}  & \cdots & a_{2n}
   \end{array}\right)$$
   \begin{lstlisting}[language=matlab]
-  
+  hankel(A1,A2)
   \end{lstlisting}
+  其中
+  \begin{eqnarray*}
+  A_1 &=& (a_1,a_2,\cdots,a_i) \\
+  A_2 &=& (a_{i+1},a_{i+2},\cdots,a_{2n})
+  \end{eqnarray*}
 
   产生 希尔伯特(Hilbert)矩阵
-  $$H_n=\left(\begin{array}
+  $$H_n=\left(\begin{array}{ccccc}
   1           & \frac{1}{2}   & \frac{1}{3}   & \cdots & \frac{1}{n}   \\
   \frac{1}{2} & \frac{1}{3}   & \frac{1}{4}   & \cdots & \frac{1}{n+1} \\
   \frac{1}{3} & \frac{1}{4}   & \frac{1}{5}   & \cdots & \frac{1}{n+2} \\
@@ -128,26 +142,78 @@
   \frac{1}{n} & \frac{1}{n+1} & \frac{1}{n+2} & \cdots & \frac{1}{2n}
   \end{array}\right)$$
   \begin{lstlisting}[language=matlab]
+  hilb(n)
   \end{lstlisting}
 
   生成希尔伯特逆矩阵
   \begin{lstlisting}[language=matlab]
+  invhilb(n)
   \end{lstlisting}
 
-  生成帕斯卡(Pascal)矩阵
+  生成帕斯卡(Pascal)矩阵,与杨辉三角一样的矩阵
   \begin{lstlisting}[language=matlab]
+  pascal(n)
+  pascal(n,0)
   \end{lstlisting}
-
-
-
-  \paragraph{矩阵的基本属性}
-  \label{par:mat:bc}
+  生成 Pascal 矩阵的下三角分量
+  \begin{lstlisting}[language=matlab]
+  pascal(n,1)
+  \end{lstlisting}
+  生成一个排位变换后的 \lstinline[language=matlab]|pascal(n,1)| 的版本。
+  起返回结果是单位矩阵的多维数据集的根。
+  \begin{lstlisting}[language=matlab]
+  pascal(n,2)
+  \end{lstlisting}
+  
+  生成托普利矩阵
+  $$\left(\begin{array}{cccccc}
+  a_1     & b_{m-n+2} & b_{m-n+3} & \cdots & b_{m-1} & b_m \\
+  a_2     & a_1     & b_{m-n+2} & \cdots & b_{m-2} & b_{m-1}\\
+  a_3     & a_2     & a_1     & \cdots & b_{m-3} & b_{m-2}\\
+  \vdots  & \vdots  & \vdots  & \ddots & \vdots  & \vdots \\
+  a_{n-1} & a_{n-2} & a_{n-3} & \cdots & a_1     & b_{m-n+2} \\
+  a_n     & a_{n-1} & a_{n-2} & \cdots & a_2     & a_1
+  \end{array}\right)$$
+  \begin{lstlisting}[language=matlab]
+  toeplitz(a,b)
+  \end{lstlisting}
+  如果 $\forall i \in [0,n) ,\, b_{m-i}=a_{n-i}$
+  则
+  \begin{lstlisting}[language=matlab]
+  toeplitz(a)
+  \end{lstlisting}
+  可生成该矩阵。
+      
+  \subsection{矩阵的基本运算}
+  \label{ssec:mat:bc}
 
   矩阵的 特征值与特征向量的计算
   \begin{lstlisting}[language=matlab]
-    ［V,D] = eig(A)
+  [V,D] = eig(A)
   \end{lstlisting}
   其中 $V$ 是求解得到的 特征向量组成的矩阵， $D$ 是求解得到的特征值组成的矩阵。
-
-
+  
+  向量的点乘运算
+  $$A\cdots B$$
+  \begin{lstlisting}[language=matlab]
+  dot(A,B)
+  \end{lstlisting}
+  如果输入的 $A$ 与$B$是矩阵，则对应的列向量做点积，形成一个新的向量。
+  
+  向量的叉乘
+  $$A \times B$$
+  \begin{lstlisting}[language=matlab]
+  cross(A,B)
+  \end{lstlisting}
+  
+  两向量，必须为严格的向量经行卷积
+  $$A*B=C$$
+  \begin{lstlisting}[language=matlab]
+  conv(A,B)
+  \end{lstlisting}
+  反之，反卷积为
+  \begin{lstlisting}[language=matlab]
+  deconv(A,B)
+  \end{lstlisting}
+  
 \end{document}
