@@ -1,7 +1,17 @@
+// nav
 xmlreq = new XMLHttpRequest();
 xmlreq.open("GET",'/n',true);
 xmlreq.onreadystatechange = tsop;
 xmlreq.send(null);
+// author
+if (author != null)
+{
+  var sumN = document.getElementById('sum');
+  var auth = document.createElement('p');
+  auth.innerText = '作者：'+author;
+  sumN.appendChild(auth);
+}
+// functions
 function tsop()
 {
   var colors = ["rgba(255,153,0,0.7)","rgba(255,0,153,0.7)","rgba(172,90,193,0.7)","rgba(96,157,176,0.7)"];
@@ -11,7 +21,7 @@ function tsop()
     var navJSON = eval(xmlreq.responseText);
     if (navJSON == undefined)return;
     var navN = document.getElementById('navs');
-    navJSON.sort(function(a,b){return (a.order < b.order)})
+    navJSON = navJSON.sort();
     for(var i=0;i<navJSON.length;i++)
     {
       var tmpN = document.createElement("li");

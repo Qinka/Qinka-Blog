@@ -123,6 +123,7 @@
   \vdots & \vdots  & \vdots   & \ddots & \vdots  \\
   a_n    & a_{n+1} & a_{n+2}  & \cdots & a_{2n}
   \end{array}\right)$$
+  \begin{lstlisting}[language=matlab]
   hankel(A1,A2)
   \end{lstlisting}
   其中
@@ -182,7 +183,7 @@
   \end{lstlisting}
   可生成该矩阵。
 
-  \subsection{矩阵的基本运算}
+  \subsection{基本运算}
   \label{ssec:mat:bc}
 
   矩阵的 特征值与特征向量的计算
@@ -213,5 +214,56 @@
   \begin{lstlisting}[language=matlab]
   deconv(A,B)
   \end{lstlisting}
-
+ 
+  求集合的交集，集合 $A$ 与 集合 $B$ 表示成矩阵后
+  \begin{lstlisting}[language=matlab]
+  intersect(A,B)
+  \end{lstlisting}
+  
+  求解包含关系，对于矩阵表示的集合 $A$ 来说，同样以矩阵表示的集合 $B$ 中的
+  每一个元素 $b_i$，如果 $b_i \in A$ 则记为逻辑 $1$，反之为零
+  \begin{lstlisting}[language=matlab]
+  ismember(B,A)
+  \end{lstlisting}
+  用这个命令，将得到对应集合$B$中元素的一个逻辑矩阵。
+  
+  计算两个用矩阵表示的集合的差
+  $$A-B$$
+ \begin{lstlisting}[language=matlab]
+ setdiff(A,B)
+ \end{lstlisting}
+ 
+ 计算两个用矩阵表示的集合的交集的非，也就是异或，换句话说，就是把两个集合中独有的元素取出然后组成一个新的集合
+ \begin{lstlisting}[language=matlab]
+ setxor(A,B)
+ \end{lstlisting}
+ 
+ 求并集
+ \begin{lstlisting}[language=matlab]
+ union(A,B)
+ \end{lstlisting}
+ 
+ 取集合的单值元素
+ \begin{lstlisting}[language=matlab]
+ unique(A)
+ \end{lstlisting}
+ 
+ 矩阵的除法。对于运算
+ $$C=AB$$
+ 其中$A$，$B$，与$C$ 均是矩阵，合乎乘法的要求。
+ 则如果由$C$与$B$计算$A$则
+ \begin{lstlisting}[language=matlab]
+ C/B
+ \end{lstlisting}
+ 如果想通过计算得到$B$则
+ \begin{lstlisting}[language=matlab]
+ A\C
+ \end{lstlisting}
+ 其中约束， $A$ 与$B$ 均为可逆矩阵。
+ 
+ 
+ 
+ \begin{lstlisting}[language=matlab]
+ 
+ \end{lstlisting}
 \end{document}
