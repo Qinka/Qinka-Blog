@@ -33,7 +33,11 @@ function opBlog()
       else
         sumE.innerHTML = "无";
       aE.innerHTML = blJSON[i].title;
-      spanE.innerHTML = '['+blJSON[i]['create-time'].substring(0,10)+']';
+      if (blJSON[i]['author'] == null)
+        var aT = "";
+      else
+        var aT = blJSON[i]['author'];
+      spanE.innerHTML = '['+blJSON[i]['create-time'].substring(0,10)+']' + aT;
       strongE.appendChild(aE);
       divE.appendChild(strongE);
       divE.appendChild(spanE);
