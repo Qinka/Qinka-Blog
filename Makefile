@@ -5,7 +5,7 @@ URL=http://localhost:3000
 PSK=1024
 BG=bg
 DTIME=0
-IH=glob-ih -m -v -f$(DTIME)　# use new glob-ih >= 0.0.9.25
+IH=glob-ih -m -f$(DTIME)  # use new glob-ih >= 0.0.9.25
 NOW=$$(glob-ih -t -f$(DTIME))
 # single
 
@@ -82,12 +82,12 @@ blogP:
 picTest:
 	@echo $(CURL_TOOL) $(DETAIL) ' -X PUT -F "type=binary" ' \
 					' -F "binary=@.ignore/a.png.txt" -F "mime=image/png" ' \
-					$(URL)/r/a.png ' ' |$(IH) $(DTIME) $(PSK) | $(SHELL)
+					$(URL)/r/a.png ' ' |$(IH)  $(PSK) | $(SHELL)
 
 picTestB:
 	@echo $(CURL_TOOL) $(DETAIL) ' -X PUT -F "type=binary" ' \
 					' -F "binary=@.ignore/b.png" -F "mime=image/png" ' \
-					$(URL)/r/b.png ' ' |$(IH) $(DTIME) $(PSK) | $(SHELL)
+					$(URL)/r/b.png ' ' |$(IH) $(PSK) | $(SHELL)
 
 
 blogTestA:
@@ -96,7 +96,7 @@ blogTestA:
 				' -F "html=@.ignore/testblog.html" ' \
 				' -F "title=TestBlog" -F "create-time=2016-08-01 00:00:00 UTC" ' \
 				' -F "update-time=2016-08-01 00:00:00 UTC" ' \
-				$(URL)/b/test/blog1 ' ' |$(IH) $(DTIME) $(PSK) | $(SHELL)
+				$(URL)/b/test/blog1 ' ' |$(IH) $(PSK) | $(SHELL)
 
 
 sumo: sumo1
@@ -108,4 +108,4 @@ sumo1:
 				' -F "html=@.ignore/sumo.html" -F "summary=@.ignore/sumo.sum.html" ' \
 				' -F "title=数模1" -F "create-time=2016-08-03 15:00:00 UTC" ' \
 				' -F "update-time=2016-08-03 15:00:00 UTC" ' \
-				$(URL)/b/sumo/1 ' ' |$(IH) $(DTIME) $(PSK) | $(SHELL)
+				$(URL)/b/sumo/1 ' ' |$(IH) $(PSK) | $(SHELL)
