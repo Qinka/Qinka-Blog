@@ -21,7 +21,7 @@ function tsop()
     var navJSON = eval(xmlreq.responseText);
     if (navJSON == undefined)return;
     var navN = document.getElementById('navs');
-    navJSON = navJSON.sort();
+    navJSON = navJSON.sort(function(a,b){if (a.order < b.order) return -2; else return 2;});
     for(var i=0;i<navJSON.length;i++)
     {
       var tmpN = document.createElement("li");
