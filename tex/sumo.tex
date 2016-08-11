@@ -219,40 +219,40 @@
   \begin{lstlisting}[language=matlab]
   deconv(A,B)
   \end{lstlisting}
- 
+
   求集合的交集，集合 $A$ 与 集合 $B$ 表示成矩阵后
   \begin{lstlisting}[language=matlab]
   intersect(A,B)
   \end{lstlisting}
-  
+
   求解包含关系，对于矩阵表示的集合 $A$ 来说，同样以矩阵表示的集合 $B$ 中的
   每一个元素 $b_i$，如果 $b_i \in A$ 则记为逻辑 $1$，反之为零
   \begin{lstlisting}[language=matlab]
   ismember(B,A)
   \end{lstlisting}
   用这个命令，将得到对应集合$B$中元素的一个逻辑矩阵。
-  
+
   计算两个用矩阵表示的集合的差
   $$A-B$$
  \begin{lstlisting}[language=matlab]
  setdiff(A,B)
  \end{lstlisting}
- 
+
  计算两个用矩阵表示的集合的交集的非，也就是异或，换句话说，就是把两个集合中独有的元素取出然后组成一个新的集合
  \begin{lstlisting}[language=matlab]
  setxor(A,B)
  \end{lstlisting}
- 
+
  求并集
  \begin{lstlisting}[language=matlab]
  union(A,B)
  \end{lstlisting}
- 
+
  取集合的单值元素
  \begin{lstlisting}[language=matlab]
  unique(A)
  \end{lstlisting}
- 
+
  矩阵的除法。对于运算
  $$C=AB$$
  其中$A$，$B$，与$C$ 均是矩阵，合乎乘法的要求。
@@ -265,7 +265,7 @@
  A\C
  \end{lstlisting}
  其中约束 $A$ 与$B$ 均为可逆矩阵。
- 
+
  指数函数。对每个矩阵 $A$ 中的元素经行指数求解，则
  \begin{lstlisting}[language=matlab]
  exp(A)
@@ -288,68 +288,68 @@
  \end{lstlisting}
  其中 $A$ 是操作用的矩阵，而 \lstinline|func| 是 作用的函数，@ 可以算作一中操作符。
  例如 \lstinline|funm(A,@exp)| 与 \lstinline|expm(A)| 是等价的。
- 
+
  求矩阵 $A$ 的对应的行列式的值
  \begin{lstlisting}[language=matlab]
  det(A)
  \end{lstlisting}
- 
+
  求矩阵 $A$ 的逆矩阵
  \begin{lstlisting}[language=matlab]
  inv(A)
  \end{lstlisting}
- 
+
  求矩阵 $A$ 的伪逆矩阵
  \begin{lstlisting}[language=matlab]
  pinv(A)
  \end{lstlisting}
- 
+
  求矩阵 $A$ 的迹
  \begin{lstlisting}[language=matlab]
  trace(A)
  \end{lstlisting}
- 
+
  求矩阵 $A$ 的范数
  \begin{lstlisting}[language=matlab]
  norm(A)
  \end{lstlisting}
- 
+
  求矩阵 $A$ 的条件数
  \begin{lstlisting}[language=matlab]
  cond(A)
  \end{lstlisting}
- 
+
  求矩阵 $A$ 的 1-范数的条件估计
  \begin{lstlisting}[language=matlab]
  condest(A)
  \end{lstlisting}
- 
+
  求矩阵 $A$ 的可逆的条件数估值
  \begin{lstlisting}[language=matlab]
  rcond(A)
  \end{lstlisting}
- 
- 
+
+
  求矩阵 $A$ 的秩
  \begin{lstlisting}[language=matlab]
  rank(A)
  \end{lstlisting}
- 
+
  求矩阵 $A$ 的对角线元素，并以列向量的形式输出
  \begin{lstlisting}[language=matlab]
  diag(A)
  \end{lstlisting}
- 
+
  求矩阵 $A$ 的下三角矩阵，得到的矩阵上半部分为0
  \begin{lstlisting}[language=matlab]
  tril(A)
  \end{lstlisting}
- 
+
  求矩阵 $A$ 的上三角矩阵，得到的矩阵下边部分为0
  \begin{lstlisting}[language=matlab]
  triu(A)
  \end{lstlisting}
- 
+
  将矩 $A$ 阵变维到 m,n维
  \begin{lstlisting}[language=matlab]
  reshape(A,m,n)
@@ -362,7 +362,7 @@
  \begin{lstlisting}[language=matlab]
  reshape(A,[m1 m2 ... mn])
  \end{lstlisting}
- 
+
  如果要将矩阵 $A$ 旋转 90 度
  \begin{lstlisting}[language=matlab]
  rot90(A)
@@ -371,24 +371,26 @@
  \begin{lstlisting}[language=matlab]
  rot90(A,k)
  \end{lstlisting}
- 
- 
- 
- 
- 
- 
- 
- 
- 
- 
- 
- 
- 
- 
- 
- 
- 
+
+ 矩阵$A$的左右翻转
  \begin{lstlisting}[language=matlab]
- 
+ fliplr(A)
+ \end{lstlisting}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+ \begin{lstlisting}[language=matlab]
+
  \end{lstlisting}
 \end{document}
