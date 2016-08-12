@@ -5,7 +5,7 @@ URL=http://localhost:3000
 PSK=1024
 BG=bg
 DTIME=0
-IH=glob-ih -m -f$(DTIME)  # use new glob-ih >= 0.0.9.25
+IH=glob-ih -m -f$(DTIME) -v # use new glob-ih >= 0.0.9.25
 NOW=$$(glob-ih -t -f$(DTIME))
 # single
 
@@ -26,7 +26,7 @@ frame: frametop framebottom framenav framejs
 
 frametop:
 	@echo $(CURL_TOOL) $(DETAIL) ' -X PUT -F "type=frame" ' \
-	 			' -F "update-time=2016-07-25 00:00:00 UTC"  -F "html=@html/top.html" ' \
+	 			' -F "update-time=$(NOW)"  -F "html=@html/top.html" ' \
 				$(URL)/$(BG)/frame/frame/top ' ' |$(IH) $(PSK) | $(SHELL)
 framebottom:
 	@echo $(CURL_TOOL) $(DETAIL) ' -X PUT -F "type=frame" ' \
