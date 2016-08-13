@@ -1,5 +1,5 @@
 xrBlog = new XMLHttpRequest();
-xrBlog.open('GET','/bl',true);
+xrBlog.open('GET','/bl'+location.search,true);
 xrBlog.onreadystatechange = opBlog;
 xrBlog.send(null);
 function sortby(a,b)

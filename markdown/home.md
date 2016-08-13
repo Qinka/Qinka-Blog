@@ -10,3 +10,7 @@
 使用的是 Glob 0.0.9（开发中）对应的分支构建的 [Docker 镜像](https://hub.docker.com/r/qinka/glob/) 。与 MongoDB 数据库。
 
 使用方式，先从 Docker Hub 中将 拉去镜像，然后我也不知道了
+
+## 数模的内容
+
+这个里面还有一些数模的内容。 访问[这里](/p/blog?kind=tag&tag=sumo)可以找见相对应的文章。

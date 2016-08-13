@@ -1,5 +1,5 @@
 \documentclass{ctexart}
-\usepackage{listings}
+\usepackage{listings,amsmath,amstext}
 
 \author{Qinka}
 \title{数模大概}
@@ -43,7 +43,7 @@
 
   矩阵的转置
   \begin{lstlisting}[language=matlab]
-  A'
+    A'
   \end{lstlisting}
 
   定义新的符号
@@ -118,7 +118,7 @@
   \vdots & \vdots & \vdots & \vdots & \ddots
   \end{array}\right)$$
   \begin{lstlisting}[language=matlab]
-  blkdiag(x1,x2,...,xn,...)
+    blkdiag(x1,x2,...,xn,...)
   \end{lstlisting}
   产生汉克尔矩阵 (Hankel Matrix)
   $$H_n=\left(\begin{array}{ccccc}
@@ -129,7 +129,7 @@
   a_n    & a_{n+1} & a_{n+2}  & \cdots & a_{2n}
   \end{array}\right)$$
   \begin{lstlisting}[language=matlab]
-  hankel(A1,A2)
+    hankel(A1,A2)
   \end{lstlisting}
   其中
   \begin{eqnarray*}
@@ -377,12 +377,78 @@
  fliplr(A)
  \end{lstlisting}
 
+ 矩阵 $A$ 的上下翻转
+ \begin{lstlisting}[language=matlab]
+ flipud(A)
+ \end{lstlisting}
+ 
+ 复制与平铺矩阵 $A$ 
+ \begin{lstlisting}[language=matlab]
+ repmat(A,n)
+ \end{lstlisting}
+ 其中返回的矩阵是
+ $$\left(\begin{array}{cccc}
+ A      & \cdots & A      \\
+ \vdots & \ddots & \vdots \\
+ A      & \cdots & A    
+ \end{array}\right)_{n \times n}$$
 
-
-
-
-
-
+ 将矩阵 $A_{n \times n}$ 用有理数表示
+ \begin{lstlisting}[language=matlab]
+ rat(A)
+ \end{lstlisting}
+ 其返回结果是一个 $n^2$ 长度的字符的矩阵，其中行矩阵看作为字符串，表示有理数。
+ 
+ 矩阵 $A\{a_{mn}\}$ $B\{a_{mn}\}$ 经行 对应元素取余数
+ $$ans_{ij} = a_{ij}\,mod\, b_{ij}$$
+ \begin{lstlisting}[language=matlab]
+ rem(A,B)
+ \end{lstlisting}
+ 
+ 确定矩阵 $A$ 中元素的个数
+ \begin{lstlisting}[language=matlab]
+ numel(A)
+ \end{lstlisting}
+ 
+ 将符号矩阵 $A$ 经行因式分解
+ \begin{lstlisting}[language=matlab]
+ factor(A)
+ \end{lstlisting}
+ 
+ 将符号化简
+ \begin{lstlisting}[language=matlab]
+ simple(E)
+ simplify(E)
+ \end{lstlisting}
+ 
+ 将矩阵$A$ 进行 \textbf{Cholesky} 分解
+ \footnote{要求矩阵 $A$ 是正定矩阵。}
+ \begin{lstlisting}[language=matlab]
+ chol(A)
+ \end{lstlisting}
+ 
+ 将矩阵$A$ 进行 \textbf{LU} 分解
+ \begin{lstlisting}[language=matlab]
+ lu(A)
+ \end{lstlisting}
+ 
+ 将矩阵$A$ 进行 \textbf{QR} 分解
+ \begin{lstlisting}[language=matlab]
+ qr(A)
+ \end{lstlisting}
+ 
+ 将矩阵$A$ 进行 \textbf{QR} 分解，同时增加或者删除列
+ \begin{lstlisting}[language=matlab]
+ [Q ,R ] = qr(A)
+ [Q1,R1] = qrdelete(Q,R,j[,'col'])
+ [Q2,R2] = qrinsert(Q,R,j,x,[,'col'])
+ \end{lstlisting}
+ 其中 $j$ 表示 $A$ 的第$J$行或者列删除或者插入 $x$。
+ 
+ 将矩阵 $A$ 经行 \textbf{Schur} 分解
+ \begin{lstlisting}[language=matlab]
+ schur(A)
+ \end{lstlisting}
 
 
 

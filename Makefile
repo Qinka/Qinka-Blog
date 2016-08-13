@@ -30,7 +30,7 @@ frametop:
 				$(URL)/$(BG)/frame/frame/top ' ' |$(IH) $(PSK) | $(SHELL)
 framebottom:
 	@echo $(CURL_TOOL) $(DETAIL) ' -X PUT -F "type=frame" ' \
-	 			' -F "update-time=2016-07-25 00:00:00 UTC"  -F "html=@html/bottom.html" ' \
+	 			' -F "update-time=$(NOW)"  -F "html=@html/bottom.html" ' \
 				$(URL)/$(BG)/frame/frame/bottom ' ' |$(IH) $(PSK) | $(SHELL)
 framenav:
 	@echo $(CURL_TOOL) $(DETAIL) ' -X PUT -F "type=frame" ' \
@@ -62,14 +62,14 @@ nav:
 homeP:
 	@pandoc -o .ignore/home.html -f Markdown -t HTML markdown/home.md
 	@echo $(CURL_TOOL) $(DETAIL) ' -X PUT -F "html=@.ignore/home.html" ' \
-					' -F "title=Home"  -F "update-time=2016-01-01 00:00:00 UTC" '\
+					' -F "title=Home"  -F "update-time=$(NOW)" '\
 					' -F "create-time=2016-01-01 00:00:00 UTC" ' \
 					$(URL)/p/frame/home ' ' |$(IH) $(PSK) | $(SHELL)
 
 # for Blog page
 blogP:
 	@echo $(CURL_TOOL) $(DETAIL) ' -X PUT -F "html=@html/blog.html" ' \
-					' -F "title=Blog" -F "update-time=2016-01-01 00:00:00 UTC" '\
+					' -F "title=Blog" -F "update-time=$(NOW)" '\
 					' -F "create-time=2016-01-01 00:00:00 UTC" ' \
 					$(URL)/p/blog ' ' |$(IH) $(PSK) | $(SHELL)
 	@echo $(CURL_TOOL) $(DETAIL) ' -X PUT -F "type=txt" ' \
@@ -95,7 +95,7 @@ blogTestA:
 	@echo $(CURL_TOOL) $(DETAIL) ' -X PUT -F "type=blog" ' \
 				' -F "html=@.ignore/testblog.html" ' \
 				' -F "title=TestBlog" -F "create-time=2016-08-01 00:00:00 UTC" ' \
-				' -F "update-time=2016-08-01 00:00:00 UTC" ' \
+				' -F "update-time=$(NOW)" -F "tag=test" ' \
 				$(URL)/b/test/blog1 ' ' |$(IH) $(PSK) | $(SHELL)
 
 
@@ -107,5 +107,5 @@ sumo1:
 	@echo $(CURL_TOOL) $(DETAIL) ' -X PUT -F "type=blog" -F "author=Qinka" ' \
 				' -F "html=@.ignore/sumo.html" -F "summary=@.ignore/sumo.sum.html" ' \
 				' -F "title=数模1" -F "create-time=2016-08-03 15:00:00 UTC" ' \
-				' -F "update-time=2016-08-03 15:00:00 UTC" ' \
+				' -F "update-time=$(NOW)" -F "tag=sumo" -F "tag=matlab"' \
 				$(URL)/b/sumo/1 ' ' |$(IH) $(PSK) | $(SHELL)
