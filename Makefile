@@ -99,7 +99,7 @@ blogTestA:
 				$(URL)/b/test/blog1 ' ' |$(IH) $(PSK) | $(SHELL)
 
 
-sumo: sumo1
+sumo: sumo1 sumoT
 
 sumo1:
 	@pandoc -o .ignore/sumo.sum.html tex/sumo.sum.tex --mathml
@@ -109,3 +109,21 @@ sumo1:
 				' -F "title=数模1" -F "create-time=2016-08-03 15:00:00 UTC" ' \
 				' -F "update-time=$(NOW)" -F "tag=sumo" -F "tag=matlab"' \
 				$(URL)/b/sumo/1 ' ' |$(IH) $(PSK) | $(SHELL)
+
+sumo0813pdf: sumo0813 tex/20160813.pdf
+	@echo $(CURL_TOOL) $(DETAIL) ' -X PUT -F "type=binary" ' \
+				' -F "mime=application/pdf" -F "binary=@tex/20160813.pdf" ' \
+				$(URL)/r/pdf/20160813.pdf ' ' |$(IH) $(PSK) | $(SHELL)
+
+tex/20160813.pdf: tex/20160813.tex
+	@xelatex tex/20160813.tex
+
+sumoT: sumo0813
+
+sumo0813:
+	@pandoc -o .ignore/20160813.html tex/20160813.tex --mathml
+	@echo $(CURL_TOOL) $(DETAIL) ' -X PUT -F "type=blog" -F "author=Qinka" ' \
+				' -F "html=@.ignore/20160813.html" ' \
+				' -F "title=网约车" -F "create-time=2016-08-14 01:26:15.6555934 UTC" ' \
+				' -F "update-time=$(NOW)" -F "tag=sumo" -F "tag=matlab" -F "tag=	练习" ' \
+				$(URL)/b/sumo/T/20160813 ' ' |$(IH) $(PSK) | $(SHELL)
