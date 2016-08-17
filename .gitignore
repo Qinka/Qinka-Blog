@@ -18,3 +18,4 @@ blog/test
 *.log
 *.pdf
 *.synctex.gz
+*.ignore.doc

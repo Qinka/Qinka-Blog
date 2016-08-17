@@ -7,6 +7,8 @@ BG=bg
 DTIME=0
 IH=glob-ih -m -f$(DTIME) -v # use new glob-ih >= 0.0.9.25
 NOW=$$(glob-ih -t -f$(DTIME))
+CODE_STYLE=zenburn
+
 # single
 
 ########
@@ -40,10 +42,20 @@ framenav:
 framejs:
 	@echo $(CURL_TOOL) $(DETAIL) ' -X PUT -F "type=txt" ' \
 				' -F "mime=application/x-javascript" -F "text=@resource/javascript/frame.js" ' \
-	 			' -F "html=@html/top.html" ' \
 				$(URL)/r/frame.js ' ' |$(IH) $(PSK) | $(SHELL)
 
 
+hightlight:
+	@echo update "$(CODE_STYLE).css"
+	@echo $(CURL_TOOL) $(DETAIL) ' -X PUT -F "type=txt" ' \
+				' -F "mime=text/css" -F "text=@resource/highlight/styles/$(CODE_STYLE).css" ' \
+				$(URL)/r/highlight/css ' ' | $(IH) $(PSK) | $(SHELL)
+	@echo
+	@echo update hightlight.js
+	@echo $(CURL_TOOL) $(DETAIL) ' -X PUT -F "type=txt" ' \
+				' -F "mime=application/x-javascript" ' \
+				'-F "text=@resource/highlight/highlight.pack.js" ' \
+				$(URL)/r/highlight/js ' ' | $(IH) $(PSK) | $(SHELL)
 
 
 
@@ -104,8 +116,22 @@ sumo: sumo1
 sumo1:
 	@pandoc -o .ignore/sumo.sum.html tex/sumo.sum.tex --mathml
 	@pandoc -o .ignore/sumo.html tex/sumo.tex --mathml
+	@./append.code.sh .ignore/sumo.html
 	@echo $(CURL_TOOL) $(DETAIL) ' -X PUT -F "type=blog" -F "author=Qinka" ' \
 				' -F "html=@.ignore/sumo.html" -F "summary=@.ignore/sumo.sum.html" ' \
 				' -F "title=数模1" -F "create-time=2016-08-03 15:00:00 UTC" ' \
 				' -F "update-time=$(NOW)" -F "tag=sumo" -F "tag=matlab"' \
 				$(URL)/b/sumo/1 ' ' |$(IH) $(PSK) | $(SHELL)
+
+
+sumo0813sumTaxi: lhs/sumtaxi.ignore.docx
+	@echo $(CURL_TOOL) $(DETAIL) ' -X PUT -F "type=binary" ' \
+				' -F "mime=application/vnd.openxmlformats-officedocument.wordprocessingml.template" ' \
+				'-F "binary=@lhs/sumtaxi.ignore.docx" ' \
+				$(URL)/r/doc/sumtaxi.docx ' ' |$(IH) $(PSK) | $(SHELL)
+	@echo $(CURL_TOOL) $(DETAIL) ' -X PUT -F "type=txt" ' \
+				' -F "mime=text/literate-haskell" -F "text=@lhs/sumTaxi.lhs" ' \
+				$(URL)/r/lhs/sumTaxi.lhs' ' |$(IH) $(PSK) | $(SHELL)
+
+lhs/sumtaxi.ignore.docx: lhs/sumTaxi.lhs
+	@pandoc -o lhs/sumtaxi.ignore.docx lhs/sumTaxi.lhs --from latex+lhs --to docx
