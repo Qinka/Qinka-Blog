@@ -1,10 +1,11 @@
 // nav
 xmlreq = new XMLHttpRequest();
-xmlreq.open("GET",'/n',true);
+xmlreq.open("POST",'/n',true);
 xmlreq.onreadystatechange = tsop;
+xmlreq.setRequestHeader('HOW', 'get');
 xmlreq.send(null);
 // author
-if (author != null)
+if ((author != undefined) || (author != null))
 {
   var sumN = document.getElementById('sum');
   var auth = document.createElement('p');

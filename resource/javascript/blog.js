@@ -1,5 +1,7 @@
 xrBlog = new XMLHttpRequest();
-xrBlog.open('GET','/bl'+location.search,true);
+var pa = location.search.substring(1,location.search.length);
+xrBlog.open('POST','/q/index/tag=t=blog;'+pa,true);
+xrBlog.setRequestHeader('HOW', 'get');
 xrBlog.onreadystatechange = opBlog;
 xrBlog.send(null);
 function sortby(a,b)
@@ -27,7 +29,7 @@ function opBlog()
       var spanE = document.createElement('span');
       var divE = document.createElement('div');
       var sumE = document.createElement('div');
-      aE.href="/b"+concat(blJSON[i].index);
+      aE.href=concat(blJSON[i].index);
       if (blJSON[i].summary != null && blJSON[i].summary.length != 0)
         sumE.innerHTML = blJSON[i].summary;
       else

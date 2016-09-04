@@ -2,12 +2,14 @@ CURL_TOOL="curl "
 SHELL=bash
 DETAIL=' -i '
 URL=http://localhost:3000
-PSK=1024
+PSK=921 924
 BG=bg
 DTIME=0
-IH=glob-ih -m -f$(DTIME) -v # use new glob-ih >= 0.0.9.25
-NOW=$$(glob-ih -t -f$(DTIME))
+IH=/Users/Qinka/Glob/.stack-work/install/x86_64-osx/nightly-2016-07-15/8.0.1/bin/glob-ih -m -f$(DTIME) -v # use new glob-ih >= 0.0.9.25
+NOW=$$(/Users/Qinka/Glob/.stack-work/install/x86_64-osx/nightly-2016-07-15/8.0.1/bin/glob-ih -t -f$(DTIME))
 CODE_STYLE=zenburn
+TIMECHECKER=/Users/Qinka/Glob/.stack-work/install/x86_64-osx/nightly-2016-07-15/8.0.1/bin/glob-timecheck
+NEWPOST=/Users/Qinka/Glob/.stack-work/install/x86_64-osx/nightly-2016-07-15/8.0.1/bin/glob-newpost
 
 # single
 
@@ -21,6 +23,9 @@ CODE_STYLE=zenburn
 ###########################################################
 
 
+checktime:
+	@echo $(CURL_TOOL) ' -X POST -H "HOW:get" ' \
+				$(URL)/q/servertime | $(SHELL) | $(TIMECHECKER)
 
 
 ## for frame
@@ -28,19 +33,23 @@ frame: frametop framebottom framenav framejs
 
 frametop:
 	@echo $(CURL_TOOL) $(DETAIL) ' -X PUT -F "type=frame" ' \
-	 			' -F "update-time=$(NOW)"  -F "html=@html/top.html" ' \
-				$(URL)/$(BG)/frame/frame/top ' ' |$(IH) $(PSK) | $(SHELL)
-framebottom:
+				' -F "update-time=$(NOW)"  -F "create-time=2016-01-01 00:00:00 UTC" ' \
+				'-F "html=@html/top.html" -F "title=top of frame"' \
+				$(URL)/'~@123top' ' ' |$(IH) $(PSK) | $(SHELL)
+framebottom::
 	@echo $(CURL_TOOL) $(DETAIL) ' -X PUT -F "type=frame" ' \
-	 			' -F "update-time=$(NOW)"  -F "html=@html/bottom.html" ' \
-				$(URL)/$(BG)/frame/frame/bottom ' ' |$(IH) $(PSK) | $(SHELL)
-framenav:
+				' -F "update-time=$(NOW)"  -F "create-time=2016-01-01 00:00:00 UTC" ' \
+				'-F "html=@html/bottom.html" -F "title=bottom of frame"' \
+				$(URL)/'~@123bottom' ' ' |$(IH) $(PSK) | $(SHELL)
+framenav::
 	@echo $(CURL_TOOL) $(DETAIL) ' -X PUT -F "type=frame" ' \
-	 			' -F "update-time=$(NOW)"  -F "html=@html/nav.html" ' \
-				$(URL)/$(BG)/frame/frame/nav ' ' |$(IH) $(PSK) | $(SHELL)
+				' -F "update-time=$(NOW)"  -F "create-time=2016-01-01 00:00:00 UTC" ' \
+				'-F "html=@html/nav.html" -F "title=nav of frame"' \
+				$(URL)/'~@123nav' ' ' |$(IH) $(PSK) | $(SHELL)
 
 framejs:
-	@echo $(CURL_TOOL) $(DETAIL) ' -X PUT -F "type=txt" ' \
+	@echo $(CURL_TOOL) $(DETAIL) ' -X PUT -F "type=text" -F "title=js off frame"' \
+				' -F "update-time=$(NOW)"  -F "create-time=2016-01-01 00:00:00 UTC" ' \
 				' -F "mime=application/x-javascript" -F "text=@resource/javascript/frame.js" ' \
 				$(URL)/r/frame.js ' ' |$(IH) $(PSK) | $(SHELL)
 
@@ -61,32 +70,34 @@ hightlight:
 
 # for nav
 nav:
-	@echo $(CURL_TOOL) $(DETAIL) ' -X DELETE' \
+	@echo $(CURL_TOOL) $(DETAIL) ' -X POST -H "HOW:del"' \
 					$(URL)/n' ' |$(IH) $(PSK) | $(SHELL)
-	@echo $(CURL_TOOL) $(DETAIL) ' -X PUT -F "label=HOME" ' \
+	@echo $(CURL_TOOL) $(DETAIL) ' -X POST -H "HOW:put" -F "label=HOME" ' \
 					' -F "url=/" -F "order=1" ' \
 					$(URL)/n' ' |$(IH) $(PSK) | $(SHELL)
-	@echo $(CURL_TOOL) $(DETAIL) ' -X PUT -F "label=BLOG" ' \
-					' -F "url=/p/blog" -F "order=2" ' \
+	@echo $(CURL_TOOL) $(DETAIL) ' -X POST -H "HOW:put" -F "label=BLOG" ' \
+					' -F "url=/blog" -F "order=2" ' \
 					$(URL)/n' ' |$(IH) $(PSK) | $(SHELL)
 
 # for Home Page
 homeP:
 	@pandoc -o .ignore/home.html -f Markdown -t HTML markdown/home.md
-	@echo $(CURL_TOOL) $(DETAIL) ' -X PUT -F "html=@.ignore/home.html" ' \
+	@echo $(CURL_TOOL) $(DETAIL) ' -X PUT -F "html=@.ignore/home.html" -F "type=post"' \
 					' -F "title=Home"  -F "update-time=$(NOW)" '\
-					' -F "create-time=2016-01-01 00:00:00 UTC" ' \
-					$(URL)/p/frame/home ' ' |$(IH) $(PSK) | $(SHELL)
+					 '-F "create-time=2016-01-01 00:00:00 UTC" '\
+					$(URL)/ ' ' |$(IH) $(PSK) | $(SHELL)
 
 # for Blog page
 blogP:
-	@echo $(CURL_TOOL) $(DETAIL) ' -X PUT -F "html=@html/blog.html" ' \
+	@echo $(CURL_TOOL) $(DETAIL) ' -X PUT -F "html=@html/blog.html" -F "type=post"' \
 					' -F "title=Blog" -F "update-time=$(NOW)" '\
 					' -F "create-time=2016-01-01 00:00:00 UTC" ' \
-					$(URL)/p/blog ' ' |$(IH) $(PSK) | $(SHELL)
-	@echo $(CURL_TOOL) $(DETAIL) ' -X PUT -F "type=txt" ' \
+					$(URL)/blog ' ' |$(IH) $(PSK) | $(SHELL)
+	@echo $(CURL_TOOL) $(DETAIL) ' -X PUT -F "type=text" ' \
 				' -F "mime=application/x-javascript" -F "text=@resource/javascript/blog.js" ' \
-				$(URL)/r/blog.js ' ' |$(IH) $(PSK) | $(SHELL)
+				' -F "title=the js of blog" -F "update-time=$(NOW)" '\
+				' -F "create-time=2016-01-01 00:00:00 UTC" ' \
+				$(URL)/blog/js ' ' |$(IH) $(PSK) | $(SHELL)
 
 
 
@@ -104,11 +115,11 @@ picTestB:
 
 blogTestA:
 	@pandoc -o .ignore/testblog.html -f markdown_github -t HTML markdown/testblog.md
-	@echo $(CURL_TOOL) $(DETAIL) ' -X PUT -F "type=blog" ' \
+	@echo $(CURL_TOOL) $(DETAIL) ' -X PUT -F "type=post" ' \
 				' -F "html=@.ignore/testblog.html" ' \
 				' -F "title=TestBlog" -F "create-time=2016-08-01 00:00:00 UTC" ' \
-				' -F "update-time=$(NOW)" -F "tag=test" ' \
-				$(URL)/b/test/blog1 ' ' |$(IH) $(PSK) | $(SHELL)
+				' -F "update-time=$(NOW)" -F "tags=test blog" ' \
+				$(URL)/b/blog1 ' ' |$(IH) $(PSK) | $(SHELL)
 
 
 sumo: sumo1
@@ -135,3 +146,17 @@ sumo0813sumTaxi: lhs/sumtaxi.ignore.docx
 
 lhs/sumtaxi.ignore.docx: lhs/sumTaxi.lhs
 	@pandoc -o lhs/sumtaxi.ignore.docx lhs/sumTaxi.lhs --from latex+lhs --to docx
+
+
+#################
+## for 0.0.10.x
+#################
+
+blog-sv3-26026: markdown/sv3-openwrt.md markdown/sv3-openwrt.sum.md
+	@pandoc -o .ignore/sv3-26026.html markdown/sv3-openwrt.md
+	@pandoc -o .ignore/sv3-26026.sum.html markdown/sv3-openwrt.sum.md
+	@$(NEWPOST) "sv3-26026 and OpenWRT" '/blog/sv3-26026-openwrt' \
+		-t'sv3-26026' -t'openwrt' -t'embedded' -t'linux' -t'填坑' \
+		-v --diff="$(DTIME)" \
+		--html='.ignore/sv3-26026.html' \
+		--summary='.ignore/sv3-26026.sum.html'
