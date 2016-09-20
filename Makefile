@@ -74,7 +74,7 @@ check-delay:
 # change site theme #
 change-site-theme:
 #	Get old one
-	OLD_THEME=$($(CURL_PATH) -X POST -H "HOW:get" $(SITE_URL)/q/site-theme)
+	OLD_THEME=$($(CURL_PATH) -X POST -H "How:get" $(SITE_URL)/q/site-theme)
 	@$(ECHO) The old theme is $(OLD_THEME)
 	@$(ECHO) The new theme is $(SITE_THEME)
 	@if [ "$(OLD_THEME)" = "$(SITE_THEME)" ]; then $(ECHO) The new one is eq2 old one. DO NOTHING;\
@@ -93,6 +93,15 @@ change-code-style:
 		@$(ECHO) $(CURL_PATH) $(CURL_DETAIL) ' -X POST -H "HOW:getput" -F"var='$(CODE_STYPE)'" ' $(SITE_URL)/q/code-style | $(SHELL)
 	fi
 
+
+# navs #
+
+navs:
+	@$(ECHO) $(CURL_PATH) $(CURL_DETAIL) ' -X POST -H "How:del" ' \
+		$(SITE_URL)/n ' ' | $(IH_PATH) -m -f$(IH_DELAY) -v $(PSK) | $(SHELL)
+	@$(ECHO) $(CURL_PATH) $(CURL_DETAIL) ' -X POST -H "How:put" -F "label=HOME" ' \
+		' -F "url=/" -F "order=1" ' \
+		$(SITE_URL)/n ' ' | $(IH_PATH) -m -f$(IH_DELAY) -v $(PSK) | $(SHELL)
 
 
 # Add others here #
@@ -165,5 +174,14 @@ change-code-style:
 		' -F "update-time=$(IH_NOW)" ' \
 		' -F "title=null" ' \
 		' -F "text=@style-sheet/default.css" ' \
+		' -F "mime=text/css" ' \
+		$(SITE_URL)$@ ' ' | $(IH_PATH) -m -f$(IH_DELAY) -v $(PSK) | $(SHELL)
+
+/theme/usual: style-sheet/usual.css
+	@$(ECHO) $(CURL_PATH) $(CURL_DETAIL) ' -X PUT -F "type=text" ' \
+		' -F "create-time=2016-09-20 10:59:48.160734 UTC" ' \
+		' -F "update-time=$(IH_NOW)" ' \
+		' -F "title=null" ' \
+		' -F "text=@style-sheet/usual.css" ' \
 		' -F "mime=text/css" ' \
 		$(SITE_URL)$@ ' ' | $(IH_PATH) -m -f$(IH_DELAY) -v $(PSK) | $(SHELL)

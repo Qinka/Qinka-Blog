@@ -34,12 +34,18 @@ else
 fi
 TMP_FILE_NAME=$(echo $UPDATE_PATH | md5)
 
-if [ "$UPDATE_TYPE" = "post" ] || [ "$UPDATE_TYPE" = "frame"  ]; then
-   echo -e "\t"@pandoc -o .ignore/tmp.$TMP_FILE_NAME.html $MAIN_FILE
+if ( [ "$UPDATE_TYPE" = "post" ] || [ "$UPDATE_TYPE" = "frame" ] ) && [ "${MAIN_FILE/*./}" != "html" ]; then
+    READ_FILE=.ignore/tmp.$TMP_FILE_NAME.html
+    echo -e "\t"@pandoc -o $READ_FILE $MAIN_FILE
+else
+    READ_FILE=$MAIN_FILE
 fi
 
-if [ "$SUM_FILE" != "/dev/null" ] && [ "$SUM_TYPE" != "text" ]; then
-	echo -e "\t"@pandoc -o .ignore/tmp.$TMP_FILE_NAME.sum.html $SUM_FILE
+if [ "$SUM_FILE" != "/dev/null" ] && [ "$SUM_TYPE" != "text" ] && [ "${SUM_FILE##*.}" != "html"  ] ; then
+    READ_SUM_FILE=.ignore/tmp.$TMP_FILE_NAME.sum.html
+    echo -e "\t"@pandoc -o $READ_SUM_FILE  $SUM_FILE
+else
+    READ_SUM_FILE=$SUM_FILE
 fi
 echo -e "\t"@\$\(ECHO\) \$\(CURL_PATH\) \$\(CURL_DETAIL\) \' -X PUT -F \"type\=$UPDATE_TYPE\" \' \\
 echo -e "\t\t"\' -F \"create-time\=$(glob-ih -t)\" \' \\
@@ -49,13 +55,11 @@ echo -e "\t\t"\' -F \"title\=$TITLE\" \' \\
 if [ "$SUM_TYPE" = "text" ]; then
 	echo -e "\t\t"\' -F \"summary\"=$SUM_TEXT\" \' \\
 elif [ "$SUM_FILE" != "/dev/null" ]; then
-	echo -e "\t\t"\' -F \"summary\"=@.ignore/tmp.$TMP_FILE_NAME.sum.html\" \' \\
+	echo -e "\t\t"\' -F \"summary\"=@$READ_SUM_FILE\" \' \\
 fi
 
-if [ "$UPDATE_TYPE" = "post" ]; then
-    echo -e "\t\t"\' -F \"html\=@.ignore/tmp.$TMP_FILE_NAME.html\" \' \\
-elif [ "$UPDATE_TYPE" = "frame" ]; then
-    echo -e "\t\t"\' -F \"html\=@.ignore/tmp.$TMP_FILE_NAME.html\" \' \\
+if [ "$UPDATE_TYPE" = "post" ] || [ "$UPDATE_TYPE" = "frame" ]; then
+    echo -e "\t\t"\' -F \"html\=@$READ_FILE\" \' \\
 elif [ "$UPDATE_TYPE" = "text" ]; then
     echo -e "\t\t"\' -F \"text\=@$MAIN_FILE\" \' \\
 elif [ "$UPDATE_TYPE" = "binary" ];then

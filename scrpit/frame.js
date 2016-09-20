@@ -63,7 +63,7 @@ function navflash()
   {
     var nJSON = eval(navreq.responseText);
     if (nJSON == undefined) return;
-    var nN = document.getElementById('navs');
+    var nN = document.getElementsByTagName('nav')[0];
     nJSON = nJSON.sort(function (a,b){if (a.order < b.order) return -2; else return 2;});
     var ul = document.createElement('ul');
     for(var i=0;i<nJSON.length;i++)
@@ -75,5 +75,6 @@ function navflash()
       li.appendChild(a);
       ul.appendChild(li);
     }
+    nN.appendChild(ul);
   }
 }
