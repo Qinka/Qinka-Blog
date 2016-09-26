@@ -1,0 +1,433 @@
+\documentclass{ctexart}
+\usepackage{listings,amsmath,amstext}
+\usepackage{hyperref}
+\usepackage{appendix}
+\renewcommand\appendixname{附录}
+\renewcommand\appendixpagename{附录}
+\appendixtitleon
+
+\author{Qinka}
+\title{2016-08-13 题目内容}
+\def\pandoc{1}
+\begin{document}
+    \ifx\pandoc \undefined
+    \input{20160813.sum}
+    \fi
+    $$\left\{ \begin{array}{lll}
+    x & = & \{-a + \frac{\varphi}{2},-a + \frac{3\varphi}{2},\dots,a - \frac{\varphi}{2}\}  \\
+    y & = & 2l\cos \theta-\frac{d}{2}\\
+    & = & 2l\cos \theta - \frac{l}{2}\frac{\sin(\frac{\varphi}{2}-\theta)}{\sin(\frac{\varphi}{2})}\\
+    z & = & w \cos \varphi 
+    \end{array}$$
+    
+    $$\varphi ; \pi \rightarrow \frac{pi}{2} \rightarrow \arcsin\frac{H}{w}$$
+    
+    $$\frac{2l}{\sin\varphi} = \frac{w}{\sin\theta}$$
+    
+    $$H=2L\sin\theta$$
+    
+    $$\left\{\begin{array}{lllll}
+    (y+d)^2+x^2 &=& a^2&,&y\leq -d\\
+    (y-d)^2+x^2 &=& a^2&,&y\geq d \\
+    \end{array}$$
+    
+    $$d:l\rightarrow 0$$
+    
+    $$\left\{\begin{array}{lllll}
+    (y+w+d)^2+x^2 &=& a^2&,&y\geq -(w+d)\\
+    (y-w-d)^2+x^2 &=& a^2&,&y\leq w+d \\
+    \end{array}$$
+    
+    $$\left\{\begin{array}{lll}
+    x &=& \pm a\\
+    y &=& \pm(L-l+d)
+    \end{array}$$
+    
+    $$\frac{2d}{\sin(\frac{\varphi}{2}-\theta)}=\frac{2l}{\sin\frac{\varphi}{2}}$$
+    
+    \section{第一问}
+    \label{sec:q1}
+    北京（A）,南京（B）,太原（C） 三类城市的2013-2014年度的数据
+    \subsection{出租车}
+    $x_1$ 10公里打车费用站人均收入比例
+    $$x_1=(0.08 ，0.08，0.09)$$
+    单位是 \%
+    
+    $x_2$ 驾龄需求
+    $$x_2=(3,1,1)$$
+    
+    $x_3$ 证件需求
+    $$x_3=(A,A,A)$$
+    
+    $x_4$ 数量 （析构）
+    
+    $x_5$ 覆盖规模
+    $$x_5=(100,100,100)$$
+    单位是 \%
+    
+    $x_6$ 车型
+    
+    $x_7$ 从业人员（占比）
+    $$x_7=(0.25,0.13,0.29)$$
+    单位是 \%
+    
+    $x_8$ 经营方式
+    $$x_8=\left(\begin{array}{ccc}
+    0.0 & 0.4 & 1.9 \\
+    5.7 & 18.6 & 16.2\\
+    0.0 & 0.0 & 1.2\\
+    94.3 & 81.0 & 80.7
+    \end{array}\right)$$
+    其中 每行分别代表 个体经营，挂靠经营，合作经营，公司经营，单位为 \%。
+    
+    $x_8$ 运营方式
+    $$x_8=\left(\begin{array}{ccc}
+    51.0 & 6.3 & 12.8 \\
+    41.0 & 64.3 & 77.3 \\
+    8.1 & 29.4 & 9.9
+    \end{array}\right)$$
+    其中每一行，分别代表 三班倒，两班倒，与一班倒，单位为 \%。
+    
+    $x_9$ 车辆保有量
+    $$x_9 =(26.5, 15.0 ,25.2)$$
+    单位是 \%
+    
+    $x_{10}$ 排量中位数
+    $$x_{10} = (1.7,1.6,1.6)$$
+    
+    $x_{11}$ 人群
+    $$x_{11} = \left(\begin{array}{ccc}
+    28.6 & 23.5 & 24.5\\
+    28.6 & 29.4 & 22.4\\
+    14.3 & 11.8 & 16.3\\
+    14.3 & 17.6 & 24.5\\
+    14.3 & 17.6 & 12.2
+    \end{array}\right)$$
+    其中各行依次为工薪阶层，白领，学生，一般居民，其他
+    单位是 \%
+    
+    $x_{12}$打车难易度
+    $$x_{12}=\left(\begin{array}{ccc}
+    0.0 & 0.0 & 5.6\\
+    50.0 & 33.3 & 44.4\\
+    50.0 & 50.0 & 38.9\\
+    0 & 16.7 & 11.1
+    \end{array}\right)$$
+    其中，各行依次代表 很难，难，一般，及不难，单位为\%。
+    \subsection{网约车-滴滴}
+    驾龄：一年以上\footnote{专车3年}
+    
+    证件：身份证，驾驶证，行驶证
+    
+    覆盖规模
+    $$x_5=(100,100，88.6)$$
+    单位 \%。
+    
+    从业人员（占比）
+    $$x_7=(,,)$$
+    
+    运行方式
+    $$x_8=\left(\begin{array}{ccc}
+    0 & 0 & 0\\
+    0 & 0 & 0\\
+    100 & 100 & 100
+    \end{array}\right)$$
+    
+    车辆保有量
+    
+    排量
+    
+    人群
+    
+    \section{第二问，层次分析}
+    \label{sec:q2}
+    第二问层次分析所用到的矩阵
+    $$A=\left(\begin{array}{ccc}
+    1            &  2            &  4      \\
+    \frac{1}{2}  &  1            &  2      \\
+    \frac{1}{4}  &  \frac{1}{2}  &  1     
+    \end{array}\right)$$
+    $$B_1=\left(\begin{array}{ccc}
+    1            &  \frac{1}{3}  &  5      \\
+    3            &  1            &  7      \\
+    \frac{1}{5}  & \frac{1}{7}   &  1      
+    \end{array}\right)$$
+    $$B_2=\left(\begin{array}{ccc}
+    1           & 7           & 9 \\
+    \frac{1}{7} & 1           & 3 \\
+    \frac{1}{9} & \frac{1}{3} & 1
+    \end{array}\right)$$
+    $$B_3=\left(\begin{array}{ccc}
+    1           & 3 & \frac{1}{3} \\
+    \frac{1}{3} & 1 & \frac{1}{5} \\
+    3           & 5 & 1
+    \end{array}\right)$$
+    
+    \paragraph{代码}
+    \label{code:cc}
+    编写matlab函数。
+    \begin{lstlisting}[language=matlab]
+function [ W,v,f,CR ] = classclass( A )
+%classclass 函数 classclass 用于计算层次分析法中的 W
+% 输入  A 评价矩阵
+% 返回  W 是计算的 W
+%       v 是 矩阵 A 最大特征值对应的特征向量
+%       f 是一致性检验的结果（真值）
+    n = max(size(A));
+    sumk = sum(A);
+    W = zeros(n,1);
+    for i = 1:n
+        for j=1:n
+            W(i) = W(i) + A(i,j)/sumk(j);
+        end
+        W(i) = W(i)/n;
+    end
+    [V ,D] = eig(A);
+    CI = (max(max(D))-n)/(n-1);
+    RI = [0 0 0.58 0.90 1.12 1.24 1.32 1.41 1.45 1.49 1.51 1.54 1.56 1.58 1.59];
+    CR = CI/RI(n);
+    f = CR < 0.10;
+    v = V(:,1);
+    v = v/(sum(v));
+end
+    \end{lstlisting}
+    分别计算 矩阵 $A$,$B_1$,$B_2$,$B_3$ 对应的？？
+    得到
+    \begin{align*}
+    V_A = (0.5714,0.2857,0.1429)^T \\
+    V_{B_1} = (0.2790,0.6491,0.0719)^T \\
+    V_{B_2} = (0.7854,0.1488,0.0658)^T \\
+    V_{B_3} = (0.2583,0.1047,0.6370)^T\\
+    \end{align*}
+    
+    \section{某问}
+    \label{sec:qq}
+    \subsection{太原出租车价格}
+    \label{ssec:taxipr:ty}
+    \begin{tabular}{|c|c|c|c|}
+        \hline \multicolumn{2}{|c|}{收费项目} & 计价单位 & 收费标准(元)\\ 
+        \hline 日间 & 起步价 & 3公里 & 8 \\ 
+   \cline{2-4}  & 基本单价 & 公里 & 1.6 \\ 
+        \hline 夜间 & 起步价 & 3公里 & 8 \\ 
+   \cline{2-4}  & 基本单价 & 公里 & 1.8 \\ 
+        \hline
+    \end{tabular}
+    \paragraph{备注}
+    \begin{enumerate}
+        \item 夜间时间: 21：00-5：00
+        \item 运营重停车等待计时，累计5公里以1公里记价
+        \item 单程空帖，10公里以上基本租价加收$50\%$
+        \item 油运联动：
+        当93号汽油的价格在$[8.5,9.5)$元/升 之间，加收 1元燃油附加费\footnote{单位是1元/趟·次，下同}，
+        在$[9.5,10.5)$元/升 之间，再加收一元燃油附加费。
+        油价下降时，逆向操作。
+        油价超出$[7,10.5)$这个区间时，适时启动客运出租车
+    \end{enumerate}
+    
+    \section{卡方分布}
+    \label{sec:chi2}
+    生成的数据满足 $Q\sim\chi^2_n$，其中卡方分布的概率密度函数
+    $$f(x)=\begin{cases}
+    \frac{x^{\frac{n}{2}-1}e^{-\frac{x}{2}}}{2^{\frac{n}{2}}\Gamma(\frac{n}{2})} ,& x \geq 0\\
+    0,& otherwise
+    \end{cases}$$
+    
+    \section{车辆应答模拟}
+    \label{sec:sumtaxi}
+    使用 Literate Haskell 方式（语言）编写，的 有关于车辆应答模拟的 MCMC 代码\footnote{参见附录}。、
+    代码及说明参见 \href{/b/sumo/T/20160813/code/sumtaxi.lhs}{车辆应答模拟代码}。
+    
+    \begin{appendices}
+        \section{附带文件}
+        \label{apd:exfile}
+        \begin{enumerate}
+            \item
+            \href{/r/pdf/20160813.pdf}{本文的pdf版本}
+            \item
+            \href{/r/doc/sumtaxi.docx}{车辆应答模拟代码的 Word 文档}
+            \item
+            \href{/r/lhs/sumTaxi.lhs}{车辆应答模拟代码}
+        \end{enumerate}
+        \section{大量运行车辆应答模拟的POSIX-Shell 脚本}
+        \begin{lstlisting}[language=bash]
+#!/bin/bash
+rm -f $2
+for V in $(seq 1 1 $1)
+do
+./sumTaxi $3 $4 $5 $6 $7 $8 $9 ${10} >> $2
+done
+echo '>'
+cat $2 |sed  "s/,/\ /g"|  awk '{print ($1 > $2)}' | grep -c 1
+echo '>='
+cat $2 |sed  "s/,/\ /g"|  awk '{print ($1 >= $2)}' | grep -c 1
+echo didi time
+cat $2 |sed  "s/,/\ /g"|  awk '{print $1}' | awk '{sum+=$1} END {print "avg=",sum/NR}'
+echo taxi time
+cat $2 |sed  "s/,/\ /g"|  awk '{print $2}' | awk '{sum+=$1} END {print "avg=",sum/NR}'
+        \end{lstlisting}
+        其中参数分别是 运行规模，输出文件，出租车速，网约车速，乘客可视半径，网约车辆数目，
+        出租车车辆数目，模拟区域大小，上限时间倍数，与单次扫描时间。
+        当脚本运行完之后会依次输出 出租车比网约车好的结果个数，出租车不差于网约车的个数，
+        网约车的响应时间，与出租车的平均响应时间。
+        \section{附带公式}
+        这部分是附带的一部分的公式，出现在论文中的。
+        $$d_1=\eta_1 e_1+ \xi_1-c_1$$
+        $$d_2=\eta_2 e_2+ \xi_2-c_2$$
+        $$d_{ij\text{基础}}=0$$
+        $$d_{11}=d_1+m_1=d_1+0.12$$
+        $$d_{12}=0+m_2=0.14$$
+        $$d_{21}=0+m_1=0.12$$
+        $$d_{22}=d_2+m_2=d_2+0.14$$
+        $$D=\left(\begin{array}{cc}
+        d_{11} & d_{12} \\
+        d_{21} & d_{22}
+        \end{array}\right)$$
+        $$D^1=\left(\begin{array}{rr}
+        175.3200 &   0.1400\\
+        0.1200 & 242.7400
+        \end{array}\right)$$
+        $$D^2=\left(\begin{array}{rr}
+        
+        169.5200  &  0.1400\\
+        0.1200 & 240.6400
+        \end{array}\right)$$
+        $$D^2=\left(\begin{array}{rr}
+        162.3200 &   0.1400\\
+        0.1200&  232.9400
+        \end{array}\right)$$
+        $$p_1=\alpha r_1+\beta e_1 + \gamma s_1$$
+        $$p_2=\alpha r_2+\beta e_2 + \gamma s_2$$
+        $$p_{11}=p_1$$
+        $$p_{12}=p_1-\gamma s_1^2$$
+        $$p_{21}=p_2-\gamma s_2^2$$
+        $$p_{22}=p_2$$
+        $$P=\left(\begin{array}{cc}
+        p_{11} & p_{12}\\
+        p_{21} & p_{22}
+        \end{array}\right)$$
+        $$I=\{A,B\}$$
+        $$S_1={a_1,a_2}$$
+        $$S_2={b_1,b_2}$$
+        $$C^1=\{c_{ij}^1\}_{2\times 2}$$
+        $$C^2=\{c_{ij}^2\}_{2\times 2}$$
+        $$G=\{S1,S2,C^1,C^2\}$$
+        $$U_{d_1}=Yd_{11}+(1-Y)d_{21}$$
+        $$U_{d_2}=Yd_{12}+(1-Y)d_{22}$$
+        $$R_d=XU_{d_1}+(1-X)U_{d_2}$$
+        $$F(X)=\dfrac{dX}{dt}=0$$
+        $$U_{p_1}=Xp_{11}+(1-X)p_{21}$$
+        $$U_{p_2}=Xp_{12}+(1-X)p_{22}$$
+        $$R_p=YU_{p_1}+(1-Y)U_{p_2}$$
+        $$F(Y)=\dfrac{dY}{dt}=0$$
+        $$\xi_1=150$$
+        $$\xi_2=244$$
+        $$c_1=10$$
+        $$c_2=12$$
+        $$\eta_1=1.6$$
+        $$\eta_2=1.8$$
+        $$e_1=22$$
+        $$e_2=17$$
+        $$\eta_1=1.4$$
+        $$\eta_1=1.5$$
+        $$e_1=21$$
+        $$e_2=19$$
+        $$\eta_1=1.2$$
+        $$\eta_2=1.3$$
+        $$e_1=18.5$$
+        $$e_2=16$$
+        $$P_1=\left(\begin{array}{cc}
+        0.2557 &   0.1796\\
+        0.2189  &  0.2972
+        \end{array}\right)$$
+        $$P_2=\left(\begin{array}{cc}
+        0.2586  &  0.1824\\
+        0.1989  &  0.2772
+        \end{array}\right)$$
+        $$P_3=\left(\begin{array}{cc}
+        0.2600 &   0.1839\\
+        0.2332  &  0.3115
+        \end{array}\right)$$
+        \begin{align*}
+        U_{d_1}&=Yd_{11}+(1-Y)d_{21}\\
+        &=175.32Y+0.12(1-Y)
+        \end{align*}
+        \begin{align*}
+        R_d&=XU_{d_1}+(1-X)U_{d_2}\\
+        &=175.32XY+0.12X(1-Y)+0.14(1-X)Y+242.74(1-X)(1-Y)
+        \end{align*}
+        \begin{align*}
+        F(X)&=\dfrac{dX}{dt}=X(U_{d_1}-R_d)\\
+        &= 175.32XY+0.12X(1-Y)-175.32X^2Y-0.12X^2(1-Y)-0.14(1-X)XY-242.74(1-X)X(1-Y)
+        \end{align*}
+        $$F(X)=\dfrac{dX}{dt}=0$$
+        \begin{align*}
+        U_{p_1}&=Xp_{11}+(1-X)p_{21}\\
+        &=0.2557X+0.2189(1-X)
+        \end{align*}
+        \begin{align*}
+        R_p&=YU_{p_1}+(1-Y)U_{p_2}\\
+        &=0.2557XY+0.2189(1-X)Y+ 0.1796X(1-Y)+0.2972(1-X)(1-Y)
+        \end{align*}
+        \begin{align*}
+        F(Y)&=\dfrac{dY}{dt}=Y(U_{p_1}-Rp)\\
+        &=0.2557XY+0.2189(1-X)Y-0.2557XY+0.2189(1-X)Y- 0.1796XY-0.2972(1-X)Y-0.2557XY^-0.2189(1-X)Y^2- 0.1796X(1-Y)Y-0.2972(1-X)(1-Y)Y
+        \end{align*}
+        $$F(Y)=\dfrac{dY}{dt}=0$$
+        
+        //
+        \begin{align*}
+        U_{d_1}&=Yd_{11}+(1-Y)d_{21}\\
+        &=175.32Y+0.12(1-Y)
+        \end{align*}
+        \begin{align*}
+        R_d&=XU_{d_1}+(1-X)U_{d_2}\\
+        &=169.52XY+0.12X(1-Y)+0.14(1-X)Y+240.6(1-X)(1-Y)
+        \end{align*}
+        \begin{align*}
+        F(X)&=\dfrac{dX}{dt}=X(U_{d_1}-R_d)\\
+        &= 169.52XY+0.12X(1-Y)-169.52X^2Y-0.12X^2(1-Y)-0.14(1-X)XY-240.6(1-X)X(1-Y)
+        \end{align*}
+        $$F(X)=\dfrac{dX}{dt}=0$$
+        \begin{align*}
+        U_{p_1}&=Xp_{11}+(1-X)p_{21}\\
+        &=0.2586X+0.1989(1-X)
+        \end{align*}
+        \begin{align*}
+        R_p&=YU_{p_1}+(1-Y)U_{p_2}\\
+        &=0.2557XY+0.1989(1-X)Y+ 0.1824X(1-Y)+0.2272(1-X)(1-Y)
+        \end{align*}
+        \begin{align*}
+        F(Y)&=\dfrac{dY}{dt}=Y(U_{p_1}-Rp)\\
+        &=0.2557XY+0.1989(1-X)Y-0.2557XY+0.1989(1-X)Y- 0.1824XY-0.2272(1-X)Y-0.2557XY^-0.1989(1-X)Y^2- 0.1824X(1-Y)Y-0.2272(1-X)(1-Y)Y
+        \end{align*}
+        $$F(Y)=\dfrac{dY}{dt}=0$$
+        
+        //
+        \begin{align*}
+        U_{d_1}&=Yd_{11}+(1-Y)d_{21}\\
+        &=169.32Y+0.12(1-Y)
+        \end{align*}
+        \begin{align*}
+        R_d&=XU_{d_1}+(1-X)U_{d_2}\\
+        &=169.32XY+0.12X(1-Y)+0.14(1-X)Y+232.94(1-X)(1-Y)
+        \end{align*}
+        \begin{align*}
+        F(X)&=\dfrac{dX}{dt}=X(U_{d_1}-R_d)\\
+        &= 169.32XY+0.12X(1-Y)-169.32X^2Y-0.12X^2(1-Y)-0.14(1-X)XY-232.94(1-X)X(1-Y)
+        \end{align*}
+        $$F(X)=\dfrac{dX}{dt}=0$$
+        \begin{align*}
+        U_{p_1}&=Xp_{11}+(1-X)p_{21}\\
+        &=0.2600X+0.2332(1-X)
+        \end{align*}
+        \begin{align*}
+        R_p&=YU_{p_1}+(1-Y)U_{p_2}\\
+        &=0.2600XY+0.2332(1-X)Y+ 0.1839X(1-Y)+0.3115(1-X)(1-Y)
+        \end{align*}
+        \begin{align*}
+        F(Y)&=\dfrac{dY}{dt}=Y(U_{p_1}-Rp)\\
+        &=0.2600XY+0.2332(1-X)Y-0.2600XY+0.2332(1-X)Y- 0.1839XY-0.3115(1-X)Y-0.2600XY^-0.2332(1-X)Y^2- 0.1839X(1-Y)Y-0.3115(1-X)(1-Y)Y
+        \end{align*}
+        $$F(Y)=\dfrac{dY}{dt}=0$$
+    \end{appendices}
+\end{document}

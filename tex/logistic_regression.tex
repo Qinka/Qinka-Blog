@@ -1,0 +1,28 @@
+\documentclass{ctexart}
+\usepackage{listings,amsmath,amstext}
+
+\author{Qinka}
+\title{灰度预测}
+
+\begin{document}
+  \maketitle
+  %\input{logistic_regression.sum.tex}
+  \section{Logistic 曲线}
+  Logistic 回归可以去描述一些比如有限环境资源内生物的增长，
+  整个增长 最初是近似指数增长，然后当环境趋近有限之后，
+  指标会趋向于一个稳定的值。
+  Logistic 的$i(t)\sim t$ 曲线方程为
+  $$i(t)=\frac{1}{1+e^{-(\lambda t+\theta)}}$$
+  \ifx \pandoc \undefined
+  \def\imageA{../resource/pic/sumo/logistic}
+  \else
+  \def\imageA{/r/}
+  \fi
+  \begin{figure}
+\centering
+\includegraphics[width=0.7\linewidth]{\imageA}
+\caption{}
+\label{fig:logistic}
+\end{figure}
+
+\end{document}

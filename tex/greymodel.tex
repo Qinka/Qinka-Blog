@@ -1,0 +1,47 @@
+\documentclass{ctexart}
+\usepackage{listings,amsmath,amstext}
+
+\author{Qinka}
+\title{灰度预测}
+
+\begin{document}
+  \maketitle
+  %\input{greymodel.sum.tex}
+  \section{使用说明}
+  \label{sec:note}
+  主要用于预测的是函数 \lstinline|basicgrey(X,m)|
+  其中 $X$ 是已有的数据组成的矩阵， $m$ 是所要预测的数量。
+  $X$ 所需要的数据是不少于 3 个。这个是用于短期预测。
+  
+  返回的值分别是
+  \begin{description}
+      \item[var] 预测的结果
+      \item[ago] 预测后累加值
+      \item[alpha] 预测的 $\alpha$ 与 $\beta$
+      \item[error] 预测的残差
+      \item[P] 计算的小残差的概率
+      \item[c] 后验差比值
+      \item[rela] 关联度
+      \item[t] 对于预测的评价
+  \end{description}
+    
+  预测评价是由\lstinline|judge| 进行的。
+  返回的是含有两个元素的矩阵 $t$。
+  $t_1$ 表示的是对于关联度检验的结果，
+  其中 1 表示：“依据经验关联度检验结果为满意。”，
+  反之表示不满意。
+  $t_2$ 表示的是根据后检验差结果的显示，
+  这个模型的评价，如下表格。
+  \begin{center}
+  \begin{tabular}{c|c}
+       \hline
+       $t_2$取值 & 描述 \\
+       \hline
+       4 & 模型评价为“优” \\ 
+       3 & 模型评价为“合格” \\ 
+       2 & 模型评价为“勉强合格” \\ 
+       1 & 模型评价为“不合格” \\ 
+       \hline 
+  \end{tabular} 
+  \end{center}
+\end{document}

@@ -1,0 +1,49 @@
+$$\left\{ \begin{array}{lll}
+ x & = & \{-a + \frac{\varphi}{2},-a + \frac{3\varphi}{2},\dots,a - \frac{\varphi}{2}\}  \\
+ y & = & 2l\cos \theta-\frac{d}{2}\\
+   & = & 2l\cos \theta - \frac{l}{2}\frac{\sin(\frac{\varphi}{2}-\theta)}{\sin(\frac{\varphi}{2})}\\
+ z & = & w \cos \varphi 
+\end{array}$$
+
+$$\varphi ; \pi \rightarrow \frac{\pi}{2} \rightarrow \arcsin\frac{H}{w}$$
+
+$$\frac{2l}{\sin\varphi} = \frac{w}{\sin\theta}$$
+
+$$H=2L\sin\theta$$
+
+$$\left\{\begin{array}{lllll}
+(y+d)^2+x^2 &=& a^2&,&y\leq -d\\
+(y-d)^2+x^2 &=& a^2&,&y\geq d \\
+\end{array}$$
+
+$$d:l\rightarrow 0$$
+
+$$\left\{\begin{array}{lllll}
+(y+w+d)^2+x^2 &=& a^2&,&y\geq -(w+d)\\
+(y-w-d)^2+x^2 &=& a^2&,&y\leq w+d \\
+\end{array}$$
+
+$$\left\{\begin{array}{lll}
+x &=& \pm a\\
+y &=& \pm(L-l+d)
+\end{array}$$
+
+$$\frac{2d}{\sin(\frac{\varphi}{2}-\theta)}=\frac{2l}{\sin\frac{\varphi}{2}}$$
+
+
+\section{代码清单}
+本论文中使用到的代码所对应的文件及说明。
+
+\begin{center}
+    
+    \begin{tabular}{c|c}hline 代码文件名 & 说明 \\ 
+        \hline initThis.m & 初始化全局变量 \\ 
+        \hline getFoldP.m & 获得折叠出的二维坐标\\
+        \hline getHnS.m & 求质心高度与桌脚围城的面积 \\
+        \hline fetchawesome.m & 获得几组关键数据 \\
+        \hline f1.m & 求解目标1的对应的值 \\
+        \hline ddraw.m & 画出第三问中折点组成的曲线 \\
+        \hline toxyz.m & 填充z轴坐标（默认为0）\\
+        \hline 
+    \end{tabular}
+\end{center} 
