@@ -12,6 +12,18 @@ summary{
     border: 0;
 }
 
+/* for link */
+a:link{
+    color: #1e90ff;
+    text-shadow: 0 0 6px #836fff;
+    text-decoration: none;
+}
+a:visited{
+    color:  #6495ed;
+    text-shadow: 0 0 6px  #87cefa;
+    text-decoration: none;
+}
+
 /* for nav */
 nav ul{
     float:right;
@@ -29,7 +41,11 @@ nav ul li a{
     text-align: center;
     padding: 8px 12px 8px 12px;
     text-decoration: none;
+}
+nav ul li a:link,
+nav ul li a:visited{
     color:  #ff3e96;
+    text-shadow: 0 0 10px #ff4578;
 }
 nav ul li a:hover,
 nav ul li a:focus{
@@ -42,13 +58,44 @@ body{
     color:#ededed;
 }
 
+.title a span{
+    color: #00ffff;
+    text-shadow:0 0 40px #00ccff;
+}
+.title a:link,
+.title a:visited,
+.title a:hover,
+.title a:active{
+    text-decoration:none;
+}
 
-/* for different screen 8/
+/* hx */
+body h1,
+body h1 a:link,
+body h1 a:visited{
+    color: #fe2f92;
+    text-shadow: 0 0 15px  #ba55d3;
+}
+body h2,
+body h2 a:link,
+body h2 a:visited{
+    color: #ee7942;
+    text-shadow: 0 0 10px  #ff6a6a;
+}
+body h3,
+body h3 a:link,
+body h3 a:visited{
+    color:  #4eee94;
+    text-shadow: 0 0 8px  #00e5ee;
+}
+
+    
+/* for different screen */
 /* for moble */
 @media only screen and (max-width:760px),(min-device-width:760px) and (max-device-with:1024px){
     .title{
 	color:#FFF4B1;
-	margin-left: -50px;
+/*	margin-left: -50px;*/
     }
     .gitforkme{
 	width: 30%;
@@ -84,5 +131,8 @@ body{
     }
     .title{
 	font-size:80px;
+    }
+    footer{
+	color: #da70d6;
     }
 }

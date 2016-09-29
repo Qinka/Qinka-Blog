@@ -21,3 +21,4 @@ blog/test
 *.ignore.doc
 *~
 *.bak
+.markdown-preview.html

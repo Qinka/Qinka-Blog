@@ -68,18 +68,19 @@ clean-tmp:
 check-delay:
 	@$(ECHO)
 	@$(ECHO) check time
-	@$(ECHO) $(CURL_PATH) ' -X POST -H "HOW:get" ' $(SITE_URL)/q/servertime | $(SHELL) | $(TIMECHECK_PATH)
+	@$(ECHO) $(CURL_PATH) ' -X GET ' $(SITE_URL)/@/~servertime | $(SHELL) | $(TIMECHECK_PATH)
 	@$(ECHO)
 
 # change site theme #
 change-site-theme:
 #	Get old one
-	OLD_THEME=$($(CURL_PATH) -X POST -H "How:get" $(SITE_URL)/q/site-theme)
+	OLD_THEME=$($(CURL_PATH) -X GET $(SITE_URL)/@/~site-theme)
+	@if [ "$OLD_THEME" = "{\"error\":\"not found\"}" ]; then OLD_THEME="";fi;
 	@$(ECHO) The old theme is $(OLD_THEME)
 	@$(ECHO) The new theme is $(SITE_THEME)
 	@if [ "$(OLD_THEME)" = "$(SITE_THEME)" ]; then $(ECHO) The new one is eq2 old one. DO NOTHING;\
-		else $(ECHO) $(CURL_PATH) $(CURL_DETAIL) ' -X POST -H "HOW:put" -F "var='$(SITE_THEME)'" ' \
-		$(SITE_URL)/q/site-theme ' '  | $(IH_PATH) -m -f$(IH_DELAY) -v $(PSK) | $(SHELL); fi
+		else $(ECHO) $(CURL_PATH) $(CURL_DETAIL) ' -X PUT  -F "var='$(SITE_THEME) '" -F "type=query" -F "create-time=2016-01-01 00:00:00 UTC" -F "update-time='$(IH_NOW)'" -F "title=query" ' \
+		$(SITE_URL)/@/~site-theme ' '  | $(IH_PATH) -m -f$(IH_DELAY) -v $(PSK) | $(SHELL) ; fi
 
 # change code style #
 change-code-style:
@@ -97,23 +98,29 @@ change-code-style:
 # navs #
 
 navs:
-	@$(ECHO) $(CURL_PATH) $(CURL_DETAIL) ' -X POST -H "How:del" ' \
-		$(SITE_URL)/n ' ' | $(IH_PATH) -m -f$(IH_DELAY) -v $(PSK) | $(SHELL)
-	@$(ECHO) $(CURL_PATH) $(CURL_DETAIL) ' -X POST -H "How:put" -F "label=HOME" ' \
+	@$(ECHO) $(CURL_PATH) $(CURL_DETAIL) ' -X DELETE ' \
+		$(SITE_URL)/@/@nav ' ' | $(IH_PATH) -m -f$(IH_DELAY) -v $(PSK) | $(SHELL)
+	@$(ECHO) $(CURL_PATH) $(CURL_DETAIL) ' -X PUT -F "label=HOME" ' \
 		' -F "url=/" -F "order=1" ' \
-		$(SITE_URL)/n ' ' | $(IH_PATH) -m -f$(IH_DELAY) -v $(PSK) | $(SHELL)
+		$(SITE_URL)/@/@nav ' ' | $(IH_PATH) -m -f$(IH_DELAY) -v $(PSK) | $(SHELL)
+	@$(ECHO) $(CURL_PATH) $(CURL_DETAIL) ' -X PUT -F "label=BLOG" ' \
+		' -F "url=/blog" -F "order=2" ' \
+		$(SITE_URL)/@/@nav ' ' | $(IH_PATH) -m -f$(IH_DELAY) -v $(PSK) | $(SHELL)
+	@$(ECHO) $(CURL_PATH) $(CURL_DETAIL) ' -X PUT -F "label=LIVE" ' \
+		' -F "url=/live" -F "order=3" ' \
+		$(SITE_URL)/@/@nav ' ' | $(IH_PATH) -m -f$(IH_DELAY) -v $(PSK) | $(SHELL)
 
 
 # Add others here #
 
-/: index.md
+/index.html: index.md
 	@pandoc -o .ignore/tmp.a55822426a5330c04625a41d264c190b.html index.md
 	@$(ECHO) $(CURL_PATH) $(CURL_DETAIL) ' -X PUT -F "type=post" ' \
 		' -F "create-time=2016-09-18 08:22:22.598657 UTC" ' \
 		' -F "update-time=$(IH_NOW)" ' \
 		' -F "title=Home" ' \
 		' -F "html=@.ignore/tmp.a55822426a5330c04625a41d264c190b.html" ' \
-		$(SITE_URL)$@ ' ' | $(IH_PATH) -m -f$(IH_DELAY) -v $(PSK) | $(SHELL)
+		$(SITE_URL)/ ' ' | $(IH_PATH) -m -f$(IH_DELAY) -v $(PSK) | $(SHELL)
 
 /~@123nav: frame-nav.html
 	@$(ECHO) $(CURL_PATH) $(CURL_DETAIL) ' -X PUT -F "type=frame" ' \
@@ -184,4 +191,30 @@ navs:
 		' -F "title=null" ' \
 		' -F "text=@style-sheet/usual.css" ' \
 		' -F "mime=text/css" ' \
+		$(SITE_URL)$@ ' ' | $(IH_PATH) -m -f$(IH_DELAY) -v $(PSK) | $(SHELL)
+
+/blog: blog.html
+	@$(ECHO) $(CURL_PATH) $(CURL_DETAIL) ' -X PUT -F "type=post" ' \
+		' -F "create-time=2016-09-21 03:18:32.691317 UTC" ' \
+		' -F "update-time=$(IH_NOW)" ' \
+		' -F "title=Blog" ' \
+		' -F "html=@blog.html" ' \
+		$(SITE_URL)$@ ' ' | $(IH_PATH) -m -f$(IH_DELAY) -v $(PSK) | $(SHELL)
+
+/script/blog: scrpit/blog.js
+	@$(ECHO) $(CURL_PATH) $(CURL_DETAIL) ' -X PUT -F "type=text" ' \
+		' -F "create-time=2016-09-21 03:21:32.105387 UTC" ' \
+		' -F "update-time=$(IH_NOW)" ' \
+		' -F "title=null" ' \
+		' -F "text=@scrpit/blog.js" ' \
+		' -F "mime=application/x-javascript" ' \
+		$(SITE_URL)$@ ' ' | $(IH_PATH) -m -f$(IH_DELAY) -v $(PSK) | $(SHELL)
+
+/live: live.md
+	@pandoc -o .ignore/tmp.2de393058ba40f4c50d359c2975a1222.html live.md
+	@$(ECHO) $(CURL_PATH) $(CURL_DETAIL) ' -X PUT -F "type=post" ' \
+		' -F "create-time=2016-09-21 13:46:48.78231 UTC" ' \
+		' -F "update-time=$(IH_NOW)" ' \
+		' -F "title=直播写代码" ' \
+		' -F "html=@.ignore/tmp.2de393058ba40f4c50d359c2975a1222.html" ' \
 		$(SITE_URL)$@ ' ' | $(IH_PATH) -m -f$(IH_DELAY) -v $(PSK) | $(SHELL)
