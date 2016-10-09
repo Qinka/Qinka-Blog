@@ -6,6 +6,7 @@ globQuery('/@/~site-theme',themeflash,null,null);
 /* for copyright */
 globQuery('/@/~name',bottomflash,0,null);
 globQuery('/@/~version',bottomflash,1,null);
+globQuery('/@/~builfinfo',bottomflash,2,null);
 /* for daovoice */
 (function(i,s,o,g,r,a,m){i["DaoVoiceObject"]=r;i[r]=i[r]||function(){(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)})(window,document,"script","//widget.daovoice.io/widget/06e2aa9f.js","daovoice");
 //dv(window,document,"script","//widget.daovoice.io/widget/06e2aa9f.js","daovoice");
@@ -69,7 +70,7 @@ function bottomflash(r,n)
 // for bottom
 function bottom(responsetext)
 {
-  if(responsetext[0] != null && responsetext[1] != null)
+  if(responsetext[0] != null && responsetext[1] != null && responsetext[2] != null)
   {
     var cpr = document.getElementById('copyright');
     var now = new Date();
@@ -80,7 +81,7 @@ function bottom(responsetext)
       var nowYearStr = '2016-'+ nowYear;
     cpr.innerText = 'Copyright (C) ' +  nowYearStr + ' Qinka';
     var pwb = document.getElementById('powerby');
-    pwb.innerText = 'Power by ' + responsetext[0] + ' - ' + responsetext[1];
+    pwb.innerText = 'Power by ' + responsetext[0] + ' - ' + responsetext[1] + '-' + responsetext[2];
   }
 }
 
