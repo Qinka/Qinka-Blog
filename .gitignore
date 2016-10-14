@@ -22,3 +22,5 @@ blog/test
 *~
 *.bak
 .markdown-preview.html
+\#*\#
+.\#*
