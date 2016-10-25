@@ -42,7 +42,7 @@ function flashbloglist()
           sumDiv.innerHtml = bJSON[i].summary;
         }
         else var sumDiv = null;
-        a.innerHtml = bJSON[i].title;
+        a.innerText = bJSON[i].title;
         if (bJSON[i]['author'] == null)  var auth = "";
         else var auth = bJSON[i]['author'];
         span.innerHtml = '[' + bJSON[i]['create-time'].substring(0,10)+']'+auth;

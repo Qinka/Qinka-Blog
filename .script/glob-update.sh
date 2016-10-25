@@ -76,15 +76,16 @@ MIME=$(cat $INFO_PATH | jq .mime -r)
 if [ "$MIME" != "null" ]; then
 	echo -e "\t\t"\' -F \"mime\=$MIME\" \' \\
 fi
-item=1
+item=0
 while true
 do
-	THIS=$(cat $INFO_PATH | jq .tags[$item] -r)
+	THIS=$(cat $INFO_PATH | jq -c ".tags[$item]" -r)
 	if [ "$THIS" = "null" ]; then
 		break;
 	else
 		echo -e "\t\t"\' -F \"tag\=$THIS\" \' \\
 	fi
+	item=$item+1
 done
 
 echo -e "\t\t"\$\(SITE_URL\)\$@ \' \' \| \$\(IH_PATH\) -m -f\$\(IH_DELAY\) -v \$\(PSK\) \| \$\(SHELL\)
