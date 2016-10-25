@@ -13,3 +13,10 @@ tmp
 jd_root.txt
 root.txt
 blog/test
+.ignore
+.infos
+.markdown-preview.html
+.script/
+*.bak
+*~
+\#*\#
