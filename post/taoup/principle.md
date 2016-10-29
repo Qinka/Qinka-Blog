@@ -1,3 +1,0 @@
-The Principle of Unix
-===
-
