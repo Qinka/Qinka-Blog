@@ -36,10 +36,10 @@ function flashbloglist()
         var span = document.createElement('span');
         var itemDiv = document.createElement('div');
         a.href = concat(bJSON[i].index);
-        if (bJSON[i].summary != null && bJSON.summary.length != 0)
+        if (bJSON[i].summary != null && bJSON[i].summary.length != 0)
         {
           var sumDiv = document.createElement('div');
-          sumDiv.innerHtml = bJSON[i].summary;
+          sumDiv.innerHTML = bJSON[i].summary;
         }
         else var sumDiv = null;
         a.innerText = bJSON[i].title;

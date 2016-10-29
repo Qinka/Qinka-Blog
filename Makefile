@@ -29,7 +29,8 @@ ECHO=echo
 
 # SITE #
 ## URL of site
-SITE_URL=http://localhost:3000
+SITE_URL=https://blog.prerls.qinka.pw
+
 ## Password of Admin
 PSK=921 924 # This just an example
 ## The path of glob-ih
@@ -222,10 +223,12 @@ navs:
 
 /b/Uncharted-IV: post/Uncharted-IV.md
 	@pandoc -o .ignore/tmp.7f9e0a9c3e4ae4e19164ff11283e2f30.html post/Uncharted-IV.md
+	@pandoc -o .ignore/tmp.7f9e0a9c3e4ae4e19164ff11283e2f30.summary.html post/Uncharted-IV.summary.md
 	@$(ECHO) $(CURL_PATH) $(CURL_DETAIL) ' -X PUT -F "type=post" ' \
 		' -F "create-time=2016-10-14 13:12:16.879061 UTC" ' \
 		' -F "update-time=$(IH_NOW)" ' \
 		' -F "title=Uncharted-IV" ' \
+		' -F "summary=@.ignore/tmp.7f9e0a9c3e4ae4e19164ff11283e2f30.summary.html" ' \
 		' -F "html=@.ignore/tmp.7f9e0a9c3e4ae4e19164ff11283e2f30.html" ' \
 		' -F "tag=game" ' \
 		' -F "tag=blog" ' \

@@ -89,6 +89,9 @@ body h3 a:visited{
     text-shadow: 0 0 8px  #00e5ee;
 }
 
+body summary{
+    text-align:left;
+}
     
 /* for different screen */
 /* for moble */
