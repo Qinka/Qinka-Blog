@@ -1,0 +1,55 @@
+<!-- @#page.bottom -->
+<br/><br/><br/>
+<script type="text/javascript">
+(function(){
+var summ = document.getElementsByClassName('summaryP');
+if (summ[0]==null)
+  var summm = document.getElementsByClassName('homemain')[0].innerText;
+else
+  var summm = summ[0].innerText;
+var p = {
+url:location.href,
+showcount:'1',/*是否显示分享总数,显示：'1'，不显示：'0' */
+desc:'哈哈这是干货',/*默认分享理由(可选)*/
+summary:summm,/*分享摘要(可选)*/
+title:document.title,/*分享标题(可选)*/
+site:'Qinka\'s Blog',/*分享来源 如：腾讯网(可选)*/
+pics:'', /*分享图片的路径(可选)*/
+style:'102',
+width:145,
+height:30
+};
+var s = [];
+for(var i in p){
+s.push(i + '=' + encodeURIComponent(p[i]||''));
+}
+document.write(['<a version="1.0" class="qzOpenerDiv" href="http://sns.qzone.qq.com/cgi-bin/qzshare/cgi_qzshare_onekey?',s.join('&'),'" target="_blank">分享</a>'].join(''));
+})();
+</script>
+<script src="http://qzonestyle.gtimg.cn/qzone/app/qzlike/qzopensl.js#jsdate=20111201" charset="utf-8"></script>
+<footer class="bottom">
+<p>Copyright (C) Qinka</p>
+<p id="powerby"></p>
+<p>qinka@live.com</p>
+<p><a href="https://github.com/qinka/glob">Glob</a><a href="https://travis-ci.org/Qinka/Glob"><img src="https://travis-ci.org/Qinka/Glob.svg?branch=master" class="cir" alt="CI-result"/></a></p>
+<p><a href="http://github.com/qinka/qinka-blog">Qinka-Glob</a><a href="https://travis-ci.org/Qinka/Qinka-Blog"><img src="https://travis-ci.org/Qinka/Qinka-Blog.svg?branch=master" class="cir" alt="CI-result"/></a></p>
+<p>所有内容均受到 本站的 <a href="/page/LICENSE">Agasa-License</a> 保护</p>
+</footer>
+<h1>不推荐在亚马逊上购买图书</h1>
+</footer>
+<script charset="gbk" src="http://p.tanx.com/ex?i=mm_114127201_13358481_53078725"></script>
+<div>
+  <p style="color:#cc89bb">鉴于阿里妈妈提供的服务属于电子公告牌（BBS）性质，阿里妈妈上关于阿里妈妈会员或其发布的相关推广位/商品/服务
+    （包括但不限于网站主名称、网站主网站名称、联系人及联络信息，推广位/商品/服务的描述和说明，相关图片、视讯等）
+    的信息均由会员自行提供并上传，由会员对其提供并上传的所有信息承担相应法律责任。</p>
+  <p style="color:#cc89bb">阿里妈妈转载作品（包括论坛内容）出于传递更多信息之目的，并不意味阿里妈妈赞同其观点或已经证实其内容的真实性。</p>
+  <p><strong>以上内容摘自广告提供商阿里妈妈的法律声明</strong>，相关商标持有人持有相关商标。</p>
+</div>
+<script src="/txt/nav.js" ></script>
+<script>(function(i,s,o,g,r,a,m){i["DaoVoiceObject"]=r;i[r]=i[r]||function(){(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)})(window,document,"script","//widget.daovoice.io/widget/06e2aa9f.js","daovoice");</script>
+<script>
+  daovoice('init', {
+    app_id: "06e2aa9f",
+  });
+  daovoice('update');
+</script>

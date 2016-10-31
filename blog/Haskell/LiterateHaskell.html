@@ -1,0 +1,159 @@
+<div class="homemain">
+  <h1>Haskell 与 LaTeX 的混排 —— 文学编程</h1>
+  <br/>
+  <ul>
+    <li><a href="#intr"> 导论 </a></li>
+  </ul>
+  <br/>
+
+  <h2 id="intr"> 导论 </h2>
+  <p>
+    写这篇博文的原因是，在我们西电的睿思上，看见了一篇介绍 <img src="/bin/image/LaTeX-logo.svg" style="margin-bottom:-8px" height="23px" alt="LaTeX"
+    /> 的文章，感觉总是怪怪的，想喷但是人家毕竟是新手。所以就借着接受 Haskell文学编程的时候，顺带介绍一下。
+  </p>
+  <p>
+    如果你是那些想直接看我推荐的资料的那种人的话，就通过链接跳转到我最底下的那些内容上吧。
+  </p>
+  <p>
+    接着说正事，先说一个叫 <img src="/bin/image/TeX-logo.svg" style="margin-bottom:-8px" height="23px" alt="TeX" /> 的东西。
+    <img src="/bin/image/TeX-logo.svg" style="margin-bottom:-8px" height="23px" alt="TeX" /> 是由著名的计算机科学家 Donald E.Knuth 发明的排版系统，使用
+    Pascal 编写的，开源的可以生成高质量排版文件的排版系统。 当然 在后面再接受这个神奇的排版工(XI)具(TONG)。<img src="/bin/image/LaTeX-logo.svg" style="margin-bottom:-8px"
+      height="23px" alt="LaTeX" /> 则是一种基于 <img src="/bin/image/TeX-logo.svg" style="margin-bottom:-8px" height="23px" alt="TeX"
+    /> 的排版系统，好吧这也会在之后介绍。
+  </p>
+  <p>
+    然后再关心一下文学编程，老实说这篇 POST 中心几乎与 Haskell 无半点关系。或者半开玩笑的说，这篇POST 涉及的内容 基本都和 Knuth 有关，文学编程也是他提出的。文学编程还是有十分大的意义。当然之后讲。
+  </p>
+  <h2 id="history"> History (⊙o⊙) </h2>
+  <h3 id="history-TeX"> <img src="/bin/image/TeX-logo.svg" style="margin-bottom:-8px" height="32x" alt="TeX"/> 的（HEI）历史 <sup>[<cite>1</cite>]</sup> </h3>
+  <p>
+    这部分主要参考了 <a href="http://www.ctex.org">CTEX</a> 主页提供的对 <img src="/bin/image/TeX-logo.svg" style="margin-bottom:-8px"
+      height="23px" alt="TeX" /> 的介绍。
+  </p>
+  <p>
+    言归正传。正式介绍 <img src="/bin/image/TeX-logo.svg" style="margin-bottom:-8px" height="23px" alt="TeX" /> 之前，需要介绍一下 Donald E.
+    Knuth。大家大部分人称之为 高德纳。他是谁呢？装个B，(⊙o⊙)。 高德纳是 1974 年的图灵奖得主，著名的图书《计算机程序设计的艺术》一书伟大的作者。为什么要提到《计算机程序设计的艺术》 这本伟大的书呢？答案是
+    <img src="/bin/image/TeX-logo.svg" style="margin-bottom:-8px" height="23px" alt="TeX" />的诞生就在其中。 相传（好吧我看的 CTEX的<img src="/bin/image/TeX-logo.svg"
+      style="margin-bottom:-8px" height="23px" alt="TeX" />简介上是这样写的）上个世纪七十年代末， 一个伟大而患有强迫症的（这里是半开玩笑的）的计算机科学家 高德纳 看见他的 "<i>The Art of Computer Programming</i>"
+    的 第二卷的校样是，由于（前方强迫症高能预警）对于计算机排版的校样的低质量感到无法忍受（不是强迫症啊！）。与是下决心 开发一个高质量的计算机排版系统，也就是 <img src="/bin/image/TeX-logo.svg" style="margin-bottom:-8px"
+      height="23px" alt="TeX" />。
+  </p>
+  <p>
+    <img src="/bin/image/TeX-logo.svg" style="margin-bottom:-8px" height="23px" alt="TeX" /> 的名字的来源我就不细说了。但是需要强调的是 <img src="/bin/image/TeX-logo.svg"
+      style="margin-bottom:-8px" height="23px" alt="TeX" /> 的这个logo 并是不为了装B，而是很明确的告诉每个人，<img src="/bin/image/TeX-logo.svg"
+      style="margin-bottom:-8px" height="23px" alt="TeX" />排版的强大之处。
+  </p>
+  <p>
+    然后 <img src="/bin/image/TeX-logo.svg" style="margin-bottom:-8px" height="23px" alt="TeX" /> 的使用 Pascal 编写的，而原因，同时也是结果：高德纳希望
+    <img src="/bin/image/TeX-logo.svg" style="margin-bottom:-8px" height="23px" alt="TeX" /> 能轻松移植到其他系统上。而<img src="/bin/image/TeX-logo.svg"
+      style="margin-bottom:-8px" height="23px" alt="TeX" /> 的版本号则是一个向 圆周率π 靠近。 第一版的 <img src="/bin/image/TeX-logo.svg" style="margin-bottom:-8px"
+      height="23px" alt="TeX" /> 在 1978 年问世，而为了最求完美（这真的不是强迫症）高德纳采取了一个奖励的措施。也就是说，他会奖励发现 <img src="/bin/image/TeX-logo.svg" style="margin-bottom:-8px"
+      height="23px" alt="TeX" /> 系统 BUG的人， 而且是一次比一次多。但是谁会把高德纳的支票拿去兑换？没人，大家都收藏起来了(⊙o⊙)。而在1982年之后，
+    <img src="/bin/image/TeX-logo.svg" style="margin-bottom:-8px" height="23px" alt="TeX" /> 就变得十分稳定，无论世界上最帅的 那个认识谁，
+    <img src="/bin/image/TeX-logo.svg" style="margin-bottom:-8px" height="23px" alt="TeX" /> 系统至今应该是世界上稳定存活的最长的软件之一。而写高德纳本人将
+    <img src="/bin/image/TeX-logo.svg" style="margin-bottom:-8px" height="23px" alt="TeX" /> 系统的版本号无线逼近圆周率。
+  </p>
+  <p>
+    再说一些题外话，有谁在用 LaTeX 与 <img src="/bin/image/TeX-logo.svg" style="margin-bottom:-8px" height="23px" alt="TeX" /> 呢？答案是那些国际一流的出版社，学术协会、高等学府使用并且鼓励的大家去使用。
+    （我可没说，像西电这样数模与毕业论文都不给LaTeX模板，校报不用 LaTeX（好像没用）的学校是差劲的，毕竟西电还是要争双一流的学校(⊙o⊙)）
+  </p>
+  <h3 id="history-latex"> <img src="/bin/image/LaTeX-logo.svg" style="margin-bottom:-8px" height="32px" alt="LaTeX"/> 的历史 <sup>[<cite>1</cite>]</sup>  </h3>
+  <p>
+    回到重点的<img src="/bin/image/LaTeX-logo.svg" style="margin-bottom:-8px" height="23px" alt="LaTeX" />上。 最基本的 TeX 程序只是有一些比较原始的命令组成的，然而如果嫌麻烦（不会有太多人不嫌麻烦的）可以由一些简单的命令组合并定义成一些高级命令。
+    然而之后 高德纳有设计了一个叫 Plain TeX 的“基本格式”，以与低层次的TeX呼应。而后来几乎无法将 Plain TeX 与 原生的 TeX 区分开。
+  </p>
+  <p>
+    后来一个叫 Leslie Lamport 的人开发了一个叫 LaTeX 的东西，就是我们现在的 LaTeX。而 LaTeX 为“初级用户”设计好了许多宏与高级命令等内容。 使得一个不太了解 TeX 能够在短时间内生成高质量的文档与复杂的数学公式。
+  </p>
+  <p>
+    然而LaTeX 问世之后，相继出现了包括 SLiTeX、AMSLaTeX 等版本且相互之间并不完全兼容，甚至“不完全”这样的一个词都应该扔掉。 当然那是一个糟糕的状况，于是为了吃掉这坨翔，结束这样的糟糕的局面， Frank Mittelbach
+    等人成立了 LaTeX3 项目组。 其目标是建立一个最优的、有效的、统一的标准的命令集合。然而这坨屎不是一天之内能吃完的，又不是臭豆腐。 然而LaTeX3小组还是模仿某人的第一步，先发布了 LaTeX2e 版本<sup>(<cite>i</cite>)</sup>，而
+    LaTeX2e 则作为 LaTeX3完成前的标准。
+  </p>
+  <h3 id="history-lh-lg"> 文学编程与文学Haskell</h3>
+  <p>
+    好吧，这个Post 搁置了好几天之后，在 Mac 的系统跪掉之后，在无事可做之后决定继续来写这个Post。
+  </p>
+  <p>
+    还有人在意之前，提到的 高德纳 教授么？有人会说 LaTeX 中的 TeX 是 高德纳搞出来的。当然只是一种原因了。说道根本原因，还需要提到一个
+    名叫 Utopia 84 的语言。当然这个语言还是指一个设想，然而这种语言的出发点之一就是文学编程。文学编程的“侠义”含义是指用来替代结构化编程的一种编程范式，
+    然而现在值得文学编程一般是指一种“广义的”文学编程则基本是指文档（如LaTeX）与代码同时存在于一个文件。
+  </p>
+  <p>
+    当然，有人会指出：为什么在接触一般的编程语言的时候根本没有接触过“文学编程”的概念。而解决这个问题，就需要提到Haskell 的优越性了。
+    说一句夸张的话，Haskell 的几乎所有内容都是建立在学术论文之上。 Haskell 的许多内容都是学术上的智慧结晶。当然 Haskell的优越性
+    也就在此，相对于其他许多语言，Haskell 在文学编程方面的支持相当丰富。有 Bird 与  LaTeX 两种方式，当然后者是这篇 Post 中主要
+    涉及的一种东西。Haskell 可以通过 LaTeX 中 的几种主要的 代码环境的宏包所支持的方式将 Haskell 巧妙地嵌入进去，同时还考虑到了
+    其他的许多情况的解决方法。而同时 Haskell的最主要的编译器 GHC 也天然支持者这种方式，能将真正的代码找到然后编译。相比之下，如果
+    用C 与 LaTeX 进行文学编程的话，会遇需要第三方的工具来解决 C 与 LaTeX 混排在一起时代码分离的问题。
+  </p>
+  <p>
+    然后就是介绍如何使用 Haskell 的文学编程。之后不出意外的话会在附录中介绍一些 LaTeX 的使用方法。
+  </p>
+  <p>
+    当然，如果要问 高德纳 文学编程是什么？教授的回答是："The main idea is to regard a program as a communication to human beings rather than as a set of instructions to a computer."
+    而 Haskell 主要的 文学编程的工具是 Haddock，当前那个创建的是超链接形式的文档。
+  </p>
+    <h2 id="usage-bird"> Bird 格式简介 </h2>
+  <p>
+    虽然是介绍 LaTeX 与 Haskell 混排的文学编程格式，然而 由于 Bird 格式还是使用的相对比较多所以还是介绍一下。
+  </p>
+  <p>
+    首先，先介绍一下 文学Haskell 中代码 的两种分类。一类是被 Haskell编译器 与 排版系统 识别并处理的代码，就是平时用我们写的代码。
+    还有一种是 会被排版处理系统识别而被 Haskell编译器跳过的代码，可以用来描述一个函数如何使用，就是实例。
+    Bird 中 前者的标记是 “&gt;” 后者是 “&lt;”这个标记。这两个标记放在每行代码的最开头，然后每一个代码块，就是几行连着的相同标记的代码，
+    需要在开头与结尾空一行。下面是个例子：
+  </P>
+  <pre>
+  <code class="haskell">
+This is a sentence.
+
+&gt; class Foo a where
+&gt;   foo :: Foo a => a -> Bool
+
+This is another sentence.
+
+&lt; instance Foo Bool where
+&lt;   foo = id
+
+This is the ending of example.
+  </code>
+  </pre>
+  <p>
+    如果你觉得我说的不清楚，那就可以访问 <a href="https://wiki.haskell.org/Literate_programming"> Haskell-Wiki Literate programming </a>。
+  </p>
+  <h2 id="lhs"> LaTeX 与 Haskell 混排的文学编程</h2>
+  <p>
+    LaTeX 与Haskell 的文学编程相对来说要简单不少，当然前提是你已经会使用 LaTeX 与 Haskell 。 然后只需要知道会被 Haskell 编译器识别的代码
+    应该是放置在 code 环境中 而 被跳过的代码放置在 spec 环境中。当然还有一个是被 仅排版系统忽略的，需要放在 \ignore{} 之中。
+  </p>
+  <p>
+    当然，code 、spec 环境与ignore 命令并不是 LaTeX 自带的。首先先说 code环境与spec环境的配置。
+  </p>
+  <h3 id="listings"> 使用 listings 宏包</h3>
+  <p>
+    然后首先介绍使用 listings 宏包，这个是我自己一直在使用的一个方式。首先需要包含着个宏包。
+  </p>
+  <pre>
+  <code id="latex">
+\usepackage{listings}
+  </code>
+  </pre>
+  <p>
+    然后设置code与spec 两个环境即可。使用 listings 宏包提供的 \lstnewenvironment 命令就好。
+  </p>
+  <h2 id="note"> 注释 </h2>
+  <h4> i. </h4> LaTeX 的正式版本是 2.09 于是LaTeX3 小组的版本号是3，而 LaTeX2e 中的是2。
+  <h2 id="bib"> Bibliography </h2>
+  <ol>
+    <li>
+      LeoAloft. 2005.1.6.<a href="http://www.ctex.org/CTEX">CTEX: TeX简介</a>
+    </li>
+    <li>
+      LeoAloft. 2005.1.6.<a href="http://www.ctex.org/CTEX">CTEX: LaTeX</a>
+    </li>
+    <li>
+      HaskellWiki,2010.<a href="https://wiki.haskell.org/Literate_programming"> Literate Programming </a>
+    </li>
+  </ol>
+</div>

@@ -1,0 +1,71 @@
+<div class="homemain">
+  <h1>在实体机上启动 Docker OS</h1>
+  <h3>笔记前语</h3>
+    <p>
+      这种折腾一开始是基于希望在 <a href="http://www.sssta.org"> 软院科协 </a> 的几台不用的机子上搭建 Hackage 的镜像。
+      后来计划用 Docker ，正巧尹大人也在有计划，目测尹强者应该有项目。然后就将科协的几台机子都刷成 Docker Ship。
+      当然这是只是计划。一开始安装 Ubuntu Server 15.10 的时候，并没有注意到尹大人的计划细节，硬盘分区直接 LVM。
+      后来各种坑使得我还需要再刷。之后刷的可以用了，然后还是有坑。据尹大人报告，我使用的西电开源社区的ubuntu源是 14的。
+      当然，后来尹强者折腾 MySQL 的读写分离去了，草民还在刷，当然刷的就是Boot2Docker。然而奇迹的是
+      <strong>贵协的老旧机子成功启动了为 Boot2Docker </strong>。随后又再次试了试一些其他的系统 包括 Rancher。
+      然而最后还是选用了 Debian 的一个轻量级的版本，最后还学习了如何使用 Grub。
+    </p>
+  <h2> Boot2Docker </h2>
+    <p>
+      <a href="www.boot2docker.io"> Boot2Docker </a>是一个为虚拟机打造的镜像，但是在部分物理机上是可一运行。
+      Boot2Docker 基于的是 <a href="http://www.tinycorelinux.net"> Tiny Core Linux </a>,
+      虽然本身 Tiny Core Linux 是一个“寄于内存的系统”， 然而其还是可以安装在硬盘上的。
+      虽然，很不幸的是 对于 64位的版本可能安装时痛苦的，甚至是不可行的。
+      但是由于 Boot2Docker 的轻量性，我们可以使用 dd 大法将之写入硬盘。然后开机启动。
+    </p>
+    <p>
+      而正是由于种种原因，我再次放弃了使用 Boot2Docker。
+    </p>
+  <h2> RancherOS </h2>
+    <p>
+      <a href="rancher.com/rancher-os"> RancherOS </a> 是一个由 Rancher Labs 开发的，
+      用于运行 Docker 的一个极小的 Linux 发行版系统。
+    </p>
+    <p>
+      可以通过比较简便的方式安装到硬盘上，其本身的原理也是基于 Docker。
+      但是比较不幸的是在国内，由于某（DA）些（JIA）原（DOU）因（DONG），会出现连接错误的问题。
+      但是解决方案是 使用 Docker 与 DockerHub 手动下载镜像，然后按照 DockerHub 中的镜像的说明文件
+      安装。但是需要注意的是，一定要添加 SSH 秘钥，否则无法使用，装好的系统只能通过 SSH 登陆
+      而无法使用tty终端。
+    </p>
+    <p>
+      但是由于硬克隆硬盘时出现的种种问题，最后还是放弃了。
+    </p>
+  <h2> Debian </h2>
+    <p>
+      最后选用了 Debian 官网提供的一个极小的镜像，然后安装。
+      但是出乎意外的事，如果安装不联网，连 ifconfig 都没有，说得好像连了网就有的是的。
+      然后按照需求配置了系统，安装了 Docker。在此有价值的内容是，Docker 官网上的安装的那个 URL
+      会受到墙的限制，比较麻烦。但是可以使用 DaoCloud 提供的那个。
+    </p>
+    <pre>
+      <code> curl -sSL https://get.daocloud.io/docker | sh </code>
+    </pre>
+    <p>
+      比方便的安装上去。然后使用的是 Ghost，在此再次感谢尹大人提供的 Ghost 12.0 的版本。
+      使用这个版本的 Ghost 镜像，生成了镜像文件。然后写入物理机的硬盘。
+      我当时安装 Debian 时 用的是 Hyper-V 虚拟机（第一代）。
+      但是在刷入物理机的时候，某些机子，出现了一些问题。根据尹大人的“提醒”，
+      使用 GRUB，先进入 系统，再再次重新写入 GRUB。然后问题解决。
+    </p>
+    <p>
+      最后的小插曲，由于机房老师与我们的沟通问题，最后因为搬动桌子到现在还没有正式开机。
+      然后尹大人的机子也停机了。草民之后会相应英语老师，刘建树老师的号召，我计划搭建一个
+      用于播放英语广播的线上的服务器。
+    </p>
+  <h2> 制作镜像 </h2>
+    <p>
+      再次分享一个小技巧先，关于不翻墙下载墙外的内容，当然庸俗的内容这招是不行的。当然，只是个套路我这个方法本身的效率并不高。
+    </p>
+    <p>
+      简单的说，大致就是利用目前国外免费的持续集成（CI）服务下载一些墙外的东西。当然对于庸俗的东西来时，还是绕不过防火墙。
+      以 <a href="https://github.com">GitHub</a> 与 <a href="https://travis-ci.org">Travis-CI</a> 为例。
+      首先是需要在 GitHub 上创建一个仓库然后帮顶 Travis 的持续集成功能。
+      然后，在 .travis.yml 中使用 wget 下载然后，直接利用 Git 将下载的文件同步到 Git 之上。之后再用 Git 获取。
+    </p>
+</div>

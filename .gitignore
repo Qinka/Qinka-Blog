@@ -13,6 +13,7 @@ tmp
 jd_root.txt
 root.txt
 blog/test
+blog/test
 .ignore
 *.aux
 *.log
@@ -23,4 +24,4 @@ blog/test
 *.bak
 .markdown-preview.html
 \#*\#
-.\#*
+.\#
