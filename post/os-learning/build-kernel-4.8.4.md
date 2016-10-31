@@ -59,7 +59,7 @@ uname -r
 uname -mrs
 ```
 
-通过如下命令查看是否由模块炸了
+通过如下命令查看是否有模块炸了
 
 ```
 dmesg | egrep -i --color 'error|critical|failed'
@@ -69,4 +69,4 @@ dmesg | egrep -i --color 'error|critical|failed'
 
 1. 参考： [How to Compile and Install Linux Kernel v4.5 Source On a Debian / Ubuntu Linux](http://www.cyberciti.biz/faq/debian-ubuntu-building-installing-a-custom-linux-kernel/)
 2. [Linux 内核官方网站](www.kernel.org)
-3. [MAN PAGE] make-kpkg(1), fakeroot(1)
+3. [MAN PAGE] make-kpkg(1), fakeroot(1), dpkg(1)

@@ -30,7 +30,7 @@ UPDATE_PATH=$(cat $INFO_PATH | jq .path -r)
 if [ "$SUM_FILE" = "/dev/null" ]; then
     echo -e $UPDATE_PATH: $MAIN_FILE
 else
-    echo -e $UPDATE_TYPE: $MAIN_FILE $SUM_FILE
+    echo -e $UPDATE_PATH: $MAIN_FILE $SUM_FILE
 fi
 TMP_FILE_NAME=$(echo $UPDATE_PATH | md5)
 
