@@ -13,3 +13,15 @@ tmp
 jd_root.txt
 root.txt
 blog/test
+blog/test
+.ignore
+*.aux
+*.log
+*.pdf
+*.synctex.gz
+*.ignore.doc
+*~
+*.bak
+.markdown-preview.html
+\#*\#
+.\#

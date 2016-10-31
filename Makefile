@@ -1,266 +1,232 @@
-URL=$(GLOB_URL)
-PSK=$(GLOB_BACKGROUND_TOKEN)
-TIME=0
+#
+# Makefile
+#
+######################################################################################
+##
+##	Qinka's Blog
+##
+##	The Makefile of Glob of my own blog
+## 	blog.qinka.pw  (Powered by Glob)
+##
+##  Copyright (C) 2016
+##
+## This file is the one to upload
+##
+######################################################################################
+#
+
+# CURL #
+## Path of curl
+CURL_PATH=curl
+## whether curl show the details
+CURL_DETAIL=' -i ' # space is needed
+
+# SHELL #
+## The shell we used
 SHELL=bash
-BG=background
+## The echo or some thing like that
+ECHO=echo
 
-update: html txt bin qry
-	@echo "update all"
+# SITE #
+## URL of site
+SITE_URL=http://localhost:3000
+## Password of Admin
+PSK=921 924 # This just an example
+## The path of glob-ih
+IH_PATH=glob-ih
+## THe time delay between server and glob-ih
+IH_DELAY=0 # For normal, you need run `make check-delay URL=***`, and then set this one.
+## Get the time of now with glob-ih
+IH_NOW=$$($(IH_PATH) -t)
+## Check time delay
+TIMECHECK_PATH=glob-timecheck
+## put a new post
+NEWPOST_PATH=$(which glob-newpost)
 
-
-html: blog page home
-	@echo "update html"
-
-blog: blg-yesod english setupos xhsk-rp
-	@echo "update blog"
-
-blg-yesod: getstart
-	@echo "update yesod blog"
-getstart:
-	@echo 'curl -F "type=blog" -F "index=blog" -F "index=yesod" ' \
-		' -F "index=getstart" -F "title=Yesod 学习笔记-1" ' \
-		' -F "html=@blog/Yesod/GetStart.html" -F "summary=@blog/Yesod/GetStart.summary.html" ' \
-		$(URL)/$(BG)/html | ih $(TIME) $(PSK) | $(SHELL)
-	@echo "update blg-yesod-GetStart"
-
-setupos: InstallOS
-InstallOS:
-	@echo 'curl -F "type=blog" -F "index=blog" -F "index=setupos" ' \
-		' -F "index=installdockeros" -F "title= 安装 Docker OS" ' \
-		' -F "html=@blog/SetupOS/IDOS.html" -F "summary=@blog/SetupOS/IDOS.summary.html" ' \
-		$(URL)/$(BG)/html | ih $(TIME) $(PSK) | $(SHELL)
-	@echo "update blg-setupos-installboot2docker2disk"
-
-english:
-rtof:
-	@echo 'curl -F "type=blog" -F "index=blog" -F "index=english" -F "idnex=rtof" \
-		-F "title=Reaction of THE TAIL OF FAME" \
-		-F "html=@blog/english/RToF.html" -F "summary=@blog/english/RToF.summary.html" '\
-		$(URL)/$(BG)/html | ih $(TIME) $(PSK) | $(SHELL)
-	@echo "update RToF"
-
-blg-test: blgtest1 blgtest2
-	@echo "blog-test update"
-blgtest1:
-	@echo 'curl -F "type=blog" -F "index=blog" -F "index=test1" -F "title=Test-Blog-1" \
-		-F "html=@blog/test/test1.html" ' \
-		$(URL)/$(BG)/html | ih $(TIME) $(PSK) | $(SHELL)
-blgtest2:
-	@echo 'curl -F "type=blog" -F "index=blog" -F "index=test2" -F "title=Test-Blog-2" \
-		-F "html=@blog/test/test2.html" ' \
-		$(URL)/$(BG)/html | ih $(TIME) $(PSK) | $(SHELL)
-
-
-xhsk-rp: xhsk-rp-haskell xhsk-rp-docker xhsk-rp-ci xhsk-rp-codeclimate
-	@echo "update xhsk-rp"
-xhsk-rp-haskell:
-	@echo 'curl -F "type=blog" -F "index=blog" -F "index=xhsk-rp" -F "index=haskell" ' \
-		' -F "title=Haskell" -F "html=@blog/xhsk/Haskell.html" -F "summary=@blog/xhsk/Haskell.summary.html" ' \
-		$(URL)/$(BG)/html | ih $(TIME) $(PSK) | $(SHELL)
-	@echo "update xhsk-rp-haskell"
-xhsk-rp-docker:
-	@echo 'curl -F "type=blog" -F "index=blog" -F "index=xhsk-rp" -F "index=docker" ' \
-		' -F "title=Docker" -F "html=@blog/xhsk/Docker.html" -F "summary=@blog/xhsk/Docker.summary.html" ' \
-		$(URL)/$(BG)/html | ih $(TIME) $(PSK) | $(SHELL)
-	@echo "update xhsk-rp-docker"
-xhsk-rp-ci:
-	@echo 'curl -F "type=blog" -F "index=blog" -F "index=xhsk-rp" -F "index=ci" ' \
-		' -F "title=CI" -F "html=@blog/xhsk/CI.html" -F "summary=@blog/xhsk/CI.summary.html" ' \
-		$(URL)/$(BG)/html | ih $(TIME) $(PSK) | $(SHELL)
-	@echo "update xhsk-rp-ci"
-xhsk-rp-codeclimate:
-	@echo 'curl -F "type=blog" -F "index=blog" -F "index=xhsk-rp" -F "index=codeclimate" ' \
-		' -F "title=CodeClimate" -F "html=@blog/xhsk/CodeClimate.html" -F "summary=@blog/xhsk/CodeClimate.summary.html" ' \
-		$(URL)/$(BG)/html | ih $(TIME) $(PSK) | $(SHELL)
-	@echo "update xhsk-rp-codeclimate"
-
-haskell:
-	@echo update haskell
-literate-haskell:
-	@echo 'curl -F "type=blog" -F "index=blog" -F "index=haskell" -F "index=literate-haskell" ' \
-		' -F "title=LiterateHaskell" -F "html=@blog/haskell/LiterateHaskell.html" -F "summary=@blog/haskell/LiterateHaskell.summary.html" ' \
-		$(URL)/$(BG)/html | ih $(TIME) $(PSK) | $(SHELL)
-	@echo "update haskell :: literate-haskell"
-
-page: pageGlob pageLicense
-	@echo "update page"
-pageGlob: page/Glob.html
-	@cat page/Glob.html > tmp/page.glob.html
-	@echo 'curl -F "type=page" -F "index=page" -F "index=glob" -F "title=GLob" ' \
-		' -F "html=@tmp/page.glob.html" ' \
-		$(URL)/$(BG)/html | ih $(TIME) $(PSK) | $(SHELL)
-	@echo "update page/Glob.html"
-pageLicense:
-	@echo 'curl -F "type=page" -F "index=page" -F "index=LICENSE" -F "title=License" ' \
-		' -F "html=@page/LICENSE.html" '  \
-		$(URL)/$(BG)/html | ih $(TIME) $(PSK) | $(SHELL)
-
-home: topH navH bottomH mainH blogH
-	@echo "update home"
-topH: top.html
-	@cat top.html > tmp/home.top.html
-	@echo 'curl -F "type=home" -F "index=home" -F "index=page" -F "index=frame" ' \
-		' -F "index=top" -F "title=top" -F "html=@tmp/home.top.html" ' \
-		$(URL)/$(BG)/html | ih $(TIME) $(PSK) | $(SHELL)
-	@echo "update top.html"
-navH: nav.html
-	@cat nav.html > tmp/home.nav.html
-	@echo 'curl -F "type=home" -F "index=home" -F "index=page" -F "index=frame" ' \
-		' -F "index=nav" -F "title=nav" -F "html=@tmp/home.nav.html" ' \
-		$(URL)/$(BG)/html | ih $(TIME) $(PSK) | $(SHELL)
-	@echo "update nav.html"
-bottomH: bottom.html
-	@cat bottom.html > tmp/home.bottom.html
-	@echo 'curl -F "type=home" -F "index=home" -F "index=page" -F "index=frame" ' \
-		' -F "index=bottom" -F "title=bottom" -F "html=@tmp/home.bottom.html" ' \
-		$(URL)/$(BG)/html| ih $(TIME) $(PSK) | $(SHELL)
-	@echo "update bottom.html"
-mainH: home.html
-	@cat home.html > tmp/home.home.html
-	@echo 'curl -F "type=home" -F "index=home" -F "index=page" -F "index=main" ' \
-		' -F "title=Home" -F "html=@tmp/home.home.html" ' \
-		$(URL)/$(BG)/html | ih $(TIME) $(PSK) | $(SHELL)
-	@echo "update home.html"
-blogH: blog.html
-	@cat blog.html > tmp/home.blog.html
-	@echo 'curl -F "type=home" -F "index=home" -F "index=page" -F "index=blog" ' \
-		' -F "title=Blog" -F "html=@tmp/home.blog.html" ' \
-		$(URL)/$(BG)/html | ih $(TIME) $(PSK) | $(SHELL)
-	@echo "update blog.html"
-
-txt: css js src
-	@echo "update txt"
-
-css: frameC zenburnC
-	@echo "update css"
-frameC: css.frame.css
-	@java -jar yuicompressor.jar --type css --charset utf-8 css.frame.css> tmp/txt.frame.css
-	@echo 'curl -F "type=text/css" -F "index=css" -F "index=frame.css" ' \
-		' -F "txt=@tmp/txt.frame.css" ' \
-		$(URL)/$(BG)/txt | ih $(TIME) $(PSK) | $(SHELL)
-	@echo "update css.frame.css"
-zenburnC: zenburn.css
-	@java -jar yuicompressor.jar --type css --charset utf8 zenburn.css > tmp/txt.zenburn.css
-	@echo 'curl -F "type=text/css" -F "index=css" -F "index=zenburn.css" ' \
-		' -F "txt=@tmp/txt.zenburn.css" ' \
-		$(URL)/$(BG)/txt | ih $(TIME) $(PSK) | $(SHELL)
-	@echo "update zenburn.css"
-
-js: navJ blogJ hlJ
-	@echo "update js"
-navJ: nav.js
-	@java -jar yuicompressor.jar --type js --charset utf-8 nav.js > tmp/txt.nav.js
-	@echo 'curl -F "type=application/x-javascript" -F "index=nav.js" ' \
-		' -F "txt=@tmp/txt.nav.js" ' \
-		$(URL)/$(BG)/txt | ih $(TIME) $(PSK) | $(SHELL)
-	@echo "update nav.js"
-blogJ:blog.js
-	@java -jar yuicompressor.jar --type js --charset utf-8 blog.js > tmp/txt.blog.js
-	@echo 'curl -F "type=application/x-javascript" -F "index=blog.js" ' \
-		' -F "txt=@tmp/txt.blog.js" ' \
-		$(URL)/$(BG)/txt | ih $(TIME) $(PSK) | $(SHELL)
-	@echo "update blog.js"
-hlJ:
-	@echo 'curl -F "type=application/x-javascript" -F "index=javascript" ' \
-		-F "index=highlight.js" -F "txt=@highlight.pack.js" ' \
-		' $(URL)/$(BG)/txt | ih $(TIME) $(PSK) | $(SHELL)
-	@echo "update highlight.pack.js"
-
-src:
-	@echo "update source"
-
-bin: qinka.logo image
-	@echo "update bin"
-qinka.logo:
-	@echo 'curl -F "type=image/png" -F "index=qinka.logo" ' \
-		' -F "bin=@bin/logo.png" '  \
-		$(URL)/$(BG)/bin | ih $(TIME) $(PSK) | $(SHELL)
-
-image: latex glob-bishop fork-me
-	@echo "update image"
-latex:
-	@echo 'curl -F "type=image/svg+xml" -F "index=image" -F "index=LaTeX-logo.svg" ' \
-		' -F "bin=@bin/image/LaTeX-logo.svg" ' \
-		$(URL)/$(BG)/bin | ih $(TIME) $(PSK) | $(SHELL)
-	@echo 'curl -F "type=image/svg+xml" -F "index=image" -F "index=TeX-logo.svg" ' \
-		' -F "bin=@bin/image/TeX-logo.svg" ' \
-		$(URL)/$(BG)/bin | ih $(TIME) $(PSK) | $(SHELL)
-	@echo "update LaTeX and TeX logo"
-faviconI:
-	@echo 'curl -F "index=favicon.ico" -F "type=image/x-ico" ' \
-		' -F "file=@bin/icon/favicon.ico" ' \
-		$(URL)/$(BG)/static | ih $(TIME) $(PSK) | $(SHELL)
-glob-bishop:
-	@echo 'curl -F "type=image/png" -F "index=glob-bishop-mk1.png" ' \
-		' -F "bin=@bin/image/Glob-Bishop-mk1.png" ' \
-		$(URL)/$(BG)/bin | ih $(TIME) $(PSK) | $(SHELL)
-fork-me:
-	@echo 'curl -F "type=image/png" -F "index=fork.me.png" ' \
-		' -F "bin=@fork.me.png" ' \
-		$(URL)/$(BG)/bin | ih $(TIME) $(PSK) | $(SHELL)
+# SITE STYLE #
+## THEME of site # (via css)
+SITE_THEME=default
+## Code style  # (via css)
+SITE_CODE_STYLE=zenburn
 
 
 
-nav:
-	@echo 'curl -d "label=Home" -d "order=0" -d "ref=/" ' \
-		$(URL)/$(BG)/nav | ih $(TIME) $(PSK) | $(SHELL)
-	@echo "update nav Home"
-	@echo 'curl -d "label=Blog" -d "order=1" -d "ref=/blog" ' \
-		$(URL)/$(BG)/nav | ih $(TIME) $(PSK) | $(SHELL)
-	@echo "update nav Blog"
-	@echo 'curl -d "label=Glob" -d "order=2" -d "ref=/page/glob" ' \
-		$(URL)/$(BG)/nav | ih $(TIME) $(PSK) | $(SHELL)
-	@echo "update nav Glob(page)"
-	@echo 'curl -d "label=LICNESE" -d "order=100000" -d "ref=/page/LICENSE" ' \
-		$(URL)/$(BG)/nav | ih $(TIME) $(PSK) | $(SHELL)
-	@echo "update nav License(page)"
-	@echo "update nav"
+##########
+
+# all #
+all:
+	@$(ECHO) -e The updater of Qinka\'s Blog
 
 
-qry:
-	@echo "update qry"
+# clean #
+clean-tmp:
+	@$(ECHO) Clean ./ignore/tmp.*
+	@rm -f .ignore/tmp.*
+	@$(ECHO) DONE
 
-rootTxt:
-	@echo 'curl -F "index=root.txt" -F "type=text/plain" ' \
-		' -F "file=@root.txt" ' \
-		$(URL)/$(BG)/static | ih $(TIME) $(PSK) | $(SHELL)
-	@echo 'curl -F "index=jd_root.txt" -F "type=text/plain" ' \
-		' -F "file=@jd_root.txt" ' \
-		$(URL)/$(BG)/static | ih $(TIME) $(PSK) | $(SHELL)
+# time check #
+check-delay:
+	@$(ECHO)
+	@$(ECHO) check time
+	@$(ECHO) $(CURL_PATH) ' -X GET ' $(SITE_URL)/@/~servertime | $(SHELL) | $(TIMECHECK_PATH)
+	@$(ECHO)
 
-help:
-	@echo "usage:  make URL=[url] TIME=[time(fix)] PSK=[password]"
-	@echo ""
+# change site theme #
+change-site-theme:
+#	Get old one
+	OLD_THEME=$($(CURL_PATH) -X GET $(SITE_URL)/@/~site-theme)
+	@if [ "$OLD_THEME" = "{\"error\":\"not found\"}" ]; then OLD_THEME="";fi;
+	@$(ECHO) The old theme is $(OLD_THEME)
+	@$(ECHO) The new theme is $(SITE_THEME)
+	@if [ "$(OLD_THEME)" = "$(SITE_THEME)" ]; then $(ECHO) The new one is eq2 old one. DO NOTHING;\
+		else $(ECHO) $(CURL_PATH) $(CURL_DETAIL) ' -X PUT  -F "var='$(SITE_THEME) '" -F "type=query" -F "create-time=2016-01-01 00:00:00 UTC" -F "update-time='$(IH_NOW)'" -F "title=query" ' \
+		$(SITE_URL)/@/~site-theme ' '  | $(IH_PATH) -m -f$(IH_DELAY) -v $(PSK) | $(SHELL) ; fi
 
-list:
-	@echo 'curl -F "type=html" ' \
-		$(URL)/$(BG)/list | ih $(TIME) $(PSK) | $(SHELL)
+# change code style #
+change-code-style:
+#	Get old one
+	OLD_STYLE=$($(CURL_PATH) -X POST -H "HOW:get" $(SITE_URL)/q/code-style
+	@$(EHCO) The old style is $(OLD_STYLE)
+	@$(ECHO0 The new style is $(CODE_STYLE)
+	@if [ "$(OLD_STYLE)" = "$(CODE_STYLE)" ]; then
+		@$(ECHO) The new one is eq2 old one. DO NOTHING
+	else
+		@$(ECHO) $(CURL_PATH) $(CURL_DETAIL) ' -X POST -H "HOW:getput" -F"var='$(CODE_STYPE)'" ' $(SITE_URL)/q/code-style | $(SHELL)
+	fi
 
-sqltest:
-	@curl https://raw.githubusercontent.com/Qinka/Glob/master/database/function.sql \
-		> tmp/function.sql
-	@echo "SELECT drop_all_table('qinka','public');" > tmp/script2.sql
-	@curl https://raw.githubusercontent.com/Qinka/Glob/master/database/table.sql > \
-		tmp/table.sql
-	@echo 'curl -F "sql=@tmp/function.sql" ' \
-		$(URL)/$(BG)/sql | ih $(TIME) $(PSK) | $(SHELL)
-	@echo ""
-	@echo 'curl -F "sql=@tmp/script2.sql" -F "raw-way=raw-sql"' \
-		$(URL)/$(BG)/sql | ih $(TIME) $(PSK) | $(SHELL)
-	@echo ""
-	@echo 'curl -F "sql=@tmp/table.sql" ' \
-		$(URL)/$(BG)/sql | ih $(TIME) $(PSK) | $(SHELL)
 
-drop:
-	@echo "SELECT drop_all_table('postgres','public');" > tmp/script2.sql
-	@echo 'curl -F "sql=@tmp/script2.sql" -F "raw-way=raw-sql"' \
-		$(URL)/$(BG)/raw | ih $(TIME) $(PSK) | $(SHELL)
+# navs #
 
-upTable: tmp/table.sql
-	@echo 'curl -F "sql=@tmp/table.sql" ' \
-		$(URL)/$(BG)/raw | ih $(TIME) $(PSK) | $(SHELL)
+navs:
+	@$(ECHO) $(CURL_PATH) $(CURL_DETAIL) ' -X DELETE ' \
+		$(SITE_URL)/@/@nav ' ' | $(IH_PATH) -m -f$(IH_DELAY) -v $(PSK) | $(SHELL)
+	@$(ECHO) $(CURL_PATH) $(CURL_DETAIL) ' -X PUT -F "label=HOME" ' \
+		' -F "url=/" -F "order=1" ' \
+		$(SITE_URL)/@/@nav ' ' | $(IH_PATH) -m -f$(IH_DELAY) -v $(PSK) | $(SHELL)
+	@$(ECHO) $(CURL_PATH) $(CURL_DETAIL) ' -X PUT -F "label=BLOG" ' \
+		' -F "url=/blog" -F "order=2" ' \
+		$(SITE_URL)/@/@nav ' ' | $(IH_PATH) -m -f$(IH_DELAY) -v $(PSK) | $(SHELL)
+	@$(ECHO) $(CURL_PATH) $(CURL_DETAIL) ' -X PUT -F "label=LIVE" ' \
+		' -F "url=/live" -F "order=3" ' \
+		$(SITE_URL)/@/@nav ' ' | $(IH_PATH) -m -f$(IH_DELAY) -v $(PSK) | $(SHELL)
 
-tmp/table.sql:
-		@curl https://raw.githubusercontent.com/Qinka/Glob/master/database/table.sql > tmp/table.sql
-checkurl:
-	@echo curl $(URL) | $(SHELL) 
+
+# Add others here #
+
+/index.html: index.md
+	@pandoc -o .ignore/tmp.a55822426a5330c04625a41d264c190b.html index.md
+	@$(ECHO) $(CURL_PATH) $(CURL_DETAIL) ' -X PUT -F "type=post" ' \
+		' -F "create-time=2016-09-18 08:22:22.598657 UTC" ' \
+		' -F "update-time=$(IH_NOW)" ' \
+		' -F "title=Home" ' \
+		' -F "html=@.ignore/tmp.a55822426a5330c04625a41d264c190b.html" ' \
+		$(SITE_URL)/ ' ' | $(IH_PATH) -m -f$(IH_DELAY) -v $(PSK) | $(SHELL)
+
+/~@123nav: frame-nav.html
+	@$(ECHO) $(CURL_PATH) $(CURL_DETAIL) ' -X PUT -F "type=frame" ' \
+		' -F "create-time=2016-09-18 08:22:26.717836 UTC" ' \
+		' -F "update-time=$(IH_NOW)" ' \
+		' -F "title=null" ' \
+		' -F "html=@frame-nav.html" ' \
+		$(SITE_URL)$@ ' ' | $(IH_PATH) -m -f$(IH_DELAY) -v $(PSK) | $(SHELL)
+
+/~@123bottom: frame-bottom.html
+	@$(ECHO) $(CURL_PATH) $(CURL_DETAIL) ' -X PUT -F "type=frame" ' \
+		' -F "create-time=2016-09-18 08:22:38.971246 UTC" ' \
+		' -F "update-time=$(IH_NOW)" ' \
+		' -F "title=null" ' \
+		' -F "html=@frame-bottom.html" ' \
+		$(SITE_URL)$@ ' ' | $(IH_PATH) -m -f$(IH_DELAY) -v $(PSK) | $(SHELL)
+
+/~@123top: frame-top.html
+	@$(ECHO) $(CURL_PATH) $(CURL_DETAIL) ' -X PUT -F "type=frame" ' \
+		' -F "create-time=2016-09-18 08:24:23.590348 UTC" ' \
+		' -F "update-time=$(IH_NOW)" ' \
+		' -F "title=null" ' \
+		' -F "html=@frame-top.html" ' \
+		$(SITE_URL)$@ ' ' | $(IH_PATH) -m -f$(IH_DELAY) -v $(PSK) | $(SHELL)
+
+
+
+/script/frame.js: scrpit/frame.js
+	@$(ECHO) $(CURL_PATH) $(CURL_DETAIL) ' -X PUT -F "type=text" ' \
+		' -F "create-time=2016-09-18 13:13:08.704687 UTC" ' \
+		' -F "update-time=$(IH_NOW)" ' \
+		' -F "title=null" ' \
+		' -F "text=@scrpit/frame.js" ' \
+		' -F "mime=application/x-javascript" ' \
+		$(SITE_URL)$@ ' ' | $(IH_PATH) -m -f$(IH_DELAY) -v $(PSK) | $(SHELL)
+
+/script/qzone.share: scrpit/qzone.share.js
+	@$(ECHO) $(CURL_PATH) $(CURL_DETAIL) ' -X PUT -F "type=text" ' \
+		' -F "create-time=2016-09-18 13:13:22.813836 UTC" ' \
+		' -F "update-time=$(IH_NOW)" ' \
+		' -F "title=null" ' \
+		' -F "text=@scrpit/qzone.share.js" ' \
+		' -F "mime=application/x-javascript" ' \
+		$(SITE_URL)$@ ' ' | $(IH_PATH) -m -f$(IH_DELAY) -v $(PSK) | $(SHELL)
+
+/img/fork.me.png: fork.me.png
+	@$(ECHO) $(CURL_PATH) $(CURL_DETAIL) ' -X PUT -F "type=binary" ' \
+		' -F "create-time=2016-09-19 15:02:19.277747 UTC" ' \
+		' -F "update-time=$(IH_NOW)" ' \
+		' -F "title=null" ' \
+		' -F "binary=@fork.me.png" ' \
+		' -F "mime=image/x-png" ' \
+		$(SITE_URL)$@ ' ' | $(IH_PATH) -m -f$(IH_DELAY) -v $(PSK) | $(SHELL)
+
+/theme/default: style-sheet/default.css
+	@$(ECHO) $(CURL_PATH) $(CURL_DETAIL) ' -X PUT -F "type=text" ' \
+		' -F "create-time=2016-09-20 03:39:30.036851 UTC" ' \
+		' -F "update-time=$(IH_NOW)" ' \
+		' -F "title=null" ' \
+		' -F "text=@style-sheet/default.css" ' \
+		' -F "mime=text/css" ' \
+		$(SITE_URL)$@ ' ' | $(IH_PATH) -m -f$(IH_DELAY) -v $(PSK) | $(SHELL)
+
+/theme/usual: style-sheet/usual.css
+	@$(ECHO) $(CURL_PATH) $(CURL_DETAIL) ' -X PUT -F "type=text" ' \
+		' -F "create-time=2016-09-20 10:59:48.160734 UTC" ' \
+		' -F "update-time=$(IH_NOW)" ' \
+		' -F "title=null" ' \
+		' -F "text=@style-sheet/usual.css" ' \
+		' -F "mime=text/css" ' \
+		$(SITE_URL)$@ ' ' | $(IH_PATH) -m -f$(IH_DELAY) -v $(PSK) | $(SHELL)
+
+/blog: blog.html
+	@$(ECHO) $(CURL_PATH) $(CURL_DETAIL) ' -X PUT -F "type=post" ' \
+		' -F "create-time=2016-09-21 03:18:32.691317 UTC" ' \
+		' -F "update-time=$(IH_NOW)" ' \
+		' -F "title=Blog" ' \
+		' -F "html=@blog.html" ' \
+		$(SITE_URL)$@ ' ' | $(IH_PATH) -m -f$(IH_DELAY) -v $(PSK) | $(SHELL)
+
+/script/blog: scrpit/blog.js
+	@$(ECHO) $(CURL_PATH) $(CURL_DETAIL) ' -X PUT -F "type=text" ' \
+		' -F "create-time=2016-09-21 03:21:32.105387 UTC" ' \
+		' -F "update-time=$(IH_NOW)" ' \
+		' -F "title=null" ' \
+		' -F "text=@scrpit/blog.js" ' \
+		' -F "mime=application/x-javascript" ' \
+		$(SITE_URL)$@ ' ' | $(IH_PATH) -m -f$(IH_DELAY) -v $(PSK) | $(SHELL)
+
+/live: live.md
+	@pandoc -o .ignore/tmp.2de393058ba40f4c50d359c2975a1222.html live.md
+	@$(ECHO) $(CURL_PATH) $(CURL_DETAIL) ' -X PUT -F "type=post" ' \
+		' -F "create-time=2016-09-21 13:46:48.78231 UTC" ' \
+		' -F "update-time=$(IH_NOW)" ' \
+		' -F "title=直播写代码" ' \
+		' -F "html=@.ignore/tmp.2de393058ba40f4c50d359c2975a1222.html" ' \
+		$(SITE_URL)$@ ' ' | $(IH_PATH) -m -f$(IH_DELAY) -v $(PSK) | $(SHELL)
+
+
+/b/Uncharted-IV: post/Uncharted-IV.md
+	@pandoc -o .ignore/tmp.7f9e0a9c3e4ae4e19164ff11283e2f30.html post/Uncharted-IV.md
+	@$(ECHO) $(CURL_PATH) $(CURL_DETAIL) ' -X PUT -F "type=post" ' \
+		' -F "create-time=2016-10-14 13:12:16.879061 UTC" ' \
+		' -F "update-time=$(IH_NOW)" ' \
+		' -F "title=Uncharted-IV" ' \
+		' -F "html=@.ignore/tmp.7f9e0a9c3e4ae4e19164ff11283e2f30.html" ' \
+		' -F "tag=game" ' \
+		' -F "tag=blog" ' \
+		$(SITE_URL)$@ ' ' | $(IH_PATH) -m -f$(IH_DELAY) -v $(PSK) | $(SHELL)
