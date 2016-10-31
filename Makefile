@@ -37,7 +37,7 @@ clean:
 
 # TIME CHECK #
 check-delay:
-	@$(ECHO) $(CURL_PATH) ' -X GET ' $(SITE_URL)/@/~servertime | $(SHELL) | $(TIMECHECK_PATH)
+	@$(ECHO) $(CURL_PATH) ' -X GET -k ' $(SITE_URL)/@/~servertime | $(SHELL) | $(TIMECHECK_PATH)
 	
 
 
