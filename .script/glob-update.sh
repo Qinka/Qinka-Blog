@@ -32,7 +32,7 @@ if [ "$SUM_FILE" = "/dev/null" ]; then
 else
     echo -e $UPDATE_PATH: $MAIN_FILE $SUM_FILE
 fi
-TMP_FILE_NAME=$(echo $UPDATE_PATH | md5)
+TMP_FILE_NAME=$(echo $UPDATE_PATH | md5 | awk '{print $1}' )
 
 if ( [ "$UPDATE_TYPE" = "post" ] || [ "$UPDATE_TYPE" = "frame" ] ) && [ "${MAIN_FILE/*./}" != "html" ]; then
     READ_FILE=.ignore/tmp.$TMP_FILE_NAME.html
