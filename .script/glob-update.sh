@@ -53,9 +53,9 @@ echo -e "\t\t"\' -F \"update-time\=\$\(IH_NOW\)\" \' \\
 TITLE=$(cat $INFO_PATH | jq .title -r)
 echo -e "\t\t"\' -F \"title\=$TITLE\" \' \\
 if [ "$SUM_TYPE" = "text" ]; then
-	echo -e "\t\t"\' -F \"summary\"=$SUM_TEXT\" \' \\
+	echo -e "\t\t"\' -F \"summar=$SUM_TEXT\" \' \\
 elif [ "$SUM_FILE" != "/dev/null" ]; then
-	echo -e "\t\t"\' -F \"summary\"=@$READ_SUM_FILE\" \' \\
+	echo -e "\t\t"\' -F \"summary=@$READ_SUM_FILE\" \' \\
 fi
 
 if [ "$UPDATE_TYPE" = "post" ] || [ "$UPDATE_TYPE" = "frame" ]; then
