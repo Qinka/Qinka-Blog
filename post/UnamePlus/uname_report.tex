@@ -3,9 +3,13 @@
 \author{李约瀚（Qinka） \\ 14130140331 \\ qinka@live.com \\ qinka@qinka.pw}
 \title{Uname Language Report}
 
+\usepackage{listings}
+
+
 \begin{document}
 \maketitle
 
+初版，未整理
 \section{概述与版权声明}
 \label{sec:copyright}
 
@@ -82,6 +86,110 @@ Uname Normal Kernel 并不是一个最小的完备集合。原生的 Uname 才�
 坐标的三种变换方式将通过“IS”语句说明。绘图则是那唯一的语言。注释则稍有不同，对于 UMK，只有 C-like 的与 Haskell
 的 行注释格式。对于 UNK 与 UPK 将有块注释。
 
+\subsection{全局属性设置}
+\label{sec:intro:settings}
+
+全局属性设置属关于设置坐标三种变换的一类语句。但是将这一类语句抽象出来，我们定义一类全局设置语句。
+定义全局赋值操作符 “IS”或者按照正常区分大小写的“is”。 这个操作符的作用类似于等号。
+大致如下：
+\begin{lstlisting}
+  VARIABLE is VALUE;
+\end{lstlisting}
+
+\subsection{绘图}
+\label{sec:intro:draw}
+
+按照屏幕的坐标系来绘制给定的参数方程。设定好参数的变化范围与变化的步长。
+大致将这个语句分为 三部分，一部分是相当于运算符，一共有三组。
+
+第一组是 \verb|FOR|，为二元前缀运算符（或者称之为函数），接受两个参数，一个是变量名，另一个是对应的离散变化范围，也就是一个数组。
+返回的是一个 特殊$\lambda$ 表达式，变量的名称是确定的。
+
+第二组是 \verb|FROM...TO...STEP| 运算符，是通过指定指定 起、止与步长，来产生一个数组。
+
+第三组是 \verb|DRAW| 这是个二元中缀运算符，接受一个特殊的 $\lambda$ 表达式另一个更特殊的$\lambda$ 表达式作为参数。
+第一个参数“映射”一系列的参数的值，第二个参数是接受一个参数的实际的值，然后给出一个对应的坐标。
+最后返回的内容是不需要的，直接执行 IO 操作，绘制图形，或者传递给后端。再另行处理。
+
+\subsection{注释与常用函数}
+\label{sec:intro:commentNfuncs}
+
+注释与常用函数的话，就那样子了。没有什么可以多说的。
+
+\subsection{图形绘制与后端}
+\label{sec:intro:drawNbackend}
+
+解释的时候，渲染是使用 GTK 来进行。如果进行编译的话，或使用 Matlab 或者 LaTeX 作为后端。
+前端将分析结果转换成中间语言，然后通过后端或者渲染器渲染出来。
+
+\section{词法结构}
+\label{sec:lexicalStructure}
+
+关于词法，我们将使用 正规式或者称之为正则表达式来表示。其中 $\emptyset$ 表示空集,$\Sigma$表示全集，使用$\varepsilon$ 作为
+空字符串。| 表示或者的关系。 $r^*$ 表示 r 的星闭包，$r^+$ 表示 r 的正闭包。同时会使用常见的正则表达式的简化表达方式。
+
+\subsection{基本定义}
+\label{sec:lexical:basic}
+
+则有如下基本定义，其中斜体内容表示使用描述方式表示的内容。
+
+定义字母
+\begin{align*}
+ascLarge &\rightarrow A|B|...|Z \\
+ascSmall &\rightarrow a|b|...|z \\
+uniLarge &\rightarrow \mathit{the normal Unicode upper-case or title-case letter} \\
+uniSmall &\rightarrow \mathit{the normal Unicode lower-case letter} \\
+large &\rightarrow ascLarge|uniLarge \\
+small &\rightarrow ascSmall|uniSmall
+\end{align*}
+
+定义数字
+\begin{align*}
+ascDigit &\rightarrow 0|1|..|9
+uniDigit &\rightarrow \mathit{the normal Unicode decimal digit}
+digit &\rightarrow ascDigit|uniDigit
+octit &\rightarrow 0|1|..|7
+hexit &\rightarrow digit|A|..|F|a|..|f
+\end{align*}
+
+定义空白
+\begin{align*}
+whitechar &\rightarrow newline|\mathit{a vertical tab}|space|tab|\mathit{any Unicode whitespace} \\
+newline &\rightarrow \mathit{a carriage return}|\mathit{return linefeed}|\mathit{linefeed}|\mathit{formfeed} \\
+whitestuff &\rightarrow whitechar|comment|ncomment \\
+whitespace &\rightarrow whitestuff^+ \\
+space &\rightarrow \mathih{a space} \\
+tab &\rightarrow \mathit{a horizontal tab}
+\end{align*}
+
+定义 注释公共部分
+\begin{align*}
+dashes1 &\rightarrow --(-)^* \\
+dashes2 &\rightarrow //(/)^* \\
+opencom1 &\rightarrow {- \\
+closecom1 &\rightarrow -} \\
+opencom2 &\rightarrow /* \\
+closecom2 &\rightarrow */ \\
+graphic &\rightarrow small|large|symbol|digit|special|"|' \\
+any &\rightarrow graphic|space|tab \\
+ANY &\rightarrow graphic|whitechar \\
+ANYseq1 &\rightarrow ANY^*_{<ANY^*(opencom1|closecom1)>}
+ANYseq2 &\rightarrow ANY^*_{<ANY^*(opencom2|closecom2)>}
+\end{align*}
+
+UMK 的注释部分
+\begin{align*}
+comment &\rightarrow (dashes1|dashes2)\,any^*\,newline
+ncomment &\rightarrow \varepsilon
+\end{align*}
+
+UNK 与 UPK 的注释
+\begin{align*}
+comment &\rightarrow (dashes1|dashes2)\,any_{<symbol>}\,any^*\,newline
+ncomment1 &\rightarrow opencom1\,ANYseq1\,{ncomment1\,ANYseq1}\,closecom1
+ncomment2 &\rightarrow opencom2\,ANYseq2\,{ncomment2\,ANYseq2}\,closecom2
+ncomment &\rightarrow ncomment1|ncomment2
+\end{align*}
 
 
 \section{语言与语法扩展}
@@ -107,5 +215,13 @@ UNK 与 UPK 的注释是一样的，而与 UMK 不是一样的，则由二元关
 形成一个范畴。则 $Ext$ 集合对应的语法扩展组成的一个范畴的集合。
 
 % 包含两方面，扩展语言，与使得语言接近 编译原理原生的那个语言。也就是超集与子集。
+
+\subsection{注释扩展}
+\label{sec:langexte:comment}
+
+\subsection{大小写扩展}
+\label{sec:langexte:comment}
+
+
 
 \end{document}
