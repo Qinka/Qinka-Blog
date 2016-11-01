@@ -4,7 +4,7 @@
 \title{Uname Language Report}
 
 \usepackage{listings}
-
+\usepackage{amsmath}
 
 \begin{document}
 \maketitle
@@ -145,10 +145,10 @@ small &\rightarrow ascSmall|uniSmall
 
 定义数字
 \begin{align*}
-ascDigit &\rightarrow 0|1|..|9
-uniDigit &\rightarrow \mathit{the normal Unicode decimal digit}
-digit &\rightarrow ascDigit|uniDigit
-octit &\rightarrow 0|1|..|7
+ascDigit &\rightarrow 0|1|..|9 \\
+uniDigit &\rightarrow \mathit{the normal Unicode decimal digit} \\
+digit &\rightarrow ascDigit|uniDigit \\
+octit &\rightarrow 0|1|..|7 \\
 hexit &\rightarrow digit|A|..|F|a|..|f
 \end{align*}
 
@@ -158,7 +158,7 @@ whitechar &\rightarrow newline|\mathit{a vertical tab}|space|tab|\mathit{any Uni
 newline &\rightarrow \mathit{a carriage return}|\mathit{return linefeed}|\mathit{linefeed}|\mathit{formfeed} \\
 whitestuff &\rightarrow whitechar|comment|ncomment \\
 whitespace &\rightarrow whitestuff^+ \\
-space &\rightarrow \mathih{a space} \\
+space &\rightarrow \mathit{a space} \\
 tab &\rightarrow \mathit{a horizontal tab}
 \end{align*}
 
@@ -166,28 +166,28 @@ tab &\rightarrow \mathit{a horizontal tab}
 \begin{align*}
 dashes1 &\rightarrow --(-)^* \\
 dashes2 &\rightarrow //(/)^* \\
-opencom1 &\rightarrow {- \\
-closecom1 &\rightarrow -} \\
+opencom1 &\rightarrow \{- \\
+closecom1 &\rightarrow -\} \\
 opencom2 &\rightarrow /* \\
 closecom2 &\rightarrow */ \\
 graphic &\rightarrow small|large|symbol|digit|special|"|' \\
 any &\rightarrow graphic|space|tab \\
-ANY &\rightarrow graphic|whitechar \\
-ANYseq1 &\rightarrow ANY^*_{<ANY^*(opencom1|closecom1)>}
-ANYseq2 &\rightarrow ANY^*_{<ANY^*(opencom2|closecom2)>}
+%ANY &\rightarrow graphic|whitechar \\
+%ANYseq1 &\rightarrow ANY^*_{<ANY^*(opencom1|closecom1)>} \\
+%ANYseq2 &\rightarrow ANY^*_{<ANY^*(opencom2|closecom2)>}
 \end{align*}
 
 UMK 的注释部分
 \begin{align*}
-comment &\rightarrow (dashes1|dashes2)\,any^*\,newline
+comment &\rightarrow (dashes1|dashes2)\,any^*\,newline \\
 ncomment &\rightarrow \varepsilon
 \end{align*}
 
 UNK 与 UPK 的注释
 \begin{align*}
-comment &\rightarrow (dashes1|dashes2)\,any_{<symbol>}\,any^*\,newline
-ncomment1 &\rightarrow opencom1\,ANYseq1\,{ncomment1\,ANYseq1}\,closecom1
-ncomment2 &\rightarrow opencom2\,ANYseq2\,{ncomment2\,ANYseq2}\,closecom2
+comment &\rightarrow (dashes1|dashes2)\,any_{<symbol>}\,any^*\,newline \\
+ncomment1 &\rightarrow opencom1\,ANYseq1\,{ncomment1\,ANYseq1}\,closecom1 \\
+ncomment2 &\rightarrow opencom2\,ANYseq2\,{ncomment2\,ANYseq2}\,closecom2 \\
 ncomment &\rightarrow ncomment1|ncomment2
 \end{align*}
 

@@ -24,3 +24,4 @@ blog/test
 .markdown-preview.html
 \#*\#
 .\#*
+*.synctex.gz(busy)
