@@ -154,12 +154,12 @@ hexit &\rightarrow digit|A|..|F|a|..|f
 
 定义空白
 \begin{align*}
-whitechar &\rightarrow newline|\mathbf{a vertical tab}|space|tab|\mathbf{any Unicode whitespace} \\
-newline &\rightarrow \mathbf{a carriage return}|\mathbf{return\,linefeed}|\mathbf{linefeed}|\mathbf{formfeed} \\
+whitechar &\rightarrow newline|\mathbf{a\,vertical\,tab}|space|tab|\mathbf{any\,Unicode\,whitespace} \\
+newline &\rightarrow \mathbf{a\,carriage\,return}|\mathbf{return\,linefeed}|\mathbf{linefeed}|\mathbf{formfeed} \\
 whitestuff &\rightarrow whitechar|comment|ncomment \\
 whitespace &\rightarrow whitestuff^+ \\
-space &\rightarrow \mathbf{a space} \\
-tab &\rightarrow \mathbf{a horizontal tab}
+space &\rightarrow \mathbf{a\,space} \\
+tab &\rightarrow \mathbf{a\,horizontal\,tab}
 \end{align*}
 
 定义 注释公共部分
@@ -172,9 +172,9 @@ opencom2 &\rightarrow /* \\
 closecom2 &\rightarrow */ \\
 graphic &\rightarrow small|large|symbol|digit|special|"|' \\
 any &\rightarrow graphic|space|tab \\
-%ANY &\rightarrow graphic|whitechar \\
-%ANYseq1 &\rightarrow ANY^*_{<ANY^*(opencom1|closecom1)>} \\
-%ANYseq2 &\rightarrow ANY^*_{<ANY^*(opencom2|closecom2)>}
+ANY &\rightarrow graphic|whitechar \\
+ANYseq1 &\rightarrow ANY^*_{<ANY^*(opencom1|closecom1)>} \\
+ANYseq2 &\rightarrow ANY^*_{<ANY^*(opencom2|closecom2)>}
 \end{align*}
 
 UMK 的注释部分
@@ -191,6 +191,51 @@ ncomment2 &\rightarrow opencom2\,ANYseq2\,{ncomment2\,ANYseq2}\,closecom2 \\
 ncomment &\rightarrow ncomment1|ncomment2
 \end{align*}
 
+定义符号
+\begin{align*}
+ascSymbol &\rightarrow !|\#|\$|\%|\&|*|+|.|/|<|=|>|?|@|\textbackslash|\^|\||-|~|: \\
+uniSymbol &\rightarrow \mathbf{any\,Unicode\,symbol\,or\,punctuation} \\
+special &\rightarrow (|)|,|;|[|]|`|\{|\} \\
+symbol &\rightarrow ascSymbol|uniSymbol|{<special|\_|'|">} \\
+\end{align*}
+
+\subsection{定义字面量与类型}
+\label{sec:lexical:lit}
+定义数的表示
+\begin{align*}
+decimal &\rightarrow digit^+ \\
+octal &\rightarrow octit^+ \\
+hexadecimal &\rightarrow hexit^+ \\
+exponent &\rightarrow (e|E)(+|-)?decimal\\
+float &\rightarrow decimal(.decimal|.)?(exponent)? \\
+      &| .decimal(exponent)?
+\end{align*}
+
+定义元组的表示方式
+\begin{align*}
+tupleItem &\rightarrow float|namedLambda \\
+tuple &\rightarrow '()' \\
+      &| '('tupleItem')' \\
+      &| '('tupleItem,tupleItem')' \\
+      &| '('tupleItem,tupleItem,tupleItem')' \\
+      &| '('tupleItem,tupleItem,tupleItem,tupleItem')' \\
+      &| '('tupleItem,tupleItem,tupleItem,tupleItem,tupleItem')' \\
+      &| '('tupleItem,tupleItem,tupleItem,tupleItem,tupleItem,tupleItem')' 
+\end{align*}
+
+\subsection{层次}
+\label{sec:lexical:layout}
+对于 UMK 来说，只有一个层次，而且用过分号分割。
+
+\section{语法与表达式}
+\label{sec:exp}
+这一部分是关于Uname 的语法部分与表达式的部分。我们使用生成式表示这一部分的语法与表达式结构。
+Uname 的语法与表达式也相对来说比较简单。
+
+程序的定义
+\begin{align*}
+    
+\end{align*}
 
 \section{语言与语法扩展}
 \label{sec:languageextension}
@@ -220,7 +265,7 @@ UNK 与 UPK 的注释是一样的，而与 UMK 不是一样的，则由二元关
 \label{sec:langexte:comment}
 
 \subsection{大小写扩展}
-\label{sec:langexte:comment}
+\label{sec:langexte:lettercase}
 
 
 
