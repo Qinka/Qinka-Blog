@@ -131,14 +131,14 @@ Uname Normal Kernel 并不是一个最小的完备集合。原生的 Uname 才�
 \subsection{基本定义}
 \label{sec:lexical:basic}
 
-则有如下基本定义，其中斜体内容表示使用描述方式表示的内容。
+则有如下基本定义，其中粗体内容表示使用描述方式表示的内容。
 
 定义字母
 \begin{align*}
 ascLarge &\rightarrow A|B|...|Z \\
 ascSmall &\rightarrow a|b|...|z \\
-uniLarge &\rightarrow \mathit{the normal Unicode upper-case or title-case letter} \\
-uniSmall &\rightarrow \mathit{the normal Unicode lower-case letter} \\
+uniLarge &\rightarrow \mathbf{the\,normal\,Unicode\,upper-case\,or\,title-case letter} \\
+uniSmall &\rightarrow \mathbf{the\,normal\,Unicode\,lower-case\,letter} \\
 large &\rightarrow ascLarge|uniLarge \\
 small &\rightarrow ascSmall|uniSmall
 \end{align*}
@@ -146,7 +146,7 @@ small &\rightarrow ascSmall|uniSmall
 定义数字
 \begin{align*}
 ascDigit &\rightarrow 0|1|..|9 \\
-uniDigit &\rightarrow \mathit{the normal Unicode decimal digit} \\
+uniDigit &\rightarrow \mathbf{the\,normal\,Unicode\,decimal\,digit} \\
 digit &\rightarrow ascDigit|uniDigit \\
 octit &\rightarrow 0|1|..|7 \\
 hexit &\rightarrow digit|A|..|F|a|..|f
@@ -154,12 +154,12 @@ hexit &\rightarrow digit|A|..|F|a|..|f
 
 定义空白
 \begin{align*}
-whitechar &\rightarrow newline|\mathit{a vertical tab}|space|tab|\mathit{any Unicode whitespace} \\
-newline &\rightarrow \mathit{a carriage return}|\mathit{return linefeed}|\mathit{linefeed}|\mathit{formfeed} \\
+whitechar &\rightarrow newline|\mathbf{a vertical tab}|space|tab|\mathbf{any Unicode whitespace} \\
+newline &\rightarrow \mathbf{a carriage return}|\mathbf{return\,linefeed}|\mathbf{linefeed}|\mathbf{formfeed} \\
 whitestuff &\rightarrow whitechar|comment|ncomment \\
 whitespace &\rightarrow whitestuff^+ \\
-space &\rightarrow \mathit{a space} \\
-tab &\rightarrow \mathit{a horizontal tab}
+space &\rightarrow \mathbf{a space} \\
+tab &\rightarrow \mathbf{a horizontal tab}
 \end{align*}
 
 定义 注释公共部分

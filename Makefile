@@ -87,3 +87,20 @@ check-delay:
 		' -F "tag=unameplus" ' \
 		' -F "tag=draw" ' \
 		$(SITE_URL)$@ ' ' | $(IH_PATH) -m -f$(IH_DELAY) -v $(PSK) | $(SHELL)
+
+/b/unameplus/uname-report/html: post/UnamePlus/uname_report.tex post/UnamePlus/uname_report.sum.md
+	@pandoc -o .ignore/tmp.1b338bbf0ba5b3fc6c3a3a87c8ab49db.html --mathml post/UnamePlus/uname_report.tex
+	@pandoc -o .ignore/tmp.1b338bbf0ba5b3fc6c3a3a87c8ab49db.sum.html post/UnamePlus/uname_report.sum.md
+	@$(ECHO) $(CURL_PATH) $(CURL_DETAIL) ' -X PUT -F "type=post" ' \
+		' -F "create-time=2016-11-01 15:14:59.238048 UTC" ' \
+		' -F "update-time=$(IH_NOW)" ' \
+		' -F "title=Uname Language Report" ' \
+		' -F "summary=@.ignore/tmp.1b338bbf0ba5b3fc6c3a3a87c8ab49db.sum.html" ' \
+		' -F "html=@.ignore/tmp.1b338bbf0ba5b3fc6c3a3a87c8ab49db.html" ' \
+		' -F "tag=blog" ' \
+		' -F "tag=compile" ' \
+		' -F "tag=uanme" ' \
+		' -F "tag=language report" ' \
+		' -F "tag=html" ' \
+		' -F "tag=draw" ' \
+		$(SITE_URL)$@ ' ' | $(IH_PATH) -m -f$(IH_DELAY) -v $(PSK) | $(SHELL)

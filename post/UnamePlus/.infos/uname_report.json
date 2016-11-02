@@ -1,5 +1,5 @@
 {
-	"type":"port",
+	"type":"post",
 	"path":"/b/unameplus/uname-report/html",
 	"title":"Uname Language Report",
 	"tags":["blog",
