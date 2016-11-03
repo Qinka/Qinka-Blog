@@ -2,8 +2,7 @@
     "type":"binary",
     "path":"/img/gtk-hello-world-2.png",
     "title":"Gtk Hello world Figure 2",
-    "tags":[ "blog",
-	     "img","image",
+    "tags":[ "img","image",
 	     "gtk"
 	     ]
 }

@@ -107,6 +107,6 @@ ghc -o hw hw.hs
 
 最后能看见一个神奇的小窗口，然后点击那个 “Hi” 。然后的话，就会出现一个弹窗，显示 “Hi”，然后关闭那个弹窗。
 
-![gtk-hello-world-1](/img/gtk-hello-world-1.png)
+![创建的主窗口](/img/gtk-hello-world-1.png)
 
-![gtk-hello-world-2](/img/gtk-hello-world-2.png)
+![弹出的MessageDialog](/img/gtk-hello-world-2.png)

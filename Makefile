@@ -111,7 +111,6 @@ check-delay:
 		' -F "update-time=$(IH_NOW)" ' \
 		' -F "title=Gtk Hello world Figure 1" ' \
 		' -F "binary=@post/UnamePlus/img/gtk-hello-world-1.png" ' \
-		' -F "tag=blog" ' \
 		' -F "tag=img" ' \
 		' -F "tag=image" ' \
 		' -F "tag=gtk" ' \
@@ -123,7 +122,6 @@ check-delay:
 		' -F "update-time=$(IH_NOW)" ' \
 		' -F "title=Gtk Hello world Figure 2" ' \
 		' -F "binary=@post/UnamePlus/img/gtk-hello-world-2.png" ' \
-		' -F "tag=blog" ' \
 		' -F "tag=img" ' \
 		' -F "tag=image" ' \
 		' -F "tag=gtk" ' \
