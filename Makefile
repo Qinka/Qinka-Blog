@@ -149,7 +149,7 @@ navs:
 
 
 
-/script/frame.js: scrpit/frame.js
+/script/frame.js: script/frame.js
 	@$(ECHO) $(CURL_PATH) $(CURL_DETAIL) ' -X PUT -F "type=text" ' \
 		' -F "create-time=2016-09-18 13:13:08.704687 UTC" ' \
 		' -F "update-time=$(IH_NOW)" ' \
@@ -158,7 +158,7 @@ navs:
 		' -F "mime=application/x-javascript" ' \
 		$(SITE_URL)$@ ' ' | $(IH_PATH) -m -f$(IH_DELAY) -v $(PSK) | $(SHELL)
 
-/script/qzone.share: scrpit/qzone.share.js
+/script/qzone.share: script/qzone.share.js
 	@$(ECHO) $(CURL_PATH) $(CURL_DETAIL) ' -X PUT -F "type=text" ' \
 		' -F "create-time=2016-09-18 13:13:22.813836 UTC" ' \
 		' -F "update-time=$(IH_NOW)" ' \
@@ -202,7 +202,7 @@ navs:
 		' -F "html=@blog.html" ' \
 		$(SITE_URL)$@ ' ' | $(IH_PATH) -m -f$(IH_DELAY) -v $(PSK) | $(SHELL)
 
-/script/blog: scrpit/blog.js
+/script/blog: script/blog.js
 	@$(ECHO) $(CURL_PATH) $(CURL_DETAIL) ' -X PUT -F "type=text" ' \
 		' -F "create-time=2016-09-21 03:21:32.105387 UTC" ' \
 		' -F "update-time=$(IH_NOW)" ' \
@@ -218,18 +218,4 @@ navs:
 		' -F "update-time=$(IH_NOW)" ' \
 		' -F "title=直播写代码" ' \
 		' -F "html=@.ignore/tmp.2de393058ba40f4c50d359c2975a1222.html" ' \
-		$(SITE_URL)$@ ' ' | $(IH_PATH) -m -f$(IH_DELAY) -v $(PSK) | $(SHELL)
-
-
-/b/Uncharted-IV: post/Uncharted-IV.md
-	@pandoc -o .ignore/tmp.7f9e0a9c3e4ae4e19164ff11283e2f30.html post/Uncharted-IV.md
-	@pandoc -o .ignore/tmp.7f9e0a9c3e4ae4e19164ff11283e2f30.summary.html post/Uncharted-IV.summary.md
-	@$(ECHO) $(CURL_PATH) $(CURL_DETAIL) ' -X PUT -F "type=post" ' \
-		' -F "create-time=2016-10-14 13:12:16.879061 UTC" ' \
-		' -F "update-time=$(IH_NOW)" ' \
-		' -F "title=Uncharted-IV" ' \
-		' -F "summary=@.ignore/tmp.7f9e0a9c3e4ae4e19164ff11283e2f30.summary.html" ' \
-		' -F "html=@.ignore/tmp.7f9e0a9c3e4ae4e19164ff11283e2f30.html" ' \
-		' -F "tag=game" ' \
-		' -F "tag=blog" ' \
 		$(SITE_URL)$@ ' ' | $(IH_PATH) -m -f$(IH_DELAY) -v $(PSK) | $(SHELL)
