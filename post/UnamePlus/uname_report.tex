@@ -264,6 +264,20 @@ UNK 与 UPK 的注释是一样的，而与 UMK 不是一样的，则由二元关
 \subsection{注释扩展}
 \label{sec:langexte:comment}
 
+在注释方面，UMK、UNK、与UPK 的注释策略大致不再相同。 UMK 的注释仅支持 C 或者是 Haskell 那样的 单行注释。而 UNK 相比UMK 则多了
+C 或者是 Haskell 那样的 块注释。 然后 UPK 则将支持类似于 Hadock 那样的的注释扩展。
+
+则有一个语法扩展的子集: CommentMini, CommentNormal, CommentDock, NoCommentMini, NoCommentNormal, NoCommentDock。
+其中对于每个 CommentX 或者 NoCommentX 对应着一个变换。
+
+\begin{tabular}{|c|c|c|c|c|c|}
+  \hline 作用 & CommentMini & CommentNormal & CommentDock & NoCommentMini & NoCommentNormal & NoCommentDock \\
+  \hline UMK & 默认开启 & 开启块注释 & 开启类Haddock注释 & 无意义（报警告）& 默认开启 & 默认开启 \\ 
+  \hline UNK & 仅允许行注释 & 默认开启 & 开启类Haddock注释 & 无意义（报警告） & 关闭块注释 & 默认开启 \\
+  \hline UPK & 仅允许行注释 & 仅允许行注释与块注释 & 默认开启 & 无意义（报警告） & 关闭块注释与注释扩展 & 关闭注释扩展 \\
+  \hline 
+\end{tabular}
+
 \subsection{大小写扩展}
 \label{sec:langexte:lettercase}
 
