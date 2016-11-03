@@ -72,9 +72,9 @@ check-delay:
 	@$(ECHO) $(CURL_PATH) ' -X GET ' $(SITE_URL)/@/~servertime | $(SHELL) | $(TIMECHECK_PATH)
 	@$(ECHO)
 
-/b/unameplus/1: post/UnamePlus/1.md post/UnamePlus/1.sum.md
-	@pandoc -o .ignore/tmp.267e28dad3c2b5b5738e4ac25ed7aa1a.html post/UnamePlus/1.md
-	@pandoc -o .ignore/tmp.267e28dad3c2b5b5738e4ac25ed7aa1a.sum.html post/UnamePlus/1.sum.md
+/b/unameplus/begin-of-begin: post/UnamePlus/begin-of-begin.md post/UnamePlus/begin-of-begin.sum.md
+	@pandoc -o .ignore/tmp.267e28dad3c2b5b5738e4ac25ed7aa1a.html post/UnamePlus/begin-of-begin.md
+	@pandoc -o .ignore/tmp.267e28dad3c2b5b5738e4ac25ed7aa1a.sum.html post/UnamePlus/begin-of-begin.sum.md
 	@$(ECHO) $(CURL_PATH) $(CURL_DETAIL) ' -X PUT -F "type=post" ' \
 		' -F "create-time=2016-11-01 14:01:15.433868 UTC" ' \
 		' -F "update-time=$(IH_NOW)" ' \
@@ -103,4 +103,44 @@ check-delay:
 		' -F "tag=language report" ' \
 		' -F "tag=html" ' \
 		' -F "tag=draw" ' \
+		$(SITE_URL)$@ ' ' | $(IH_PATH) -m -f$(IH_DELAY) -v $(PSK) | $(SHELL)
+
+/img/gtk-hello-world-1.png: post/UnamePlus/img/gtk-hello-world-1.png
+	@$(ECHO) $(CURL_PATH) $(CURL_DETAIL) ' -X PUT -F "type=binary" ' \
+		' -F "create-time=2016-11-03 12:47:39.228606 UTC" ' \
+		' -F "update-time=$(IH_NOW)" ' \
+		' -F "title=Gtk Hello world Figure 1" ' \
+		' -F "binary=@post/UnamePlus/img/gtk-hello-world-1.png" ' \
+		' -F "tag=blog" ' \
+		' -F "tag=img" ' \
+		' -F "tag=image" ' \
+		' -F "tag=gtk" ' \
+		$(SITE_URL)$@ ' ' | $(IH_PATH) -m -f$(IH_DELAY) -v $(PSK) | $(SHELL)
+
+/img/gtk-hello-world-2.png: post/UnamePlus/img/gtk-hello-world-2.png
+	@$(ECHO) $(CURL_PATH) $(CURL_DETAIL) ' -X PUT -F "type=binary" ' \
+		' -F "create-time=2016-11-03 12:48:26.744377 UTC" ' \
+		' -F "update-time=$(IH_NOW)" ' \
+		' -F "title=Gtk Hello world Figure 2" ' \
+		' -F "binary=@post/UnamePlus/img/gtk-hello-world-2.png" ' \
+		' -F "tag=blog" ' \
+		' -F "tag=img" ' \
+		' -F "tag=image" ' \
+		' -F "tag=gtk" ' \
+		$(SITE_URL)$@ ' ' | $(IH_PATH) -m -f$(IH_DELAY) -v $(PSK) | $(SHELL)
+
+/b/unameplus/with-haskell-gi/1: post/UnamePlus/with-haskell-gi-1.md post/UnamePlus/with-haskell-gi-1.sum.md
+	@pandoc -o .ignore/tmp.807ccbc6f1416c7bcaa068a8d9bf8751.html post/UnamePlus/with-haskell-gi-1.md
+	@pandoc -o .ignore/tmp.807ccbc6f1416c7bcaa068a8d9bf8751.sum.html post/UnamePlus/with-haskell-gi-1.sum.md
+	@$(ECHO) $(CURL_PATH) $(CURL_DETAIL) ' -X PUT -F "type=post" ' \
+		' -F "create-time=2016-11-03 13:09:13.141761 UTC" ' \
+		' -F "update-time=$(IH_NOW)" ' \
+		' -F "title=Haskell 与 GTK 之一" ' \
+		' -F "summary=@.ignore/tmp.807ccbc6f1416c7bcaa068a8d9bf8751.sum.html" ' \
+		' -F "html=@.ignore/tmp.807ccbc6f1416c7bcaa068a8d9bf8751.html" ' \
+		' -F "tag=blog" ' \
+		' -F "tag=gtk" ' \
+		' -F "tag=haskell-gi" ' \
+		' -F "tag=draw" ' \
+		' -F "tag=uname" ' \
 		$(SITE_URL)$@ ' ' | $(IH_PATH) -m -f$(IH_DELAY) -v $(PSK) | $(SHELL)
