@@ -36,7 +36,7 @@ haskell-gi 使用到了 GHC-8.0 新的 语法扩展特性 OverloadedLabels 特�
 
 然后导入
 
-```
+```haskell
 import GI.Gtk hiding (init,main)
 import qualified GI.Gtk as Gtk
 import Data.GI.Base
@@ -44,20 +44,20 @@ import Data.GI.Base
 
 然后
 
-```
+```haskell
 main :: IO ()
 main = do
 ```
 
 然后初始化 GTK
 
-```
+```haskell
   Gtk.init Nothing
 ```
 
 初始化GTK 之后需要新建一个窗口，当然，如果你愿意，可以建两个。
 
-```
+```haskell
   win <- new Window [ #title := "Hello World!" ]
   on win #destory mainQuit
 ```
@@ -66,34 +66,34 @@ main = do
 
 然后创建一个按钮
 
-```
+```haskell
   button <- new Button [ #label := "Hi!" ]
 ```
 
 然后我们再创建一个 Dialog，并让当这个Dialog 销毁时，退出程序。
 
-```
+```haskell
   msg <- new MessageDialog [ #text := "Hi" ]
   on msg #destory mainQuit
 ```
 
 然后将的 Dialog 注册到 按钮的点击时间上面
 
-```
+```haskell
   on button #clicked $ do
     dialogRun msg
 ```
 
 然后将 按钮 注册到窗体，并显示窗体
 
-```
+```haskell
   #add win button
   #showAll win
 ```
 
 最后再启动
 
-```
+```haskell
   Gtk.main
 ```
 

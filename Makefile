@@ -142,3 +142,18 @@ check-delay:
 		' -F "tag=draw" ' \
 		' -F "tag=uname" ' \
 		$(SITE_URL)$@ ' ' | $(IH_PATH) -m -f$(IH_DELAY) -v $(PSK) | $(SHELL)
+
+/b/unameplus/intermediate-code: post/UnamePlus/intermediate-code.md post/UnamePlus/intermediate-code.sum.md
+	@pandoc -o .ignore/tmp.d05d3bce625e538f2f77ecd03d985408.html post/UnamePlus/intermediate-code.md
+	@pandoc -o .ignore/tmp.d05d3bce625e538f2f77ecd03d985408.sum.html post/UnamePlus/intermediate-code.sum.md
+	@$(ECHO) $(CURL_PATH) $(CURL_DETAIL) ' -X PUT -F "type=post" ' \
+		' -F "create-time=2016-11-04 03:07:51.957547 UTC" ' \
+		' -F "update-time=$(IH_NOW)" ' \
+		' -F "title=中间代码的设计与思考" ' \
+		' -F "summary=@.ignore/tmp.d05d3bce625e538f2f77ecd03d985408.sum.html" ' \
+		' -F "html=@.ignore/tmp.d05d3bce625e538f2f77ecd03d985408.html" ' \
+		' -F "tag=blog" ' \
+		' -F "tag=intermediate code" ' \
+		' -F "tag=uname" ' \
+		' -F "tag=compile" ' \
+		$(SITE_URL)$@ ' ' | $(IH_PATH) -m -f$(IH_DELAY) -v $(PSK) | $(SHELL)
