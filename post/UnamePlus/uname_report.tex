@@ -234,7 +234,67 @@ Uname 的语法与表达式也相对来说比较简单。
 
 程序的定义
 \begin{align*}
-    
+prog &\rightarrow ((langOpt|stmt|cmt)newline)^*stmt\,newline((stmt|cmt)newline)^* \\
+langOpt &\rightarrow "\{-\#"(space)?"LANGUAGE"\,space\,langOptItem(space)?"\#-\}" \\
+stmt &\rightarrow settingStmt|drawStmt \\
+cmt &\rightarrow comment|nocomment
+\end{align*}
+
+设置语句的定义
+\begin{align*}
+settingStmt &\rightarrow svarid\,isKW\,expLit
+\end{align*}
+
+绘制语句的定义
+\begin{align*}
+drawStmt &\rightarrow forExp\,listExp\,drawExp \\
+forExp &\rightarrow forKW\,lmdVarId \\
+listExp &\rightarrow fromKW\,expLit\,toKW\,expLit\,stepKW\,expLit \\
+forKW\,lmdVarId,listExp,drawExp &\rightarrow forKW\,lmdVarId\,listExp\,drawKW\,expLmd
+\end{align*}
+
+关键字定义
+\begin{align*}
+isKW &\rightarrow \mathit{upper-lower\,uknown\,word\,is} \\
+forKW &\rightarrow \mathit{upper-lower\,uknown\,word\,for} \\
+fromKW &\rightarrow \mathit{upper-lower\,uknown\,word\,from} \\
+toKW &\rightarrow \mathit{upper-lower\,uknown\,word\,to} \\
+stepKW &\rightarrow \mathit{upper-lower\,uknown\,word\,step} \\
+drawKW &\rightarrow \mathit{upper-lower\,uknown\,word\,draw}
+\end{align*}
+
+函数名定义
+\begin{align*}
+funcName &\rightarrow \mathit{the\,supported\,functions'\,names}
+\end{align*}
+
+非 $\lambda$ 表达式定义
+\begin{align*}
+expLit &\rightarrow expLitPS \\
+expLitPS &\rightarrow expLitPS (+|-) expLitMD \\
+expLitMD &\rightarrow expLitMD (\times|\div) expLitFunc | expLitFunc \\
+expLitFunc &\rightarrow funcName'('expLitB')' | expLitB \\
+expLitB &\rightarrow '('expLitPS')' | -expLitB | lit
+\end{align*}
+
+常量的定义
+\begin{align*}
+lit &\rightarrow float|decimal|octal|hexadecimal|tuple
+\end{align*}
+其中 tuple 是不能出现命名$\lambda$表达式的。
+
+命名$\lambda$表达式
+\begin{align*}
+expLmd &\rightarrow expLmdPS \\
+expLmdPS &\rightarrow expLmdPS (+|-) expLmdMD \\
+expLmdMD &\rightarrow expLmdMD (\times|\div) expLmdFunc | expLmdFunc \\
+expLmdFunc &\rightarrow funcName'('expLmdB')' | expLmdB \\
+expLmdB &\rightarrow '('expLmdPS')' | -expLmdB | expLit | lmdVarId
+\end{align*}
+
+程序语法扩展定义
+\begin{align*}
+langOptItem &\rightarrow \mathit{defined\,language\,extension\,name}
 \end{align*}
 
 \section{语言与语法扩展}
@@ -270,7 +330,7 @@ C 或者是 Haskell 那样的 块注释。 然后 UPK 则将支持类似于 Hado
 则有一个语法扩展的子集: CommentMini, CommentNormal, CommentDock, NoCommentMini, NoCommentNormal, NoCommentDock。
 其中对于每个 CommentX 或者 NoCommentX 对应着一个变换。
 
-\begin{tabular}{|c|c|c|c|c|c|}
+\begin{tabular}{|c|c|c|c|c|c|c|}
   \hline 作用 & CommentMini & CommentNormal & CommentDock & NoCommentMini & NoCommentNormal & NoCommentDock \\
   \hline UMK & 默认开启 & 开启块注释 & 开启类Haddock注释 & 无意义（报警告）& 默认开启 & 默认开启 \\ 
   \hline UNK & 仅允许行注释 & 默认开启 & 开启类Haddock注释 & 无意义（报警告） & 关闭块注释 & 默认开启 \\
