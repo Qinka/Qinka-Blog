@@ -1,0 +1,11 @@
+{
+    "type":"post",
+    "title":"中间代码的解析器的实现",
+    "path":"/b/unameplus/intermediate-code-parser",
+    "tags":[ "intermediate code",
+	     "blog",
+	     "parsec",
+	     "uname",
+	     "compile"
+	     ]
+}

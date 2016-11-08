@@ -157,3 +157,19 @@ check-delay:
 		' -F "tag=uname" ' \
 		' -F "tag=compile" ' \
 		$(SITE_URL)$@ ' ' | $(IH_PATH) -m -f$(IH_DELAY) -v $(PSK) | $(SHELL)
+
+/b/unameplus/intermediate-code-parser: post/UnamePlus/intermediate-code-parser.md post/UnamePlus/intermediate-code-parser.sum.md
+	@pandoc -o .ignore/tmp.af47f2d77981eec2b0b4981c08bed02e.html post/UnamePlus/intermediate-code-parser.md
+	@pandoc -o .ignore/tmp.af47f2d77981eec2b0b4981c08bed02e.sum.html post/UnamePlus/intermediate-code-parser.sum.md
+	@$(ECHO) $(CURL_PATH) $(CURL_DETAIL) ' -X PUT -F "type=post" ' \
+		' -F "create-time=2016-11-08 13:20:37.638901 UTC" ' \
+		' -F "update-time=$(IH_NOW)" ' \
+		' -F "title=中间代码的解析器的实现" ' \
+		' -F "summary=@.ignore/tmp.af47f2d77981eec2b0b4981c08bed02e.sum.html" ' \
+		' -F "html=@.ignore/tmp.af47f2d77981eec2b0b4981c08bed02e.html" ' \
+		' -F "tag=intermediate code" ' \
+		' -F "tag=blog" ' \
+		' -F "tag=parsec" ' \
+		' -F "tag=uname" ' \
+		' -F "tag=compile" ' \
+		$(SITE_URL)$@ ' ' | $(IH_PATH) -m -f$(IH_DELAY) -v $(PSK) | $(SHELL)
