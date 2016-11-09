@@ -80,20 +80,19 @@ change-site-theme:
 	@$(ECHO) The old theme is $(OLD_THEME)
 	@$(ECHO) The new theme is $(SITE_THEME)
 	@if [ "$(OLD_THEME)" = "$(SITE_THEME)" ]; then $(ECHO) The new one is eq2 old one. DO NOTHING;\
-		else $(ECHO) $(CURL_PATH) $(CURL_DETAIL) ' -X PUT  -F "var='$(SITE_THEME) '" -F "type=query" -F "create-time=2016-01-01 00:00:00 UTC" -F "update-time='$(IH_NOW)'" -F "title=query" ' \
+		else $(ECHO) $(CURL_PATH) $(CURL_DETAIL) ' -X PUT -F "var='$(SITE_THEME) '" -F "type=query" -F "create-time=2016-01-01 00:00:00 UTC" -F "update-time='$(IH_NOW)'" -F "title=query" ' \
 		$(SITE_URL)/@/~site-theme ' '  | $(IH_PATH) -m -f$(IH_DELAY) -v $(PSK) | $(SHELL) ; fi
 
 # change code style #
 change-code-style:
 #	Get old one
-	OLD_STYLE=$($(CURL_PATH) -X POST -H "HOW:get" $(SITE_URL)/q/code-style
-	@$(EHCO) The old style is $(OLD_STYLE)
-	@$(ECHO0 The new style is $(CODE_STYLE)
-	@if [ "$(OLD_STYLE)" = "$(CODE_STYLE)" ]; then
-		@$(ECHO) The new one is eq2 old one. DO NOTHING
-	else
-		@$(ECHO) $(CURL_PATH) $(CURL_DETAIL) ' -X POST -H "HOW:getput" -F"var='$(CODE_STYPE)'" ' $(SITE_URL)/q/code-style | $(SHELL)
-	fi
+	OLD_STYLE=$($(CURL_PATH) -X GET $(SITE_URL)/@/~code-style)
+	@if [ "$OLD_TSTYLE" = "{\"error\":\"not found\"}" ]; then OLD_STYLE="";fi;
+	@$(ECHO) The old style is $(OLD_STYLE)
+	@$(ECHO) The new style is $(CODE_STYLE)
+	@if [ "$(OLD_STYLE)" = "$(CODE_STYLE)" ]; then $(ECHO) The new one is eq2 old one. DO NOTHING;\
+		else $(ECHO) $(CURL_PATH) $(CURL_DETAIL) ' -X PUT -F "var='$(CODE_STYLE) '" -F "type=query" -F "create-time=2016-01-01 00:00:00 UTC" -F "update-time='$(IH_NOW)'" -F "title=query" ' \
+		$(SITE_URL)/@/~highlight ' ' | $(IH_PATH) -m -f$(IH_DELAY) -v $(PSK)  | $(SHELL) ; fi
 
 
 # navs #
@@ -154,7 +153,7 @@ navs:
 		' -F "create-time=2016-09-18 13:13:08.704687 UTC" ' \
 		' -F "update-time=$(IH_NOW)" ' \
 		' -F "title=null" ' \
-		' -F "text=@scrpit/frame.js" ' \
+		' -F "text=@script/frame.js" ' \
 		' -F "mime=application/x-javascript" ' \
 		$(SITE_URL)$@ ' ' | $(IH_PATH) -m -f$(IH_DELAY) -v $(PSK) | $(SHELL)
 
@@ -218,4 +217,13 @@ navs:
 		' -F "update-time=$(IH_NOW)" ' \
 		' -F "title=直播写代码" ' \
 		' -F "html=@.ignore/tmp.2de393058ba40f4c50d359c2975a1222.html" ' \
+		$(SITE_URL)$@ ' ' | $(IH_PATH) -m -f$(IH_DELAY) -v $(PSK) | $(SHELL)
+
+/highlight/default: style-sheet/code.glob.css
+	@$(ECHO) $(CURL_PATH) $(CURL_DETAIL) ' -X PUT -F "type=text" ' \
+		' -F "create-time=2016-11-09 04:25:15.557555 UTC" ' \
+		' -F "update-time=$(IH_NOW)" ' \
+		' -F "title=null" ' \
+		' -F "text=@style-sheet/code.glob.css" ' \
+		' -F "mime=text/css" ' \
 		$(SITE_URL)$@ ' ' | $(IH_PATH) -m -f$(IH_DELAY) -v $(PSK) | $(SHELL)

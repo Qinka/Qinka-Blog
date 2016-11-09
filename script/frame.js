@@ -7,6 +7,7 @@ globQuery('/@/~site-theme',themeflash,null,null);
 globQuery('/@/~name',bottomflash,0,null);
 globQuery('/@/~version',bottomflash,1,null);
 globQuery('/@/~buildinfo',bottomflash,2,null);
+globQuery('/@/~highlight',highlight,null,null);
 /* for daovoice */
 (function(i,s,o,g,r,a,m){i["DaoVoiceObject"]=r;i[r]=i[r]||function(){(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)})(window,document,"script","//widget.daovoice.io/widget/06e2aa9f.js","daovoice");
 //dv(window,document,"script","//widget.daovoice.io/widget/06e2aa9f.js","daovoice");
@@ -97,4 +98,17 @@ function globQuery(url,func,n,body)
       func(req.responseText,n);
   };
   req.send(body);
+}
+
+
+// for highlight
+function highlight(style,i)
+{
+  if(style == null) return;
+  var file = document.createElement('link');
+  file.setAttribute('rel','stylesheet');
+  file.setAttribute('type','text/css');
+  file.setAttribute('href','/highlight/'+style);
+  if(typeof file != 'undefined')
+    document.getElementsByTagName('head')[0].appendChild(file);
 }
