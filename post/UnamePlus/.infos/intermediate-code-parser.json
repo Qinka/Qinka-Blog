@@ -6,6 +6,7 @@
 	     "blog",
 	     "parsec",
 	     "uname",
-	     "compile"
+	     "compile",
+	     "highlight"
 	     ]
 }

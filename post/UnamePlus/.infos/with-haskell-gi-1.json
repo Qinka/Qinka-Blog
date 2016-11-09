@@ -6,5 +6,7 @@
 	     "gtk",
 	     "haskell-gi",
 	     "draw",
-	     "uname"]
+	     "uname",
+		 "highlight"
+		 ]
 }
