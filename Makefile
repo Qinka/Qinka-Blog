@@ -103,6 +103,7 @@ check-delay:
 		' -F "tag=language report" ' \
 		' -F "tag=html" ' \
 		' -F "tag=draw" ' \
+		' -F "tag=highlight" '\
 		$(SITE_URL)$@ ' ' | $(IH_PATH) -m -f$(IH_DELAY) -v $(PSK) | $(SHELL)
 
 /img/gtk-hello-world-1.png: post/UnamePlus/img/gtk-hello-world-1.png
@@ -141,6 +142,7 @@ check-delay:
 		' -F "tag=haskell-gi" ' \
 		' -F "tag=draw" ' \
 		' -F "tag=uname" ' \
+		' -F "tag=highlight" '\
 		$(SITE_URL)$@ ' ' | $(IH_PATH) -m -f$(IH_DELAY) -v $(PSK) | $(SHELL)
 
 /b/unameplus/intermediate-code: post/UnamePlus/intermediate-code.md post/UnamePlus/intermediate-code.sum.md
@@ -172,4 +174,5 @@ check-delay:
 		' -F "tag=parsec" ' \
 		' -F "tag=uname" ' \
 		' -F "tag=compile" ' \
+		' -F "tag=highlight" '\
 		$(SITE_URL)$@ ' ' | $(IH_PATH) -m -f$(IH_DELAY) -v $(PSK) | $(SHELL)
