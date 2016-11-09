@@ -36,7 +36,13 @@ td.sourceCode
 	padding-left: 5px;
 }
 
-pre, code
+code
+{
+    color: #cccccc;
+    background-color: #181818;
+}
+
+pre, pre code
 {
 	color: #cccccc;
 	background-color: #303030;
