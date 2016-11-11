@@ -227,3 +227,11 @@ navs:
 		' -F "text=@style-sheet/code.glob.css" ' \
 		' -F "mime=text/css" ' \
 		$(SITE_URL)$@ ' ' | $(IH_PATH) -m -f$(IH_DELAY) -v $(PSK) | $(SHELL)
+
+/favicon.ico: glob.ico
+	@$(ECHO) $(CURL_PATH) $(CURL_DETAIL) ' -X PUT -F "type=binary" ' \
+		' -F "create-time=2016-11-11 02:49:12.866898 UTC" ' \
+		' -F "update-time=$(IH_NOW)" ' \
+		' -F "title=null" ' \
+		' -F "binary=@glob.ico" ' \
+		$(SITE_URL)$@ ' ' | $(IH_PATH) -m -f$(IH_DELAY) -v $(PSK) | $(SHELL)
