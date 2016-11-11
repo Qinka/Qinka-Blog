@@ -72,3 +72,18 @@ check-delay:
 	@$(ECHO) $(CURL_PATH) ' -X GET ' $(SITE_URL)/@/~servertime | $(SHELL) | $(TIMECHECK_PATH)
 	@$(ECHO)
 
+
+/b/haskell/extension/overloadedlabels: post/haskell/overloadedlabels.md post/haskell/overloadedlabels.sum.md
+	@pandoc -o .ignore/tmp.e4aada246d01c82b17d89abe708830ad.html post/haskell/overloadedlabels.md
+	@pandoc -o .ignore/tmp.e4aada246d01c82b17d89abe708830ad.sum.html post/haskell/overloadedlabels.sum.md
+	@$(ECHO) $(CURL_PATH) $(CURL_DETAIL) ' -X PUT -F "type=post" ' \
+		' -F "create-time=2016-11-11 15:12:59.5164345 UTC" ' \
+		' -F "update-time=$(IH_NOW)" ' \
+		' -F "title=Haskell OverloadedLables Extension" ' \
+		' -F "summary=@.ignore/tmp.e4aada246d01c82b17d89abe708830ad.sum.html" ' \
+		' -F "html=@.ignore/tmp.e4aada246d01c82b17d89abe708830ad.html" ' \
+		' -F "tag=highlight" ' \
+		' -F "tag=blog" ' \
+		' -F "tag=haskell" ' \
+		' -F "tag=haskell language extensions" ' \
+		$(SITE_URL)$@ ' ' | $(IH_PATH) -m -f$(IH_DELAY) -v $(PSK) | $(SHELL)
