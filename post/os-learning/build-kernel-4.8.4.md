@@ -6,7 +6,7 @@
 
 在编译内核之前，先要安装一些工具。我们在编译的时候需要这些工具。
 
-```
+```bash
 sudo apt install git fakeroot build-essential ncurses-dev libssl-dev bc kernel-package
 ```
 
@@ -20,7 +20,7 @@ sudo apt install git fakeroot build-essential ncurses-dev libssl-dev bc kernel-p
 
 首先先打扫一下屋子，毛主席说的好，打扫好屋子在请客。
 
-```
+```bash
 cd linux-4.8.4
 cp /boot/config-$(uname -r) .config
 make menuconfig
@@ -32,7 +32,7 @@ make-kpkg clean
 
 使用 fakeroot(1) 编译，走后会得到 一个deb 的安装包，执行编译
 
-```
+```bash
 fakeroot make-kpkg --initrd  kernel_image kernel_headers
 ```
 
@@ -42,7 +42,7 @@ fakeroot make-kpkg --initrd  kernel_image kernel_headers
 
 安装的话，在目录 `~`下会多出两个 debian包，用 dpkg(1) 安装他们
 
-```
+```bash
 sudo dpkg -i linux-headers-4.8.1-SOME.NAME_amd64.deb
 sudo dpkg -i linux-image-4.8.4-SOME.NAME_amd64.deb
 ```
@@ -53,7 +53,7 @@ sudo dpkg -i linux-image-4.8.4-SOME.NAME_amd64.deb
 
 完事，开次开机后使用如下命令（之一）查看内核版本是否正确
 
-```
+```bash
 uname -a
 uname -r
 uname -mrs
@@ -61,7 +61,7 @@ uname -mrs
 
 通过如下命令查看是否有模块炸了
 
-```
+```bash
 dmesg | egrep -i --color 'error|critical|failed'
 ```
 

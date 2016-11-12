@@ -38,7 +38,7 @@ clean:
 # TIME CHECK #
 check-delay:
 	@$(ECHO) $(CURL_PATH) ' -X GET ' $(SITE_URL)/@/~servertime | $(SHELL) | $(TIMECHECK_PATH)
-	
+
 
 
 /b/os-learning/build-4.8.4: post/os-learning/build-kernel-4.8.4.md post/os-learning/build-kernel-4.8.4.summary.md
@@ -52,6 +52,7 @@ check-delay:
 		' -F "html=@.ignore/tmp.08f10a7aedc4b573892a2223576e84f0.html" ' \
 		' -F "tag=blog" ' \
 		' -F "tag=os" ' \
+		' -F "tag=highlight" ' \
 		' -F "tag=operating system" ' \
 		' -F "tag=os-learning" ' \
 		' -F "tag=operating system learning" ' \
