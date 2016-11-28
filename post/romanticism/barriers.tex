@@ -1,14 +1,24 @@
 \documentclass{ctexart}
-\author{李约瀚 \\John Lee \\ 14130140331 \\ qinka@live.com \\ qinka@qinka.pw}
+\author{李约瀚 \\John Lee \\ 14130140331 \\ qinka@live.com \\ qinka@qinka.pw
+    \thanks{这一个版本，由于时间缘故，没有写完全部的内容，同时会有许多错误，也没有认真校对。而目录的存在只是希望“提高”利用率。}}
 \title{技术壁垒到底挡住了什么}
 
 \usepackage{cite}
 \usepackage{hyperref}
 
 \usepackage{listings}
+\lstset{breaklines,numbers=left,frame=l}
 
 \begin{document}
+    \thispagestyle{empty}
     \maketitle
+    \newpage
+    \setcounter{page}{0}
+    \renewcommand\thepage{\roman{page}}
+    \tableofcontents
+    \newpage
+    \setcounter{page}{0}
+    \renewcommand\thepage{\arabic{page}}
     
     现在实际上有许许多多的壁垒充斥的我们的世界。贸易壁垒与技术壁垒是两类常见的壁垒。
     并不是所有的壁垒都是好的。壁垒是用来保护的，但是有时则会适得其反。
@@ -176,14 +186,51 @@
     另一方面，没有版权费用的问题。在闭源软件消亡之前，开源软件的版权的最大的作用就是防止被“疯狗”咬伤。当然这也是很多人为什么会将版权贡献给社区或者基金组织。
     
     对于闭源软件，我也会大胆的预测会消亡。虽然很多开源社区中，包括一些大牛级别的任务，大家都会认为：和写那一万七千行文档人一样，那些认为闭源是万恶之源的人，也不应该存在与世界上。
-    这句话没错，但是曾有一针见血的指出：核心在服务。什么核心在服务？那就是软件，换句话说，盈利的不是软件本身，而是它带来的服务。所以说
+    这句话没错，但是曾有一针见血的指出：核心在服务。什么核心在服务？那就是软件，换句话说，盈利的不是软件本身，而是它带来的服务。
+    这也是通常将软件产业算作第三产业的缘故，而不是说因为码农的身份算作第一产业，或者以工业品的身份被算作第二产业。
+    而软件的源码出于封闭状态出了能保护一部分的所谓的知识产权与短暂的一己之私之外
+    \footnote{这里一般不考虑特殊领域，比如核发射系统中的软件}
+    没有带来什么好处。而开源的软件则相对来说，更有价值。一方面，开源的软件的代码是像全世界开放的，软件构造的好与坏
+    一目了然。而其中所具有的漏洞与后台，也自然会被人们看见。然后开放源代码，意味着移植更加容易。对于闭源软件来说，
+    代码在少数人手里掌握着，一直到怎样的平台，也有他们说了算。最后带有商业利益或者歧视那些人总不会满足人们的需要。
+    而开源软件的相对随意性，更能激发使用的对软件的贡献，不仅是在移植方面。而开源软件的相对开放度，使得
+    软件一天发布的次数可以大幅度增加，例如曾经 Linus 一天之内发布 Linux 的新版本的次数多达十几次\cite{TCnTB.{2014}.{cn}}
+    而一般的、传统的、闭源的的软件项目几乎不能做到这样一点，因为阻挡这一行为的壁垒几乎包含了文档，代码，与版权协议等
+    各种壁垒。而由于那样的受众与测试者的特点，用户很难接受这样频率的变化。但是从 Eric S. Raymond 的开发
+    \textbf{fetchemail(1)} 的经历来说\footnote{这个是 Eric S. Raymond 在接手\textbf{popemail(1)} 项目之后，实践 Linus 在开发 Linux 中的一些方法中的经历，在实践这样的方法是，这个程序已经重新命名为 “fetchemail”。}\cite{TCnTB.{2014}.{cn}}，
+    将相对关心这一项目，用户群体设置为 一类特殊的人群，用于新功能测试，当然源码发行。
+    啰嗦了这么多，重点是在与版权的壁垒，导致的一系列的不同。至于大教堂与集市的区别，笔者还是认为，去仔细阅读并深刻体会
+    伟大的黑客与开元文化传播者 Eric S. Raymond 的《大教堂与集市》 一书。
+    
+    % 临时部分
+    \subsection{其他壁垒}
+    由于某些原因，无法写的太多，壁垒的种类还是有不少，其中就包括开发的姿势。大教堂与集市的区别，其中不少一部分都在于
+    构建的种种的壁垒，者中壁垒是从开发者到公司组曾构建，我想如果详细讲下去或许可以出一本书了。而笔者本人有与个人经历的缘故
+    对于这写壁垒，也仅仅是从众多的软件开发与软件工程的书籍，资料，文献，历史等内容来讨论。甚至有些内容会出自于
+    一些或有所考证或凭空而来的笑话，故事，甚至以个人的遐想。但是世界之大，无法保证“不真实性”，所以这些内容如有雷同，
+    仅属巧合。
+    
+    %临时部分
+    \section{未完成的}
+    这一部分称之为未完成的，原因之一是由于收到作业收缴的截止日期的限制，未能写完所有的想内容，这个文章会继续写下去，然后
+    放到自己的博客上面。然后原因之二是即便完成的版本也会有这样的一个标题，革命尚未成功，同志任需努力。
+    文中也一定会有一些错误，受制于笔者的水平。
+    
+    对于还想说的部分，壁垒的种类还是有不少。另一方面，想表达的内容中有“如何在/利用集市，避免壁垒”这一类的内容。
+    还希望通过 macOS 与 Linux 的对比的例子，分析开源与闭源结合更有效的躲避壁垒与陷阱，同时分析 Linux 的“过度开源”的
+    好处与坏处。最后希望讨论一些 微软现在的战略，微软倾向于开源的行为与目前开发中存在的问题，以 WSL\footnote{Windows Subsystem for Linux} 中 缺失 “time\_create"系统调用 这一 BUG 的前前后后。
+    
+    
+    
+    
     
 
     \begin{thebibliography}{0}
-        \bibitem{taoup.{2012}.{cn}}《Unix编程艺术》，【美】 Eric\space S.\spaceRaymond 著,姜宏，何源，蔡晓俊\space 译，电子工业出版社，2012，北京。
+        \bibitem{taoup.{2012}.{cn}}《Unix编程艺术》，【美】 Eric\space S.\space Raymond 著,姜宏，何源，蔡晓俊\space 译，电子工业出版社，2012，北京。
         \bibitem{unix-history} History\space and \space Timeline, The\space Open\space GROUP,
           \href{http://www.unix.org/what_is_unix/history_timeline.html}{www.unix.org/what\_is\_unix/history\_timeline}.
         \bibitem{TAoRC.{2012}.{cn}} 《编写可读代码的艺术》，Dustin\space Boswell\&Trevor\space Foucher 著，尹哲，郑秀雯\space 译，机械工业出版社，2012，北京。
+        \bibitem{TCnTB.{2014}.{cn}} 《大教堂与集市》，【美】雷蒙德(Eric\space S.\space Raymond)著，卫剑钒\space 译，机械工业出版社，2014北京。
     \end{thebibliography}
         
 \end{document}
