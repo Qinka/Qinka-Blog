@@ -29,7 +29,7 @@ ECHO=echo
 
 # SITE #
 ## URL of site
-SITE_URL=https://blog.prerls.qinka.pw
+SITE_URL=https://pre.blog.qinka.pw
 
 ## Password of Admin
 PSK=921 924 # This just an example
@@ -100,13 +100,13 @@ change-code-style:
 navs:
 	@$(ECHO) $(CURL_PATH) $(CURL_DETAIL) ' -X DELETE ' \
 		$(SITE_URL)/@/@nav ' ' | $(IH_PATH) -m -f$(IH_DELAY) -v $(PSK) | $(SHELL)
-	@$(ECHO) $(CURL_PATH) $(CURL_DETAIL) ' -X PUT -F "label=HOME" ' \
+	@$(ECHO) $(CURL_PATH) $(CURL_DETAIL) ' -X PUT -F "label=^H HOME" ' \
 		' -F "url=/" -F "order=1" ' \
 		$(SITE_URL)/@/@nav ' ' | $(IH_PATH) -m -f$(IH_DELAY) -v $(PSK) | $(SHELL)
-	@$(ECHO) $(CURL_PATH) $(CURL_DETAIL) ' -X PUT -F "label=BLOG" ' \
+	@$(ECHO) $(CURL_PATH) $(CURL_DETAIL) ' -X PUT -F "label=^B BLOG" ' \
 		' -F "url=/blog" -F "order=2" ' \
 		$(SITE_URL)/@/@nav ' ' | $(IH_PATH) -m -f$(IH_DELAY) -v $(PSK) | $(SHELL)
-	@$(ECHO) $(CURL_PATH) $(CURL_DETAIL) ' -X PUT -F "label=LIVE" ' \
+	@$(ECHO) $(CURL_PATH) $(CURL_DETAIL) ' -X PUT -F "label=^L LIVE" ' \
 		' -F "url=/live" -F "order=3" ' \
 		$(SITE_URL)/@/@nav ' ' | $(IH_PATH) -m -f$(IH_DELAY) -v $(PSK) | $(SHELL)
 
@@ -181,6 +181,15 @@ navs:
 		' -F "update-time=$(IH_NOW)" ' \
 		' -F "title=null" ' \
 		' -F "text=@style-sheet/default.css" ' \
+		' -F "mime=text/css" ' \
+		$(SITE_URL)$@ ' ' | $(IH_PATH) -m -f$(IH_DELAY) -v $(PSK) | $(SHELL)
+
+/theme/hack: style-sheet/hack.css
+	@$(ECHO) $(CURL_PATH) $(CURL_DETAIL) ' -X PUT -F "type=text" ' \
+		' -F "create-time=2016-09-20 10:59:48.160734 UTC" ' \
+		' -F "update-time=$(IH_NOW)" ' \
+		' -F "title=null" ' \
+		' -F "text=@style-sheet/hack.css" ' \
 		' -F "mime=text/css" ' \
 		$(SITE_URL)$@ ' ' | $(IH_PATH) -m -f$(IH_DELAY) -v $(PSK) | $(SHELL)
 

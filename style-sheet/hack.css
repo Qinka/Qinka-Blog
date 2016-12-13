@@ -1,0 +1,272 @@
+/* new version for hacking theme */
+
+html{
+    font-family: monospace;
+}
+
+/* for background */
+body{
+    background: #151515;
+    width: 90%;
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+/* for head */
+.title .qinka,
+.title .qinka code{
+    font-size: 100%;
+    background: #151515;
+    color: #b5e853;
+}
+.title{
+    color: #b5e853;
+    font-size: 20px;
+}
+.title pre{
+    margin-top: 0;
+    margin-bottom: 0;
+}
+.title pre,
+.title pre code{
+    font-family: monospace;
+    background: #151515;
+    color: #b5e853;
+}
+.title hr{
+    /*border: 1 dashed;*/
+    border: 1.4px dashed #b5e853;
+}
+.list{
+    margin-top: 0;
+    margin-bottom: 0;
+}
+.list ul{
+    margin: 0 0 0 0;
+    list-style: none;
+}
+.list ul li:before{
+    content: '* ';    
+}
+.how{
+}
+.how p{
+    margin: 0 0 0 0;
+}
+.list pre code ul{
+    margin-top: 0px;
+    margin-bottom: 0px;
+    line-height: 50%;
+}
+
+.title table tbody,
+.title table tbody tr,
+.title table tbody tr th,
+.title table tbody tr th div,
+.title table tbody tr th div ul{
+    vertical-align: top;
+    text-align: left;
+}
+
+.head{
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 90%;
+    z-index: 9999;
+    text-align: left;
+    margin: 0 auto;
+    background:#e0e0e0;
+    opacity:0.7;
+}
+.head .head-p{
+    background:#222222;
+    color: #eeeeee;
+    font-size: 25px;
+    margin-left:3em;
+    margin-right:3em;
+}
+.head .head-p p{
+    margin-top: 10px;
+    margin-bottom: 10px;
+    margin-left:3em;
+    font-style: bold;
+}
+
+
+/* for nav */
+nav{
+    background: #ffffff;
+    margin: 0px auto;
+    position:fixed;
+    right:10%;
+    bottom:0px;
+    z-index:9999;
+    text-align: left;
+    font-family: monospace;
+    opacity: 0.7;
+}
+nav ul{
+    float:right;
+    padding-right: 40px;
+}
+nav ul li{
+    margin: 0 0 0 5px;
+    padding-bottom:0px;
+    float:left;
+    list-style:none;
+}
+nav ul li a{
+    color: #b5e853;
+    background: #202020;
+    font-weight: bold;
+    font-size: 25px;
+    text-align: center;
+    
+    padding: 8px 12px 8px 12px;
+    text-decoration: none;
+}
+nav ul li a:link,
+nav ul li a:visited{
+    color:  #eeeeee;
+}
+nav ul li a:hover,
+nav ul li a:focus{
+    color: #eeeeee;
+}  
+
+
+
+
+/* old part */
+
+
+/* default.css */
+/*  for summary */
+summary{
+    border:none;
+    text-align:center;
+}
+/* for fork me */
+.gitforkme{
+    position: absolute;
+    top: 0;
+    right: 0;
+    border: 0;
+}
+
+/* for link */
+a:link{
+    color: #1e90ff;
+    text-decoration: none;
+}
+a:visited{
+    color:  #6495ed;
+    text-decoration: none;
+}
+    
+body{
+    background: #151515;
+    color:#ededed;
+}
+/*
+
+.title a span{
+    color: #b5e853;
+}
+.title a:link,
+.title a:visited,
+.title a:hover,
+.title a:active{
+    text-decoration:none;
+}
+.title a span:before{
+  content: "./ ";
+}
+*/
+/* hx */
+body h1,
+body h1 a:link,
+body h1 a:visited{
+    color: #b5e853;
+}
+body h1:before{
+    content: '# ./';
+}
+
+body h2,
+body h2 a:link,
+body h2 a:visited{
+    color: #b5e853;
+}
+body h2:before{
+    content: '$ ./';
+}
+
+body h3,
+body h3 a:link,
+body h3 a:visited{
+    color: #b5e853;
+}
+body h3:before{
+    content: '> ./';
+}
+
+body summary{
+    text-align:left;
+}
+    
+/* for different screen */
+/* for moble */
+
+@media only screen and (max-width:760px),(min-device-width:760px) and (max-device-with:1024px){
+    /*
+    .title{
+	color:#FFF4B1;
+	margin-left: -50px;
+    }*/
+    
+    .gitforkme{
+	width: 30%;
+    }
+    footer{
+	color:#FFDDFF;
+    }
+    .title .qinka,
+    .title .qinka code{
+	font-size: 60%;
+	line-height: 60%;
+    }
+    
+}
+ */
+ /* for small scren */
+ /*
+@media only screen and (min-width:760px) and (max-width:1000px){
+    nav{
+	margin-left: 15px;
+    }
+    .title{
+	color:#FFDDEE;
+    }
+    footer{
+	color:#FF48B1;
+    }
+    .gitforkme{
+	width: 12%;
+    }
+}
+*/
+ /* for normal(large) screen */
+ /*
+@media only screen and (min-width:1000px){
+    body{
+	width:80%;
+    }
+    .gitforkme{
+	width:auto;
+    }
+    footer{
+	color: #da70d6;
+    }
+}*/
