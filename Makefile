@@ -29,9 +29,9 @@ ECHO=echo
 
 # SITE #
 ## URL of site
-SITE_URL=http://localhost:3000
+SITE_URL=https://blog.qinka.pw
 ## Password of Admin
-PSK=921 924 # This just an example
+PSK=`cat .ignore/psk` # This just an example
 ## The path of glob-ih
 IH_PATH=glob-ih
 ## THe time delay between server and glob-ih
