@@ -1,56 +1,63 @@
 /* new version for hacking theme */
 
+/* setting the font family of the hole pages */
 html{
     font-family: monospace;
 }
 
-/* for background */
+/* for setting the some basic settings of the page */
 body{
-    background: #151515;
-    width: 90%;
-    max-width: 800px;
-    margin: 0 auto;
+    background: #151515; /* set the background to a dark color */
+    width: 90%;          /* width will be 90% of the full width */
+    max-width: 800px;    /* the max of the width is 90% */
+    margin: 0 auto;      /* site the margin */
+    color:#ededed;
 }
 
 /* for head */
 .title .qinka,
-.title .qinka code{
-    font-size: 100%;
+.title .qinka code{      /* setting the font size, bg-color, the font-color */
+    font-size: 100%;     /* for the 'img for Qinka                          */
     background: #151515;
     color: #b5e853;
 }
-.title{
+
+.title{                  /* setting the color and foot size of the title part */
     color: #b5e853;
     font-size: 20px;
 }
-.title pre{
+
+.title pre{              /* setting closer between the lines in <pre> */
     margin-top: 0;
     margin-bottom: 0;
 }
-.title pre,
+
+.title pre,              /* setting the color and bg-color of the <pre><code> in the title */
 .title pre code{
     font-family: monospace;
     background: #151515;
     color: #b5e853;
 }
-.title hr{
-    /*border: 1 dashed;*/
+
+.title hr{               /* setting the style of the <hr> elements */
     border: 1.4px dashed #b5e853;
 }
-.list{
+
+.list{                   /* setting closer between the lines in .list */
     margin-top: 0;
     margin-bottom: 0;
 }
-.list ul{
+
+.list ul{                /* setting closer between the lines of the list */
     margin: 0 0 0 0;
     list-style: none;
 }
-.list ul li:before{
+
+.list ul li:before{      /* bullets of the list to '*' */
     content: '* ';    
 }
-.how{
-}
-.how p{
+
+.how p{                  /* setting closer between the lines */
     margin: 0 0 0 0;
 }
 .list pre code ul{
@@ -59,7 +66,7 @@ body{
     line-height: 50%;
 }
 
-.title table tbody,
+.title table tbody,                  
 .title table tbody tr,
 .title table tbody tr th,
 .title table tbody tr th div,
@@ -138,9 +145,6 @@ nav ul li a:focus{
 
 
 
-/* old part */
-
-
 /* default.css */
 /*  for summary */
 summary{
@@ -155,7 +159,7 @@ summary{
     border: 0;
 }
 
-/* for link */
+/* for link */                /***** MIGHT NEED CHANGED  ******/
 a:link{
     color: #1e90ff;
     text-decoration: none;
@@ -163,11 +167,6 @@ a:link{
 a:visited{
     color:  #6495ed;
     text-decoration: none;
-}
-    
-body{
-    background: #151515;
-    color:#ededed;
 }
 /*
 
@@ -211,11 +210,20 @@ body h3 a:visited{
 body h3:before{
     content: '> ./';
 }
-
 body summary{
     text-align:left;
 }
-    
+
+/* for blog */
+#bloglist ul li{
+    list-style: none;
+}
+#bloglist ul li div strong:before{
+    content: '# ./';
+}
+
+
+
 /* for different screen */
 /* for moble */
 
