@@ -218,10 +218,51 @@ body summary{
 #bloglist ul li{
     list-style: none;
 }
+#bloglist ul li div strong{
+    font-size:249%;
+}
 #bloglist ul li div strong:before{
     content: '# ./';
+    color: #9999ff;
+}
+#bloglist ul li div strong a:link,
+#bloglist ul li div strong a:visited{
+    color: #9999ff;
 }
 
+
+/* for bottom */
+.bottom p{
+    margin-bottom:0;
+    margin-top:0;
+}
+/* for icp 备案 格式 */
+.icp{
+    background: #121212;
+}
+.icp a:link,
+.icp a:visited{
+    color: #efefef;
+    background: #121212;
+}
+.icp :before{
+    content: '[ 50302.1002] ';
+}
+/* copyright */
+#copyright{
+    background: #121212;
+}
+p#copyright:before{
+    content: '[ 50303.1000] ';
+}
+/* power-by */
+#powerby{
+    background: #121212;
+}
+p#powerby:before{
+    content: '[ 50366.1501] ';
+}
+/* 
 
 
 /* for different screen */
