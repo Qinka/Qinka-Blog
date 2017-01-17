@@ -1,69 +1,41 @@
 #
 # Makefile
 #
-######################################################################################
+############################################################
 ##
-##	Qinka's Blog
+##	Glob Updating
 ##
-##	The Makefile of Glob of my own blog
-## 	blog.qinka.pw  (Powered by Glob)
+##	Created by glob-update
+##	Copyright (C) 2016
 ##
-##  Copyright (C) 2016
-##
-## This file is the one to upload
-##
-######################################################################################
+############################################################
 #
 
 # CURL #
-## Path of curl
+## Path of CURL
 CURL_PATH=curl
-## whether curl show the details
-CURL_DETAIL=' -i ' # space is needed
+## show details or not
+CURL_DETAIL= ' -i ' 
 
 # SHELL #
 ## The shell we used
 SHELL=bash
-## The echo or some thing like that
+## The echo or some things like that
 ECHO=echo
 
 # SITE #
 ## URL of site
-SITE_URL=https://blog.prerls.qinka.pw
-
-## Password of Admin
-PSK=921 924 # This just an example
+SITE_URL=https://pre.blog.qinka.pw
+## Password
+PSK=921924
 ## The path of glob-ih
 IH_PATH=glob-ih
-## THe time delay between server and glob-ih
-IH_DELAY=0 # For normal, you need run `make check-delay URL=***`, and then set this one.
-## Get the time of now with glob-ih
-IH_NOW=$$($(IH_PATH) -t)
-## Check time delay
+## The delay between server and glob-ih
+IH_DELAY=-70
+## Get the time of now via glob-ih
+IH_NOW=glob-timecheck
+## Check the delay
 TIMECHECK_PATH=glob-timecheck
-## put a new post
-NEWPOST_PATH=$(which glob-newpost)
-
-# SITE STYLE #
-## THEME of site # (via css)
-SITE_THEME=default
-## Code style  # (via css)
-SITE_CODE_STYLE=zenburn
-
-
-
-##########
-
-# all #
-all:
-	@$(ECHO) -e The updater of Qinka\'s Blog
-
-
-# clean #
-clean-tmp:
-	@$(ECHO) Clean ./ignore/tmp.*
-	@rm -f .ignore/tmp.*
-	@$(ECHO) DONE
 
 # time check #
 check-delay:
@@ -73,17 +45,29 @@ check-delay:
 	@$(ECHO)
 
 
-/b/haskell/extension/overloadedlabels: post/haskell/overloadedlabels.md post/haskell/overloadedlabels.sum.md
-	@pandoc -o .ignore/tmp.e4aada246d01c82b17d89abe708830ad.html post/haskell/overloadedlabels.md
-	@pandoc -o .ignore/tmp.e4aada246d01c82b17d89abe708830ad.sum.html post/haskell/overloadedlabels.sum.md
+# clean #
+clean-tmp:
+	@$(ECHO) Clean .ignore/tmp.*
+	@rm -f .ignore/tmp.*
+	@$(ECHO) DONE
+
+
+overloadedlabels: post/haskell/overloadedlabels.md post/haskell/overloadedlabels.sum.md
+	@pandoc -o .ignore/overloadedlabels.html post/haskell/overloadedlabels.md
+	@pandoc -o .ignore/overloadedlabels.sum.html post/haskell/overloadedlabels.sum.md
 	@$(ECHO) $(CURL_PATH) $(CURL_DETAIL) ' -X PUT -F "type=post" ' \
-		' -F "create-time=2016-11-11 15:12:59.5164345 UTC" ' \
+		' -F "create-time=2017-01-01 05:26:03.55291 UTC" ' \
 		' -F "update-time=$(IH_NOW)" ' \
-		' -F "title=Haskell OverloadedLables Extension" ' \
-		' -F "summary=@.ignore/tmp.e4aada246d01c82b17d89abe708830ad.sum.html" ' \
-		' -F "html=@.ignore/tmp.e4aada246d01c82b17d89abe708830ad.html" ' \
+		' -F "title=null" ' \
+		' -F "summary=@.ignore/overloadedlabels.sum.html" ' \ 
+		' -F "html=post/haskell/overloadedlabels.md" ' \
+		' -F "whose=Qinka" ' \
 		' -F "tag=highlight" ' \
 		' -F "tag=blog" ' \
 		' -F "tag=haskell" ' \
 		' -F "tag=haskell language extensions" ' \
-		$(SITE_URL)$@ ' ' | $(IH_PATH) -m -f$(IH_DELAY) -v $(PSK) | $(SHELL)
+		$(SITE_URL)/b/haskell/extension/overloadedlabels ' ' | $(IH_PATH) -m -f$(IH_DELAY) -v $(PSK) | $(SHELL)
+overloadedlabels.del:
+	@$(ECHO) $(CURL_PATH) $(CURL_DETAIL) ' -X DELETE -F "type=post" ' \
+		$(SITE_URL)/b/haskell/extension/overloadedlabels ' ' | $(IH_PATH) -m -f$(IH_DELAY) -v $(PSK) | $(SHELL)
+
