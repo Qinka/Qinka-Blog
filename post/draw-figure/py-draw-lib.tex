@@ -1,0 +1,103 @@
+
+\documentclass{ctexart}
+
+\author{Qinka \\ qinka@live.com \\ qinka@qinka.pw}
+\title{Python 绘图的 “中断”指南}
+
+\usepackage{listings}
+
+
+\begin{document}
+%
+\maketitle
+%
+%
+{\tiny “中断” 指南的含义是大致与 Unix 编程艺术中提及的 manpage （等 传统手册）中“需要通篇阅读而理解手册”所相反。
+  希望能达到，几乎不需要太多上下相关内容，即可对部分内容使用并理解。}
+\newpage
+
+%% matplotlib
+\section{matplotlib}
+
+\paragraph{介绍}
+matplotlib 是 一个 python 的 2D 的绘图库 其主页是 \href{http://matplotlib.org}{matplotlib.org}。
+
+\subsection{快速画图}
+
+\paragraph{简单划线}
+这个将在坐标中画出 一条直线，从点$(1,1)$ 到 $(4,4)$。
+\begin{lstlisting}[language=python]
+plot([1,2,3,4],[1,2,3,4])
+\end{lstlisting}
+
+\paragraph{创建图}
+在创建一个 \textit{figure}，其中 \lstinline|figure=(x,y)| 会设置图片的大小为 $8 \times 6$ 的大小，\lstinline|dpi=k| 会设置 图片的 \verb|dpi|。
+\begin{lstlisting}[language=python]
+figure(figure=(10,9),dpi=300)
+\end{lstlisting}
+
+\paragraph{创建子图}
+如果需要创建一个子图的话使用 \lstinline|subplot| 命令创建并定位。
+\begin{lstlisting}[language=python]
+subplot(row,col,position)
+\end{lstlisting}
+其中 \verb|col| 是指子图有多少列， \verb|row| 是指子图有多少行，\verb|position| 是将当前画图的“句柄”定位到第\verb|position|个子图上\footnote{一行一行的数。}
+
+\paragraph{坐标轴限制}
+当需要限制坐标轴的时候，可使用坐标轴的限制工具来限制。
+\begin{lstlisting}[language=python]
+xlim(-1.0,3.0)
+ylim(1,10)
+\end{lstlisting}
+将x坐标限制在$-1$到$3$之间，将y坐标限制在$1$与$10$之间。
+
+\paragraph{坐标轴刻度}
+设置坐标的刻度。
+\begin{lstlisting}[language=python]
+xticks([1,2,3])
+yticks([1,2,3])
+\end{lstlisting}
+
+\paragraph{显示}
+\begin{lstlisting}[language=python]
+show()
+\end{lstlisting}
+
+
+\subsection{参考}
+\href{http://liam0205.me/2014/09/11/matplotlib-tutorial-zh-cn/}{Matplotlib 教程}
+\href{http://blog.csdn.net/ywjun0919/article/details/8692018}{Python图表绘制：matplotlib绘图库入门}
+
+
+\section{Seaborn}
+\subsection{参考}
+\href{https://segmentfault.com/a/1190000005092460}{【译】Seaborn教程（一） 管理图表的艺术}
+\href{http://python.jobbole.com/80853}{Python和数据科学的起步指南}
+
+\section{ggplot}
+\subsection{参考}
+\href{https://www.plob.org/article/7264.html}{《使用ggplot2画图》}
+
+\section{Bokeh}
+\subsection{参考}
+\href{http://youerning.blog.51cto.com/10513771/1709113}{Bokeh快速入门(1)}
+
+\section{pygal}
+\subsection{参考}
+\href{http://rfyiamcool.blog.51cto.com/1030776/1378400}{python使用pygal进行绘制数据图表和监控图表}
+
+\section{Plotly}
+\subsection{参考}
+\href{http://www.xueqing.tv/cms/article/93}{用plotly包创建交互式网页图形}
+
+
+\section{geoplotlib}
+\subsection{参考}
+\href{https://github.com/andrea-cuttone/geoplotlib}{github:andrea-cuttone/geoplotlib}
+
+\section{Gleam}
+\subsection{参考}
+\href{https://github.com/dgrtwo/gleam}{github:dgrtwo/gleam}
+
+
+\end{document}
