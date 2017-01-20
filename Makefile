@@ -63,6 +63,10 @@ py-draw-lib: post/draw-figure/py-draw-lib.tex post/draw-figure/py-draw-lib.sum.t
 		' -F "html=@.ignore/py-draw-lib.html" ' \
 		' -F "whose=Qinka" ' \
 		' -F "tag=code" ' \
+		' -F "tag=blog" ' \
+		' -F "tag=python" ' \
+		' -F "tag=draw" ' \
+		' -F "tag=libraries" '\
 		$(SITE_URL)/b/py/draw/libraries ' ' | $(IH_PATH) -m -f$(IH_DELAY) -v $(PSK) | $(SHELL)
 
 
