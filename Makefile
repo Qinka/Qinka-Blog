@@ -74,5 +74,3 @@ change-code-highlight:
 
 
 
-include frame-dev.mk
-include navs.mk
