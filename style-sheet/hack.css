@@ -251,6 +251,8 @@ body summary{
 /* blog */
 #bloglist ul li{
     background-color:#222222;
+    margin-top:5px;
+    margin-bottom:5px;
 }
 
 

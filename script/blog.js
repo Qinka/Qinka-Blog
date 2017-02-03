@@ -41,7 +41,11 @@ function flashbloglist()
           var sumDiv = document.createElement('div');
           sumDiv.innerHTML = bJSON[i].summary;
         }
-        else var sumDiv = null;
+        else
+        {
+          var sumDiv = document.createElement('p');
+          sumDiv.innerTEXT = ' ';
+        } 
         a.innerText = bJSON[i].title;
         if (bJSON[i]['author'] == null)  var auth = "";
         else var auth = bJSON[i]['author'];
