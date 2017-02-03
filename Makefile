@@ -1,73 +1,78 @@
 #
-# Makefile
+# Makefile #
+############################################################
+## 
+##	Glob Updating
+## 
+##	Created by glob-update
+##	Copyright (C) 2016-2017
+## 
+############################################################
 #
-######################################################################################
-##
-##	Qinka's Blog
-##
-##	The Makefile of Glob of my own blog
-## 	blog.qinka.pw  (Powered by Glob)
-##
-##      Copyright (C) 2016
-##
-##      This file is the one to upload
-##
-######################################################################################
-#
-
-# CURL #
-## Path of curl
+# cURL #
+## Path of cURL
 CURL_PATH=curl
-## whether curl show the details
-CURL_DETAIL=' -i ' # space is needed
-
+## show details(flag, if don't want => spaces)
+CURL_DELTAIL=' -i '
 # SHELL #
-## The shell we used
+## The shell will be used
 SHELL=bash
-## The echo or some thing like that
+## The echo or some things like that
 ECHO=echo
-
 # SITE #
 ## URL of site
-SITE_URL=https://blog.prerls.qinka.pw
-
-## Password of Admin
-PSK=921 924 # This just an example
+SITE_URL=localhost:3001
+## Private key file
+PRIVATE_KEY=../.ssh/tmp
 ## The path of glob-ih
 IH_PATH=glob-ih
-## THe time delay between server and glob-ih
-IH_DELAY=0 # For normal, you need run `make check-delay URL=***`, and then set this one.
-## Get the time of now with glob-ih
+## The delay between server and glob-ih
+IH_DELAY=0
+## Get the time of now via glob-ih or date
 IH_NOW=$$($(IH_PATH) -t)
-## Check time delay
+## Check the delay
 TIMECHECK_PATH=glob-timecheck
-## put a new post
-NEWPOST_PATH=$(which glob-newpost)
-
-# SITE STYLE #
-## THEME of site # (via css)
-SITE_THEME=default
-## Code style  # (via css)
-SITE_CODE_STYLE=zenburn
-
-
-
-##########
-
-# all #
-all:
-	@$(ECHO) -e The updater of Qinka\'s Blog
-
+## Delta of site's check
+SITE_DELTA=6
+## MD5 cmd
+MD5=md5
+## Site Theme
+SITE_THEME=hack
+CODE_THEME=default
+# TIME CHECK #
+check-delay:
+	@$(ECHO) 
+	@$(ECHO) check time
+	@$(ECHO) $(CURL_PATH) -X GET  $(SITE_URL)/@/~servertime  | $(SHELL) | $(TIMECHECK_PATH)@$(ECHO) 
 
 # clean #
 clean-tmp:
-	@$(ECHO) Clean ./ignore/tmp.*
-	@rm -f .ignore/tmp.*
+	@$(ECHO) Clean .ignore/tmp.*
+	@rm -rf .ignore/tmp.*
 	@$(ECHO) DONE
 
-# time check #
-check-delay:
-	@$(ECHO)
-	@$(ECHO) check time
-	@$(ECHO) $(CURL_PATH) ' -X GET ' $(SITE_URL)/@/~servertime | $(SHELL) | $(TIMECHECK_PATH)
-	@$(ECHO)
+# Change Site Theme #
+change-site-theme:
+	OLD=$($(CURL_PATH) -X GET $(SITE_URL)/@/~site-theme)
+	@if [ "$(OLD)" = "{\"error\":\"not found\"}" ]; then OLD="";fi;
+	@$(ECHO) The old theme is $(OLD_THEME)
+	@$(ECHO) The new theme is $(SITE_STYLE)
+	@if [ "$(OLD)" = "$(SITE_STYLE)" ]; then $(ECHO) The new one is eq2 old one. DO NOTHING; \
+		else $(ECHO) $(CURL_PATH) $(CURL_DETAIL)  -X PUT  -F \"sha-file-name=/`$(MD5) $(PRIVATE_KEY).pub`\" -F \"var=$(SITE_STYLE)\" -F \"type=query\" -F \"create-time=2017-02-03 10:04:42.40324 UTC\" -F \"update-time=$(IH_NOW)\" -F \"title=query\"  \
+		$(SITE_URL)/@/~site-theme ' '  | $(IH_PATH) -m -f$(IH_DELAY) -p$(PRIVATE_KEY) -d$(SITE_DELTA) -v  | $(SHELL) ; fi
+
+# Change Site Code Highlight #
+change-code-highlight:
+	OLD=$($(CURL_PATH) -X GET $(SITE_URL)/@/~highlight)
+	@if [ "$(OLD)" = "{\"error\":\"not found\"}" ]; then OLD="";fi;
+	@$(ECHO) The old theme is $(OLD_THEME)
+	@$(ECHO) The new theme is $(CODE_STYLE)
+	@if [ "$(OLD)" = "$(CODE_STYLE)" ]; then $(ECHO) The new one is eq2 old one. DO NOTHING; \
+		else $(ECHO) $(CURL_PATH) $(CURL_DETAIL)  -X PUT  -F \"sha-file-name=/`$(MD5) $(PRIVATE_KEY).pub`\" -F \"var=$(CODE_STYLE)\" -F \"type=query\" -F \"create-time=2017-02-03 10:04:42.40324 UTC\" -F \"update-time=$(IH_NOW)\" -F \"title=query\"  \
+		$(SITE_URL)/@/~highlight ' '  | $(IH_PATH) -m -f$(IH_DELAY) -p$(PRIVATE_KEY) -d$(SITE_DELTA) -v  | $(SHELL) ; fi
+
+
+
+
+include frame-dev.mk
+include navs.mk
