@@ -1,11 +1,11 @@
 embedded-system-learning-beaglebone-black-get-start: post/embedded-system-learning/BeagleBone-Black-get-start.md  post/embedded-system-learning/BeagleBone-Black-get-start.sum.md
-	@pandoc -S -o .ignore/BeagleBone-Black-get-start.html post/embedded-system-learning/BeagleBone-Black-get-start.md
+	@pandoc -o .ignore/BeagleBone-Black-get-start.html post/embedded-system-learning/BeagleBone-Black-get-start.md
 	@pandoc -o .ignore/BeagleBone-Black-get-start.sum.html post/embedded-system-learning/BeagleBone-Black-get-start.sum.md
 	@$(ECHO) $(CURL_PATH) $(CURL_DETAIL)  -X PUT  \
 		' -F "type=post" ' \
 		' -F "create-time=2016-11-18 12:54:39.6263097 UTC" ' \
 		' -F "update-time=$(IH_NOW)" ' \
-		' -F "title=null" ' \
+		' -F "title=Get Start with BeagleBone Black" ' \
 		' -F "html=@.ignore/BeagleBone-Black-get-start.html" ' \
 		' -F "sha-file-name=/`$(MD5) $(PRIVATE_KEY).pub`" ' \
 		' -F "summary=@.ignore/BeagleBone-Black-get-start.sum.html" ' \
@@ -29,7 +29,7 @@ embedded-system-learning-cross-compile-tools-build: post/embedded-system-learnin
 		' -F "type=post" ' \
 		' -F "create-time=2016-11-17 14:02:08.133082 UTC" ' \
 		' -F "update-time=$(IH_NOW)" ' \
-		' -F "title=null" ' \
+		' -F "title=Cross Compile Tools Build" ' \
 		' -F "html=@.ignore/cross-compile-tools-build.html" ' \
 		' -F "sha-file-name=/`$(MD5) $(PRIVATE_KEY).pub`" ' \
 		' -F "summary=@.ignore/cross-compile-tools-build.sum.html" ' \
