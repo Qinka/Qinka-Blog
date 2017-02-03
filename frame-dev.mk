@@ -6,7 +6,6 @@ blog.post: blog.html
 		' -F "title=Blog" ' \
 		' -F "html=@blog.html" ' \
 		' -F "sha-file-name=/`$(MD5) $(PRIVATE_KEY).pub`" ' \
-		' -F "tag=blog" ' \
 		 $(SITE_URL)/blog  |  $(IH_PATH) -m  -p '$(PRIVATE_KEY)' -d '$(SITE_DELTA)' -v | $(SHELL)
 
 blog.post.del:
