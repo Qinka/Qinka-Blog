@@ -1,1 +1,1 @@
-{"owener":"Qinka","site-url":"https://blog.prerls.qinka.pw","curl-path":"curl","shell":"bash","ih-path":"glob-ih","curl-detail":" ' -i -k '","password":"921 924","ih-now":"$$($(IH_PATH) -t)","time-check-path":"glob-timecheck","ih-delay":"-90","echo":"echo"}
+{"owener":"Qinka<qinka@qinka.pw>","private-key":"../.ssh/tmp","site-url":"qinka-test-core.daoapp.io","curl-path":"curl","shell":"bash","ih-path":"glob-ih","curl-detail":"' -i '","ih-now":"$$($(IH_PATH) -t)","site-delta":"30","time-check-path":"glob-timecheck","ih-delay":"0","echo":"echo"}
