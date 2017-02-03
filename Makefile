@@ -1,65 +1,77 @@
 #
-# Makefile
-#
-#############################################################################
+# Makefile #
+############################################################
 ## 
-##                Qinka's Blog
-##                
-##                The Makefile of my own blog's
-##                For blog.prerls.qinka.pw in post-os-dev branch
-##
-##    Copyright (C) 2016
-##
-#############################################################################
+##	Glob Updating
+## 
+##	Created by glob-update
+##	Copyright (C) 2016-2017
+## 
+############################################################
 #
-#
-#
-
-# CURL #
+# cURL #
+## Path of cURL
 CURL_PATH=curl
-CURL_DETAIL=' -i '
-
+## show details(flag, if don't want => spaces)
+CURL_DELTAIL=' -i '
+# SHELL #
+## The shell will be used
 SHELL=bash
+## The echo or some things like that
 ECHO=echo
-
-SITE_URL=https://blog.prerls.qinka.pw
-PSK=921 924
+# SITE #
+## URL of site
+SITE_URL=localhost:3001
+## Private key file
+PRIVATE_KEY=../.ssh/tmp
+## The path of glob-ih
 IH_PATH=glob-ih
+## The delay between server and glob-ih
 IH_DELAY=0
+## Get the time of now via glob-ih or date
 IH_NOW=$$($(IH_PATH) -t)
+## Check the delay
 TIMECHECK_PATH=glob-timecheck
-
-# CLEAN #
-clean:
-	@rm -rf .ignore
-	@mkdir .ignore
-	@$(ECHO) DONE
-
+## Delta of site's check
+SITE_DELTA=6
+## MD5 cmd
+MD5=md5 -q 
+## Site Theme
+SITE_THEME=hack
+CODE_THEME=default
 # TIME CHECK #
 check-delay:
-	@$(ECHO) $(CURL_PATH) ' -X GET ' $(SITE_URL)/@/~servertime | $(SHELL) | $(TIMECHECK_PATH)
+	@$(ECHO) 
+	@$(ECHO) check time
+	@$(ECHO) $(CURL_PATH) -X GET  $(SITE_URL)/@/~servertime  | $(SHELL) | $(TIMECHECK_PATH)@$(ECHO) 
+
+# clean #
+clean-tmp:
+	@$(ECHO) Clean .ignore/tmp.*
+	@rm -rf .ignore/tmp.*
+	@$(ECHO) DONE
+
+# Change Site Theme #
+change-site-theme:
+	OLD=$($(CURL_PATH) -X GET $(SITE_URL)/@/~site-theme)
+	@if [ "$(OLD)" = "{\"error\":\"not found\"}" ]; then OLD="";fi;
+	@$(ECHO) The old theme is $(OLD_THEME)
+	@$(ECHO) The new theme is $(SITE_STYLE)
+	@if [ "$(OLD)" = "$(SITE_STYLE)" ]; then $(ECHO) The new one is eq2 old one. DO NOTHING; \
+		else $(ECHO) $(CURL_PATH) $(CURL_DETAIL)  -X PUT  -F \"sha-file-name=/`$(MD5) $(PRIVATE_KEY).pub`\" -F \"var=$(SITE_STYLE)\" -F \"type=query\" -F \"create-time=2017-02-03 10:04:42.40324 UTC\" -F \"update-time=$(IH_NOW)\" -F \"title=query\"  \
+		$(SITE_URL)/@/~site-theme ' '  | $(IH_PATH) -m -f$(IH_DELAY) -p$(PRIVATE_KEY) -d$(SITE_DELTA) -v  | $(SHELL) ; fi
+
+# Change Site Code Highlight #
+change-code-highlight:
+	OLD=$($(CURL_PATH) -X GET $(SITE_URL)/@/~highlight)
+	@if [ "$(OLD)" = "{\"error\":\"not found\"}" ]; then OLD="";fi;
+	@$(ECHO) The old theme is $(OLD_THEME)
+	@$(ECHO) The new theme is $(CODE_STYLE)
+	@if [ "$(OLD)" = "$(CODE_STYLE)" ]; then $(ECHO) The new one is eq2 old one. DO NOTHING; \
+		else $(ECHO) $(CURL_PATH) $(CURL_DETAIL)  -X PUT  -F \"sha-file-name=/`$(MD5) $(PRIVATE_KEY).pub`\" -F \"var=$(CODE_STYLE)\" -F \"type=query\" -F \"create-time=2017-02-03 10:04:42.40324 UTC\" -F \"update-time=$(IH_NOW)\" -F \"title=query\"  \
+		$(SITE_URL)/@/~highlight ' '  | $(IH_PATH) -m -f$(IH_DELAY) -p$(PRIVATE_KEY) -d$(SITE_DELTA) -v  | $(SHELL) ; fi
 
 
 
-/b/os-learning/build-4.8.4: post/os-learning/build-kernel-4.8.4.md post/os-learning/build-kernel-4.8.4.summary.md
-	@pandoc -o .ignore/tmp.08f10a7aedc4b573892a2223576e84f0.html post/os-learning/build-kernel-4.8.4.md
-	@pandoc -o .ignore/tmp.08f10a7aedc4b573892a2223576e84f0.sum.html post/os-learning/build-kernel-4.8.4.summary.md
-	@$(ECHO) $(CURL_PATH) $(CURL_DETAIL) ' -X PUT -F "type=post" ' \
-		' -F "create-time=2016-10-31 11:51:40.0258899 UTC" ' \
-		' -F "update-time=$(IH_NOW)" ' \
-		' -F "title=Linux 4.8.4 内核编译并安装到 Ubuntu 16.04 上" ' \
-		' -F "summary=@.ignore/tmp.08f10a7aedc4b573892a2223576e84f0.sum.html" ' \
-		' -F "html=@.ignore/tmp.08f10a7aedc4b573892a2223576e84f0.html" ' \
-		' -F "tag=blog" ' \
-		' -F "tag=os" ' \
-		' -F "tag=highlight" ' \
-		' -F "tag=operating system" ' \
-		' -F "tag=os-learning" ' \
-		' -F "tag=operating system learning" ' \
-		' -F "tag=linux" ' \
-		' -F "tag=linux kernel" ' \
-		' -F "tag=linux kernel 4.8.4" ' \
-		' -F "tag=kernel compile" ' \
-		' -F "tag=ubuntu" ' \
-		' -F "tag=ubuntu 16.04" ' \
-		$(SITE_URL)$@ ' ' | $(IH_PATH) -m -f$(IH_DELAY) -v $(PSK) | $(SHELL)
+
+include post-os.mk
