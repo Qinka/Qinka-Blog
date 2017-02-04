@@ -84,6 +84,7 @@ intermediate.code.post: post/UnamePlus/intermediate-code.md  post/UnamePlus/inte
 		' -F "sha-file-name=/`$(MD5) $(PRIVATE_KEY).pub`" ' \
 		' -F "summary=@.ignore/intermediate-code.sum.html" ' \
 		' -F "tag=blog" ' \
+		' -F "tag=highlight" ' \
 		 $(SITE_URL)/b/uname/intermediate-code  |  $(IH_PATH) -m  -f '$(IH_DELAY)' -p '$(PRIVATE_KEY)' -d '$(SITE_DELTA)' -v | $(SHELL)
 
 intermediate.code.post.del:
