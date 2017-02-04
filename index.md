@@ -11,3 +11,8 @@
 ## 测试
 
 这个站点是博客内容与博客前后端 的 测试站点，托管于 DaoCloud  不定期关闭。后端数据库 。。会定期删除。
+
+## BUG
+
+无论如何在发现 BUG 之后，请在 [GitHub:Qinka/Qinka-Blog/issues](https://github.com/Qinka/Qinka-Blog/issues?q=is%3Aopen+is%3Aissue)
+提交 issues。
