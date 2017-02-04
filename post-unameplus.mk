@@ -105,6 +105,7 @@ with.haskell.gi.1.post: post/UnamePlus/with-haskell-gi-1.md  post/UnamePlus/with
 		' -F "sha-file-name=/`$(MD5) $(PRIVATE_KEY).pub`" ' \
 		' -F "summary=@.ignore/with-haskell-gi-1.sum.html" ' \
 		' -F "tag=blog" ' \
+		' -F "tag=highlight" ' \
 		 $(SITE_URL)/b/uname/with-haskell-gi/1  |  $(IH_PATH) -m  -f '$(IH_DELAY)' -p '$(PRIVATE_KEY)' -d '$(SITE_DELTA)' -v | $(SHELL)
 
 with.haskell.gi.1.post.del:
