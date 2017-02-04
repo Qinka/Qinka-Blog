@@ -202,3 +202,22 @@ qrcode.js.del:
 		 $(SITE_URL)/script/qrcode.js  |  $(IH_PATH) -m  -f '$(IH_DELAY)' -p '$(PRIVATE_KEY)' -d '$(SITE_DETAL)' -v | $(SHELL)
 
 
+license.post: LICENSE.md 
+	@pandoc -o .ignore/LICENSE.html LICENSE.md
+	@$(ECHO) $(CURL_PATH) $(CURL_DETAIL)  -X PUT  \
+		' -F "type=post" ' \
+		' -F "create-time=2017-02-04 08:42:07.237723 UTC" ' \
+		' -F "update-time=$(IH_NOW)" ' \
+		' -F "title=Agasa License" ' \
+		' -F "html=@.ignore/LICENSE.html" ' \
+		' -F "sha-file-name=/`$(MD5) $(PRIVATE_KEY).pub`" ' \
+		' -F "whose=LICENSE.md" ' \
+		' -F "tag=license" ' \
+		 $(SITE_URL)/license  |  $(IH_PATH) -m  -f '$(IH_DELAY)' -p '$(PRIVATE_KEY)' -d '$(SITE_DELTA)' -v | $(SHELL)
+
+license.post.del:
+	@$(ECHO) $(CURL_PATH) $(CURL_DETAIL)  -X DELETE  \
+		' -F "type=post" ' \
+		 $(SITE_URL)/license  |  $(IH_PATH) -m  -f '$(IH_DELAY)' -p '$(PRIVATE_KEY)' -d '$(SITE_DETAL)' -v | $(SHELL)
+
+
