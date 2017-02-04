@@ -205,18 +205,21 @@ body summary{
 #bloglist ul li{
     list-style: none;
 }
-#bloglist ul li div strong{
+#bloglist ul li div a div strong{
     font-size:249%;
+    color: #9999ff;
 }
-#bloglist ul li div strong:before{
+#bloglist ul li div a div strong:before{
     content: '# ./';
     color: #9999ff;
 }
-#bloglist ul li div strong a:link,
-#bloglist ul li div strong a:visited{
+#bloglist ul li div a:link,
+#bloglist ul li div a:visited{
     color: #9999ff;
 }
-
+#bloglist ul li div a div p{
+    color: #cccccc;
+}
 
 /* for bottom */
 .bottom p{

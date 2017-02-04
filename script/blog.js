@@ -30,31 +30,34 @@ function flashbloglist()
       var ul  = document.createElement('ul');
       for (var i=0;i<bJSON.length;i++)
       {
+        var d = document.createElement('div');
         var li = document.createElement('li');
         var a = document.createElement('a');
         var strong = document.createElement('strong');
         var span = document.createElement('span');
         var itemDiv = document.createElement('div');
         a.href = concat(bJSON[i].index);
+        var sumDiv = undefined;
         if (bJSON[i].summary != null && bJSON[i].summary.length != 0)
         {
-          var sumDiv = document.createElement('div');
+          sumDiv = document.createElement('div');
           sumDiv.innerHTML = bJSON[i].summary;
         }
         else
         {
-          var sumDiv = document.createElement('p');
+          sumDiv = document.createElement('p');
           sumDiv.innerTEXT = ' ';
         } 
-        a.innerText = bJSON[i].title;
+        strong.innerText = bJSON[i].title;
         if (bJSON[i]['author'] == null)  var auth = "";
         else var auth = bJSON[i]['author'];
         span.innerHtml = '[' + bJSON[i]['create-time'].substring(0,10)+']'+auth;
-        strong.appendChild(a);
         itemDiv.appendChild(strong);
         itemDiv.appendChild(span);
-        li.appendChild(itemDiv);
-        if (sumDiv != null) li.appendChild(sumDiv);
+        a.appendChild(itemDiv);
+        a.appendChild(sumDiv);
+        d.appendChild(a);
+        li.appendChild(d);
         ul.appendChild(li);
       }
       div.appendChild(ul);
