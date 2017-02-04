@@ -113,3 +113,58 @@ function highlight(style,i)
   if(typeof file != 'undefined')
     document.getElementsByTagName('head')[0].appendChild(file);
 }
+
+
+// for flyout
+
+var showQR = 0;
+function sqrc()
+{
+  var body = document.getElementsByTagName('body')[0];
+  var div = document.createElement('div');
+  new QRCode(div,window.location.href);
+  div.setAttribute('class','showqrcode');
+  div.setAttribute('onclick','rqrc()');
+  var p = document.createElement('p');
+  p.innerText = "点击释放";
+  div.appendChild(p);
+  body.appendChild(div);
+
+}
+function rqrc()
+{
+  var divs = document.getElementsByClassName('showqrcode');
+  for(var i = 0;i < divs.length; i++)
+  {
+    divs[i].remove();
+  }
+  showQR = 0;
+}
+
+function showQRCode()
+{
+  if (showQR == 0)
+  {
+    sqrc();
+    showQR = 100;
+  }
+}
+function removeQRCode()
+{
+  if (showQR > 0)
+  {
+    rqrc();
+    showQR = 0;
+  }
+}
+
+function clickQRCode()
+{
+  if(showQR > 0)
+    showQR = 0;
+}
+
+
+
+
+//

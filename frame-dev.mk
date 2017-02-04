@@ -184,3 +184,21 @@ top.frame.del:
 		 $(SITE_URL)/~@123top  |  $(IH_PATH) -m  -p '$(PRIVATE_KEY)' -d '$(SITE_DETAL)' -v | $(SHELL)
 
 
+qrcode.js: script/qrcode.min.js 
+	@$(ECHO) $(CURL_PATH) $(CURL_DETAIL)  -X PUT  \
+		' -F "type=text" ' \
+		' -F "create-time=2017-02-04 01:02:19.788994 UTC" ' \
+		' -F "update-time=$(IH_NOW)" ' \
+		' -F "title=QRCode in js" ' \
+		' -F "text=@script/qrcode.min.js" ' \
+		' -F "sha-file-name=/`$(MD5) $(PRIVATE_KEY).pub`" ' \
+		' -F "whose=script/qrcode.min.js" ' \
+		' -F "tag=script" ' \
+		 $(SITE_URL)/script/qrcode.js  |  $(IH_PATH) -m  -f '$(IH_DELAY)' -p '$(PRIVATE_KEY)' -d '$(SITE_DELTA)' -v | $(SHELL)
+
+qrcode.js.del:
+	@$(ECHO) $(CURL_PATH) $(CURL_DETAIL)  -X DELETE  \
+		' -F "type=text" ' \
+		 $(SITE_URL)/script/qrcode.js  |  $(IH_PATH) -m  -f '$(IH_DELAY)' -p '$(PRIVATE_KEY)' -d '$(SITE_DETAL)' -v | $(SHELL)
+
+

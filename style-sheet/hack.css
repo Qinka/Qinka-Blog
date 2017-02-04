@@ -247,12 +247,26 @@ body summary{
 
 
 
-
 /* blog */
 #bloglist ul li{
     background-color:#222222;
     margin-top:5px;
     margin-bottom:5px;
+}
+
+/* show qr code */
+.showqrcode{
+    position: fixed;
+    width: auto;
+    height: auto;
+    left: 34%;
+    top: 15%;
+    background-color: black;
+    z-index: 10000;
+}
+.showqrcode p{
+    font-color: white;
+    text-align: center;
 }
 
 
@@ -315,6 +329,10 @@ body summary{
     .gitforkme{
 	width: 15%;
     }
+    .showqrcode{
+    left: 0%;
+    top: 15%;
+}
 }
  /* for normal(large) screen */
  /*
