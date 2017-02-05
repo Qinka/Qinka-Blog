@@ -4,7 +4,7 @@
 
 ## Haskell-GI
 
-这个叫 haskell-gi 的库，在 Haskell 的 gtk 系列 绑定的。同时使用 其 Gtk 的绑定的库。
+这个叫 haskell-gi 的库，是 Haskell 的 gtk 系列库的绑定。同时使用其他的 Gtk 的绑定的库。
 
 安装方式的话，需要使用 cabal(1) 或者 stack(1) 来安装。在安装之前需要确保在任何平台上，有安装 X11 与 GTK 的内容。
 其中的话， macOS 需要人为的装一下（对于较高的版本来说），Windows 下 使用 MYSY2 与 Chocolatey。此外，Windows下 需要管理员权限。
@@ -24,7 +24,7 @@ cabal install haskell-gi gi-gtk
 
 直接参考 haskell-gi 官方的例子，我们写一个 Hello World 的例子。
 
-首先先
+首先
 
 ```haskell
 {-# LANGUAGE OverloadedStrings
