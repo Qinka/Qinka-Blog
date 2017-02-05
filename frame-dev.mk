@@ -221,3 +221,22 @@ license.post.del:
 		 $(SITE_URL)/license  |  $(IH_PATH) -m  -f '$(IH_DELAY)' -p '$(PRIVATE_KEY)' -d '$(SITE_DETAL)' -v | $(SHELL)
 
 
+menu.post: Menu.md 
+	@pandoc -o .ignore/Menu.html Menu.md
+	@$(ECHO) $(CURL_PATH) $(CURL_DETAIL)  -X PUT  \
+		' -F "type=post" ' \
+		' -F "create-time=2017-02-05 02:09:35.108686 UTC" ' \
+		' -F "update-time=$(IH_NOW)" ' \
+		' -F "title=Menu" ' \
+		' -F "html=@.ignore/Menu.html" ' \
+		' -F "sha-file-name=/`$(MD5) $(PRIVATE_KEY).pub`" ' \
+		' -F "whose=Menu.md" ' \
+		' -F "tag=menu" ' \
+		 $(SITE_URL)/menu  |  $(IH_PATH) -m  -f '$(IH_DELAY)' -p '$(PRIVATE_KEY)' -d '$(SITE_DELTA)' -v | $(SHELL)
+
+menu.post.del:
+	@$(ECHO) $(CURL_PATH) $(CURL_DETAIL)  -X DELETE  \
+		' -F "type=post" ' \
+		 $(SITE_URL)/menu  |  $(IH_PATH) -m  -f '$(IH_DELAY)' -p '$(PRIVATE_KEY)' -d '$(SITE_DETAL)' -v | $(SHELL)
+
+

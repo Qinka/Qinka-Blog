@@ -81,9 +81,9 @@ function bottom(responsetext)
       var nowYearStr = '2016';
     else
       var nowYearStr = '2016-'+ nowYear;
-    cpr.innerText = 'Copyright (C) ' +  nowYearStr + ' Qinka';
+    cpr.innerText = 'Copymiddle (C-M) ' +  nowYearStr + ' Qinka';
     var pwb = document.getElementById('powerby');
-    pwb.innerText = 'Power by ' + responsetext[0] + ' - ' + responsetext[1] + '-' + responsetext[2];
+    pwb.innerText = 'Power by ' + responsetext[0] + '-' + responsetext[1] + '-' + responsetext[2];
   }
 }
 

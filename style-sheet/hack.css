@@ -16,6 +16,9 @@ body{
 }
 
 /* for head */
+.amenulink,
+.amenulink:link,
+.amenulink:visited,
 .title .qinka,
 .title .qinka code{      /* setting the font size, bg-color, the font-color */
     font-size: 100%;     /* for the 'img for Qinka                          */
@@ -143,8 +146,9 @@ nav ul li a:focus{
     color: #eeeeee;
 }  
 
-
-
+blockquote{
+    background-color: #222222;
+}
 
 /* default.css */
 /*  for summary */
@@ -315,6 +319,11 @@ body summary{
     body{
 	margin-top:4em;
     }
+    
+    
+    .amenulink,
+    .amenulink:link,
+    .amenulink:visited,
     .title{
 	color:#FFDDEE;
     }
@@ -333,9 +342,21 @@ body summary{
 	width: 15%;
     }
     .showqrcode{
-    left: 0%;
-    top: 15%;
-}
+	left: 0%;
+	top: 15%;
+    }
+    #bloglist ul li div a div strong{
+	font-size: 100%;
+    }
+    #summary{
+	font-size: 75%;
+    }
+    .bottom{
+	font-size: 50%;
+    }
+    .qinka{
+	font-weight:900;
+    }
 }
  /* for normal(large) screen */
  /*
