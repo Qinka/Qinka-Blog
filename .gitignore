@@ -1,6 +1,4 @@
 .DS_Store
-<<<<<<< HEAD
-=======
 hi
 ih
 ih.exe
@@ -26,14 +24,6 @@ blog/test
 *.out
 .markdown-preview.html
 \#*\#
-<<<<<<< HEAD
-.\#
->>>>>>> init
-=======
 .\#*
-<<<<<<< HEAD
->>>>>>> update
-=======
 *.toc
 
->>>>>>> update
