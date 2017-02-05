@@ -22,6 +22,7 @@ build.linux.kernel.4.8.4.os-l.post: post/os-learning/build-kernel-4.8.4.md  post
 build.linux.kernel.4.8.4.os-l.post.del:
 	@$(ECHO) $(CURL_PATH) $(CURL_DETAIL)  -X DELETE  \
 		' -F "type=post" ' \
-		 $(SITE_URL)/b/os-learning/build-4.8.4  |  $(IH_PATH) -m  -f '$(IH_DELAY)' -p '$(PRIVATE_KEY)' -d '$(SITE_DETAL)' -v | $(SHELL)
+		' -F "sha-file-name=/`$(MD5) $(PRIVATE_KEY).pub`" ' \
+		 $(SITE_URL)/b/os-learning/build-4.8.4  |  $(IH_PATH) -m  -f '$(IH_DELAY)' -p '$(PRIVATE_KEY)' -d '$(SITE_DELTA)' -v | $(SHELL)
 
 

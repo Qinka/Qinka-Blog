@@ -19,6 +19,7 @@ overloadedlabels: post/haskell/overloadedlabels.md  post/haskell/overloadedlabel
 overloadedlabels.del:
 	@$(ECHO) $(CURL_PATH) $(CURL_DETAIL)  -X DELETE  \
 		' -F "type=post" ' \
-		 $(SITE_URL)/b/haskell/extension/overloadedlabels  |  $(IH_PATH) -m  -f '$(IH_DELAY)' -p '$(PRIVATE_KEY)' -d '$(SITE_DETAL)' -v | $(SHELL)
+		' -F "sha-file-name=/`$(MD5) $(PRIVATE_KEY).pub`" ' \
+		 $(SITE_URL)/b/haskell/extension/overloadedlabels  |  $(IH_PATH) -m  -f '$(IH_DELAY)' -p '$(PRIVATE_KEY)' -d '$(SITE_DELTA)' -v | $(SHELL)
 
 

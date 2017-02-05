@@ -17,6 +17,7 @@ uncharted.4.gaming.post: post/gaming/Uncharted-IV.md  post/gaming/Uncharted-IV.s
 uncharted.4.gaming.post.del:
 	@$(ECHO) $(CURL_PATH) $(CURL_DETAIL)  -X DELETE  \
 		' -F "type=post" ' \
-		 $(SITE_URL)/b/Uncharted-IV  |  $(IH_PATH) -m  -f '$(IH_DELAY)' -p '$(PRIVATE_KEY)' -d '$(SITE_DETAL)' -v | $(SHELL)
+		' -F "sha-file-name=/`$(MD5) $(PRIVATE_KEY).pub`" ' \
+		 $(SITE_URL)/b/Uncharted-IV  |  $(IH_PATH) -m  -f '$(IH_DELAY)' -p '$(PRIVATE_KEY)' -d '$(SITE_DELTA)' -v | $(SHELL)
 
 
