@@ -1,6 +1,6 @@
 # Linux 4.8.4 内核编译并安装到 Ubuntu 16.04 上
 
-这个编译 Linux 4.8.4 内核，不见意见容易的事。首先用的是 Ubuntu 16.04。
+这个编译 Linux 4.8.4 内核，不是一件容易的事。首先用的是 Ubuntu 16.04。
 
 ## 准备
 
@@ -40,7 +40,7 @@ fakeroot make-kpkg --initrd  kernel_image kernel_headers
 
 ## 安装
 
-安装的话，在目录 `~`下会多出两个 debian包，用 dpkg(1) 安装他们
+安装的话，在 `$HOME` 目录下会多出两个 debian 包，用 dpkg(1) 安装他们
 
 ```bash
 sudo dpkg -i linux-headers-4.8.1-SOME.NAME_amd64.deb
