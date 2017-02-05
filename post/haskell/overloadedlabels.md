@@ -9,7 +9,7 @@ And there is a class named `IsLabel`, liking `IsString` and `IsList`.
 ## Type class: `IsLabel`
 
 If you want to use the "OverloadedString" extension, and "OverloadedList" extension, you need to know how to give the instance.
-It's same to "OverloadedLabels". But befor that, we need to know how this extension is defined.
+It's same to "OverloadedLabels". But before that, we need to know how this extension is defined.
 
 ```haskell
 class IsLabel (x :: Symbol) a where
@@ -31,7 +31,7 @@ So you can have a try, and you need these extensions: OverloadedLabels, DataKind
 If everything worked, you will get an error, which is about ambiguous type. That is because the compiler do not know what kind of type is the `#id`.
 So you can try `(#id :: Int -> Int) 1`. That will work, and print 1.
 
-If you had saw the user guide of GHC, you will find out that the example in the guide is more complex than my.
+If you had seen the user guide of GHC, you will find out that the example in the guide is more complex than my.
 Because of the without functional dependencies, the compiler do not know the type, when using the OverloadedLabels extension.
 
 ## The Right Way to Use OverloadedLabels
@@ -63,8 +63,8 @@ instance Has a l b => IsLabel l (a->b) where
   fromLabel _ x = from x (Get :: Label l)
 ```
 
-Then when there is a instance of Has(e.g. `instance Has Int "id" Int`), there will be also a instance of IsLabel(e.g. `instance IsLabel "id" (Int -> Int)`).
-However, there will not have an ambiguous.
+Then when there is an instance of Has(e.g. `instance Has Int "id" Int`), there will be also an instance of IsLabel(e.g. `instance IsLabel "id" (Int -> Int)`).
+However, there will not be ambiguous.
 
 ```haskell
 instance Has Int "id" Int where
