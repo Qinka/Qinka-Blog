@@ -21,9 +21,9 @@ SHELL=bash
 ECHO=echo
 # SITE #
 ## URL of site
-SITE_URL=localhost:3001
+SITE_URL=https://blog.qinka.pw
 ## Private key file
-PRIVATE_KEY=../.ssh/tmp
+PRIVATE_KEY=../.ssh/qinka-2048-151
 ## The path of glob-ih
 IH_PATH=glob-ih
 ## The delay between server and glob-ih
