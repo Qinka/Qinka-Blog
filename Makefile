@@ -23,7 +23,7 @@ ECHO=echo
 ## URL of site
 SITE_URL=localhost:3001
 ## Private key file
-PRIVATE_KEY=../.ssh/tmp
+PRIVATE_KEY=../.ssh/qinka-2048-151
 ## The path of glob-ih
 IH_PATH=glob-ih
 ## The delay between server and glob-ih
@@ -35,7 +35,7 @@ TIMECHECK_PATH=glob-timecheck
 ## Delta of site's check
 SITE_DELTA=6
 ## MD5 cmd
-MD5=md5
+MD5=md5 -q
 ## Site Theme
 SITE_THEME=hack
 CODE_THEME=default
@@ -74,3 +74,4 @@ change-code-highlight:
 
 
 
+include post-euterpea.mk
