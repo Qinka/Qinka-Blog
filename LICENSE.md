@@ -1,4 +1,5 @@
 **Copymiddle (C-M) 2016-2017 Qinka <qinka@live.com> <qinka@qinka.pw>**
+**（部分有特殊说明的，除外）**
 
 # 传播
 
