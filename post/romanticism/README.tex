@@ -28,6 +28,10 @@
 开源的姿势很简单，代码开放，常发布，合作。这是《大教堂与集市》中所“提倡”的三个规则。
 然而事实上规则有很多，繁而杂。成为一门“宗教”、“哲学”。正如我们的诗歌，诗词中平仄、押韵，以至于“推”、“敲”二字的典故早就当代汉语中“推敲”一词。
 
+
+\subsection{正题}
+做什么都得做的有模有样。对于一个开源的项目，我们通常会有一些“习惯法”，对于这样的一个开源的行为，黑客们通常有一些“习惯”。
+E.S.Raymond 在 《Unix 编程艺术》 一书中有一些介绍，但是在现在——“时代不同了”，有一些我观察到的新的一些习惯的产生。
 \section{命名风格}
 
 提倡 GNU 的命名风格，是因为它真的不错。通常 GNU 的版本号的风格是 \verb|主干+major.minor.patch| 的方式，而且通常只包含小写字母数字。
@@ -46,31 +50,45 @@
 E.S.Raymond 在 《Unix 编程艺术》 中举了几个例子。我就把它们在复制出来，此外再从 GNU 官方拷贝一些例子。
 
 \subsection{错误的例子}
+\begin{itemize}
+	\item  \verb|foobar123.tar.gz| E.S.Raymond 说像没有版本号的“foobar123”，在我看来，也许是 12年3月份的一个版本，正如同 Ubuntu 的命名风格。
+		当然称之为1月23号的版本，也不为过。
+	\item \verb|foobar-v4.1.tar.gz| GitHub 官方在 Tag/Release 这方面的建议 tag 的格式大概像 \verb|v1.2-rc.3|，但是此处的字符 v，
+		更像项目名称中的一个东西。
+	\item \verb|foo_bar-4.1.tar.gz| 一般下划线会被认作是空格的替代，而一般这类名称中 不存在真正的空格。
+\end{itemize}
 
-\verb|foobar123.tar.gz| E.S.Raymond 说像没有版本号的“foobar123”，在我看来，也许是 12年3月份的一个版本，正如同 Ubuntu 的命名风格。当然称之为1月23号的版本，也不为过。
 
 \subsection{正确的}
+\begin{itemize}
+	\item \verb|freetalk-4.1.tar.gz| GNU 的一个软件。正确的命名风格告诉我们，这个叫 freetalk 的软件，版本为 4.1。下载的归档则是源代码。
+	\item \verb|yesod-core-1.4.31.tar.gz|  Hackage 上 Haskell 中一个基于 wai 的 Web 应用框架。这个归档是源代码
+\end{itemize}
 
-\verb|freetalk-4.1.tar.gz| GNU 的一个软件。正确的命名风格告诉我们，这个叫 freetalk 的软件，版本为 4.1。下载的归档则是源代码。
-
+\subsection{压缩格式}
+在 E.S.Raymond 的书中，在 GitHub 的提供的下载的源文件中，还有一些像 GNU 在内的传统的自由软件“智造商”在内，通常大家习惯使用 tar 归档，
+并使用 GNU ZIP 压缩。通常的归档工具 tar 都提供直接解压并解档 \verb|tar.gz| 后缀名的压缩归档的功能，当然也有直接归档并压缩的功能。
+而现在则是提倡使用 xz 的压缩方式，压缩效率比 GNU ZIP 格式的要高不少。现在的 tar 归档工具列提供类似的对于 xz 的支持。
+目前 Linux 内核提供的代码的格式就是 \verb|tar.xz| 格式的。
 
 \section{自动化工具}
 
-% auto*
+%  auto*
 % CI
 % CD
 
-\section{制作实践}
 
-\subsection{归档压缩}
+\section{归档压缩}
+在传统的自由软件阵地，人们往往愿意使用 GNU ZIP 的压缩方式并搭配上 tar 的归档方式。文件扩展名通常是 \verb|tar.gz| ，也有少数文件的
+扩展名是 \verb|tgz|。
 
-\subsection{README}
+\section{README 与 GitHub}
 
-\subsection{创建文件}
+\section{创建文件}
 
-\subsection{邮件列表与网站}
+\section{邮件列表与网站}
 
-\subsection{许可证}
+\section{许可证}
 
 
 
