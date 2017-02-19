@@ -73,18 +73,54 @@ E.S.Raymond 在 《Unix 编程艺术》 中举了几个例子。我就把它们�
 
 \section{自动化工具}
 
-%  auto*
+% auto*
 % CI
 % CD
 
 
 \section{归档压缩}
 在传统的自由软件阵地，人们往往愿意使用 GNU ZIP 的压缩方式并搭配上 tar 的归档方式。文件扩展名通常是 \verb|tar.gz| ，也有少数文件的
-扩展名是 \verb|tgz|。
+扩展名是 \verb|tgz|。相对的，现在很多地方开始使用 xz 作为压缩工具，比如说 Linux 的内核代码。
+xz 与 Windows 平台上免费而高效率的 7z 相对来说是近亲使，都用到了 LZMA 压缩压缩算法。 xz 相对 gz 来说，压缩效率相对来说较高，
+但是相对的 gz 的压缩的速度要比 xz 要快不少。
+
+此外，不推荐使用一些闭源，比如 RAR，因为这些软件会牵扯到版权的问题，同时大部分自由软件的开发者并不使用这一类软件。
 
 \section{README 与 GitHub}
+\label{readmeNgithub}
+\subsection{Git}
+Git 简单的来说是一种 分布式的版本控制系统。传统的源代码分发的方式是将代码归档压缩之后通过各种途径分发。
+而现在很多源码分发的软件的则通过 Git。 通过直接使用 Git 克隆代码，用户可以方便的获取到代码。而同时作出贡献也变得容易许多。
+
+开发过程中的协作方式有很多种，协作的软件也有很多。有时开玩笑的来说，协作可以通过 U 盘，也可以通过邮件或者通信软件（比如QQ）。
+而真正高效而正确的方式是通过 Git。
+\subsection{Markdown}
 
 \section{创建文件}
+通常，创建的开源的项目或者工具在文件命名上是有一定的习惯“法”的。黑客们在这方面有不少习惯。
+通常会有将源代码放入 \verb|src| 文件夹的习惯，但是这并不是最重要的。下面的一些内容是有关于一些“开门见山”的文件。
+\paragraph{README}
+这个文件通常是被最先阅读的。相当于指路标。更详细的内容在 \ref{readmeNgithub} 说明。
+\paragraph{INSTALL}
+这个文件往往是使用最为关心的文件之一，在使用之前，与配置、编译、安装，也就是人们常说的“三部曲”，相关的内容，都应该在这个文档中指明。
+\paragraph{AUTHORS}
+无论我们在不在乎版权，项目的贡献者都应该罗列出来以表示感谢。同时也有使用 \verb|MAINTAINERS| 作为文件名的，类似的文件还有 \verb|CREDITS|。
+\paragraph{NEWS}
+这个是有关项目的最新的内容，新闻。但是者事实上更适合与写在“自媒体”上。
+\paragraph{HISTORY}
+这个文件与项目的历史更为相关但是，相对使用 Git/GitHub 的项目，这一记录更多的应该其索引的作用。
+\paragraph{CHANGE}
+重要的改动应该写到这里面。
+\paragraph{COPYING}
+根据 E.S.Raymond 的 《Unix 编程艺术》，这是 GNU 项目的惯例。在中文译本中标注的“项目许可证条款”。
+但是在 很多地方更提倡使用 \verb|LICENSE| 这个名字来指代许可证。
+\paragraph{LICENSE}
+项目许可证条款。GitHub 等平台默认的使用这个文件作为协议。
+\paragraph{FAQ}
+这也是一个比较重要的文件。FAQ 是 Frequently Asked Questions 的缩写。这个文件应该用于回答常见问题，可减轻维护者的负担。
+
+
+
 
 \section{邮件列表与网站}
 
