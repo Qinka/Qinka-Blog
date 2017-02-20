@@ -35,7 +35,7 @@ TIMECHECK_PATH=glob-timecheck
 ## Delta of site's check
 SITE_DELTA=6
 ## MD5 cmd
-MD5=md5
+MD5=md5 -q
 ## Site Theme
 SITE_THEME=hack
 CODE_THEME=default
