@@ -72,5 +72,4 @@ change-code-highlight:
 		$(SITE_URL)/@/~highlight ' '  | $(IH_PATH) -m -f$(IH_DELAY) -p$(PRIVATE_KEY) -d$(SITE_DELTA) -v  | $(SHELL) ; fi
 
 
-
-
+include post-docker.mk
