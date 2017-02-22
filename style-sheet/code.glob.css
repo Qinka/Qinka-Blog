@@ -48,6 +48,11 @@ pre, pre code
 	background-color: #303030;
 }
 
+div.sourceCode
+{
+	background-color: #303030;
+}
+
 code > span.kw
 {
 	color: #f0dfaf;
