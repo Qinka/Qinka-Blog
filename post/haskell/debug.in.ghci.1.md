@@ -24,7 +24,7 @@ myLines s        =  cons (case break (== '\n') s of
 -- from base-4.9.1.0
 ```
 
-Befor we set up a breakpoint, load the module into GHCi, firstly.
+Befor we set up a breakpoint, load the module into GHCi, first:
 
 ```
 Preface> :load MyLines.hs
@@ -32,3 +32,5 @@ Preface> :load MyLines.hs
 Ok, modules loaded: MyLines.
 *MyLines>
 ```
+
+Then we set a breakpoint on this line: `(l, s') -> (l, case s' of`

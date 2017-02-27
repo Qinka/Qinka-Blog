@@ -1,3 +1,27 @@
+debug.in.ghci.1.post: post/haskell/debug.in.ghci.1.md 
+	@pandoc -o .ignore/debug.in.ghci.1.html post/haskell/debug.in.ghci.1.md
+	@$(ECHO) $(CURL_PATH) $(CURL_DETAIL)  -X PUT  \
+		' -F "type=post" ' \
+		' -F "create-time=2017-02-27 08:56:26.107988 UTC" ' \
+		' -F "update-time=$(IH_NOW)" ' \
+		' -F "title=Debug with GHCi 1" ' \
+		' -F "html=@.ignore/debug.in.ghci.1.html" ' \
+		' -F "sha-file-name=/`$(MD5) $(PRIVATE_KEY).pub`" ' \
+		' -F "summary=post/haskell/debug.in.ghci.1.sum.md" ' \
+		' -F "whose=Qinka" ' \
+		' -F "tag=blog" ' \
+		' -F "tag=highlight" ' \
+		' -F "tag=code" ' \
+		' -F "tag=haskell" ' \
+		 $(SITE_URL)/b/haskell/debug-with-ghci/1  |  $(IH_PATH) -m  -f '$(IH_DELAY)' -p '$(PRIVATE_KEY)' -d '$(SITE_DELTA)' -v | $(SHELL)
+
+debug.in.ghci.1.post.del:
+	@$(ECHO) $(CURL_PATH) $(CURL_DETAIL)  -X DELETE  \
+		' -F "type=post" ' \
+		' -F "sha-file-name=/`$(MD5) $(PRIVATE_KEY).pub`" ' \
+		 $(SITE_URL)/b/haskell/debug-with-ghci/1  |  $(IH_PATH) -m  -f '$(IH_DELAY)' -p '$(PRIVATE_KEY)' -d '$(SITE_DELTA)' -v | $(SHELL)
+
+
 overloadedlabels: post/haskell/overloadedlabels.md  post/haskell/overloadedlabels.sum.md
 	@pandoc -o .ignore/overloadedlabels.html post/haskell/overloadedlabels.md
 	@pandoc -o .ignore/overloadedlabels.sum.html post/haskell/overloadedlabels.sum.md
@@ -19,6 +43,7 @@ overloadedlabels: post/haskell/overloadedlabels.md  post/haskell/overloadedlabel
 overloadedlabels.del:
 	@$(ECHO) $(CURL_PATH) $(CURL_DETAIL)  -X DELETE  \
 		' -F "type=post" ' \
-		 $(SITE_URL)/b/haskell/extension/overloadedlabels  |  $(IH_PATH) -m  -f '$(IH_DELAY)' -p '$(PRIVATE_KEY)' -d '$(SITE_DETAL)' -v | $(SHELL)
+		' -F "sha-file-name=/`$(MD5) $(PRIVATE_KEY).pub`" ' \
+		 $(SITE_URL)/b/haskell/extension/overloadedlabels  |  $(IH_PATH) -m  -f '$(IH_DELAY)' -p '$(PRIVATE_KEY)' -d '$(SITE_DELTA)' -v | $(SHELL)
 
 
