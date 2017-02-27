@@ -1,13 +1,14 @@
-debug.in.ghci.1.post: post/haskell/debug.in.ghci.1.md 
+debug.in.ghci.1.post: post/haskell/debug.in.ghci.1.md  post/haskell/debug.in.ghci.1.sum.md
 	@pandoc -o .ignore/debug.in.ghci.1.html post/haskell/debug.in.ghci.1.md
+	@pandoc -o .ignore/debug.in.ghci.1.sum.html post/haskell/debug.in.ghci.1.sum.md
 	@$(ECHO) $(CURL_PATH) $(CURL_DETAIL)  -X PUT  \
 		' -F "type=post" ' \
-		' -F "create-time=2017-02-27 08:56:26.107988 UTC" ' \
+		' -F "create-time=2017-02-27 13:23:25.343155 UTC" ' \
 		' -F "update-time=$(IH_NOW)" ' \
 		' -F "title=Debug with GHCi 1" ' \
 		' -F "html=@.ignore/debug.in.ghci.1.html" ' \
 		' -F "sha-file-name=/`$(MD5) $(PRIVATE_KEY).pub`" ' \
-		' -F "summary=post/haskell/debug.in.ghci.1.sum.md" ' \
+		' -F "summary=@.ignore/debug.in.ghci.1.sum.html" ' \
 		' -F "whose=Qinka" ' \
 		' -F "tag=blog" ' \
 		' -F "tag=highlight" ' \
