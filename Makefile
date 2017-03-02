@@ -21,7 +21,7 @@ SHELL=bash
 ECHO=echo
 # SITE #
 ## URL of site
-SITE_URL=localhost:3001
+SITE_URL=qinka-test-core.daoapp.io
 ## Private key file
 PRIVATE_KEY=../.ssh/tmp
 ## The path of glob-ih
@@ -58,7 +58,7 @@ change-site-theme:
 	@$(ECHO) The old theme is $(OLD_THEME)
 	@$(ECHO) The new theme is $(SITE_STYLE)
 	@if [ "$(OLD)" = "$(SITE_STYLE)" ]; then $(ECHO) The new one is eq2 old one. DO NOTHING; \
-		else $(ECHO) $(CURL_PATH) $(CURL_DETAIL)  -X PUT  -F \"sha-file-name=/`$(MD5) $(PRIVATE_KEY).pub`\" -F \"var=$(SITE_STYLE)\" -F \"type=query\" -F \"create-time=2017-02-03 10:04:42.40324 UTC\" -F \"update-time=$(IH_NOW)\" -F \"title=query\"  \
+		else $(ECHO) $(CURL_PATH) $(CURL_DETAIL)  -X PUT  -F \"sha-file-name=/`$(MD5) $(PRIVATE_KEY).pub`\" -F \"var=$(SITE_STYLE)\" -F \"type=query\" -F \"create-time=2017-03-02 23:54:47.532756 UTC\" -F \"update-time=$(IH_NOW)\" -F \"title=query\"  \
 		$(SITE_URL)/@/~site-theme ' '  | $(IH_PATH) -m -f$(IH_DELAY) -p$(PRIVATE_KEY) -d$(SITE_DELTA) -v  | $(SHELL) ; fi
 
 # Change Site Code Highlight #
@@ -68,9 +68,7 @@ change-code-highlight:
 	@$(ECHO) The old theme is $(OLD_THEME)
 	@$(ECHO) The new theme is $(CODE_STYLE)
 	@if [ "$(OLD)" = "$(CODE_STYLE)" ]; then $(ECHO) The new one is eq2 old one. DO NOTHING; \
-		else $(ECHO) $(CURL_PATH) $(CURL_DETAIL)  -X PUT  -F \"sha-file-name=/`$(MD5) $(PRIVATE_KEY).pub`\" -F \"var=$(CODE_STYLE)\" -F \"type=query\" -F \"create-time=2017-02-03 10:04:42.40324 UTC\" -F \"update-time=$(IH_NOW)\" -F \"title=query\"  \
+		else $(ECHO) $(CURL_PATH) $(CURL_DETAIL)  -X PUT  -F \"sha-file-name=/`$(MD5) $(PRIVATE_KEY).pub`\" -F \"var=$(CODE_STYLE)\" -F \"type=query\" -F \"create-time=2017-03-02 23:54:47.532756 UTC\" -F \"update-time=$(IH_NOW)\" -F \"title=query\"  \
 		$(SITE_URL)/@/~highlight ' '  | $(IH_PATH) -m -f$(IH_DELAY) -p$(PRIVATE_KEY) -d$(SITE_DELTA) -v  | $(SHELL) ; fi
-
-
 
 
