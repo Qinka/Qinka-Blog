@@ -131,4 +131,4 @@ After you open the **New Project Wizard**, you need to change the **Name** and t
 
 Then click the **Next** and select *Nexys 3 Board* in the field **Evaluation Development Borad**. If your ISE do not have the option **Nexys 3 Board**, you can use **General Purpose**. The extra things to do are setting **Family** to **Spartan6**, setting **Device** to **XC6SLX16**, setting **Package** to **CSG324**, and setting **Speed** to **-3**.
 
-Make sure that the synthesis tools is **XST**, the simulator is the **ISim**
+Make sure that the synthesis tools is **XST**, the simulator is the **ISim**, and the Preferred **Language** is **Verilog**.
