@@ -132,3 +132,21 @@ After you open the **New Project Wizard**, you need to change the **Name** and t
 Then click the **Next** and select *Nexys 3 Board* in the field **Evaluation Development Borad**. If your ISE do not have the option **Nexys 3 Board**, you can use **General Purpose**. The extra things to do are setting **Family** to **Spartan6**, setting **Device** to **XC6SLX16**, setting **Package** to **CSG324**, and setting **Speed** to **-3**.
 
 Make sure that the synthesis tools is **XST**, the simulator is the **ISim**, and the Preferred **Language** is **Verilog**.
+
+Then click the **Next** and review the **Project Summary**. 
+Click the **Finish** to create this project finally.
+
+## Draw The Circuit
+
+Choose **Project -> New Source** to add a new source file to this project.
+In the **New Source Wizard**, the **Select Source Type** should be selected as **Schematic**. (Don't forget to full the **File Name**.)
+Then click the **Next** and **Finish** to create this file finally.
+
+Select the file you had create.
+Choose the tab **Symbols** left on the ISE's Windows.
+Then choose the **Logic** in the **Categonies**.
+Drop the AND gate, OR gate, XOR gate etc to design area.
+
+For half-adder, we need an XOR gate and an AND gate.
+And line them according to the circuit.
+For the full-adder, we need 
