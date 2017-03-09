@@ -131,7 +131,8 @@ After you open the **New Project Wizard**, you need to change the **Name** and t
 
 Then click the **Next** and select *Nexys 3 Board* in the field **Evaluation Development Borad**. If your ISE do not have the option **Nexys 3 Board**, you can use **General Purpose**. The extra things to do are setting **Family** to **Spartan6**, setting **Device** to **XC6SLX16**, setting **Package** to **CSG324**, and setting **Speed** to **-3**.
 
-Make sure that the synthesis tools is **XST**, the simulator is the **ISim**, and the Preferred **Language** is **Verilog**.
+Make sure that the synthesis tools is **XST**, the simulator is the **ISim**, and the Preferred **Language** is **Verilog**
+(if you want to use VHDL, should it).
 
 Then click the **Next** and review the **Project Summary**. 
 Click the **Finish** to create this project finally.
@@ -145,8 +146,24 @@ Then click the **Next** and **Finish** to create this file finally.
 Select the file you had create.
 Choose the tab **Symbols** left on the ISE's Windows.
 Then choose the **Logic** in the **Categonies**.
-Drop the AND gate, OR gate, XOR gate etc to design area.
+Drag and drop the AND gate, OR gate, XOR gate etc to design area.
 
 For half-adder, we need an XOR gate and an AND gate.
-And line them according to the circuit.
-For the full-adder, we need 
+And line them up according to the circuit.
+For the full-adder, we need two AND gates, two XOR gates, and an OR gate. Then line them up according to the circuit.
+
+When we have one full-adder, we need to copy and paste it. For a 4-bit adder, we need one half-add, and three full-add.
+
+The each adder's carry output should be lined with the next level's carry input.
+
+The final circuit has 8 input pins, named A1 ~ A4 and B1 ~ B4.
+it has 5 output pins, named S1 ~ S4, and S.
+
+## Setting The Pins
+
+In the **Design** tab, at the left of windows, double click the **User Constrants -> I/O Pin Planning (PlanAhead) - Pre-Synthesis**
+ to configurate I/O pins.
+
+ The *PlanAhead* will start. At the bottom panel -- **I/O Ports**,
+ you need to configrate the in and out pin for our adder.
+ According to the *Reference Manual* of the 
