@@ -1,18 +1,4 @@
 .DS_Store
-hi
-ih
-ih.exe
-*.c.html
-*.c.css
-*.c.js
-blog.c.js
-css.frame.c.css
-home.c.html
-nav.c.js
-tmp
-jd_root.txt
-root.txt
-blog/test
 .ignore
 *.aux
 *.log
@@ -25,3 +11,9 @@ blog/test
 \#*\#
 .\#*
 *.synctex.gz(busy)
+.\#
+
+
+## For plat different
+.platform/platform.mk
+.platform/md5.*
