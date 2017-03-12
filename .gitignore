@@ -25,3 +25,6 @@ blog/test
 .markdown-preview.html
 \#*\#
 .\#
+## For plat different
+.platform/platform.mk
+.platform/md5.*
