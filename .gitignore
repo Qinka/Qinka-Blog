@@ -25,3 +25,9 @@ blog/test
 \#*\#
 .\#*
 *.synctex.gz(busy)
+.\#
+
+
+## For plat different
+.platform/platform.mk
+.platform/md5.*
