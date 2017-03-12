@@ -69,4 +69,4 @@ change-code-highlight:
 
 
 include .platform/platform.mk
-include post-gaming.mk
+include post-draw-figure.mk
