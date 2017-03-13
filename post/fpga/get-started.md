@@ -24,9 +24,9 @@ According to the manual, the features of this borad include:
 
 This is the peripheral device of the Nexys 3:
 
-  ![Nexys 3 (2) ((C) Digilient)](/img/fpga/nexys-3-2.png)
+  ![Nexys 3 (2) ((C) Digilient)](/img/fpga/nexys-3-2.jpg)
 
-  ![Nexys 3 (3) ((C) Digilient)](/img/fpga/nexys-3-3.png)
+  ![Nexys 3 (3) ((C) Digilient)](/img/fpga/nexys-3-3.jpg)
 
 ## ISE Design Suite
 

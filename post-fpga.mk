@@ -98,44 +98,44 @@ fpga.nexys-3-1.jpg.imgnexys-3-1.jpg.del:
 		 $(SITE_URL)/img/fpga/nexys-3-1.jpg  |  $(IH_PATH) -m  -f '$(IH_DELAY)' -p '$(PRIVATE_KEY)' -d '$(SITE_DELTA)' -v | $(SHELL)
 
 
-fpga.nexys-3-2.png.imgnexys-3-2.png: img/fpga/nexys-3-2.png 
+fpga.nexys-3-2.jpg.imgnexys-3-2.jpg: img/fpga/nexys-3-2.jpg 
 	@$(ECHO) $(CURL_PATH) $(CURL_DETAIL)  -X PUT  \
 		' -F "type=binary" ' \
 		' -F "create-time=2017-03-13 14:25:00.0904661 UTC" ' \
 		' -F "update-time=$(IH_NOW)" ' \
 		' -F "title=Nexys 3 (2)" ' \
-		' -F "binary=@img/fpga/nexys-3-2.png" ' \
+		' -F "binary=@img/fpga/nexys-3-2.jpg" ' \
 		' -F "sha-file-name=/`$(MD5) $(PRIVATE_KEY).pub`" ' \
 		' -F "whose=Qinka" ' \
 		' -F "tag=FPGA" ' \
 		' -F "tag=Get Start" ' \
-		 $(SITE_URL)/img/fpga/nexys-3-2.png  |  $(IH_PATH) -m  -f '$(IH_DELAY)' -p '$(PRIVATE_KEY)' -d '$(SITE_DELTA)' -v | $(SHELL)
+		 $(SITE_URL)/img/fpga/nexys-3-2.jpg  |  $(IH_PATH) -m  -f '$(IH_DELAY)' -p '$(PRIVATE_KEY)' -d '$(SITE_DELTA)' -v | $(SHELL)
 
-fpga.nexys-3-2.png.imgnexys-3-2.png.del:
+fpga.nexys-3-2.jpg.imgnexys-3-2.jpg.del:
 	@$(ECHO) $(CURL_PATH) $(CURL_DETAIL)  -X DELETE  \
 		' -F "type=binary" ' \
 		' -F "sha-file-name=/`$(MD5) $(PRIVATE_KEY).pub`" ' \
-		 $(SITE_URL)/img/fpga/nexys-3-2.png  |  $(IH_PATH) -m  -f '$(IH_DELAY)' -p '$(PRIVATE_KEY)' -d '$(SITE_DELTA)' -v | $(SHELL)
+		 $(SITE_URL)/img/fpga/nexys-3-2.jpg  |  $(IH_PATH) -m  -f '$(IH_DELAY)' -p '$(PRIVATE_KEY)' -d '$(SITE_DELTA)' -v | $(SHELL)
 
 
-fpga.nexys-3-3.png.imgnexys-3-3.png: img/fpga/nexys-3-3.png 
+fpga.nexys-3-3.jpg.imgnexys-3-3.jpg: img/fpga/nexys-3-3.jpg 
 	@$(ECHO) $(CURL_PATH) $(CURL_DETAIL)  -X PUT  \
 		' -F "type=binary" ' \
 		' -F "create-time=2017-03-13 14:25:01.0945786 UTC" ' \
 		' -F "update-time=$(IH_NOW)" ' \
 		' -F "title=Nexys 3 (3)" ' \
-		' -F "binary=@img/fpga/nexys-3-3.png" ' \
+		' -F "binary=@img/fpga/nexys-3-3.jpg" ' \
 		' -F "sha-file-name=/`$(MD5) $(PRIVATE_KEY).pub`" ' \
 		' -F "whose=Qinka" ' \
 		' -F "tag=FPGA" ' \
 		' -F "tag=Get Start" ' \
-		 $(SITE_URL)/img/fpga/nexys-3-3.png  |  $(IH_PATH) -m  -f '$(IH_DELAY)' -p '$(PRIVATE_KEY)' -d '$(SITE_DELTA)' -v | $(SHELL)
+		 $(SITE_URL)/img/fpga/nexys-3-3.jpg  |  $(IH_PATH) -m  -f '$(IH_DELAY)' -p '$(PRIVATE_KEY)' -d '$(SITE_DELTA)' -v | $(SHELL)
 
-fpga.nexys-3-3.png.imgnexys-3-3.png.del:
+fpga.nexys-3-3.jpg.imgnexys-3-3.jpg.del:
 	@$(ECHO) $(CURL_PATH) $(CURL_DETAIL)  -X DELETE  \
 		' -F "type=binary" ' \
 		' -F "sha-file-name=/`$(MD5) $(PRIVATE_KEY).pub`" ' \
-		 $(SITE_URL)/img/fpga/nexys-3-3.png  |  $(IH_PATH) -m  -f '$(IH_DELAY)' -p '$(PRIVATE_KEY)' -d '$(SITE_DELTA)' -v | $(SHELL)
+		 $(SITE_URL)/img/fpga/nexys-3-3.jpg  |  $(IH_PATH) -m  -f '$(IH_DELAY)' -p '$(PRIVATE_KEY)' -d '$(SITE_DELTA)' -v | $(SHELL)
 
 
 fpga.show.jpg.imgshow.jpg: img/fpga/show.jpg 
