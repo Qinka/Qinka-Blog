@@ -6,7 +6,7 @@ In this blog, the board you need is Digilient's Nexys-3. And we will talk about 
 
 Nexys 3 is ready-to-use FPGA board based on Xilinx's Spartan-6 LX16 FPGA.
 
-  ![Nexys 3 (1) ((C) Digilient)](/img/fgpa/nexys-3-1.jpg)
+  ![Nexys 3 (1) ((C) Digilient)](/img/fpga/nexys-3-1.jpg)
 
 According to the manual, the features of this borad include:
 * Xilinx Spartan-6 LX16 FPGA in a 324-pin BGA package
@@ -24,7 +24,7 @@ According to the manual, the features of this borad include:
 
 This is the peripheral device of the Nexys 3:
 
-  ![Nexys 3 (2) ((C) Digilient)](/img/fgpa/nexys-3-2.png)
+  ![Nexys 3 (2) ((C) Digilient)](/img/fpga/nexys-3-2.png)
 
   ![Nexys 3 (3) ((C) Digilient)](/img/fpga/nexys-3-3.png)
 
@@ -167,15 +167,22 @@ The each adder's carry output should be lined with the next level's carry input.
 The final circuit has 8 input pins, named A1 ~ A4 and B1 ~ B4.
 it has 5 output pins, named S1 ~ S4, and S.
 
+The final circuit is:
+
+  ![Adder](/img/fpga/adder-dc.jpg)
+
 ## Setting The Pins
 
 In the **Design** tab, at the left of windows, double click the **User Constrants -> I/O Pin Planning (PlanAhead) - Pre-Synthesis**
  to configurate I/O pins.
 
- The *PlanAhead* will start. At the bottom panel -- **I/O Ports**,
- you need to configrate the in and out pin for our adder.
- According to the *Reference Manual* of the **Nexys 3(TM) FPGA Board**,
- there are 8 slide switches and 8 LEDs on the borad. The following is about the relation between the peripherals and sites of FPGA.
+The *PlanAhead* will start. At the bottom panel -- **I/O Ports**,
+you need to configrate the in and out pin for our adder.
+According to the *Reference Manual* of the **Nexys 3(TM) FPGA Board**,
+there are 8 slide switches and 8 LEDs on the borad. The following is about the relation between the peripherals and sites of FPGA.
+The port of fpga:
+
+  ![I/O Ports](/img/fpga/io-ports.jpg)
 
 Peripheral | Site
 ---|---
@@ -209,11 +216,11 @@ B1 | IN | N8 | LVCMOS33
 B2 | IN | U8 | LVCMOS33
 B3 | IN | V8 | LVCMOS33
 B4 | IN | T5 | LVCMOS33
-C | OUT | V15 | LVCMOS25
-S1 | OUT | T11 | LVCMOS25
-S2 | OUT | R11 | LVCMOS25
-S3 | OUT | N11 | LVCMOS25
-S4 | OUT | M11 | LVCMOS25
+C | OUT | V15 | LVCMOS33
+S1 | OUT | T11 | LVCMOS33
+S2 | OUT | R11 | LVCMOS33
+S3 | OUT | N11 | LVCMOS33
+S4 | OUT | M11 | LVCMOS33
 
 Or you can just using the following codes:
 
@@ -246,3 +253,40 @@ NET "S2" LOC = R11;
 NET "S3" LOC = N11;
 NET "S4" LOC = M11;
 ```
+
+
+## Creating, Checking, etc
+
+The things need to do are about checking, creating, and so on.
+
+### Check Half-Adder, Full-Adder, And 4-bit Adder
+
+Select the circuit file(.sch) of hald adder, in the **Design** panel.
+Double click the **Create Schematic Symbol** and **Check Design Rules**, in the **Design Utilities**, in order.
+
+And do the same things to full-adder, and 4-bit adder.
+
+### Synthesize and Implement
+
+Double click the **Synthesize - XST** in the **Design** panel.
+Then double click the **Implement Design**.
+
+## Generate And Program
+
+Double click the **Generate Programming File**, and double click the **Configure Target Device**, in the **Design** panel.
+
+Then **ISE iMPACT** will be fired up.
+Double click the **Boundary Scan** in the left panel.
+And add device via pass **Ctrl + I**, or right click and click **Initialize Chain**.
+
+The add the configuration file to device, via the "guide" of right click on the device and click **Assign New Configuration File**. Then choose your configuration file.
+
+The right click device and choose **Program**.
+
+## Play And Having Fun
+
+After the configuration file programmed to device, our 4-bit will be right. The left 4 switch is a big-end input binary number, so right ones is. And the left 5 LEDs is the small-end output binary number.
+
+Having fun!
+
+  ![Example](/img/fpga/show.jpg)
