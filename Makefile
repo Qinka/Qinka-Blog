@@ -69,3 +69,4 @@ change-code-highlight:
 
 
 include .platform/platform.mk
+include post-fpga.mk
