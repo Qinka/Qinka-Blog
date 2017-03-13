@@ -6,7 +6,7 @@ In this blog, the board you need is Digilient's Nexys-3. And we will talk about 
 
 Nexys 3 is ready-to-use FPGA board based on Xilinx's Spartan-6 LX16 FPGA.
 
-![Nexys 3 (1) ((C) Digilient)](/img/fgpa/nexys-3-1.jpg)
+  ![Nexys 3 (1) ((C) Digilient)](/img/fgpa/nexys-3-1.jpg)
 
 According to the manual, the features of this borad include:
 * Xilinx Spartan-6 LX16 FPGA in a 324-pin BGA package
@@ -22,8 +22,10 @@ According to the manual, the features of this borad include:
 * GPIO includes 8 LEDs, 5 buttons,8 slide switches and 4-digit seven-segment display
 * USB2 programming cable included
 
-This is the peripheral device of the Nexys 3:  
-  ![Nexys 3 (2) ((C) Digilient)](/img/fgpa/nexys-3-2.png)  
+This is the peripheral device of the Nexys 3:
+
+  ![Nexys 3 (2) ((C) Digilient)](/img/fgpa/nexys-3-2.png)
+
   ![Nexys 3 (3) ((C) Digilient)](/img/fpga/nexys-3-3.png)
 
 ## ISE Design Suite
@@ -33,8 +35,11 @@ ISE supports Spartan(R)-6, Virtex(R)-6, and CoolRunner(TM) devices,
 as well as their preivous generation families.
 
 ISE Design Suite has three editions:
+
   * ISE Design Suite: Emmbedded Edition
+
   * ISE Design Suite: System Ediition
+
   * ISE Design Suite: WebPACK Edition (FREE)
 
 The more details can be found on the Xiline's official web site.
@@ -49,9 +54,12 @@ and fill in your informations. Because you need fill in the **U.S. Government Ex
 ***NOTE**: Read the direction above the page carefully*
 
 **Where to sign up**
-* [Here](https://china.xilinx.com/registration/create-account.html) is for Chinese.
-* [Here](https://www.xilinx.com/registration/create-account.html) is for English.
-* [Here](https://japan.xilinx.com/registration/create-account.html) is for Japanese.
+
+  * [Here](https://china.xilinx.com/registration/create-account.html) is for Chinese.
+
+  * [Here](https://www.xilinx.com/registration/create-account.html) is for English.
+
+  * [Here](https://japan.xilinx.com/registration/create-account.html) is for Japanese.
 
 ## Download
 
@@ -62,9 +70,9 @@ And download it.
 
 ***NOTE**: You might need fill up **U.S. Government Export Approval***
 
-* [Chinese] [Download Page](http://china.xilinx.com/support/download/index.html/content/xilinx/zh/downloadNav/design-tools.html)
+* Chinese: [Download Page](http://china.xilinx.com/support/download/index.html/content/xilinx/zh/downloadNav/design-tools.html)
 
-* [English] [Download Page](https://www.xilinx.com/support/download/index.html/content/xilinx/en/downloadNav/design-tools.html)
+* English: [Download Page](https://www.xilinx.com/support/download/index.html/content/xilinx/en/downloadNav/design-tools.html)
 
 ## Install
 
@@ -166,4 +174,75 @@ In the **Design** tab, at the left of windows, double click the **User Constrant
 
  The *PlanAhead* will start. At the bottom panel -- **I/O Ports**,
  you need to configrate the in and out pin for our adder.
- According to the *Reference Manual* of the 
+ According to the *Reference Manual* of the **Nexys 3(TM) FPGA Board**,
+ there are 8 slide switches and 8 LEDs on the borad. The following is about the relation between the peripherals and sites of FPGA.
+
+Peripheral | Site
+---|---
+SW0 | T10
+SW1 | T9
+SW2 | V9
+SW3 | M8
+SW4 | N8
+SW5 | U8
+SW6 | V8
+SW7 | T5
+LD0 | U16
+LD1 | V16
+LD2 | U15
+LD3 | V15
+LD4 | M11
+LD5 | N11
+LD6 | R11
+LD7 | T11
+ 
+We need to set up these relations at the bottom of the PlanAhead. We need to set **I/O Std** up, too.
+The following table is for the settings:
+
+Pin/Port Name | Direction | Site | I/O Std
+---|---|---|---
+A1 | IN | T10 | LVCMOS33
+A2 | IN | T9 | LVCMOS33
+A3 | IN | V9 | LVCMOS33
+A4 | IN | M8 | LVCMOS33
+B1 | IN | N8 | LVCMOS33
+B2 | IN | U8 | LVCMOS33
+B3 | IN | V8 | LVCMOS33
+B4 | IN | T5 | LVCMOS33
+C | OUT | V15 | LVCMOS25
+S1 | OUT | T11 | LVCMOS25
+S2 | OUT | R11 | LVCMOS25
+S3 | OUT | N11 | LVCMOS25
+S4 | OUT | M11 | LVCMOS25
+
+Or you can just using the following codes:
+
+```ucf
+NET "A1" LOC = T10;
+NET "A2" LOC = T9;
+NET "A3" LOC = V9;
+NET "A4" LOC = M8;
+NET "B1" LOC = N8;
+NET "B2" LOC = U8;
+NET "B3" LOC = V8;
+NET "B4" LOC = T5;
+
+NET "A1" IOSTANDARD = LVCMOS33;
+NET "A2" IOSTANDARD = LVCMOS33;
+NET "A4" IOSTANDARD = LVCMOS33;
+NET "A3" IOSTANDARD = LVCMOS33;
+NET "B1" IOSTANDARD = LVCMOS33;
+NET "B2" IOSTANDARD = LVCMOS33;
+NET "B4" IOSTANDARD = LVCMOS33;
+NET "C1" IOSTANDARD = LVCMOS33;
+NET "C2" IOSTANDARD = LVCMOS33;
+NET "B3" IOSTANDARD = LVCMOS33;
+NET "C3" IOSTANDARD = LVCMOS33;
+NET "C4" IOSTANDARD = LVCMOS33;
+
+NET "C"  LOC = V15;
+NET "S1" LOC = T11;
+NET "S2" LOC = R11;
+NET "S3" LOC = N11;
+NET "S4" LOC = M11;
+```
