@@ -9,18 +9,30 @@ Nexys 3 is ready-to-use FPGA board based on Xilinx's Spartan-6 LX16 FPGA.
   ![Nexys 3 (1) ((C) Digilient)](/img/fpga/nexys-3-1.jpg)
 
 According to the manual, the features of this borad include:
-* Xilinx Spartan-6 LX16 FPGA in a 324-pin BGA package
-* 16Mbyte Cellular RAM (x16)
-* 16Mbytes SPI (quad mode) PCM non-volatile memory
-* 16Mbytes parallel PCM non-volatile memory
-* 10/100 Ethernet PHY
-* On-board USB2 port for programming & data xfer
-* USB-UART and USB-HID port (for mouse/keyboard)
-* 8-bit VGA port
-* 100MHz CMOS oscillator
-* 72 I/Os routed to expansion connectors
-* GPIO includes 8 LEDs, 5 buttons,8 slide switches and 4-digit seven-segment display
-* USB2 programming cable included
+
+  * Xilinx Spartan-6 LX16 FPGA in a 324-pin BGA package
+
+  * 16Mbyte Cellular RAM (x16)
+
+  * 16Mbytes SPI (quad mode) PCM non-volatile memory
+
+  * 16Mbytes parallel PCM non-volatile memory
+
+  * 10/100 Ethernet PHY
+
+  * On-board USB2 port for programming & data xfer
+
+  * USB-UART and USB-HID port (for mouse/keyboard)
+
+  * 8-bit VGA port
+
+  * 100MHz CMOS oscillator
+
+  * 72 I/Os routed to expansion connectors
+
+  * GPIO includes 8 LEDs, 5 buttons,8 slide switches and 4-digit seven-segment display
+
+  * USB2 programming cable included
 
 This is the peripheral device of the Nexys 3:
 
@@ -169,7 +181,7 @@ it has 5 output pins, named S1 ~ S4, and S.
 
 The final circuit is:
 
-  ![Adder](/img/fpga/adder-dc.jpg)
+  ![Adder](/img/fpga/adder-dc.JPG)
 
 ## Setting The Pins
 
@@ -182,7 +194,7 @@ According to the *Reference Manual* of the **Nexys 3(TM) FPGA Board**,
 there are 8 slide switches and 8 LEDs on the borad. The following is about the relation between the peripherals and sites of FPGA.
 The port of fpga:
 
-  ![I/O Ports](/img/fpga/io-ports.jpg)
+  ![I/O Ports](/img/fpga/io-ports.JPG)
 
 Peripheral | Site
 ---|---
