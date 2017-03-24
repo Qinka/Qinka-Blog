@@ -54,3 +54,8 @@ For 31, 30, and 100, the output from GHCi is:
 
 *The memory used might be a litter larger or smaller then my output for each input.*
 
+
+
+# The Key For The memoization
+
+# Ops: Compiler Optimizations
