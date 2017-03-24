@@ -58,4 +58,6 @@ For 31, 30, and 100, the output from GHCi is:
 
 # The Key For The memoization
 
+# Constant Applicative Form
+
 # Ops: Compiler Optimizations
