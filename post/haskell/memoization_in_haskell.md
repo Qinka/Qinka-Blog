@@ -54,6 +54,7 @@ For 31, 30, and 100, the output from GHCi is:
 
 *The memory used might be a litter larger or smaller then my output for each input.*
 
+<<<<<<< HEAD
 That is amazing, isn't it?
 
 # Why That Work?
@@ -109,3 +110,8 @@ func = (+) 2
 
 Then in the GHCi, set up `:set +s`, and try to evaluate `func 100000`
 , and try a again. You will find the different.
+
+
+
+
+# Ops: Compiler Optimizations
