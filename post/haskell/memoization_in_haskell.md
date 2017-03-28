@@ -54,3 +54,58 @@ For 31, 30, and 100, the output from GHCi is:
 
 *The memory used might be a litter larger or smaller then my output for each input.*
 
+That is amazing, isn't it?
+
+# Why That Work?
+
+## Constant Applicative Form (CAF, for short)
+
+Before we talk about how to make your functions memoization, you should know a thing that is called **constant applicative form**.
+
+The compact definition of CAF is:
+> A supercombinator that is not a lambda abstraction is a CAF.
+
+### Supercombinators
+
+A supercombinator is either a constant, or combinator which contains only subexpressions are supercombinators.
+
+The followings are the supercombinators:
+
+```Haskell
+666
+\a b -> a + b
+\opt i xs -> opt i <$> xs 
+```
+But these are not CAFs:
+
+```Haskell
+\f g x -> f (\h -> g $ h x)
+\f g = h . g . f
+```
+
+Any lambda expression of the form:
+```Haskell
+\x1 x2 ... xn -> exp
+```
+and `exp` is not a lambda abstraction. It is fine that the lambda
+expression can be non-lambda abstraction(like: `(+) 1`) that means n = 0.
+
+But for the both, the free variables in `exp`  are `x1`, `x2`, ... `xn`, and each lambda abstraction in `exp` must be a supercombinator.
+
+
+### For CAFs
+
+The subvalues are automatically memoized within the value itself.
+
+## Memoize Your Functions
+
+If you want to memorize your function, change your function to CAF in a right way.
+
+We can define a function:
+```haskell
+func :: Int -> Int
+func = (+) 2
+```
+
+Then in the GHCi, set up `:set +s`, and try to evaluate `func 100000`
+, and try a again. You will find the different.
