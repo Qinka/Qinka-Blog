@@ -79,7 +79,7 @@ memoization-in-haskell.post: post/haskell/memoization_in_haskell.md  post/haskel
 		' -F "type=post" ' \
 		' -F "create-time=2017-03-23 14:26:10.1791938 UTC" ' \
 		' -F "update-time=$(IH_NOW)" ' \
-		' -F "title=null" ' \
+		' -F "title=Memoization in Haskell" ' \
 		' -F "html=@.ignore/memoization_in_haskell.html" ' \
 		' -F "sha-file-name=/`$(MD5) $(PRIVATE_KEY).pub`" ' \
 		' -F "summary=@.ignore/memoization_in_haskell.sum.html" ' \
