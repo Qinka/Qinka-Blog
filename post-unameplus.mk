@@ -15,7 +15,8 @@ begin.of.begin.post: post/UnamePlus/begin-of-begin.md  post/UnamePlus/begin-of-b
 begin.of.begin.post.del:
 	@$(ECHO) $(CURL_PATH) $(CURL_DETAIL)  -X DELETE  \
 		' -F "type=post" ' \
-		 $(SITE_URL)/b/uname/begin-of-begin  |  $(IH_PATH) -m  -f '$(IH_DELAY)' -p '$(PRIVATE_KEY)' -d '$(SITE_DETAL)' -v | $(SHELL)
+		' -F "sha-file-name=/`$(MD5) $(PRIVATE_KEY).pub`" ' \
+		 $(SITE_URL)/b/uname/begin-of-begin  |  $(IH_PATH) -m  -f '$(IH_DELAY)' -p '$(PRIVATE_KEY)' -d '$(SITE_DELTA)' -v | $(SHELL)
 
 
 gtk.hw.1.img: post/UnamePlus/img/gtk-hello-world-1.png 
@@ -32,7 +33,8 @@ gtk.hw.1.img: post/UnamePlus/img/gtk-hello-world-1.png
 gtk.hw.1.img.del:
 	@$(ECHO) $(CURL_PATH) $(CURL_DETAIL)  -X DELETE  \
 		' -F "type=binary" ' \
-		 $(SITE_URL)/img/gtk-hello-world-1.png  |  $(IH_PATH) -m  -f '$(IH_DELAY)' -p '$(PRIVATE_KEY)' -d '$(SITE_DETAL)' -v | $(SHELL)
+		' -F "sha-file-name=/`$(MD5) $(PRIVATE_KEY).pub`" ' \
+		 $(SITE_URL)/img/gtk-hello-world-1.png  |  $(IH_PATH) -m  -f '$(IH_DELAY)' -p '$(PRIVATE_KEY)' -d '$(SITE_DELTA)' -v | $(SHELL)
 
 
 gtk.hw.2.img: post/UnamePlus/img/gtk-hello-world-2.png 
@@ -49,7 +51,8 @@ gtk.hw.2.img: post/UnamePlus/img/gtk-hello-world-2.png
 gtk.hw.2.img.del:
 	@$(ECHO) $(CURL_PATH) $(CURL_DETAIL)  -X DELETE  \
 		' -F "type=binary" ' \
-		 $(SITE_URL)/img/gtk-hello-world-2.png  |  $(IH_PATH) -m  -f '$(IH_DELAY)' -p '$(PRIVATE_KEY)' -d '$(SITE_DETAL)' -v | $(SHELL)
+		' -F "sha-file-name=/`$(MD5) $(PRIVATE_KEY).pub`" ' \
+		 $(SITE_URL)/img/gtk-hello-world-2.png  |  $(IH_PATH) -m  -f '$(IH_DELAY)' -p '$(PRIVATE_KEY)' -d '$(SITE_DELTA)' -v | $(SHELL)
 
 
 intermediate.code.parser.post: post/UnamePlus/intermediate-code-parser.md  post/UnamePlus/intermediate-code-parser.sum.md
@@ -69,7 +72,8 @@ intermediate.code.parser.post: post/UnamePlus/intermediate-code-parser.md  post/
 intermediate.code.parser.post.del:
 	@$(ECHO) $(CURL_PATH) $(CURL_DETAIL)  -X DELETE  \
 		' -F "type=post" ' \
-		 $(SITE_URL)/b/uname/intermediate-code-parser  |  $(IH_PATH) -m  -f '$(IH_DELAY)' -p '$(PRIVATE_KEY)' -d '$(SITE_DETAL)' -v | $(SHELL)
+		' -F "sha-file-name=/`$(MD5) $(PRIVATE_KEY).pub`" ' \
+		 $(SITE_URL)/b/uname/intermediate-code-parser  |  $(IH_PATH) -m  -f '$(IH_DELAY)' -p '$(PRIVATE_KEY)' -d '$(SITE_DELTA)' -v | $(SHELL)
 
 
 intermediate.code.post: post/UnamePlus/intermediate-code.md  post/UnamePlus/intermediate-code.sum.md
@@ -90,7 +94,31 @@ intermediate.code.post: post/UnamePlus/intermediate-code.md  post/UnamePlus/inte
 intermediate.code.post.del:
 	@$(ECHO) $(CURL_PATH) $(CURL_DETAIL)  -X DELETE  \
 		' -F "type=post" ' \
-		 $(SITE_URL)/b/uname/intermediate-code  |  $(IH_PATH) -m  -f '$(IH_DELAY)' -p '$(PRIVATE_KEY)' -d '$(SITE_DETAL)' -v | $(SHELL)
+		' -F "sha-file-name=/`$(MD5) $(PRIVATE_KEY).pub`" ' \
+		 $(SITE_URL)/b/uname/intermediate-code  |  $(IH_PATH) -m  -f '$(IH_DELAY)' -p '$(PRIVATE_KEY)' -d '$(SITE_DELTA)' -v | $(SHELL)
+
+
+uname.edsl.post: post/UnamePlus/uname-edsl.md  post/UnamePlus/uname-edsl.sum.md
+	@pandoc -o .ignore/uname-edsl.html post/UnamePlus/uname-edsl.md
+	@pandoc -o .ignore/uname-edsl.sum.html post/UnamePlus/uname-edsl.sum.md
+	@$(ECHO) $(CURL_PATH) $(CURL_DETAIL)  -X PUT  \
+		' -F "type=post" ' \
+		' -F "create-time=2017-02-07 12:32:59.963646 UTC" ' \
+		' -F "update-time=$(IH_NOW)" ' \
+		' -F "title=An EDSL for Uname" ' \
+		' -F "html=@.ignore/uname-edsl.html" ' \
+		' -F "sha-file-name=/`$(MD5) $(PRIVATE_KEY).pub`" ' \
+		' -F "summary=@.ignore/uname-edsl.sum.html" ' \
+		' -F "whose=post/UnamePlus/uname-edsl.md" ' \
+		' -F "tag=blog" ' \
+		' -F "tag=code" ' \
+		 $(SITE_URL)/b/uname/edsl  |  $(IH_PATH) -m  -f '$(IH_DELAY)' -p '$(PRIVATE_KEY)' -d '$(SITE_DELTA)' -v | $(SHELL)
+
+uname.edsl.post.del:
+	@$(ECHO) $(CURL_PATH) $(CURL_DETAIL)  -X DELETE  \
+		' -F "type=post" ' \
+		' -F "sha-file-name=/`$(MD5) $(PRIVATE_KEY).pub`" ' \
+		 $(SITE_URL)/b/uname/edsl  |  $(IH_PATH) -m  -f '$(IH_DELAY)' -p '$(PRIVATE_KEY)' -d '$(SITE_DELTA)' -v | $(SHELL)
 
 
 with.haskell.gi.1.post: post/UnamePlus/with-haskell-gi-1.md  post/UnamePlus/with-haskell-gi-1.sum.md
@@ -111,6 +139,7 @@ with.haskell.gi.1.post: post/UnamePlus/with-haskell-gi-1.md  post/UnamePlus/with
 with.haskell.gi.1.post.del:
 	@$(ECHO) $(CURL_PATH) $(CURL_DETAIL)  -X DELETE  \
 		' -F "type=post" ' \
-		 $(SITE_URL)/b/uname/with-haskell-gi/1  |  $(IH_PATH) -m  -f '$(IH_DELAY)' -p '$(PRIVATE_KEY)' -d '$(SITE_DETAL)' -v | $(SHELL)
+		' -F "sha-file-name=/`$(MD5) $(PRIVATE_KEY).pub`" ' \
+		 $(SITE_URL)/b/uname/with-haskell-gi/1  |  $(IH_PATH) -m  -f '$(IH_DELAY)' -p '$(PRIVATE_KEY)' -d '$(SITE_DELTA)' -v | $(SHELL)
 
 
