@@ -54,7 +54,6 @@ For 31, 30, and 100, the output from GHCi is:
 
 *The memory used might be a litter larger or smaller then my output for each input.*
 
-<<<<<<< HEAD
 That is amazing, isn't it?
 
 # Why That Work?
