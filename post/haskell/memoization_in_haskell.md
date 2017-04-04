@@ -126,3 +126,29 @@ Memoization might make your space leak, so it is important to be careful with it
 
 # More Examples
 
+There are some example that are solved using memoization.
+
+## Matrix Chain Product
+
+This is a problem in the *Introduction to Algorithms*.
+It is a problem solved by dynamic programming.
+
+In the book, there are two table which call **m** and **s**. The following function is the one to get that function and using memoization.
+
+```haskell
+rmvMkM :: [Int] -> Int -> Int -> (Int,Int)
+rmvMkM xs = mkM
+  where mkM i j = if i == j
+                  then (0,0)
+                  else let i' = min i j
+                           j' = max i j
+                           ks = [i' .. j'-1]
+                       in minimum $ loop i' j' <$> ks
+        loop i j k = let q = l + r +  _i * _kk * _jj
+                         l = fst $ rmvMkM xs i k
+                         r = fst $ rmvMkM xs (k+1) j
+                         _i  = xs !! i
+                         _kk = xs !! (k + 1)
+                         _jj = xs !! (j + 1)
+                     in q `seq` (q,k)
+```
