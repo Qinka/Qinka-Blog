@@ -111,6 +111,18 @@ Then in the GHCi, set up `:set +s`, and try to evaluate `func 100000`
 , and try a again. You will find the different.
 
 
-
-
 # Ops: Compiler Optimizations
+
+The automatically compiler optimizations might will help you to fix the mistake you made about memoization. But trust me, some time you need reorder the complex computations by yourself.
+
+More than that, the optimizations made from compiler, are more than memoization. Inline, stream fusion , and others might cause your value or function recalculated.
+
+
+
+
+# Too Much Memeoization
+
+Memoization might make your space leak, so it is important to be careful with it. If you care about the usage of memory, you need to avoid using such thing -- break the such things by yourself.
+
+# More Examples
+
