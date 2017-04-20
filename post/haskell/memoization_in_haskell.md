@@ -136,8 +136,32 @@ It is a problem solved by dynamic programming.
 In the book, there are two table which call **m** and **s**. The following function is the one to get that function and using memoization.
 
 ```haskell
-rmvMkM :: [Int] -> Int -> Int -> (Int,Int)
-rmvMkM xs = mkM
+rmvMkM :: [Int] -> Array (Int,Int) (Int,Int)
+rmvMkM as = arr
+  where arr = array ((0,0),(ll,ll)) $
+          [ ((i,j),mkM i j ) | i <- [0..ll], j <- [0..ll]]
+        mkM i j = if i == j
+                  then (0,0)
+                  else let i' = min i j
+                           j' = max i j
+                           ks = [i' .. j'-1]
+                       in minimum $ loop i' j' <$> ks
+        loop i j k = let q = l + r + _i * _kk * _jj
+                         l = fst $ arr ! (i,k)
+                         r = fst $ arr ! (k+1,j)
+                         _i  = as !! 1
+                         _kk = as !! (k+1)
+                         _jj = as !! (j+1)
+                     in q `seq` (q,k)
+        len = length as
+        ll  = max 0 $ len - 2
+```
+
+And this one is an error example, because it is not the CAF.
+
+```haskell
+rmvMkM' :: [Int] -> Int -> Int -> (Int,Int)
+rmvMkM' xs = mkM
   where mkM i j = if i == j
                   then (0,0)
                   else let i' = min i j
@@ -145,10 +169,73 @@ rmvMkM xs = mkM
                            ks = [i' .. j'-1]
                        in minimum $ loop i' j' <$> ks
         loop i j k = let q = l + r +  _i * _kk * _jj
-                         l = fst $ rmvMkM xs i k
-                         r = fst $ rmvMkM xs (k+1) j
+                         l = fst $ rmvMkM' xs i k
+                         r = fst $ rmvMkM' xs (k+1) j
                          _i  = xs !! i
                          _kk = xs !! (k + 1)
                          _jj = xs !! (j + 1)
                      in q `seq` (q,k)
 ```
+
+
+## Performance
+
+Here, I will compare the performance of the two kind of the function. The right one is the O(n^3), but the error one is O(2^n).
+My test computer is an early-2015 MacBook Pro 13-inch with 16Gb memory and 3.1GHz Intel Core i7.
+
+The following is the data of test with right one:
+
+| size | time | Data or Test|
+|--------|----------|--------|
+|   1 | 0.00 | data |
+|  10 | 0.00 | data |
+|  20 | 0.01 | data |
+|  30 | 0.03 | data |
+|  40 | 0.06 | data |
+|  50 | 0.11 | data |
+|  60 | 0.19 | data |
+|  70 | 0.31 | data |
+|  80 | 0.46 | data |
+|  90 | 0.86 | data |
+| 100 | 0.92 | data |
+| 120 | 1.62 | data |
+| 140 | 2.62 | data |
+| 160 | 4.41 | data |
+| 200 | 8.33 | test |
+
+The last item of the datas is used to verify whether the fitting is right or bad.
+Then I use the Matlab to fit these datas:
+
+```Matlab
+xs = [0 0 0.01 0.03 0.06 0.11 0.19 0.31 0.46 0.86 0.92 1.62 2.62 4.14 8.33];
+ys = [1 10 20 30 40 50 60 70 80 90 100 120 140 160 200];
+zs = [1 1 1 1 1 1 1 1 1 1 1 1 1 1 0];
+```
+
+The `xs` is the times that them cost, and the `ys` is the sizes of the problems.
+The `zs` is the weights which will tell the computer that the last data need not be fit.
+
+The following is the data of test with error one:
+
+| size | time | Data or Test|
+|--------|----------:|--------|
+|  2 | 0.00 | data |
+|  4 | 0.00 | data |
+| 10 | 0.01 | data |
+| 11 | 0.03 | data |
+| 12 | 0.07 | data |
+| 13 | 0.25 | data |
+| 14 | 0.74 | data |
+| 15 | 2.27 | data |
+| 16 | 6.57 | data |
+| 20 | 556.69 | test |
+
+And the Matlab will be:
+
+```Matlab
+as = [2 4 10 11 12 13 14 15 16 20];
+bs = [0 0 0.01 0.03 0.09 0.25 0.74 2.27 6.57 556.69];
+cs = [1 1 1 1 1 1 1 1 1 0];
+```
+
+Then I use the Curve Fitting Tool in the Matlab.
