@@ -1,3 +1,19 @@
+.DS_Store
+hi
+ih
+ih.exe
+*.c.html
+*.c.css
+*.c.js
+blog.c.js
+css.frame.c.css
+home.c.html
+nav.c.js
+tmp
+jd_root.txt
+root.txt
+blog/test
+blog/test
 .ignore
 *.aux
 *.log
@@ -8,8 +24,6 @@
 *.bak
 .markdown-preview.html
 \#*\#
-.\#*
-*.synctex.gz(busy)
 .\#
 
 
