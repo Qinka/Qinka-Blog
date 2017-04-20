@@ -239,3 +239,5 @@ cs = [1 1 1 1 1 1 1 1 1 0];
 ```
 
 Then I use the Curve Fitting Tool in the Matlab.
+
+For 
