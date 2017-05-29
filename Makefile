@@ -43,7 +43,8 @@ CODE_THEME=default
 check-delay:
 	@$(ECHO) 
 	@$(ECHO) check time
-	@$(ECHO) $(CURL_PATH) -X GET  $(SITE_URL)/@/~servertime  | $(SHELL) | $(TIMECHECK_PATH)@$(ECHO) 
+	@$(ECHO) $(CURL_PATH) -X GET  $(SITE_URL)/@/~servertime  | $(SHELL) | $(TIMECHECK_PATH)
+	@$(ECHO) 
 
 # clean #
 clean-tmp:
