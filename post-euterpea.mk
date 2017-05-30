@@ -9,6 +9,7 @@ my-delirium.2017-03-18-1.euterpea.music.res: res/music/my-delirium-2017-03-18-1.
 		' -F "whose=Qinka" ' \
 		' -F "tag=music" ' \
 		' -F "tag=my delirium" ' \
+		' -F "mime=audio/mpeg" ' \
 		 $(SITE_URL)/res/music/my-delirium-2017-03-18-1.mp3  |  $(IH_PATH) -m  -f '$(IH_DELAY)' -p '$(PRIVATE_KEY)' -d '$(SITE_DELTA)' -v | $(SHELL)
 
 my-delirium.2017-03-18-1.euterpea.music.res.del:
@@ -28,6 +29,7 @@ my-delirium.euterpea.music.res: res/music/My-delirium-qinka.mp3
 		' -F "sha-file-name=/`$(MD5) $(PRIVATE_KEY).pub`" ' \
 		' -F "whose=Qinka" ' \
 		' -F "tag=music" ' \
+                ' -F "mime=audio/mpeg" ' \
 		 $(SITE_URL)/res/music/my-delirium-qinka.mp3  |  $(IH_PATH) -m  -f '$(IH_DELAY)' -p '$(PRIVATE_KEY)' -d '$(SITE_DELTA)' -v | $(SHELL)
 
 my-delirium.euterpea.music.res.del:
@@ -70,6 +72,7 @@ my-delirium.ring-1.euterpea.music.res.: res/music/my-delirium-ring-1.mp3
 		' -F "whose=Qinka" ' \
 		' -F "tag=music" ' \
 		' -F "tag=my delirium" ' \
+                ' -F "mime=audio/mpeg" ' \
 		 $(SITE_URL)/res/music/my-delirium-ring-1.mp3  |  $(IH_PATH) -m  -f '$(IH_DELAY)' -p '$(PRIVATE_KEY)' -d '$(SITE_DELTA)' -v | $(SHELL)
 
 my-delirium.ring-1.euterpea.music.res..del:
