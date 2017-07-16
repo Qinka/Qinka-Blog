@@ -34,3 +34,24 @@ For both of macOS and Linux, there are some dependences needed, and the followin
   
 # Install `libtensorflow`
 
+The Haskell's binding of tensorflow is using the `libtensorflow` written by C.
+So before we install binding by using `stack install tensorflow`, we need to download the `libtensorflow.so` or `libtensorflow.dylib`.
+
+By reading the official [documents](https://www.tensorflow.org/install/install_c), we can use the following commands to install:
+```bash
+curl -sSL \
+	"https://storage.googleapis.com/tensorflow/libtensorflow/libtensorflow-${TF_TYPE}-"`uname`"-${PLATFORM}-${VERSION}.tar.gz" |
+	sudo tar -C /usr/local -zx
+```
+where the `TF_TYPE` can be `CPU` or `GPU`, `PLATFORM` can be `i386`, `x86_64`, or something else, and `VERSION` can be one of the release version.
+
+# Install tensorflow
+
+Now, we can install the tensorflow by `stack install tensorflow`. *Do not tell me you forget to install Haskell's compiler and stack*
+
+# Others
+
+This ways of install binding can also be used on Windows, however, there one thing you need is libtensorflow.
+On the official CI, the nightly build of the library or release one are provided, while if you want to use GPU,
+you need to compile libtensorflow by yourself.
+

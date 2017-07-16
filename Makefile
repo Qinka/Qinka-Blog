@@ -69,3 +69,5 @@ change-code-highlight:
 
 
 include .platform/platform.mk
+include deeplearning.mk
+
