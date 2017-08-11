@@ -28,3 +28,6 @@ blog/test
 ## For plat different
 .platform/platform.mk
 .platform/md5.*
+
+
+*.htmlout

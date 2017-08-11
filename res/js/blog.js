@@ -8,7 +8,7 @@ function bloglist()
 {
   blogreq = new XMLHttpRequest();
   var params = location.search.substring(1,location.search.length);
-  blogreq.open('GET','/@/.index/tag=t=blog;'+params,true);
+  blogreq.open('GET','/.query/.index/tag=t=blog;'+params,true);
   blogreq.setRequestHeader('How','get');
   blogreq.onreadystatechange = flashbloglist;
   blogreq.send(null);
