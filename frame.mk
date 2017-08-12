@@ -310,3 +310,46 @@ frame.top.del:
 		-F "type=frame" \
 		-H "token:${SITE_TOKEN}" \
 		${SITE_URL}/.frame/top
+
+frame.license: LICENSE.real.md
+	@pandoc -t html -o LICENSE.real.md.htmlout LICENSE.real.md
+	@${CURL_PATH} ${CURL_DETAIL}  \
+		-X PUT \
+		-F "type=post" \
+		-F "create-time=2017-08-12 12:06:42.480649 UTC" \
+		-F "update-time=${NOW_TIME}" \
+		-F "html=@LICENSE.real.md.htmlout" \
+		-F "summary=" \
+		-F "title=frame.license" \
+		-F "whose=Qinka" \
+		-F "tag=license" \
+		-F "tag=License" \
+		-H "token:${SITE_TOKEN}" \
+		${SITE_URL}/license
+frame.license.del:
+	${CURL_PATH} ${CURL_DETAIL}  \
+		-X DELETE \
+		-F "type=post" \
+		-H "token:${SITE_TOKEN}" \
+		${SITE_URL}/license
+frame.license.fdl: LICENSE.md
+	@pandoc -t html -o LICENSE.md.htmlout LICENSE.md
+	@${CURL_PATH} ${CURL_DETAIL}  \
+		-X PUT \
+		-F "type=post" \
+		-F "create-time=2017-08-12 12:07:25.628312 UTC" \
+		-F "update-time=${NOW_TIME}" \
+		-F "html=@LICENSE.md.htmlout" \
+		-F "summary=" \
+		-F "title=frame.license.fdl" \
+		-F "whose=Qinka" \
+		-F "tag=license" \
+		-F "tag=GNU Free Documentation License" \
+		-H "token:${SITE_TOKEN}" \
+		${SITE_URL}/license/gnufdl
+frame.license.fdl.del:
+	${CURL_PATH} ${CURL_DETAIL}  \
+		-X DELETE \
+		-F "type=post" \
+		-H "token:${SITE_TOKEN}" \
+		${SITE_URL}/license/gnufdl
