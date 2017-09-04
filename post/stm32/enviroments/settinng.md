@@ -114,3 +114,25 @@ debug or program your board.
 You need to setting up them.
 
 (in my country) The retainer of the board will offer the tools to customers, however they only have the one run on MS-Windows.
+
+So we need to install the openocd so that we can download the program to borad, and debug.
+
+The first step is installing the `openocd`. The way to install `openocd` can be found on the internet.
+
+Then you can launch the daemon of the `openocd` via
+
+```bash
+$ openocd -f interface/file -f target/file
+```
+
+The `interface/file` and the `target/file` are the config file for the interface, such as J-Link,
+and the target, such as `stm32f103ze`.
+
+An example for the file will be `interface/jlink.cfg` and `target/stm32f1x.cfg`.
+These files are located in `/usr/share/openocd/scripts`,
+and that is also the default path, that means you can skip the prefix `/usr/share/openocd/scripts`,
+and the `interface` and `target` is necessary, unless using absolute path.
+
+### Setting Up Editor or IDE
+
+[TODO,, I haven't done yet.]
