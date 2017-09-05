@@ -13,43 +13,43 @@ The first thing to do is getting the official "STM32 Standard Peripheral Librari
 
 Then we need to find out the important files, and they are listed at the following list.
 
-	* `STM32F10x_StdPeriph_Lib_V3.5.0/Libraries/CMSIS/CM3/CoreSupport/*` Support for Cortex-M3 [3]
+* `STM32F10x_StdPeriph_Lib_V3.5.0/Libraries/CMSIS/CM3/CoreSupport/*` Support for Cortex-M3 [3]
+
+* `STM32F10x_StdPeriph_Lib_V3.5.0/Libraries/CMSIS/CM3/DeviceSupport/*.c\h` Support for chip
+
+* `STM32F10x_StdPeriph_Lib_V3.5.0/Libraries/CMSIS/CM3/DeviceSupport/startup/gcc_ride7/*.s` Support for start up(with arm-gcc) [4]
+
+* `STM32F10x_StdPeriph_Lib_V3.5.0/Project/STM32F10x_StdPeriph_Template/TrueSTUDIO/*/*.ld` Support for linker. \[1\]
 	
-	* `STM32F10x_StdPeriph_Lib_V3.5.0/Libraries/CMSIS/CM3/DeviceSupport/*.c\h` Support for chip
+* `STM32F10X_StdPeriph_Lib_V3.5.0/Libraries/STM32F10x_StdPeriph_Driver/*` Support for all kind of peripheral. \[2\]
 	
-	* `STM32F10x_StdPeriph_Lib_V3.5.0/Libraries/CMSIS/CM3/DeviceSupport/startup/gcc_ride7/*.s` Support for start up(with arm-gcc) [4]
+> \[1\]: You should select one of these `*.ld` file according to their comment in  the file.
 	
-	* `STM32F10x_StdPeriph_Lib_V3.5.0/Project/STM32F10x_StdPeriph_Template/TrueSTUDIO/*/*.ld` Support for linker. [1]
+> \[2\]: I will talk about the details for these files soon in this post.
 	
-	* `STM32F10X_StdPeriph_Lib_V3.5.0/Libraries/STM32F10x_StdPeriph_Driver/*` Support for all kind of peripheral. [2]
+> \[3\]: There is a bug in the core_cm3.c, and I will talk about that bug soon in this post.
 	
-	> [1]: You should select one of these `*.ld` file according to their comment in  the file.
-	
-	> [2]: I will talk about the details for these files soon in this post.
-	
-	> [3]: There is a bug in the core_cm3.c, and I will talk about that bug soon in this post.
-	
-	> [4]: You need to select one if these start-up file according to your chip.
+> \[4\]: You need to select one if these start-up file according to your chip.
 	
 ### Mini-set of Source
 
 You can copy the files:
 
-	* `core_cm3.c`
+* `core_cm3.c`
 	
-	* `core_cm3.h`
+* `core_cm3.h`
 	
-	* `stm32f10x.h`
-	
-	* `system_stm32f10x.c`
-	
-	* `system_stm32f10x.h`
-	
-	* `startup_stm32f10x_xx.s` [1]
-	
-	* `stm32_flash.ld` [1]
-	
-	> [1]: You need to select one according your chip and their comments.
+* `stm32f10x.h`
+
+* `system_stm32f10x.c`
+
+* `system_stm32f10x.h`
+
+* `startup_stm32f10x_xx.s` \[1\]
+
+* `stm32_flash.ld` \[1\]
+
+> \[1\]: You need to select one according your chip and their comments.
 	
 For `[1]` you should select one of start-up file and one of linker file.
 For start-up files, the `xx` means the size of your flash and SRAM.
