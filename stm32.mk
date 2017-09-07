@@ -52,3 +52,27 @@ stm32.get.started.post.del:
 		-F "type=post" \
 		-H "token:${SITE_TOKEN}" \
 		${SITE_URL}/b/stm32/get-started
+stm32.note.1.post: post/stm32/note1.md post/stm32/note1-sum.md
+	@pandoc -t html -o post/stm32/note1-sum.md.htmlout post/stm32/note1-sum.md
+	@pandoc -t html -o post/stm32/note1.md.htmlout post/stm32/note1.md
+	@${CURL_PATH} ${CURL_DETAIL}  \
+		-X PUT \
+		-F "type=post" \
+		-F "create-time=2017-09-07 12:09:18.645531 UTC" \
+		-F "update-time=${NOW_TIME}" \
+		-F "html=@post/stm32/note1.md.htmlout" \
+		-F "summary=@post/stm32/note1-sum.md.htmlout" \
+		-F "title=Note 1 -- GPIO and Interrupt" \
+		-F "whose=Qinka" \
+		-F "tag=blog" \
+		-F "tag=post" \
+		-F "tag=stm32" \
+		-F "tag=stm32f103zet" \
+		-H "token:${SITE_TOKEN}" \
+		${SITE_URL}/b/stm32/note/1
+stm32.note.1.post.del:
+	${CURL_PATH} ${CURL_DETAIL}  \
+		-X DELETE \
+		-F "type=post" \
+		-H "token:${SITE_TOKEN}" \
+		${SITE_URL}/b/stm32/note/1
