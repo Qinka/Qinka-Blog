@@ -15,9 +15,9 @@ The following is the list of what you might need to install when using GPU:
 * (optional) libcupti-dev
 
 
-# Install Dependences
+# Install Dependencies
 
-For both of macOS and Linux, there are some dependences needed, and the following list are what are they:
+For both of macOS and Linux, there are some dependencies needed, and the following list are what are they:
 
 * protobuf-compile
   
@@ -45,13 +45,13 @@ curl -sSL \
 ```
 where the `TF_TYPE` can be `CPU` or `GPU`, `PLATFORM` can be `i386`, `x86_64`, or something else, and `VERSION` can be one of the release version.
 
-# Install tensorflow
+# Install TensorFlow
 
 Now, we can install the tensorflow by `stack install tensorflow`. *Do not tell me you forget to install Haskell's compiler and stack*
 
 # Others
 
-This ways of install binding can also be used on Windows, however, there one thing you need is libtensorflow.
+These ways of install binding can also be used on Windows, however, there one thing you need is libtensorflow.
 On the official CI, the nightly build of the library or release one are provided, while if you want to use GPU,
 you need to compile libtensorflow by yourself.
 
