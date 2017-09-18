@@ -71,3 +71,4 @@ change-code-highlight:
 include .platform/platform.mk
 include deeplearning.mk
 include post-docker.mk
+include post-euterpea.mk
