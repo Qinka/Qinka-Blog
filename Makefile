@@ -34,8 +34,6 @@ IH_NOW=$$($(IH_PATH) -t)
 TIMECHECK_PATH=glob-timecheck
 ## Delta of site's check
 SITE_DELTA=6
-## MD5 cmd
-MD5=md5 -q 
 ## Site Theme
 SITE_THEME=hack
 CODE_THEME=default
@@ -59,7 +57,7 @@ change-site-theme:
 	@$(ECHO) The old theme is $(OLD_THEME)
 	@$(ECHO) The new theme is $(SITE_STYLE)
 	@if [ "$(OLD)" = "$(SITE_STYLE)" ]; then $(ECHO) The new one is eq2 old one. DO NOTHING; \
-		else $(ECHO) $(CURL_PATH) $(CURL_DETAIL)  -X PUT  -F \"sha-file-name=/`$(MD5) $(PRIVATE_KEY).pub`\" -F \"var=$(SITE_STYLE)\" -F \"type=query\" -F \"create-time=2017-02-03 10:04:42.40324 UTC\" -F \"update-time=$(IH_NOW)\" -F \"title=query\"  \
+		else $(ECHO) $(CURL_PATH) $(CURL_DETAIL)  -X PUT  -F \"sha-file-name=/`$(MD5) $(PRIVATE_KEY).pub`\" -F \"var=$(SITE_STYLE)\" -F \"type=query\" -F \"create-time=2017-03-12 06:50:38.716417 UTC\" -F \"update-time=$(IH_NOW)\" -F \"title=query\"  \
 		$(SITE_URL)/@/~site-theme ' '  | $(IH_PATH) -m -f$(IH_DELAY) -p$(PRIVATE_KEY) -d$(SITE_DELTA) -v  | $(SHELL) ; fi
 
 # Change Site Code Highlight #
@@ -69,7 +67,7 @@ change-code-highlight:
 	@$(ECHO) The old theme is $(OLD_THEME)
 	@$(ECHO) The new theme is $(CODE_STYLE)
 	@if [ "$(OLD)" = "$(CODE_STYLE)" ]; then $(ECHO) The new one is eq2 old one. DO NOTHING; \
-		else $(ECHO) $(CURL_PATH) $(CURL_DETAIL)  -X PUT  -F \"sha-file-name=/`$(MD5) $(PRIVATE_KEY).pub`\" -F \"var=$(CODE_STYLE)\" -F \"type=query\" -F \"create-time=2017-02-03 10:04:42.40324 UTC\" -F \"update-time=$(IH_NOW)\" -F \"title=query\"  \
+		else $(ECHO) $(CURL_PATH) $(CURL_DETAIL)  -X PUT  -F \"sha-file-name=/`$(MD5) $(PRIVATE_KEY).pub`\" -F \"var=$(CODE_STYLE)\" -F \"type=query\" -F \"create-time=2017-03-12 06:50:38.716417 UTC\" -F \"update-time=$(IH_NOW)\" -F \"title=query\"  \
 		$(SITE_URL)/@/~highlight ' '  | $(IH_PATH) -m -f$(IH_DELAY) -p$(PRIVATE_KEY) -d$(SITE_DELTA) -v  | $(SHELL) ; fi
 
 
@@ -77,6 +75,11 @@ change-code-highlight:
 include frame-dev.mk
 include navs.mk
 include post-gaming.mk
+include .platform/platform.mk
+include deeplearning.mk
+include post-docker.mk
+include post-euterpea.mk
+include post-fpga.mk
 include post-haskell.mk
 include post-os.mk
 include post-unameplus.mk

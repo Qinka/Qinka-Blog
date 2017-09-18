@@ -27,10 +27,9 @@ blog/test
 .\#
 
 
-## For platform different
-.platform/platform.mk
-.platform/md5.*
-
-
 ## For update remote
 .update_tmp
+## For plat different
+.platform/platform.mk
+.platform/md5.*
+auto
