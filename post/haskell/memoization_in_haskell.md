@@ -19,20 +19,20 @@ fibA n = fibA (n-2) + fibA (n-1)
 
 We try this version with a small input(31), and then try a smaller input(30).
 
-For 30, it use 1.66s to get the result, adn for 15, it just spend 1.03s to get the result.
+For 30, it use 1.66s to get the result, and for 15, it just spend 1.03s to get the result.
 
-If you thought that is because of lazy evalution, let's try this:
+If you thought that is because of lazy evaluation, let's try this:
 
 ```haskell
 fibB :: Int -> Int
 fibB 0 = 0
 fibB 1 = 1
-fibB n = let a = fibB (n-2) 
+fibB n = let a = fibB (n-2)
              b = fibB (n-1)
          in seq a $! seq b $! (a+b)
 ```
 
-Does it has enough strict?
+Does it have enough strict?
 However, it has too much strict that for the both input(31 and 30), the more time and memory are used.
 The former(31) use 4.17s and 906,298,000 bytes(according to ghci's `:set +s` and `fibA 31` just using 557,767,120 bytes). And the latter use 2.52s and 560,165,984 bytes(`fibA 30` just using 344,763,912 bytes).
 
@@ -52,7 +52,7 @@ For 31, 30, and 100, the output from GHCi is:
 (0.00 secs, 146,456 bytes)
 ```
 
-*The memory used might be a litter larger or smaller then my output for each input.*
+*The memory used might be a litter larger or smaller than my output for each input.*
 
 That is amazing, isn't it?
 
@@ -108,7 +108,7 @@ func = (+) 2
 ```
 
 Then in the GHCi, set up `:set +s`, and try to evaluate `func 100000`
-, and try a again. You will find the different.
+, and try it again. You will find the different.
 
 
 # Ops: Compiler Optimizations
@@ -133,7 +133,7 @@ There are some example that are solved using memoization.
 This is a problem in the *Introduction to Algorithms*.
 It is a problem solved by dynamic programming.
 
-In the book, there are two table which call **m** and **s**. The following function is the one to get that function and using memoization.
+In the book, there are two tables which call **m** and **s**. The following function is the one to get that function and using memoization.
 
 ```haskell
 rmvMkM :: [Int] -> Array (Int,Int) (Int,Int)
@@ -203,8 +203,8 @@ The following is the data of test with right one:
 | 160 | 4.41 | data |
 | 200 | 8.33 | test |
 
-The last item of the datas is used to verify whether the fitting is right or bad.
-Then I use the Matlab to fit these datas:
+The last item of the data is used to verify whether the fitting is right or bad.
+Then I use the Matlab to fit these data:
 
 ```Matlab
 xs = [0 0 0.01 0.03 0.06 0.11 0.19 0.31 0.46 0.86 0.92 1.62 2.62 4.14 8.33];
@@ -239,5 +239,10 @@ cs = [1 1 1 1 1 1 1 1 1 0];
 ```
 
 Then I use the Curve Fitting Tool in the Matlab.
+The following figures are results.
 
-For 
+![](/res/haskell/memoization-in-haskell/r1.png)
+
+![](/res/haskell/memoization-in-haskell/r2.png)
+
+![](/res/haskell/memoization-in-haskell/r3.png)
