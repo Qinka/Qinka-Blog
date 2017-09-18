@@ -72,6 +72,69 @@ debug.in.ghci.1.post.del:
 		 $(SITE_URL)/b/haskell/debug-with-ghci/1  |  $(IH_PATH) -m  -f '$(IH_DELAY)' -p '$(PRIVATE_KEY)' -d '$(SITE_DELTA)' -v | $(SHELL)
 
 
+memoization-in-haskell.1.img: img/haskell/mem_right_one.png 
+	@$(ECHO) $(CURL_PATH) $(CURL_DETAIL)  -X PUT  \
+		' -F "type=binary" ' \
+		' -F "create-time=2017-09-18 10:39:42.989391 UTC" ' \
+		' -F "update-time=$(IH_NOW)" ' \
+		' -F "title=Memoization in Haskell figure 1" ' \
+		' -F "binary=@img/haskell/mem_right_one.png" ' \
+		' -F "sha-file-name=/`$(MD5) $(PRIVATE_KEY).pub`" ' \
+		' -F "summary= " ' \
+		' -F "mime=image/png" ' \
+		' -F "whose=Qinka" ' \
+		' -F "tag=img" ' \
+		 $(SITE_URL)/img/haskell/mem_right_one.png  |  $(IH_PATH) -m  -f '$(IH_DELAY)' -p '$(PRIVATE_KEY)' -d '$(SITE_DELTA)' -v | $(SHELL)
+
+memoization-in-haskell.1.img.del:
+	@$(ECHO) $(CURL_PATH) $(CURL_DETAIL)  -X DELETE  \
+		' -F "type=binary" ' \
+		' -F "sha-file-name=/`$(MD5) $(PRIVATE_KEY).pub`" ' \
+		 $(SITE_URL)/img/haskell/mem_right_one.png  |  $(IH_PATH) -m  -f '$(IH_DELAY)' -p '$(PRIVATE_KEY)' -d '$(SITE_DELTA)' -v | $(SHELL)
+
+
+memoization-in-haskell.2.img: img/haskell/mem_error_one.png 
+	@$(ECHO) $(CURL_PATH) $(CURL_DETAIL)  -X PUT  \
+		' -F "type=binary" ' \
+		' -F "create-time=2017-09-18 10:40:00.702901 UTC" ' \
+		' -F "update-time=$(IH_NOW)" ' \
+		' -F "title=Memoization in Haskell figure 1" ' \
+		' -F "binary=@img/haskell/mem_error_one.png" ' \
+		' -F "sha-file-name=/`$(MD5) $(PRIVATE_KEY).pub`" ' \
+		' -F "summary= " ' \
+		' -F "mime=image/png" ' \
+		' -F "whose=Qinka" ' \
+		' -F "tag=img" ' \
+		 $(SITE_URL)/img/haskell/mem_error_one.png  |  $(IH_PATH) -m  -f '$(IH_DELAY)' -p '$(PRIVATE_KEY)' -d '$(SITE_DELTA)' -v | $(SHELL)
+
+memoization-in-haskell.2.img.del:
+	@$(ECHO) $(CURL_PATH) $(CURL_DETAIL)  -X DELETE  \
+		' -F "type=binary" ' \
+		' -F "sha-file-name=/`$(MD5) $(PRIVATE_KEY).pub`" ' \
+		 $(SITE_URL)/img/haskell/mem_error_one.png  |  $(IH_PATH) -m  -f '$(IH_DELAY)' -p '$(PRIVATE_KEY)' -d '$(SITE_DELTA)' -v | $(SHELL)
+
+
+memoization-in-haskell.3.img: img/haskell/mem_error_two.png 
+	@$(ECHO) $(CURL_PATH) $(CURL_DETAIL)  -X PUT  \
+		' -F "type=binary" ' \
+		' -F "create-time=2017-09-18 10:39:50.438584 UTC" ' \
+		' -F "update-time=$(IH_NOW)" ' \
+		' -F "title=Memoization in Haskell figure 1" ' \
+		' -F "binary=@img/haskell/mem_error_two.png" ' \
+		' -F "sha-file-name=/`$(MD5) $(PRIVATE_KEY).pub`" ' \
+		' -F "summary= " ' \
+		' -F "mime=image/png" ' \
+		' -F "whose=Qinka" ' \
+		' -F "tag=img" ' \
+		 $(SITE_URL)/img/haskell/mem_error_two.png  |  $(IH_PATH) -m  -f '$(IH_DELAY)' -p '$(PRIVATE_KEY)' -d '$(SITE_DELTA)' -v | $(SHELL)
+
+memoization-in-haskell.3.img.del:
+	@$(ECHO) $(CURL_PATH) $(CURL_DETAIL)  -X DELETE  \
+		' -F "type=binary" ' \
+		' -F "sha-file-name=/`$(MD5) $(PRIVATE_KEY).pub`" ' \
+		 $(SITE_URL)/img/haskell/mem_error_two.png  |  $(IH_PATH) -m  -f '$(IH_DELAY)' -p '$(PRIVATE_KEY)' -d '$(SITE_DELTA)' -v | $(SHELL)
+
+
 memoization-in-haskell.post: post/haskell/memoization_in_haskell.md  post/haskell/memoization_in_haskell.sum.md
 	@pandoc -o .ignore/memoization_in_haskell.html post/haskell/memoization_in_haskell.md
 	@pandoc -o .ignore/memoization_in_haskell.sum.html post/haskell/memoization_in_haskell.sum.md

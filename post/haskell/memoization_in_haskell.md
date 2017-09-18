@@ -241,8 +241,8 @@ cs = [1 1 1 1 1 1 1 1 1 0];
 Then I use the Curve Fitting Tool in the Matlab.
 The following figures are results.
 
-![](/res/haskell/memoization-in-haskell/r1.png)
+![](/img/haskell/mem_right_one.png)
 
-![](/res/haskell/memoization-in-haskell/r2.png)
+![](/img/haskell/mem_error_one.png)
 
-![](/res/haskell/memoization-in-haskell/r3.png)
+![](/img/haskell/mem_error_two.png)
