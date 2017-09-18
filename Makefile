@@ -73,3 +73,4 @@ include deeplearning.mk
 include post-docker.mk
 include post-euterpea.mk
 include post-fpga.mk
+include post-haskell.mk
