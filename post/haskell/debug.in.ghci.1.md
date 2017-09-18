@@ -6,9 +6,9 @@ According to *GHC Users Guide*, there are four things about debugging, which you
 * Set a Breakpoint
 * Single-step
 * Tracing what had executed
-* Break when exceptions catched
+* Break when exceptions caught
 
-# Setting Breakpoint
+# Setting Breakpoints
 
 The following is the code of function `myLines`, and it will be used as an example.
 
@@ -25,7 +25,7 @@ myLines s        =  cons (case break (== '\n') s of
 -- from base-4.9.1.0
 ```
 
-Befor we set up a breakpoint, load the module into GHCi, first:
+Before we set up a breakpoint, load the module into GHCi, first:
 
 ```
 Prelude> :load MyLines.hs
@@ -67,7 +67,7 @@ And we can use `:list` to show the location of the break:
 The variable `_result` is a binding for the result of the expression which is executing.
 
 If you want to delete the breakpoint, using `:delete` command.
-If you want to list the breakpoints , using `:show breaks`command.
+If you want to list the breakpoints , using `:show breaks` command.
 
 ```
 *MyLines> :show breaks
@@ -83,7 +83,7 @@ No active breakpoints.
 There are three kinds of single-stepping in GHCi:
 
 * `:step` : just the single-stepping
-* `:steplocal` : this one will limit the set of enabled breakpoints to those in the current top level function.
+* `:steplocal` : this one will limit the set of enabled breakpoints to those in the current top-level function.
 * `:stepmodule` : this one will limit the set of enabled breakpoints in the current module.
 
 To stepply execute a expression, using `:step expr`:
@@ -106,7 +106,7 @@ s :: [Char] = 'a' : _
 
 # Tracing
 
-In the *GHC Users Guide*, there are a situation: how did I get here?
+In the *GHC Users Guide*, there is a situation: how did I get here?
 Haskell is a "lazy" language, for Haskell is "call by need".
 And for another situation: get the error --"*** Exception: Prelude.read: no parse",
 but I used `read` "everywhere".
@@ -134,7 +134,7 @@ which should not be called "call stack". It should be called : "Evaluation Histo
 # Debugging Exceptions
 
 GHC provides a function to trace "stack".
-If you call the function `error`, there will goes the informations about call stack:
+If you call the function `error`, there will go the informations about call stack:
 
 ```
 *MyLines> error "here"
@@ -148,7 +148,7 @@ This is since ghc-8.
 And you can also work with `Debug.Trace.trace`, `Debug.Trace.traceStack`, or `+RTS -xc`.
 
 GHC provides the function that treat exception and error as "a breakpoint".
-It is a good idear that this function is used with `:trace` and other debugging command.
+It is a good idea that this function is used with `:trace` and other debugging command.
 
 The flag `-fbreak-on-exception` is for exceptions, and `-fbreak-on-error` is for errors.
 
