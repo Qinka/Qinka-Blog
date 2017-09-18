@@ -8,7 +8,7 @@ Nexys 3 is ready-to-use FPGA board based on Xilinx's Spartan-6 LX16 FPGA.
 
   ![Nexys 3 (1) ((C) Digilient)](/img/fpga/nexys-3-1.jpg)
 
-According to the manual, the features of this borad include:
+According to the manual, the features of this board include:
 
   * Xilinx Spartan-6 LX16 FPGA in a 324-pin BGA package
 
@@ -44,24 +44,24 @@ This is the peripheral device of the Nexys 3:
 
 ISE(R) Design Suite is a set of software for design, powered by Xilinx.
 ISE supports Spartan(R)-6, Virtex(R)-6, and CoolRunner(TM) devices, 
-as well as their preivous generation families.
+as well as their previous generation families.
 
 ISE Design Suite has three editions:
 
-  * ISE Design Suite: Emmbedded Edition
+  * ISE Design Suite: Embedded Edition
 
-  * ISE Design Suite: System Ediition
+  * ISE Design Suite: System Edition
 
   * ISE Design Suite: WebPACK Edition (FREE)
 
-The more details can be found on the Xiline's official web site.
+The more details can be found on the Xilinx's official website.
 
 # Install ISE Design Suite
 
 ## Sign up
 
-Before you download the ISE Design Suite, you need sign up a account of Xilinx,
-and fill in your informations. Because you need fill in the **U.S. Government Export Approval**, when you download the ISE software or getting the license for ISE.
+Before you download the ISE Design Suite, you need sign up an account of Xilinx,
+and fill in your information. Because you need fill in the **U.S. Government Export Approval**, when you download the ISE software or getting the license for ISE.
 
 ***NOTE**: Read the direction above the page carefully*
 
@@ -89,15 +89,15 @@ And download it.
 ## Install
 
 To install this design suite, there need more than 20GByte spaces in your computer.
-And just follow the install guide is well.
+And just follow the installing-guide is well.
 
 ## License
 
-If you want to use these software, you need the license. To get the license,
-the first step is openning the *Xilinx License Configuration Mananger*.
-Select the *Acuqire a License*, and choose *Start Now!*, *Start 30 Day Evaluatoin*, or *Get Free vivado/ISE WebPack License*. Then click **Next**.
+If you want to use these softwares, you need the license. To get the license,
+the first step is opening the *Xilinx License Configuration Manager*.
+Select the *Acquire a License*, and choose *Start Now!*, *Start 30 Day Evaluation*, or *Get Free vivado/ISE WebPack License*. Then click **Next**.
 
-The second step is click the **Connect Now** button. The **U.S. Government Export Approva** will be opened again, and fill it. After click the **Next**, you can download the license.
+The second step is click the **Connect Now** button. The **U.S. Government Export Approval** will be opened again, and fill it. After click the **Next**, you can download the license.
 
 ***NOTE**: When you access these pages in China, the network might not well*
 
@@ -107,7 +107,7 @@ The second step is click the **Connect Now** button. The **U.S. Government Expor
 
 The half adder adds two single binary digits A and B. It has two outputs sum and carry. The former is usually marked as S, and the latter is C.
 
-The expression of the hald adder is:
+The expression of the half adder is:
 
 ```
 S = A xor B
@@ -120,7 +120,7 @@ And it's digital circuit is:
 
 ## Digital Circuit Pre-knowledge -- "Full Adder"
 
-The full adder adds three single binary digits A, B, and Cin. 
+The full adder adds three single binary digits A, B, and Cin.
 A and B is the normal input, and the Cin is a bit carried in from the previous less-significant stage. It has two outputs sum(S) and carry(Cout).
 
 The expression of the full adder is:
@@ -140,7 +140,7 @@ And it's digital circuit is:
 The first step to build yourself a 4-bit adder is creating a new project on the ISE.
 
 For Xilinx ISE Design Suite 14.7, you should need fire up the software.
-It's at most lying in the **Xilinx ISE Design Suite -> ISE Design Tools** in your start menu. If you used Windows 10, it might lying in **Xilinx ISE Design Suite**.
+It's at most lying in the **Xilinx ISE Design Suite -> ISE Design Tools** in your start menu. If you used Windows 10, it might lie in **Xilinx ISE Design Suite**.
 Choose **Project Navigator**
 
 Then press the **New Project** tab or select **File -> New Project** to create a new project.
@@ -149,7 +149,7 @@ Then press the **New Project** tab or select **File -> New Project** to create a
 
 After you open the **New Project Wizard**, you need to change the **Name** and the **Location** to whatever you like.
 
-Then click the **Next** and select *Nexys 3 Board* in the field **Evaluation Development Borad**. If your ISE do not have the option **Nexys 3 Board**, you can use **General Purpose**. The extra things to do are setting **Family** to **Spartan6**, setting **Device** to **XC6SLX16**, setting **Package** to **CSG324**, and setting **Speed** to **-3**.
+Then click the **Next** and select *Nexys 3 Board* in the field **Evaluation Development Board**. If your ISE do not have the option **Nexys 3 Board**, you can use **General Purpose**. The extra things to do are setting **Family** to **Spartan6**, setting **Device** to **XC6SLX16**, setting **Package** to **CSG324**, and setting **Speed** to **-3**.
 
 Make sure that the synthesis tools is **XST**, the simulator is the **ISim**, and the Preferred **Language** is **Verilog**
 (if you want to use VHDL, should it).
@@ -163,9 +163,9 @@ Choose **Project -> New Source** to add a new source file to this project.
 In the **New Source Wizard**, the **Select Source Type** should be selected as **Schematic**. (Don't forget to full the **File Name**.)
 Then click the **Next** and **Finish** to create this file finally.
 
-Select the file you had create.
+Select the file you had created.
 Choose the tab **Symbols** left on the ISE's Windows.
-Then choose the **Logic** in the **Categonies**.
+Then choose the **Logic** in the **Categories**.
 Drag and drop the AND gate, OR gate, XOR gate etc to design area.
 
 For half-adder, we need an XOR gate and an AND gate.
@@ -174,10 +174,10 @@ For the full-adder, we need two AND gates, two XOR gates, and an OR gate. Then l
 
 When we have one full-adder, we need to copy and paste it. For a 4-bit adder, we need one half-add, and three full-add.
 
-The each adder's carry output should be lined with the next level's carry input.
+Each adder's carry output should be lined with the next level's carry input.
 
 The final circuit has 8 input pins, named A1 ~ A4 and B1 ~ B4.
-it has 5 output pins, named S1 ~ S4, and S.
+It has 5 output pins, named S1 ~ S4, and S.
 
 The final circuit is:
 
@@ -185,13 +185,13 @@ The final circuit is:
 
 ## Setting The Pins
 
-In the **Design** tab, at the left of windows, double click the **User Constrants -> I/O Pin Planning (PlanAhead) - Pre-Synthesis**
- to configurate I/O pins.
+In the **Design** tab, at the left of windows, double click the **User Constraints -> I/O Pin Planning (PlanAhead) - Pre-Synthesis**
+ to configure I/O pins.
 
 The *PlanAhead* will start. At the bottom panel -- **I/O Ports**,
-you need to configrate the in and out pin for our adder.
+you need to configure the in and out pin for our adder.
 According to the *Reference Manual* of the **Nexys 3(TM) FPGA Board**,
-there are 8 slide switches and 8 LEDs on the borad. The following is about the relation between the peripherals and sites of FPGA.
+there are 8 slide switches and 8 LEDs on the board. The following is about the relation between the peripherals and sites of FPGA.
 The port of fpga:
 
   ![I/O Ports](/img/fpga/io-ports.JPG)
@@ -273,7 +273,7 @@ The things need to do are about checking, creating, and so on.
 
 ### Check Half-Adder, Full-Adder, And 4-bit Adder
 
-Select the circuit file(.sch) of hald adder, in the **Design** panel.
+Select the circuit file(.sch) of half adder, in the **Design** panel.
 Double click the **Create Schematic Symbol** and **Check Design Rules**, in the **Design Utilities**, in order.
 
 And do the same things to full-adder, and 4-bit adder.
