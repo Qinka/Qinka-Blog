@@ -76,3 +76,27 @@ stm32.note.1.post.del:
 		-F "type=post" \
 		-H "token:${SITE_TOKEN}" \
 		${SITE_URL}/b/stm32/note/1
+stm32.note.2.post: post/stm32/note2.md post/stm32/note2-sum.md
+	@pandoc -t html -o post/stm32/note2-sum.md.htmlout post/stm32/note2-sum.md
+	@pandoc -t html -o post/stm32/note2.md.htmlout post/stm32/note2.md
+	@${CURL_PATH} ${CURL_DETAIL}  \
+		-X PUT \
+		-F "type=post" \
+		-F "create-time=2017-10-03 11:20:34.705365 UTC" \
+		-F "update-time=${NOW_TIME}" \
+		-F "html=@post/stm32/note2.md.htmlout" \
+		-F "summary=@post/stm32/note2-sum.md.htmlout" \
+		-F "title=Note 2 -- Timer and Interrupt" \
+		-F "whose=Qinka" \
+		-F "tag=blog" \
+		-F "tag=post" \
+		-F "tag=stm32" \
+		-F "tag=stm32f103zet" \
+		-H "token:${SITE_TOKEN}" \
+		${SITE_URL}/b/stm32/note/2
+stm32.note.2.post.del:
+	${CURL_PATH} ${CURL_DETAIL}  \
+		-X DELETE \
+		-F "type=post" \
+		-H "token:${SITE_TOKEN}" \
+		${SITE_URL}/b/stm32/note/2
