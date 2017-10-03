@@ -1,4 +1,4 @@
-Not2 -- Timer & Interrupt
+Note 2 -- Timer & Interrupt
 ===
 
 ## Outline
