@@ -31,3 +31,8 @@ blog/test
 
 
 *.htmlout
+
+
+## for bibtex
+*.bbl
+*.blg
