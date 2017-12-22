@@ -1,13 +1,12 @@
 这是我个人的一个博客，里面会有乱七八糟的东西在里面。
 
-This is my blog, and it includes a lots of things.
-
-
-## 个人介绍 [About me]
+## 个人介绍
 
 我叫李约瀚，山西太原人。现为西安电子科技大学软件学院 2014 级本科生，并攻读软件工程专业。
 同时已获得本校研究生免试推送资格，暂接受单位是西安电子科技大学计算机学院，
 并加入 **西安电子科技大学嵌入式与视觉图像处理实验室**。
+
+[![GitHub followers](https://img.shields.io/github/followers/Qinka.svg?style=social&label=Follow)](https://github.com/Qinka)
 
 ## 技能点
 
@@ -26,9 +25,11 @@ This is my blog, and it includes a lots of things.
 
 会简单的布 PCB 电路板，并手工印刷。
 
+目前正在学习 Deep Learning 与 Computer Vision 相关内容与理论。
+
 ## 爱好
 
-喜欢完 坦克世界， 喜欢柯南，喜欢很多其他的东西。
+喜欢玩坦克世界， 喜欢柯南，喜欢很多其他的东西。
 
 ## 先研究方向
 
