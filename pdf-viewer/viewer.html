@@ -1,0 +1,36 @@
+<a href="" id='ofa'>Original file</a>
+<canvas width="100%" id="CV"/>
+<script src=pdf.js></script>
+<script>
+function GetRequest() {
+  var url = location.search; //获取url中"?"符后的字串
+  var theRequest = new Object();
+  if (url.indexOf("?") != -1) {
+    var str = url.substr(1);
+    strs = str.split("&");
+    for(var i = 0; i < strs.length; i ++)
+        theRequest[strs[i].split("=")[0]]=unescape(strs[i].split("=")[1]);
+  }
+  return theRequest;
+}
+var param = GetRequest()
+if (param['pdf'] != null) {
+  var a = document.getElementById('ofa')
+  a.attributes.href.value=param['pdf'];
+  PDFJS.getDocument(param['pdf']).then(function(pdf){
+    pdf.getPage(1).then(function(page) {
+      var scale = 1.5;
+      var viewport = page.getViewport(scale);
+      var canvas = document.getElementById('CV');
+      var context = canvas.getContext('2d');
+      canvas.height = viewport.height;
+      canvas.width = viewport.width;
+      var renderContext = {
+        canvasContext: context,
+        viewport: viewport
+      };
+      page.render(renderContext);
+    });
+  });
+}
+</script>

@@ -353,3 +353,105 @@ frame.license.fdl.del:
 		-F "type=post" \
 		-H "token:${SITE_TOKEN}" \
 		${SITE_URL}/license/gnufdl
+
+js.pdf-viewer.frame: pdf-viewer/pdf.js
+	@${CURL_PATH} ${CURL_DETAIL}  \
+		-X PUT \
+		-F "type=text" \
+		-F "create-time=2018-01-14 12:33:49.830692 UTC" \
+		-F "update-time=${NOW_TIME}" \
+		-F "text=@pdf-viewer/pdf.js" \
+		-F "summary=" \
+		-F "title=js.pdf-viewer.frame" \
+		-F "whose=Qinka" \
+		-F "mime=application/javascript" \
+		-F "tag=frame" \
+		-H "Authorization:${SITE_TOKEN}" \
+		${SITE_URL}/pdf.js
+js.pdf-viewer.frame.del:
+	${CURL_PATH} ${CURL_DETAIL}  \
+		-X DELETE \
+		-F "type=text" \
+		-H "Authorization:${SITE_TOKEN}" \
+		${SITE_URL}/pdf.js
+
+html.pdf-viewer.frame: pdf-viewer/viewer.html
+	@${CURL_PATH} ${CURL_DETAIL}  \
+		-X PUT \
+		-F "type=post" \
+		-F "create-time=2018-01-14 13:09:10.514576 UTC" \
+		-F "update-time=${NOW_TIME}" \
+		-F "html=@pdf-viewer/viewer.html" \
+		-F "summary=" \
+		-F "title=html.pdf-viewer.frame" \
+		-F "whose=Qinka" \
+		-F "tag=frame" \
+		-H "Authorization:${SITE_TOKEN}" \
+		${SITE_URL}/pdf-viewer
+html.pdf-viewer.frame.del:
+	${CURL_PATH} ${CURL_DETAIL}  \
+		-X DELETE \
+		-F "type=post" \
+		-H "Authorization:${SITE_TOKEN}" \
+		${SITE_URL}/pdf-viewer
+
+
+map.js.pdf-viewer.frame: pdf-viewer/pdf.js.map
+	@${CURL_PATH} ${CURL_DETAIL}  \
+		-X PUT \
+		-F "type=text" \
+		-F "create-time=2018-01-14 13:16:09.942239 UTC" \
+		-F "update-time=${NOW_TIME}" \
+		-F "text=@pdf-viewer/pdf.js.map" \
+		-F "summary=" \
+		-F "title=map.js.pdf-viewer.frame" \
+		-F "whose=Qinka" \
+		-F "tag=frame" \
+		-H "Authorization:${SITE_TOKEN}" \
+		${SITE_URL}/pdf.js.map
+map.js.pdf-viewer.frame.del:
+	${CURL_PATH} ${CURL_DETAIL}  \
+		-X DELETE \
+		-F "type=text" \
+		-H "Authorization:${SITE_TOKEN}" \
+		${SITE_URL}/pdf.js.map
+map.worker.pdf-viewer.frame: pdf-viewer/pdf.worker.js.map
+	@${CURL_PATH} ${CURL_DETAIL}  \
+		-X PUT \
+		-F "type=text" \
+		-F "create-time=2018-01-14 13:15:43.677009 UTC" \
+		-F "update-time=${NOW_TIME}" \
+		-F "text=@pdf-viewer/pdf.worker.js.map" \
+		-F "summary=" \
+		-F "title=map.worker.pdf-viewer.frame" \
+		-F "whose=Qinka" \
+		-F "tag=frame" \
+		-H "Authorization:${SITE_TOKEN}" \
+		${SITE_URL}/pdf.work.js.map
+map.worker.pdf-viewer.frame.del:
+	${CURL_PATH} ${CURL_DETAIL}  \
+		-X DELETE \
+		-F "type=text" \
+		-H "Authorization:${SITE_TOKEN}" \
+		${SITE_URL}/pdf.work.js.map
+
+worker.pdf-viewer.frame: pdf-viewer/pdf.worker.js
+	@${CURL_PATH} ${CURL_DETAIL}  \
+		-X PUT \
+		-F "type=text" \
+		-F "create-time=2018-01-14 13:13:57.058181 UTC" \
+		-F "update-time=${NOW_TIME}" \
+		-F "text=@pdf-viewer/pdf.worker.js" \
+		-F "summary=" \
+		-F "title=worker.pdf-viewer.frame" \
+		-F "whose=Qinka" \
+		-F "mime=application/javascript" \
+		-F "tag=frame" \
+		-H "Authorization:${SITE_TOKEN}" \
+		${SITE_URL}/pdf.worker.js
+worker.pdf-viewer.frame.del:
+	${CURL_PATH} ${CURL_DETAIL}  \
+		-X DELETE \
+		-F "type=text" \
+		-H "Authorization:${SITE_TOKEN}" \
+		${SITE_URL}/pdf.worker.js
