@@ -81,7 +81,7 @@ The `__global__` declaration will tell the compiler of CUDA that this function w
 
 So there is also a wrap of CUDA version to call the program.
 
-```C
+```CPP
 int linearCombination(float coe1, uint8_t* m1, float coe2, uint8_t* m2, int _size, uint8_t* m3) {
   uint8_t* dm1 = 0;
   uint8_t* dm2 = 0;
@@ -180,4 +180,4 @@ The second thing is to allocate memory in the device.
 The third one is to call the function.
 And the last thing todo to release memory.
 
-### 
+### Get Devices Informations
