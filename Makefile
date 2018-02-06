@@ -9,3 +9,4 @@ NOW_TIME = $(shell date -u "+%Y-%m-%d %H:%M:%S UTC")
 # token for site
 SITE_TOKEN = `cat /dev/null`
 
+include exquisite.mk
