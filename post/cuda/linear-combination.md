@@ -1,8 +1,80 @@
 # Linear Combination with CUDA
 
+
+I got the idea of linear combination from NTU\'s Hongyi Lee\'s Linear Algebra course.
+In the video of course, Mr.Lee shows that he use the linear combination to combine two images.
+So in this post, I will show how to use CUDA do linear combination on GPU.
+
+## Linear Combination and C Implement
+
+If you do not know what is linear combination, you might need to search this concept on the Internat with your favourite search engine.
+The sequence implement on CPU is
+
+```c
+for (int i = 0; i < size; ++i)
+  c[i] = coe1 * a[i] + coe2 * b[i];
+```
+
+The operation is simple, but the computation might cost a lot of times.
+
+The real implement can be fount at my repo on [GitHub](https://github.com/Qinka/random-cuda/blob/585f4c91f05a93d03e8f43bbfdf364028e98d027/learn-cuda/source/linear-combination.cc).
+
+```c
+int linearCombination(float coe1, uint8_t* m1, float coe2, uint8_t* m2, int size, uint8_t* m3) {
+  for (int i = 0; i < size; i++) {
+    float tmp = coe1 * m1[i] + coe2 * m2[i];
+    m3[i] = (uint8_t)(fmaxf(fminf(tmp,255),0));
+  }
+  return 0;
+}
+```
+
+## CUDA and GPU
+
+The parallel can make computation faster. For a CUDA-supported GPGPU, there are many core to do computing.
+So we can use many core to compute at once.
+
+### Kernel
+
+So we first define a kernel of computing:
+
+```c++
+__global__
+void linearCombinationKernel(float coe1, uint8_t* m1, float coe2, uint8_t* m2, int size, uint8_t* m3) {
+  int idxX = blockIdx.x * blockDim.x + threadIdx.x;
+  int stdX = blockDim.x * gridDim.x;
+  for(int i = idxX; i < size; i += stdX) {
+    float tmp = coe1 * m1[i] + coe2 * m2[i];
+    m3[i] = (uint8_t)(fmaxf(fminf(tmp,255),0));
+  }
+}
+```
+
+The prefix `__global__` mark the function can be call from *host* and run on the *device*.
+The *host* means the CPU, and *device* means GPU.
+`blockDim`, `blockIdx`, `gridDim`, and `threadIdx` are the index for CUDA's block and thread.
+The computing model of CUDA is shown as following image.
+![CUDA computing model, copied from CUDA official document](computing-model.png)
+When computing a kernel, there is a grid. For each grad, there will be many blocks in it, and there are many threads in each block.
+The each thread can be regard as a core.
+`blockDim.x` denotes the number of thread in a block with x direction, and `gridDim.x` denotes the number of block in a grid with x direction.
+So there will be `blockDim.x * gridDim.x` threads, and the stride of index will be it.
+
+By the way the functions in that code, such as `fmaxf` and `fminf`, will be transformed to GPU's code not CPU's.
+
+### Calling function
+
+We can call the function with the following codes:
+```c++
+linearCombinKernel<<<128,128>>>(coe1,dm1,coe2,dm2,_size,dm3);
+```
+
+In the `<<<>>>` 
+
+
 ## Outline
 
-I got this idea from Hongyi Lee's Linear Algebra course video(2015 NTU).
+I got this idea from Hongyi Lee\'s Linear Algebra course video(2015 NTU).
 In the video, Lee combined two images by using linear combination.
 So this post will show you the codes using CUDA to do the linear combination.
 And more there are also some testing on different platforms with different compilers
@@ -50,7 +122,7 @@ And the following sub-section is the details.
 Firstly, we need to implement a kernel of
 linear combination.
 
-```CUDA
+```c++
 __global__
 void linearCombinationKernel(float coe1, uint8_t* m1, float coe2, uint8_t* m2, int size, uint8_t* m3) {
   int idxX = blockIdx.x * blockDim.x + threadIdx.x;
@@ -141,7 +213,7 @@ int linearCombination(float coe1, uint8_t* m1, float coe2, uint8_t* m2, int _siz
   bsX = (int)(_size + prop.maxThreadsPerBlock - 1) / prop.maxThreadsPerBlock;
   blocksize = min(prop.maxGridSize[0],bsX);
   threadsPerBlock = min(prop.maxThreadsPerBlock,_size);
-  fprintf(stderr,"size: %d, %d\n",blocksize,threadsPerBlock);
+  fprintf(stderr,"size: %d, %d\n",blocksize,threadsPerBlock); 
   linearCombinKernel<<<dim3(blocksize),dim3(threadsPerBlock)>>>(coe1,dm1,coe2,dm2,_size,dm3);
 
   // check error
