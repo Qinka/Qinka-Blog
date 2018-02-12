@@ -1,4 +1,22 @@
 
+img.lc.learn.cuda.res: post/cuda/computing-model.png
+	@${CURL_PATH} ${CURL_DETAIL}  \
+		-X PUT \
+		-F "type=binary" \
+		-F "create-time=2018-02-12 08:14:31.168136 UTC" \
+		-F "update-time=${NOW_TIME}" \
+		-F "binary=@post/cuda/computing-model.png" \
+		-F "summary=" \
+		-F "title=img.lc.learn.cuda.res" \
+		-F "mime=image/png" \
+		-H "Authorization:${SITE_TOKEN}" \
+		${SITE_URL}/b/cuda/learn/computing-model.png
+img.lc.learn.cuda.res.del:
+	${CURL_PATH} ${CURL_DETAIL}  \
+		-X DELETE \
+		-F "type=binary" \
+		-H "Authorization:${SITE_TOKEN}" \
+		${SITE_URL}/b/cuda/learn/computing-model.png
 lc.learn.cuda.post: post/cuda/linear-combination.md post/cuda/linear-combination-sum.md
 	@pandoc -t html -o post/cuda/linear-combination-sum.md.htmlout post/cuda/linear-combination-sum.md
 	@pandoc -t html -o post/cuda/linear-combination.md.htmlout post/cuda/linear-combination.md
