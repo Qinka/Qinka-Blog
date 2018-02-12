@@ -69,58 +69,47 @@ We can call the function with the following codes:
 linearCombinKernel<<<128,128>>>(coe1,dm1,coe2,dm2,_size,dm3);
 ```
 
-In the `<<<>>>` 
+In the `<<<>>>` notation, the size of blocks, and threads(per block) will be set up for the kernel function.
+The program can be executed parallelly. The maximum of number of thread is 1024, and the maximum of number of block is about 2 billion(for CUDA 8.0 or earlier is 65535),
+but some of GPU's core is less than 1024. That means if you set the size of blocks and threads to 1024, but your GPU only have 1024 core
+there will not be 1024 * 1024 cores run at one time.
 
+### Memory allocating and copying
 
-## Outline
+The kernel function will run on GPU, and it can "only" access the memory on GPU. So we need copy the data from host to device's memory,
+and copy the data from device to host after computing is finished.
+Meanwhile we need allocate some spaces in GPU's memory to store them.
 
-I got this idea from Hongyi Lee\'s Linear Algebra course video(2015 NTU).
-In the video, Lee combined two images by using linear combination.
-So this post will show you the codes using CUDA to do the linear combination.
-And more there are also some testing on different platforms with different compilers
-and different CUDA SDKs.
-
-## Linear Combination
-
-If you ask what is linear combination, the answer will be
-> Given two vectors(it can also be matrix, tensor, and however they can be transformed to vector.)
-and two coefficients, we multiply each vector by each coefficient,
-and add two products that is linear combination.
-
-So the operation to do linear combination will be:
-
-```
-foreach i in range(vector):
-  c[i] = coe1 * a[i] + coe2 * b[i]
+We can use `cudaMalloc()` to allocate a space on GPU, while we can use `cudaMemcpy()` to copy the memory between host and device.
+There is an example:
+```c++
+cudaMalloc((void**)&d_a,sz_a);
+cudaMemcpy(d_a,p_a,sz_a,cudaMemcpyHostToDevice);
+// calling kernel
+cudaMemcpy(p_a,d_a,sz_a,cudaMemcpyDeviceToHost);
+cudaFree(d_a);
 ```
 
-## C Implement
+The `sz_a` is the size of data in bytes. `cudaMemcpyDeviceToHost` and `cudaMemcpyHostToDevice` tell function `cudaMemcpy()` the destination and source.
 
-The following code is my C implement of linear combination,
-and it can also be found at my repo on
-[GitHub](https://github.com/Qinka/random-cuda/blob/585f4c91f05a93d03e8f43bbfdf364028e98d027/learn-cuda/source/linear-combination.cc).
+### Error
 
-```c
-int linearCombination(float coe1, uint8_t* m1, float coe2, uint8_t* m2, int size, uint8_t* m3) {
-  for (int i = 0; i < size; i++) {
-    float tmp = coe1 * m1[i] + coe2 * m2[i];
-    m3[i] = (uint8_t)(fmaxf(fminf(tmp,255),0));
-  }
-  return 0;
+Most CUDA's function will return the status of error.
+The type of status is `cudaError_t`.
+
+A common way to handle it might be:
+```c++
+cudaError code;
+code = cudaXXX(...);
+if (code != cudsSuccess) {
+  // handler of error 
 }
 ```
 
-It's so easy that I think everyone can understand it unless you
-can not understand C language.
 
-## CUDA Implement
+### Full version of code
 
-The code can be found on [GitHub](https://github.com/Qinka/random-cuda/blob/585f4c91f05a93d03e8f43bbfdf364028e98d027/learn-cuda/source/linear-combination.cu)
-too.
-And the following sub-section is the details.
-
-Firstly, we need to implement a kernel of
-linear combination.
+The following is the full version of codes:
 
 ```c++
 __global__
@@ -132,28 +121,7 @@ void linearCombinationKernel(float coe1, uint8_t* m1, float coe2, uint8_t* m2, i
     m3[i] = (uint8_t)(fmaxf(fminf(tmp,255),0));
   }
 }
-```
 
-This kernel just do what C version do, but there are still some differences.
-
-Firstly, for the for-statement, the beginning and stride of index are different.
-In C version of linear combination, the beginning of index is 0, and stride is 1. In CUDA version, there are many core to do the computing, so that for each core, the beginning of index is specific, and stride is computed by number of cores.
-
-Secondly, the C version of codes run on your CPU, but CUDA version of codes will run on your CUDA-supported GPU.
-The former one without any optimize will just run on one core of CPU,
-but the latter one will try to use as much as the core it can
-get on your GPU. This means that there will be more than one element in vector to be computed at once.
-Furthermore, the functions such as `fmin` and `fmax` in C version is different
-from the ones in CUDA version.
-
-Thirdly, there are also something different on declaration of function.
-The CUDA version's function is named `linearCombinationKernel`,
-and that means there will also be a wrap function.
-The `__global__` declaration will tell the compiler of CUDA that this function will be run on device GPU and can be called from host CPU.
-
-So there is also a wrap of CUDA version to call the program.
-
-```CPP
 int linearCombination(float coe1, uint8_t* m1, float coe2, uint8_t* m2, int _size, uint8_t* m3) {
   uint8_t* dm1 = 0;
   uint8_t* dm2 = 0;
@@ -245,11 +213,17 @@ Error:
 }
 ```
 
-There are four things will be done when to running the codes.
-The first thing is to get the device's information, and we will set up
-some parameters according to that.
-The second thing is to allocate memory in the device.
-The third one is to call the function.
-And the last thing todo to release memory.
 
-### Get Devices Informations
+## Testing
+
+I test this function with many computer in different CUDA SDK, and different GPU.
+
+I ran that function 1000 times, for each test case, and combined two array, each of which include 1 million elements.
+
+| Platform                            | avg time(us) | min time(us) | max time(us) |
+|-------------------------------------|--------------|--------------|--------------|
+| Windows 10, CUDA 9.1, GTX1050       |       98.374 |       97.762 |       99.390 |
+| Windows 10, CUDA 9.1, K1100M        |       388.07 |       360.26 |       405.95 |
+| Ubuntu 17.04, CUDA 9.1, GTX960      |       71.537 |       71.142 |       72.678 |
+| Ubuntu 16.04, CUDA 8.0, GTX Titan X |       29.031 |       25.953 |       29.760 |
+
