@@ -1,0 +1,22 @@
+\documentclass[12pt]{article}
+
+\usepackage{lipsum}  % this package is for creating filler text
+\usepackage{geometry} % this package is for control the border
+\geometry{left=1cm,right=1cm,top=1cm,bottom=1cm}
+
+\usepackage{pgfpages} % setting two in one
+\pgfpagesuselayout{2 on 1}[a4paper,border shrink=5mm,landscape]
+
+\begin{document}
+	\section{Europe}
+	\subsection{Berlin}
+	\lipsum[6-8]
+	\subsection{Vienna}
+	\lipsum[10]
+	\subsection{Rome}
+	\lipsum[15]
+	\section{Africa}
+	\lipsum[1-4]
+	\subsection{Accra}
+	\lipsum[5-8]
+\end{document}
