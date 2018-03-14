@@ -1,0 +1,32 @@
+\documentclass[12pt,a5paper]{article}
+
+\usepackage{lipsum}  % this package is for creating filler text
+\usepackage{geometry} % this package is for control the border
+\geometry{left=1cm,right=1cm,top=1cm,bottom=1.5cm}
+
+
+\usepackage{background}
+\usepackage{ifthen}
+\backgroundsetup{
+	scale=1,
+	angle=0,
+	contents={%
+		\ifthenelse{\value{page} = 1}{\begin{tikzpicture}[remember picture,overlay]\node[minimum width=3cm,minimum height=3cm,font=\Huge,circle,draw,ultra thick] {B};\end{tikzpicture}}{\relax}
+		\ifthenelse{\value{page} = 2}{\begin{tikzpicture}[remember picture,overlay]\node[minimum width=3cm,minimum height=3cm,font=\Huge,circle,draw,ultra thick] {A};\end{tikzpicture}}{\relax}	
+		\ifthenelse{\value{page} = 3}{\includegraphics[width=\paperwidth,height=\paperheight]{bg}}{\relax}	
+	}
+}
+
+\begin{document}
+	\section{Europe}
+	\subsection{Berlin}
+	\lipsum[6-8]
+	\subsection{Vienna}
+	\lipsum[10]
+	\subsection{Rome}
+	\lipsum[15]
+	\section{Africa}
+	\lipsum[1-4]
+	\subsection{Accra}
+	\lipsum[5-8]
+\end{document}
