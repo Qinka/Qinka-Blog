@@ -1,17 +1,17 @@
 \documentclass[12pt]{article}
 \usepackage[a4paper]{geometry}
+\geometry{left=0cm,right=0cm,top=0cm,bottom=0cm}
 \usepackage{pdfpages}
     \includepdfset{pages=-}
 
-\usepackage{background}
+%\usepackage{background}
 \usepackage{ifthen}
-\backgroundsetup{
-	scale=3,
-	angle=90,
-	contents={\begin{tikzpicture}[remember picture,overlay]\node[minimum width=3cm,minimum height=3cm,font=\Huge,circle,draw,ultra thick] {B};\end{tikzpicture}
-	}
-}
-
+%\backgroundsetup{
+%	scale=3,
+%	angle=90,
+%	contents={\begin{tikzpicture}[remember picture,overlay]\node[minimum width=3cm,minimum height=3cm,font=\Huge,circle,draw,ultra thick] {B};\end{tikzpicture}
+%	}
+%}
 
 \begin{document}
     \includepdf[pages=-,nup=1x2,landscape]{origin.pdf}

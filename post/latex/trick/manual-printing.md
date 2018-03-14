@@ -20,3 +20,20 @@ The following image is an example.
 ![two in one](/img/latex/trick/printable-manual/two-in-one.PNG)
 
 The detail of [codes](/src/latex/trick/printable-manual/two-in-one.tex) and [pdf](/src/latex/trick/printable-manual/two-in-one.pdf) can following the links.
+
+## Two in One page (with another way)
+
+There is another way to do that using pdfpage.
+
+Firstly, our origin file will be compilted, and the `origin.pdf` will refer to the output pdf.
+Then we can "import" that pdf file by
+
+```latex
+\documentclass[12pt]{article}
+\usepackage{pdfpages}
+    \includepdfset{pages=-}
+% ....
+\begin{document}
+    \includepdf[pages=-,nup=1x2,landscape]{origin.pdf}
+\end{docuement}
+```
