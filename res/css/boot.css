@@ -167,3 +167,10 @@ h6, .h6 {
 .blog-footer pre {
   text-align: left;
 }
+
+/*
+ * image
+ */
+img {
+    max-width: 100%;
+}
