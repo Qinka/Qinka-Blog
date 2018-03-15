@@ -27,7 +27,7 @@ There is another way to do that using pdfpage.
 Firstly, our origin file will be compilted, and the `origin.pdf` will refer to the output pdf.
 And the origin one might be looked like:
 
-![origin pdf](/img/latex/trick/printable-manual/two-in-one-origin.png)
+![origin pdf](/img/latex/trick/printable-manual/two-in-one-origin.PNG)
 
 The [codes](/src/latex/trick/printable-manual/origin.tex) and [pdf](/src/latex/trick/printable-manual/origin.pdf)
 can be found by following the links.
@@ -46,7 +46,7 @@ Then we can "import" origin pdf file by
 
 The most possible result is
 
-![two in one with pdfpages](/img/latex/trick/printable-manual/two-in-one-pdfpages.png)
+![two in one with pdfpages](/img/latex/trick/printable-manual/two-in-one-pdfpages.PNG)
 
 The [codes](/src/latex/trick/printable-manual/two-in-one-pdfpages.tex) and [pdf](/src/latex/trick/printable-manual/two-in-one-pdfpages.pdf)
 can be found by following the links.
@@ -71,7 +71,7 @@ So we can a backgound with following codes:
 
 Those code will add a circle with a letter "B".
 
-![background with letter b](/img/latex/trick/printable-manual/origin-background.png)
+![background with letter b](/img/latex/trick/printable-manual/origin-background.PNG)
 
 We can also use the image. For example, we can use the following images:
 
@@ -90,7 +90,7 @@ and the codes:
 
 And the final pdf might be looked like:
 
-![background with image](/img/latex/trick/printable-manual/origin-background-image.png)
+![background with image](/img/latex/trick/printable-manual/origin-background-image.PNG)
 
 If you think the different pages should have different background images.
 You can use the package `ifthen`. We can use that package to control to set the different pages with different images.
@@ -110,7 +110,7 @@ There is an example:
 
 The final output of tex file might be looked like:
 
-![background (full)](/img/latex/trick/printable-manual/origin-background-full.png)
+![background (full)](/img/latex/trick/printable-manual/origin-background-full.PNG)
 
 
 
