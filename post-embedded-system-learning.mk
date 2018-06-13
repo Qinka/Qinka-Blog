@@ -77,3 +77,29 @@ embedded-system-learning-cross-compile-tools-build.del:
 		 $(SITE_URL)/b/embedded-sys/learning/cross-tools-build  |  $(IH_PATH) -m  -f '$(IH_DELAY)' -p '$(PRIVATE_KEY)' -d '$(SITE_DELTA)' -v | $(SHELL)
 
 
+
+big-little.3519.embedded.post: post/embedded-system-learning/3519-BIG.LITTLE.md post/embedded-system-learning/3519-BIG.LITTLE.sum.md
+	@pandoc -t html -o post/embedded-system-learning/3519-BIG.LITTLE.sum.md.htmlout post/embedded-system-learning/3519-BIG.LITTLE.sum.md
+	@pandoc -t html -o post/embedded-system-learning/3519-BIG.LITTLE.md.htmlout post/embedded-system-learning/3519-BIG.LITTLE.md
+	@${CURL_PATH} ${CURL_DETAIL}  \
+		-X PUT \
+		-F "type=post" \
+		-F "create-time=2018-05-25 09:25:45.672619 UTC" \
+		-F "update-time=${NOW_TIME}" \
+		-F "html=@post/embedded-system-learning/3519-BIG.LITTLE.md.htmlout" \
+		-F "summary=@post/embedded-system-learning/3519-BIG.LITTLE.sum.md.htmlout" \
+		-F "title=Linux 大小核 独占" \
+		-F "whose=Qinka" \
+		-F "tag=blog" \
+		-F "tag=post" \
+		-F "tag=hi3519" \
+		-F "tag=3519" \
+		-F "tag=big.LITTLE" \
+		-H "Authorization:${SITE_TOKEN}" \
+		${SITE_URL}/b/embedded/3519/big.LITTLE/cpu_affinity
+big-little.3519.embedded.post.del:
+	${CURL_PATH} ${CURL_DETAIL}  \
+		-X DELETE \
+		-F "type=post" \
+		-H "Authorization:${SITE_TOKEN}" \
+		${SITE_URL}/b/embedded/3519/big.LITTLE/cpu_affinity
