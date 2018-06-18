@@ -1,0 +1,164 @@
+\section{Weekly Briefing of Papers - (Apr. 6, 2018)}
+
+\subsection{[arXiv:1803.11527v1]SpiderCNN: Deep Learning on Point Sets with
+  Parameterized Convolutional Filters}
+
+This paper is from arXiv database, and the details of paper are available by
+following \href{https://arxiv.org/abs/1803.11527}{link}.
+
+This paper is mainly about using points cloud to do 3D convolutional operations.
+The convolution equation is:
+$$
+F * g(p) = \sum\limits_{q\in P, ||q-p|| < r}F(q)g(p-q)
+$$
+
+The filter is $ g: \mathbb{R}^n -> \mathbb{R} $, while $q$ and $p$ are
+$\mathbb{R}^n$ vectors, which means the location of points.
+
+The key idea of this paper is \textbf{parameterized convolution}.
+For each point $p$, the convolutional operation will take the points whose distances
+between point $p$ are less than radius $r$ to compute convolution.
+In other words, the convolution will compute the points in the range of a
+sphere.
+
+\subsection{[arXiv:1803.11385]H-CNN: Spatial Hashing Based CNN for 3D Shape
+  Analysis}
+
+This paper is from arXiv database, and the details of paper are available by
+following \href{https://arxiv.org/abs/1803.11385}{link}.
+
+This paper design two effcient GPU-based algorithms named \lstinline|hash2col|
+and \lstinline|col2hash|. The key idea of this paper is to use hash table to
+help computing convolution operation more effcient.
+
+\subsection{[arXiv:1802.08275]SPLATNet: Sparse Lattice Networks for Point Cloud
+  Processing}
+
+This paper is from arXiv database, and the details of this paper are available
+by following \href{https://arxiv.org/abs/1802.08275}{link}.
+
+The key idea of this paper is lattice. The Bilateral Convolution Layer is based
+on sparsely populated lattice to do $d_l$-dimensional convolution, while using
+\verb|splate| and \verb|slice| layers to transform data between points cloud,
+and lattice. The SPLATNet$_{3D}$ can be used to semantics with points cloud,
+while the SPLATNet$_{2D-3D}$ can be used to semantics with both of points cloud
+and images.
+
+\subsection{[arXiv:1804.00090]FloorNet: A Unified Framework for Floorplan
+  Reconstruction from 3D Scans}
+
+This paper is from arXiv, and the details of paper are available by following
+\href{https://arxiv.org/abs/1804.00090}{link}.
+
+FloorNet is based on RGB-D data, and PointNet. The FloorNet includes PointNet
+branch, FloorNet branch, and image branch. It use images, or say video, and
+points cloud as input, and output pixel wise floorplan, geometry, and semantics.
+
+\subsection{[arXiv:1804.00103]A LiDAR Point Cloud Generator: from a Virtual
+  World to Autonomous Driving}
+
+En.. This paper is awesome! It use virtual world to create points cloud data for
+autonomous driving. They wrote plugins for Grand Theft Auto V, GTA-V for short,
+to generate points cloud data. The details of this paper are available by
+following \href{https://arxiv.org/abs/1804.00103}{link}.
+
+\subsection{[arXiv:1804.00392]Bridging the Gap Between 2D and 3D Organ Segmentation}
+
+This paper focuses on the gap between 2D and 3D. The authors present an
+alternative framework and build a 3D Volumetric Fusion Net, VFN for short.
+The details are available by following
+\href{https://arxiv.org/abs/1804.00392}{link}.
+
+\subsection{[arXiv:1804.00586]Learning Descriptor Networks for 3D Shape
+  Synthesis and Analysis}
+This paper present a 3D shape descriptor network, and it is a energy-based deep
+convolution model. The details are available by following
+\href{https://arxiv.org/abs/1804.00586}{link}.
+
+\subsection{[arXiv:1804.00512]Expanding a robot's life: Low power object
+  recognition via FPGA-based DCNN deployment}
+
+This paper focuses on two subjects: \verb|low power| and \verb|CNN|.
+They use FPGA to accelerate DCNN on robot, and also make it lower power.
+The details are available by following \href{https://arxiv.org/abs/1804.00512}{link}.
+
+\subsection{[arXiv:1804.00650]DeepMVS: Learning Multi-view Stereopsis}
+
+This paper is about the multi-view steropsis. They present DeepMVS to learn a
+steropsis from multi-views. The details can be found by following
+\href{https://arxiv.org/abs/1804.00650}{link}.
+
+\subsection{[arXiv:1803.11303]Pancreas Segmentation in CT and MRI Images via
+  Domain Specific Network Designing and Recurrent Neural Contextual Learning}
+
+This paper is about using deep learning in pancreas segmentation. The input data
+are CT and MRI images, which usually has three dimensions. However such data can
+be split into sequence of 2D image. Firstly, they designed a model of 2D images.
+The forward branch is a multi-outlet network, and the ourlets are $F_1$,
+$F_2$, and $F_3$, which are feature maps. There are three backword branches,
+which take $F_1$, $F_2$, and $F_3$ as inputs, and output the corresponding
+segmentation losses.
+
+They use RNN for traning with 3D data. The CNN-RNN network uses a sequence of 2D
+images, into which 3D data are split up.
+
+In a words, this paper uses CNN, RNN, and CLSTM to design model for pancreas
+segmentation with 2D/3D CT and MRI images.
+
+This details of this paper can be found by following the
+\href{https://arxiv.org/abs/1803.11303}{link}.
+
+\subsection{[arXiv:1803.11366]Disentangling Features in 3D Face Shapes for Joint
+  Face Reconstruction and Recognition}
+
+This paper is about generating 3D face from 2D images. The details can be found
+by following \href{https://arxiv.org/abs/1803.11366}{link}.
+
+\subsection{[arXiv:1803.11370]Parallel Grid Pooling for Data Augmentation}
+
+This paper presents a new kind of pooling operation, named ``parallel grid
+polling''.
+
+The basic idea of \textbf{parallel grid pooling} is to split one feature map
+into many. For example, a $2 \times 2$ PGP can split feature into four.
+The details can be found by following
+\href{https://arxiv.org/abs/1803.11370}{link}.
+
+\subsection{[arXiv:1803.11493]3D Pose Estimation and 3D Model Retrieval for Objects in the Wild}
+
+This paper is another one to generate(or say retrieve) 3D models from 2D images.
+They use 2D image and 3D model library as input, and output the final results.
+The details are available by following \href{https://arxiv.org/abs/1803.11493}{link}.
+
+\subsection{[arXiv:1803.10862]A Survey on Deep Learning Methods for Robot
+  Vision}
+
+This paper is a survey about deep learning and robot vision. The details can be
+found by following \href{https://arxiv.org/abs/1803.10862}{link}.
+
+\subsection{Other papers}
+
+\begin{description}
+\item[arXiv:1804.00257] \href{https://arxiv.org/abs/1804.00257}{Real-time
+    Progressive 3D Semantic Segmentation for Indoor Scene}
+  
+\item[arXiv:1804.00637] \href{https://arxiv.org/abs/1804.00637}{3D Registration
+    of Curves and Surfaces using Local Differential Information}
+  
+\item[arXiv:1804.00335] \href{https://arxiv.org/abs/1804.00335}{Online learning
+    with graph-structured feedback against adaptive adversaries} (P.S. This
+  paper is about graph, so there it's.)
+  
+\item[arXiv:1803.11436] \href{https://arxiv.org/abs/1803.11436}{Delaunay
+    Triangulations of Points on Circles}
+
+\item[ arXiv:1705.10887] \href{https://arxiv.org/abs/1705.10887}{Efficient,
+    sparse representation of manifold distance matrices for classical scaling}
+  
+\item[arXiv:1803.10932]\href{https://arxiv.org/abs/1803.10932}{Learning
+    Free-Form Deformations for 3D Object Reconstruction}
+
+\item[arXiv:1803.11029]\href{https://arxiv.org/abs/1803.11029}{Structured
+    Attention Guided Convolutional Neural Fields for Monocular Depth Estimation}
+    
+\end{description}
