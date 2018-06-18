@@ -1,0 +1,3 @@
+[submodule "random-bib"]
+	path = random-bib
+	url = ./random-bib
