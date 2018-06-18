@@ -36,3 +36,9 @@ blog/test
 ## for bibtex
 *.bbl
 *.blg
+
+## for latex 
+*.nav
+*.out
+*.snm
+*.toc
