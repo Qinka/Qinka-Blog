@@ -1,3 +1,3 @@
 [submodule "random-bib"]
 	path = random-bib
-	url = ./random-bib
+	url = https://github.com/Qinka/random-bib.git
