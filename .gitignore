@@ -13,6 +13,7 @@ tmp
 jd_root.txt
 root.txt
 blog/test
+blog/test
 .ignore
 *.aux
 *.log
@@ -23,10 +24,15 @@ blog/test
 *.bak
 .markdown-preview.html
 \#*\#
-.\#*
 .\#
-
-
 ## For plat different
 .platform/platform.mk
 .platform/md5.*
+
+
+*.htmlout
+
+
+## for bibtex
+*.bbl
+*.blg
