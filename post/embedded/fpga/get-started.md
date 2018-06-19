@@ -6,7 +6,7 @@ In this blog, the board you need is Digilient's Nexys-3. And we will talk about 
 
 Nexys 3 is ready-to-use FPGA board based on Xilinx's Spartan-6 LX16 FPGA.
 
-  ![Nexys 3 (1) ((C) Digilient)](/img/fpga/nexys-3-1.jpg)
+  ![Nexys 3 (1) ((C) Digilient)](/img/embedded/fpga/nexys-3-1.jpg)
 
 According to the manual, the features of this board include:
 
@@ -36,9 +36,9 @@ According to the manual, the features of this board include:
 
 This is the peripheral device of the Nexys 3:
 
-  ![Nexys 3 (2) ((C) Digilient)](/img/fpga/nexys-3-2.jpg)
+  ![Nexys 3 (2) ((C) Digilient)](/img/embedded/fpga/nexys-3-2.jpg)
 
-  ![Nexys 3 (3) ((C) Digilient)](/img/fpga/nexys-3-3.jpg)
+  ![Nexys 3 (3) ((C) Digilient)](/img/embedded/fpga/nexys-3-3.jpg)
 
 ## ISE Design Suite
 
@@ -116,7 +116,7 @@ C = A and B
 
 And it's digital circuit is:
 
-  ![Half Adder Digital Circuit](/img/fpga/half-adder-dc.jpg)
+  ![Half Adder Digital Circuit](/img/embedded/fpga/half-adder-dc.jpg)
 
 ## Digital Circuit Pre-knowledge -- "Full Adder"
 
@@ -132,7 +132,7 @@ Cout = (A and B) or (C and (A xor B))
 
 And it's digital circuit is:
 
-  ![Full Adder Digital Circuit](/img/fpga/full-adder-dc.jpg)
+  ![Full Adder Digital Circuit](/img/embedded/fpga/full-adder-dc.jpg)
 
 
 ## New Project
@@ -181,7 +181,7 @@ It has 5 output pins, named S1 ~ S4, and S.
 
 The final circuit is:
 
-  ![Adder](/img/fpga/adder-dc.JPG)
+  ![Adder](/img/embedded/fpga/adder-dc.JPG)
 
 ## Setting The Pins
 
@@ -194,7 +194,7 @@ According to the *Reference Manual* of the **Nexys 3(TM) FPGA Board**,
 there are 8 slide switches and 8 LEDs on the board. The following is about the relation between the peripherals and sites of FPGA.
 The port of fpga:
 
-  ![I/O Ports](/img/fpga/io-ports.JPG)
+  ![I/O Ports](/img/embedded/fpga/io-ports.JPG)
 
 Peripheral | Site
 ---|---
@@ -301,4 +301,4 @@ After the configuration file programmed to device, our 4-bit will be right. The 
 
 Having fun!
 
-  ![Example](/img/fpga/show.jpg)
+  ![Example](/img/embedded/fpga/show.jpg)
