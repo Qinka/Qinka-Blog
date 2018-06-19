@@ -1,1 +1,0 @@
-'/path/to/md5sum' $1 | awk '{print $1}' 
