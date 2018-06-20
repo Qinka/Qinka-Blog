@@ -1,19 +1,5 @@
 .DS_Store
-hi
-ih
-ih.exe
-*.c.html
-*.c.css
-*.c.js
-blog.c.js
-css.frame.c.css
-home.c.html
-nav.c.js
 tmp
-jd_root.txt
-root.txt
-blog/test
-blog/test
 .ignore
 *.aux
 *.log
@@ -22,8 +8,13 @@ blog/test
 *.ignore.doc
 *~
 *.bak
+*.out
 .markdown-preview.html
 \#*\#
+.\#*
+*.toc
+
+
 .\#
 ## For plat different
 .platform/platform.mk
