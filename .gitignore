@@ -15,6 +15,15 @@ tmp
 *.toc
 
 
+.\#
 ## For plat different
 .platform/platform.mk
 .platform/md5.*
+
+
+*.htmlout
+
+
+## for bibtex
+*.bbl
+*.blg
