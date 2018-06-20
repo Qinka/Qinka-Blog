@@ -54,7 +54,7 @@ The prefix `__global__` mark the function can be call from *host* and run on the
 The *host* means the CPU, and *device* means GPU.
 `blockDim`, `blockIdx`, `gridDim`, and `threadIdx` are the index for CUDA's block and thread.
 The computing model of CUDA is shown as following image.
-![CUDA computing model, copied from CUDA official document](computing-model.png)
+![CUDA computing model, copied from CUDA official document](/img/accleterate/cuda/computing-model.png)
 When computing a kernel, there is a grid. For each grad, there will be many blocks in it, and there are many threads in each block.
 The each thread can be regard as a core.
 `blockDim.x` denotes the number of thread in a block with x direction, and `gridDim.x` denotes the number of block in a grid with x direction.
