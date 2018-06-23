@@ -9,4 +9,10 @@ Qinka's Blog
         A copy of the license is included in the section entitled "GNU
         Free Documentation License".
 
-This repo is my blog.
+This repo is my blog(front end).
+
+The main site is available at [https://blog.qinka.pro](https://blog.qinka.pro).
+The test sites are available at:
+
+  1. [http://1.dev.blog.qinka.pro (prefer 2.dev)](http://1.dev.blog.qinka.pro)
+  1. [http://2.dev.blog.qinka.pro (primary)](http://2.dev.blog.qinka.pro)
