@@ -1,51 +1,50 @@
+> This site is still a testing site for L.A. node.
+> You can only visit this site from outside of China,
+> because the domain was set to host in L.A. for outside DNS.
+> If you see this site in China, you might be visiting test site.
 
-# !!!L.A. site testing!!!!
+**Welcome to my blog.**
 
-
-这是我个人的一个博客，里面会有乱七八糟的东西在里面。
+There are many post about the deep learning, embedded system, Haskell, LaTeX and so on. Thanks for staring me:
 [![GitHub stars](https://img.shields.io/github/stars/Qinka/Qinka-Blog.svg?style=social&label=Stars)](https://github.com/Qinka/Qinka-Blog)
 
-## 个人介绍
+## About Me
 
-我叫李约瀚，山西太原人。现为西安电子科技大学软件学院 2014 级本科生，并攻读软件工程专业。
-同时已获得本校研究生免试推送资格，暂接受单位是西安电子科技大学计算机学院，
-并加入 **西安电子科技大学嵌入式与视觉图像处理实验室**。
+My name is Johann Lee, and come from Taiyuan, Shanxi Province, China.
+During 2014 to 2018, I studied in Xidian University, and majored software engineering. Now, I am studying in Xidian University for master
+degree, and joined Embedded technology & vision processing Research Center(Xidian University).
 
-[![GitHub followers](https://img.shields.io/github/followers/Qinka.svg?style=social&label=Follow)](https://github.com/Qinka)
+You can [![GitHub followers](https://img.shields.io/github/followers/Qinka.svg?style=social&label=Follow)](https://github.com/Qinka) me on GitHub, and star my
+repos if you think those are useful.
 
-## 技能点
+## SKILL
 
-学习过 C/C++，同时也学习过 Linux 内核驱动开发（为本科专业分方向课程内容），
-此外对 STM32 开发有初步的了解。
+The main research direction I working on is **3D computer vision** with **deep learning**. I am also working on **embedded system development**.
 
-学习过 C#， 并基本掌握 MS-Windows UWP 应用的开发，为注册 UWP 开发者。
+I can do the following things more or less:
 
-学习过 Haskell，了解函数式编程的相关概念。本博客后端是用 Haskell 编写，并使用 Yesod 框架。
+* C/C++ development (especially embedded system, e.g. STM32, RaspberryPi)
+* C# development (I'm a registered developer on MS-Windows UWP)
+* Haskell (with functional program skills)
+* Python (familiar with Tensorflow and PyTorch)
+* LaTeX
+* Verilog HDL (FPGA)
+* Circuit schematic & PCB 
+* CUDA & OpenCL
+* OpenGL
+* Html/CSS/Javascript
+* 3D Computer Vision and Deep Learning
 
-粗略学习过 Python， 能写一些基本简单的程序。并用 Python 编写过基于 TensorFlow 的代码
-和 为 NAO 机器人编写过简单的控制程序。
+## Gaming
 
-学习过 LaTeX。从大一开始，几乎所有的报告均使用 LaTeX 排版。同时博客中部分文章使用 LaTeX，
-其中部分使用 pandoc 格式化成 HTML， 部分直接使用 PDF。
+* World of Tanks
+* World of Warships
+* Besiege
 
-会简单的布 PCB 电路板，并手工印刷。
+## About this testing site
 
-目前正在学习 Deep Learning 与 Computer Vision 相关内容与理论。
+This site is a testing site. The things will not always go well,
+while the newest blog will be pushed to here first.
 
-## 爱好
-
-喜欢玩坦克世界， 喜欢柯南，喜欢很多其他的东西。
-
-## 先研究方向
-
-目前毕业设计与初步的研究方向是关于：通过稀疏数据的八叉树编码，来优化基于张量的卷积等操作。
-大方向在于 图卷积于几何图形卷积，侧重点在于 3D 深度学习、机器视觉和机器人。
-
-## 测试
-
-这个站点是博客内容与博客前后端 的 测试站点。站点可能回崩溃，但是一些新的东西会先出现在这里，虽然意味着更多错误。
-
-## BUG
-
-无论如何在发现 BUG 之后，请在 [GitHub:Qinka/Qinka-Blog/issues](https://github.com/Qinka/Qinka-Blog/issues?q=is%3Aopen+is%3Aissue)
-提交 issues。
+So if you find any bug of blog's frontend and back-end,
+you can raise an issues at [GitHub:Qinka/Qinka-Blog/issues](https://github.com/Qinka/Qinka-Blog/issues?q=is%3Aopen+is%3Aissue).

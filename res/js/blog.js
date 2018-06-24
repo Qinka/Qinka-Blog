@@ -24,7 +24,7 @@ function flashbloglist()
     bJSON = bJSON.sort(sortBL);
     var div = document.getElementById('bloglist');
     if (bJSON.length == 0)
-      div.innerText = "没有东西在这里";
+      div.innerText = "Nothing. :(";
     else
     {
       var ul  = document.createElement('ul');
