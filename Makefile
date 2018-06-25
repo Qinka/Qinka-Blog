@@ -3,7 +3,7 @@ export SITE_URL
 export SITE_HASH
 # curl settings
 # detail: show details or not
-CURL_DETAIL = 
+export CURL_DETAIL
 CURL_PATH = curl
 # update time
 NOW_TIME = $(shell date -u "+%Y-%m-%d %H:%M:%S UTC")
