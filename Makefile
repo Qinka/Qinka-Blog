@@ -11,5 +11,3 @@ NOW_TIME = $(shell date -u "+%Y-%m-%d %H:%M:%S UTC")
 SITE_TOKEN=$(shell yu ih -t $(SITE_TOKEN_PASS) -h $(SITE_HASH))
 
 # include
-include frame.mk
-include navs.mk
