@@ -43,4 +43,9 @@ flash write_image erase image_file
 
 image_file 可以是使用 相对路径，或者是使用相对启动 OpenOCD 的目录的相对路径。
 
+例如在 Windows 中烧写 `E:\demo\demo.hex` 文件，命令如下：
+```
+flash write_image erase E:\\demo\\demo.hex
+```
 
+> 注意 Windows 中 `\` 会被转义，所以需要使用 `\\` 替代。 
