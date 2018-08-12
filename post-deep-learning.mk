@@ -1562,3 +1562,206 @@ Z.gta5pr.dl.img.del:
 		-F "type=binary" \
 		-H "Authorization:${SITE_TOKEN}" \
 		${SITE_URL}/img/deep-learning/gta5-plate-recognition/Z
+bg1.cl.bip.cv.img: img/computer-vision/basic-image-processing/combine-image/bg1.png
+	@${CURL_PATH} ${CURL_DETAIL}  \
+		-X PUT \
+		-F "type=binary" \
+		-F "create-time=2018-08-11 15:52:41.426985 UTC" \
+		-F "update-time=${NOW_TIME}" \
+		-F "binary=@img/computer-vision/basic-image-processing/combine-image/bg1.png" \
+		-F "summary=" \
+		-F "title=bg1.cl.bip.cv.img" \
+		-F "whose=Qinka" \
+		-F "mime=image/png" \
+		-H "Authorization:${SITE_TOKEN}" \
+		${SITE_URL}/img/compute-vision/basic-image-processing/combine-image/bg1.png
+bg1.cl.bip.cv.img.del:
+	${CURL_PATH} ${CURL_DETAIL}  \
+		-X DELETE \
+		-F "type=binary" \
+		-H "Authorization:${SITE_TOKEN}" \
+		${SITE_URL}/img/compute-vision/basic-image-processing/combine-image/bg1.png
+
+bg2.cl.bip.cv.img: img/computer-vision/basic-image-processing/combine-image/bg2.png
+	@${CURL_PATH} ${CURL_DETAIL}  \
+		-X PUT \
+		-F "type=binary" \
+		-F "create-time=2018-08-11 15:52:41.458345 UTC" \
+		-F "update-time=${NOW_TIME}" \
+		-F "binary=@img/computer-vision/basic-image-processing/combine-image/bg2.png" \
+		-F "summary=" \
+		-F "title=bg2.cl.bip.cv.img" \
+		-F "whose=Qinka" \
+		-F "mime=image/png" \
+		-H "Authorization:${SITE_TOKEN}" \
+		${SITE_URL}/img/compute-vision/basic-image-processing/combine-image/bg2.png
+bg2.cl.bip.cv.img.del:
+	${CURL_PATH} ${CURL_DETAIL}  \
+		-X DELETE \
+		-F "type=binary" \
+		-H "Authorization:${SITE_TOKEN}" \
+		${SITE_URL}/img/compute-vision/basic-image-processing/combine-image/bg2.png
+
+fn1.cl.bip.cv.img: img/computer-vision/basic-image-processing/combine-image/fn1.png
+	@${CURL_PATH} ${CURL_DETAIL}  \
+		-X PUT \
+		-F "type=binary" \
+		-F "create-time=2018-08-11 15:52:41.478369 UTC" \
+		-F "update-time=${NOW_TIME}" \
+		-F "binary=@img/computer-vision/basic-image-processing/combine-image/fn1.png" \
+		-F "summary=" \
+		-F "title=fn1.cl.bip.cv.img" \
+		-F "whose=Qinka" \
+		-F "mime=image/png" \
+		-H "Authorization:${SITE_TOKEN}" \
+		${SITE_URL}/img/compute-vision/basic-image-processing/combine-image/fn1.png
+fn1.cl.bip.cv.img.del:
+	${CURL_PATH} ${CURL_DETAIL}  \
+		-X DELETE \
+		-F "type=binary" \
+		-H "Authorization:${SITE_TOKEN}" \
+		${SITE_URL}/img/compute-vision/basic-image-processing/combine-image/fn1.png
+
+ho2.cl.bip.cv.img: img/computer-vision/basic-image-processing/combine-image/ho2.png
+	@${CURL_PATH} ${CURL_DETAIL}  \
+		-X PUT \
+		-F "type=binary" \
+		-F "create-time=2018-08-11 15:52:41.496778 UTC" \
+		-F "update-time=${NOW_TIME}" \
+		-F "binary=@img/computer-vision/basic-image-processing/combine-image/ho2.png" \
+		-F "summary=" \
+		-F "title=ho2.cl.bip.cv.img" \
+		-F "whose=Qinka" \
+		-F "mime=image/png" \
+		-H "Authorization:${SITE_TOKEN}" \
+		${SITE_URL}/img/compute-vision/basic-image-processing/combine-image/ho2.png
+ho2.cl.bip.cv.img.del:
+	${CURL_PATH} ${CURL_DETAIL}  \
+		-X DELETE \
+		-F "type=binary" \
+		-H "Authorization:${SITE_TOKEN}" \
+		${SITE_URL}/img/compute-vision/basic-image-processing/combine-image/ho2.png
+
+ho3.cl.bip.cv.img: img/computer-vision/basic-image-processing/combine-image/ho3.png
+	@${CURL_PATH} ${CURL_DETAIL}  \
+		-X PUT \
+		-F "type=binary" \
+		-F "create-time=2018-08-11 15:52:41.51549 UTC" \
+		-F "update-time=${NOW_TIME}" \
+		-F "binary=@img/computer-vision/basic-image-processing/combine-image/ho3.png" \
+		-F "summary=" \
+		-F "title=ho3.cl.bip.cv.img" \
+		-F "whose=Qinka" \
+		-F "mime=image/png" \
+		-H "Authorization:${SITE_TOKEN}" \
+		${SITE_URL}/img/compute-vision/basic-image-processing/combine-image/ho3.png
+ho3.cl.bip.cv.img.del:
+	${CURL_PATH} ${CURL_DETAIL}  \
+		-X DELETE \
+		-F "type=binary" \
+		-H "Authorization:${SITE_TOKEN}" \
+		${SITE_URL}/img/compute-vision/basic-image-processing/combine-image/ho3.png
+
+ho4.cl.bip.cv.img: img/computer-vision/basic-image-processing/combine-image/ho4.png
+	@${CURL_PATH} ${CURL_DETAIL}  \
+		-X PUT \
+		-F "type=binary" \
+		-F "create-time=2018-08-11 15:52:41.532573 UTC" \
+		-F "update-time=${NOW_TIME}" \
+		-F "binary=@img/computer-vision/basic-image-processing/combine-image/ho4.png" \
+		-F "summary=" \
+		-F "title=ho4.cl.bip.cv.img" \
+		-F "whose=Qinka" \
+		-F "mime=image/png" \
+		-H "Authorization:${SITE_TOKEN}" \
+		${SITE_URL}/img/compute-vision/basic-image-processing/combine-image/ho4.png
+ho4.cl.bip.cv.img.del:
+	${CURL_PATH} ${CURL_DETAIL}  \
+		-X DELETE \
+		-F "type=binary" \
+		-H "Authorization:${SITE_TOKEN}" \
+		${SITE_URL}/img/compute-vision/basic-image-processing/combine-image/ho4.png
+
+lc.cl.bip.cv.img: img/computer-vision/basic-image-processing/combine-image/lc.png
+	@${CURL_PATH} ${CURL_DETAIL}  \
+		-X PUT \
+		-F "type=binary" \
+		-F "create-time=2018-08-11 15:52:41.551569 UTC" \
+		-F "update-time=${NOW_TIME}" \
+		-F "binary=@img/computer-vision/basic-image-processing/combine-image/lc.png" \
+		-F "summary=" \
+		-F "title=lc.cl.bip.cv.img" \
+		-F "whose=Qinka" \
+		-F "mime=image/png" \
+		-H "Authorization:${SITE_TOKEN}" \
+		${SITE_URL}/img/compute-vision/basic-image-processing/combine-image/lc.png
+lc.cl.bip.cv.img.del:
+	${CURL_PATH} ${CURL_DETAIL}  \
+		-X DELETE \
+		-F "type=binary" \
+		-H "Authorization:${SITE_TOKEN}" \
+		${SITE_URL}/img/compute-vision/basic-image-processing/combine-image/lc.png
+
+mask1.cl.bip.cv.img: img/computer-vision/basic-image-processing/combine-image/mask1.png
+	@${CURL_PATH} ${CURL_DETAIL}  \
+		-X PUT \
+		-F "type=binary" \
+		-F "create-time=2018-08-11 15:52:41.570489 UTC" \
+		-F "update-time=${NOW_TIME}" \
+		-F "binary=@img/computer-vision/basic-image-processing/combine-image/mask1.png" \
+		-F "summary=" \
+		-F "title=mask1.cl.bip.cv.img" \
+		-F "whose=Qinka" \
+		-F "mime=image/png" \
+		-H "Authorization:${SITE_TOKEN}" \
+		${SITE_URL}/img/compute-vision/basic-image-processing/combine-image/mask1.png
+mask1.cl.bip.cv.img.del:
+	${CURL_PATH} ${CURL_DETAIL}  \
+		-X DELETE \
+		-F "type=binary" \
+		-H "Authorization:${SITE_TOKEN}" \
+		${SITE_URL}/img/compute-vision/basic-image-processing/combine-image/mask1.png
+
+rt1.cl.bip.cv.img: img/computer-vision/basic-image-processing/combine-image/rt1.png
+	@${CURL_PATH} ${CURL_DETAIL}  \
+		-X PUT \
+		-F "type=binary" \
+		-F "create-time=2018-08-11 15:52:41.590272 UTC" \
+		-F "update-time=${NOW_TIME}" \
+		-F "binary=@img/computer-vision/basic-image-processing/combine-image/rt1.png" \
+		-F "summary=" \
+		-F "title=rt1.cl.bip.cv.img" \
+		-F "whose=Qinka" \
+		-F "mime=image/png" \
+		-H "Authorization:${SITE_TOKEN}" \
+		${SITE_URL}/img/compute-vision/basic-image-processing/combine-image/rt1.png
+rt1.cl.bip.cv.img.del:
+	${CURL_PATH} ${CURL_DETAIL}  \
+		-X DELETE \
+		-F "type=binary" \
+		-H "Authorization:${SITE_TOKEN}" \
+		${SITE_URL}/img/compute-vision/basic-image-processing/combine-image/rt1.png
+
+cl.bip.cv.post: post/computer-vision/basic-image-processing/combine-image.tex post/computer-vision/basic-image-processing/combine-image.md
+	@pandoc -t html -o post/computer-vision/basic-image-processing/combine-image.md.htmlout post/computer-vision/basic-image-processing/combine-image.md
+	@pandoc -t html -o post/computer-vision/basic-image-processing/combine-image.tex.htmlout post/computer-vision/basic-image-processing/combine-image.tex --mathjax
+	@${CURL_PATH} ${CURL_DETAIL}  \
+		-X PUT \
+		-F "type=post" \
+		-F "create-time=2018-08-11 15:47:41.194548 UTC" \
+		-F "update-time=${NOW_TIME}" \
+		-F "html=@post/computer-vision/basic-image-processing/combine-image.tex.htmlout" \
+		-F "summary=@post/computer-vision/basic-image-processing/combine-image.md.htmlout" \
+		-F "title=利用简单图像组合图片" \
+		-F "whose=Qinka" \
+		-F "tag=blog" \
+		-F "tag=post" \
+		-F "tag=computer vision" \
+		-H "Authorization:${SITE_TOKEN}" \
+		${SITE_URL}/b/computer-vision/basic-image-processing/combine-image
+cl.bip.cv.post.del:
+	${CURL_PATH} ${CURL_DETAIL}  \
+		-X DELETE \
+		-F "type=post" \
+		-H "Authorization:${SITE_TOKEN}" \
+		${SITE_URL}/b/computer-vision/basic-image-processing/combine-image
