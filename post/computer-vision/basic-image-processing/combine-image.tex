@@ -121,11 +121,11 @@ Photoshop 抠出来的掩模保存成图片，之后处理图片是一并被读�
 
 \paragraph{实现}
 实现的代码很简单，
-\begin{lstlistings}[language=Haskell]
+\begin{lstlisting}[language=Haskell]
 bufMB <- nForwardDotPrd bufM1 sn1 >>= nForwardAdd s1 >>= (`nForwardSub` bufM2)
 cutP1 <- nForwardDotPrd bufPF bufM1
 cutP2 <- nForwardDotPrd bufPB bufMB
 fin <- nForwardAdd cutP1 cutP2
-\end{lstlistings}
+\end{lstlisting}
 这四行代码依次计算 $M-C$ 矩阵，$C \cdot X$ 矩阵，$(M - C) \cdot Y$矩阵 与 $C \cdot X + (M - C) \cdot Y$ 矩阵。
 最后获得的 \verb|fin| 则是最后处理好的函数。

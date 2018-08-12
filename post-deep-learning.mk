@@ -1744,7 +1744,7 @@ rt1.cl.bip.cv.img.del:
 
 cl.bip.cv.post: post/computer-vision/basic-image-processing/combine-image.tex post/computer-vision/basic-image-processing/combine-image.md
 	@pandoc -t html -o post/computer-vision/basic-image-processing/combine-image.md.htmlout post/computer-vision/basic-image-processing/combine-image.md
-	@pandoc -t html -o post/computer-vision/basic-image-processing/combine-image.tex.htmlout post/computer-vision/basic-image-processing/combine-image.tex --mathjax
+	@pandoc -t html -o post/computer-vision/basic-image-processing/combine-image.tex.htmlout post/computer-vision/basic-image-processing/combine-image.tex --mathjax --listings
 	@${CURL_PATH} ${CURL_DETAIL}  \
 		-X PUT \
 		-F "type=post" \
