@@ -415,3 +415,28 @@ openocd-putty.stm32.embedded.img.del:
 		-F "type=binary" \
 		-H "Authorization:${SITE_TOKEN}" \
 		${SITE_URL}/img/embedded/stm32/openocd-putty-telnet.png
+CAN.stm32.es.post: post/embedded/stm32/CAN.md post/embedded/stm32/CAN.sum.md
+	@pandoc -t html -o post/embedded/stm32/CAN.sum.md.htmlout post/embedded/stm32/CAN.sum.md
+	@pandoc -t html -o post/embedded/stm32/CAN.md.htmlout post/embedded/stm32/CAN.md
+	@${CURL_PATH} ${CURL_DETAIL}  \
+		-X PUT \
+		-F "type=post" \
+		-F "create-time=2018-08-12 14:01:13.269984 UTC" \
+		-F "update-time=${NOW_TIME}" \
+		-F "html=@post/embedded/stm32/CAN.md.htmlout" \
+		-F "summary=@post/embedded/stm32/CAN.sum.md.htmlout" \
+		-F "title=STM32F1x CAN 通信" \
+		-F "whose=Qinka" \
+		-F "tag=blog" \
+		-F "tag=post" \
+		-F "tag=embedded" \
+		-F "tag=stm32" \
+		-F "tag=CAN" \
+		-H "Authorization:${SITE_TOKEN}" \
+		${SITE_URL}/b/embedded/stm32/CAN
+CAN.stm32.es.post.del:
+	${CURL_PATH} ${CURL_DETAIL}  \
+		-X DELETE \
+		-F "type=post" \
+		-H "Authorization:${SITE_TOKEN}" \
+		${SITE_URL}/b/embedded/stm32/CAN
